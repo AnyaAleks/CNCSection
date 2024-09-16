@@ -56,7 +56,7 @@
 <details>
 <summary>Git, GitHub</summary>
   
-Для хостинга IT-проекта и совместной разработки используется веб-сервис GitHub.
+Для хостинга IT-проекта и совместной разработки используется веб-сервис ```GitHub```.
 </details>
 <details>
 <summary>SQLite</summary>
