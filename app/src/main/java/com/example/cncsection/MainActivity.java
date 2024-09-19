@@ -22,26 +22,39 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-//            return insets;
-//        });
+
         myDBHlpr = new DataBaseHelper(this);
 
-        // Get some data from the database using your method
-        Cursor csr = myDBHlpr.getDataDB_TableItemNamesByItemType("type2");
+        Cursor csr = myDBHlpr.getAll("Machine");
         while(csr.moveToNext()){
             Log.d("DB_ROWINFO",
-                    "ITEM NAME is " + csr.getString(csr.getColumnIndex(DataBaseHelper.ITEM_NAME))
-                            + "ITEM TYPE is "
-                            + csr.getString((csr.getColumnIndex(DataBaseHelper.ITEM_TYPE))
+                    "ID is " + csr.getString(csr.getColumnIndex("id_machine"))
+                            + " TYPE is " + csr.getString((csr.getColumnIndex("type"))
                     )
             );
         }
-        // ========================================
-        // ALWAYS CLOSE CURSORS WHEN DONE WITH THEM
-        // ========================================
+
+        csr = myDBHlpr.sortInOrder("Request", "production_time");
+        while(csr.moveToNext()){
+            Log.d("SORT_REQUEST",
+                    "ID_REC is " + csr.getString(csr.getColumnIndex("id_request"))
+                            + " ID_PART is " + csr.getString(csr.getColumnIndex("id_part"))
+                            + " TIME is " + csr.getString((csr.getColumnIndex("production_time"))
+                    )
+            );
+        }
+
+        csr = myDBHlpr.searchItem("Osnaska", "id_osnaska", "2");
+        while(csr.moveToNext()){
+            Log.d("SEARCH",
+                    "ID_OSN is " + csr.getString(csr.getColumnIndex("id_osnaska"))
+                            + " TITLE is " + csr.getString(csr.getColumnIndex("title"))
+                            + " STOCK is " + csr.getString((csr.getColumnIndex("stock_availability"))
+                    )
+            );
+        }
+
+
         csr.close();
     }
 }

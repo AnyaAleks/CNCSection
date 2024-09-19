@@ -15,11 +15,11 @@ import java.io.OutputStream;
 class DataBaseHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "DBHELPER";
-    public static final String DBNAME = "TestDB.db"; //<< Name of the database file in the assets folder
+    public static final String DBNAME = "CNCSectionDB.db"; //<< Name of the database file in the assets folder
     public static final int DBVERSION = 1;
-    public static final String TABLE_ITEM = "item";
-    public static final String ITEM_NAME = "item_name";
-    public static final String ITEM_TYPE = "item_type";
+//    public static final String TABLE_NAME = "item";
+//    public static final String ITEM_NAME = "item_name";
+//    public static final String ITEM_TYPE = "item_type";
 
     SQLiteDatabase mDB;
 
@@ -45,20 +45,36 @@ class DataBaseHelper extends SQLiteOpenHelper {
         Log.d(TAG,"METHOD onUpgrade called");
     }
 
-    public Cursor getDataDB_TableItemNamesByItemType(String itemType) {
+//    public Cursor getDataDB_TableItemNamesByItemType(String itemType) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor res = db.rawQuery("select * from " + TABLE_NAME
+//                //+ " where "
+//                //+ ITEM_TYPE + " = '" + itemType+ "'"
+//                , null);
+//        Log.e("LogTag", "res.getCount(): " + res.getCount());
+//        return res;
+//    }
+
+    public Cursor getAll(String table_name) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from " + TABLE_ITEM
-                //+ " where "
-                //+ ITEM_TYPE + " = '" + itemType+ "'"
-                , null);
-        Log.e("LogTag", "res.getCount(): " + res.getCount());
+        Cursor res = db.rawQuery("select * from " + table_name, null);
+        Log.e("LogTag", table_name + ".getCount(): " + res.getCount());
         return res;
     }
 
-    public Cursor getAll() {
+    public Cursor sortInOrder(String table_name, String sort_field) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from " + TABLE_ITEM, null);
-        Log.e("LogTag", "res.getCount(): " + res.getCount());
+        Cursor res = db.rawQuery("select * from " + table_name
+                        + " ORDER BY " + sort_field, null);
+        Log.e("LogTag", table_name + ".getCount(): " + res.getCount());
+        return res;
+    }
+
+    public Cursor searchItem(String table_name, String compare_field,String search_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from " + table_name
+                + " WHERE " + compare_field + " = " + search_id, null);
+        Log.e("LogTag", table_name + ".getCount(): " + res.getCount());
         return res;
     }
 
