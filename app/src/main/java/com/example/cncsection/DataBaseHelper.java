@@ -1,5 +1,6 @@
 package com.example.cncsection;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -45,16 +46,6 @@ class DataBaseHelper extends SQLiteOpenHelper {
         Log.d(TAG,"METHOD onUpgrade called");
     }
 
-//    public Cursor getDataDB_TableItemNamesByItemType(String itemType) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor res = db.rawQuery("select * from " + TABLE_NAME
-//                //+ " where "
-//                //+ ITEM_TYPE + " = '" + itemType+ "'"
-//                , null);
-//        Log.e("LogTag", "res.getCount(): " + res.getCount());
-//        return res;
-//    }
-
     public Cursor getAll(String table_name) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from " + table_name, null);
@@ -76,6 +67,22 @@ class DataBaseHelper extends SQLiteOpenHelper {
                 + " WHERE " + compare_field + " = " + search_id, null);
         Log.e("LogTag", table_name + ".getCount(): " + res.getCount());
         return res;
+    }
+
+    public long addToStaff(int id_access, String fio, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //Создание объекта для данных (добавления новых строк в таблицу)
+        ContentValues cv = new ContentValues();
+        //cv.put("id_staff", 1); - autoincrement
+        cv.put("id_access", id_access);
+        cv.put("fio", fio);
+        cv.put("password", password);
+
+        long rowID = db.insert("Staff", null, cv);
+        Log.e("LogTag", "addToEmployees" + " rowID " +rowID);
+
+        return rowID;
     }
 
     /*

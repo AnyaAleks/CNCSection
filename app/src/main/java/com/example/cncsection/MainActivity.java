@@ -40,7 +40,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//        myDBHlpr = new DataBaseHelper(this);
+        myDBHlpr = new DataBaseHelper(this);
+
+        //myDBHlpr.addToStaff(1, "Алексеева Анна Сергеевна", "1234");
+
+
+
 //
 //        Cursor csr = myDBHlpr.getAll("Machine");
 //        while(csr.moveToNext()){
