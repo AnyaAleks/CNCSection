@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">CNCSection</string>
-    <string name="title_activity_entry">EntryActivity</string>
+    <string name="title_activity_entry">Entry Activity</string>
+    <string name="entry">Вход в систему</string>
+    <string name="hint1">Логин</string>
+    <string name="hint2">Пароль</string>
+    <string name="sent">Отправить</string>
 </resources>

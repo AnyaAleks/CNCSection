@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="bac">#FFFEFC</color>
+    <color name="entry">#4D174D</color>
+    <color name="header">#E6E6FA</color>
+    <color name="half">#C0C0FF</color>
+    <color name="half2">#DCE4FF</color>
+    <color name="half3">#B3BFFC</color>
+
 </resources>
