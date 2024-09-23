@@ -13,18 +13,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-class DataBaseHelper extends SQLiteOpenHelper {
+class DBMaster extends SQLiteOpenHelper {
 
     private static final String TAG = "DBHELPER";
-    public static final String DBNAME = "CNCSectionDB.db"; //<< Name of the database file in the assets folder
+    public static final String DBNAME = "CNCSectionDB.db";
     public static final int DBVERSION = 1;
-//    public static final String TABLE_NAME = "item";
-//    public static final String ITEM_NAME = "item_name";
-//    public static final String ITEM_TYPE = "item_type";
 
     SQLiteDatabase mDB;
 
-    public DataBaseHelper(Context context) {
+    public DBMaster(Context context) {
         super(context,DBNAME,null,DBVERSION);
         if (!ifDBExists(context)) {
             if (!copyDBFromAssets(context)) {
@@ -56,7 +53,7 @@ class DataBaseHelper extends SQLiteOpenHelper {
     public Cursor sortInOrder(String table_name, String sort_field) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from " + table_name
-                        + " ORDER BY " + sort_field, null);
+                + " ORDER BY " + sort_field, null);
         Log.e("LogTag", table_name + ".getCount(): " + res.getCount());
         return res;
     }
@@ -169,7 +166,8 @@ class DataBaseHelper extends SQLiteOpenHelper {
     /*
     Checks to see if the database exists if not will create the respective directory (database)
     Creating the directory overcomes the NOT FOUND error
- */
+    */
+
     private boolean ifDBExists(Context context) {
         String dbparent = context.getDatabasePath(DBNAME).getParent();
         File f = context.getDatabasePath(DBNAME);

@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    DataBaseHelper myDBHlpr;
+    DBManager dbManager;
 
     @SuppressLint("Range")
     @Override
@@ -38,9 +39,7 @@ public class MainActivity extends AppCompatActivity {
             };
         }.start();
 
-
-
-        myDBHlpr = new DataBaseHelper(this);
+        dbManager = new DBManager(this);
 
         //myDBHlpr.addToStaff(1, "Алексеева Анна Сергеевна", "1234");
 
@@ -79,4 +78,11 @@ public class MainActivity extends AppCompatActivity {
 //
 //        csr.close();
     }
+
+    //Функция создания заявки менеджером
+    public void addNewRecordToRequest(DBManager db){
+        db.addToStaff(1, "Алексеева Анна Сергеевна", "1234");
+    }
+
+
 }

@@ -3,6 +3,7 @@ package com.example.cncsection;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,7 +55,12 @@ public class EntryActivity extends AppCompatActivity {
         // (всем работникам при устройстве на работу должны выдавать пароль) по типу клиента
         //У каждой роли в пароле можно сделать определённые первые цифры или буквы и делать проверку по ним
         //пока стоит заглушка
-        Intent intent = new Intent(this, CreateOrderActivity.class);
+        Log.d("PDF2","222fffffffffffffffffffffffffff");
+
+        Intent intent = new Intent(this, PDFViewerActivity.class);
+                //CreateOrderActivity.class);
         startActivity(intent);
+
+
     }
 }
