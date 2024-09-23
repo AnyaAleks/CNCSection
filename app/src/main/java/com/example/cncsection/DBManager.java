@@ -82,12 +82,13 @@ class DBManager extends SQLiteOpenHelper {
         return rowID;
     }
 
-    public long addToRequest(int id_part, int id_status) {
+    public long addToRequest(String part_number, int id_status, String comment) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
-        cv.put("id_part", id_part);
+        cv.put("part_number", part_number);
         cv.put("id_status", id_status);
+        cv.put("comment", comment);
 
         long rowID = db.insert("Request", null, cv);
         Log.e("LogTag", "Request" + " rowID " + rowID);
