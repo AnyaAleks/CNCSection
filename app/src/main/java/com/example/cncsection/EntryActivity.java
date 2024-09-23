@@ -55,9 +55,8 @@ public class EntryActivity extends AppCompatActivity {
         // (всем работникам при устройстве на работу должны выдавать пароль) по типу клиента
         //У каждой роли в пароле можно сделать определённые первые цифры или буквы и делать проверку по ним
         //пока стоит заглушка
-        Log.d("PDF2","222fffffffffffffffffffffffffff");
 
-        Intent intent = new Intent(this, PDFViewerActivity.class);
+        Intent intent = new Intent(this, TxtViewerActivity.class);
                 //CreateOrderActivity.class);
         startActivity(intent);
 
