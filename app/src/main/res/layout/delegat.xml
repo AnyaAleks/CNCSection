@@ -39,4 +39,5 @@
         android:layout_marginTop="5dp"
         android:inputType="text"
         android:layout_gravity="center_vertical"/>
+
 </LinearLayout>

@@ -167,4 +167,5 @@
         app:layout_constraintHorizontal_bias="0.40"
         app:layout_constraintStart_toEndOf="@+id/poisk"
         app:layout_constraintTop_toBottomOf="@+id/button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
