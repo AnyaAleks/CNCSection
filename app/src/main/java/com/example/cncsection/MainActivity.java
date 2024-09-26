@@ -4,10 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +28,13 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        //Загрузка
+        WebView webView = (WebView) findViewById(R.id.webvidew);
+        webView.loadUrl("file:///android_asset/spinner.html");
+        webView.setBackgroundColor(Color.TRANSPARENT);
+
+
+        //Переход
         Intent intent = new Intent(this, EntryActivity.class);
 
         CountDownTimer timer = new CountDownTimer(3000, 1000)

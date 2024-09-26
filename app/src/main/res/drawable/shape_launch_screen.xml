@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+<!--Контур фигуры-->
+<!--    <stroke-->
+<!--        android:width="0dp"-->
+<!--        android:color="@color/black" />-->
+
+<!--Cплошной цвет для фигуры-->
+<!--    <solid android:color="@color/white" />-->
+
+    <gradient
+        android:type="radial"
+        android:gradientRadius="300dp"
+        android:startColor="@color/light_blue"
+        android:endColor="@color/dark_blue"
+        android:angle="300" />
+
+<!--Отступы-->
+<!--    <padding-->
+<!--        android:left="1dp"-->
+<!--        android:right="1dp"-->
+<!--        android:bottom="1dp"-->
+<!--        android:top="1dp" />-->
+
+<!--Создаёт закругленные углы для фигуры-->
+<!--    <corners android:radius="12dp" />-->
+</shape>
