@@ -70,4 +70,7 @@ dependencies {
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 
+    //implementation("com.github.barteksc:android-pdf-viewer:1.4.0")
+    //implementation("com.joanzapata.pdfview:android-pdfview:1.0.4@aar")
+
 }

@@ -56,8 +56,9 @@ public class EntryActivity extends AppCompatActivity {
         //У каждой роли в пароле можно сделать определённые первые цифры или буквы и делать проверку по ним
         //пока стоит заглушка
 
-        Intent intent = new Intent(this, TxtViewerActivity.class);
-                //CreateOrderActivity.class);
+        Intent intent = new Intent(this,
+                //TxtViewerActivity.class);
+                PDFViewerActivity.class);
         startActivity(intent);
 
 
