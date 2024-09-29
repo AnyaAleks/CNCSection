@@ -70,7 +70,7 @@
   
 Задачи на неделю будут выкладываться на интерактивной доске на сервисе для совместной работы команд - **```Miro```**. 
 
-[Интерактивная доска](https://miro.com/app/board/uXjVLbGMGwY=/)
+[Интерактивная доска](https://miro.com/welcomeonboard/dUhmYUtTVXRpMDJQZUVaY1VaRnBka2M0OFB5OGhLbHdJS2xKU3ZBWWNzeUtWU1BpQ1dUM0hvUjF3U01JZ2VaYXwzNDU4NzY0NTY1NzIyMzM5MDIxfDI=?share_link_id=285361762247)
 
 </details>
 
