@@ -5,15 +5,247 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GenerateOrderActivity">
+    android:background="@color/bac"
+    tools:context=".CreateOrderActivity"
+    >
+
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Здесь будет сформирована заявка"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/bench_add"
+        android:layout_width="34dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/round"
+        android:gravity="center"
+        android:text="+"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bench_spinner"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/equipment_add"
+        android:layout_width="34dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/round"
+        android:gravity="center"
+        android:text="+"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/equipment_spinner"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/operator_add"
+        android:layout_width="34dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/round"
+        android:gravity="center"
+        android:text="+"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/operator_spinner"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="411dp"
+        android:layout_height="40dp"
+        android:background="@color/header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/master_header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/master_header"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+
+    </TableLayout>
+
+
+    <TextView
+        android:id="@+id/bench_number"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round"
+        android:gravity="center"
+        android:text="@string/bench"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+    <Spinner
+        android:id="@+id/bench_spinner"
+        android:layout_width="150dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="208dp"
+        android:gravity="left"
+        app:layout_constraintBottom_toBottomOf="@+id/bench_number"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/equipment_number"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/round"
+        android:gravity="center"
+        android:text="@string/equipment"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bench_number" />
+
+    <Spinner
+        android:id="@+id/equipment_spinner"
+        android:layout_width="150dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="208dp"
+        android:gravity="left"
+        app:layout_constraintBottom_toBottomOf="@+id/equipment_number"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/operator_number"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/round"
+        android:gravity="center"
+        android:text="@string/operator"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/equipment_number" />
+
+    <Spinner
+        android:id="@+id/operator_spinner"
+        android:layout_width="150dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="208dp"
+        android:gravity="left"
+        app:layout_constraintBottom_toBottomOf="@+id/operator_number"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/drawing"
+        android:layout_width="196dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round"
+        android:gravity="center"
+        android:text="@string/drawing"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/operator_number" />
+
+    <EditText
+        android:id="@+id/input_drawing"
+        android:layout_width="196dp"
+        android:layout_height="63dp"
+        android:layout_marginEnd="12dp"
+        android:ems="10"
+        android:hint="@string/hint_drawing"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="@+id/drawing"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <TextView
+        android:id="@+id/techProcess"
+        android:layout_width="196dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round"
+        android:gravity="center"
+        android:text="@string/techProcess"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/drawing" />
+
+    <EditText
+        android:id="@+id/input_techProcess"
+        android:layout_width="196dp"
+        android:layout_height="63dp"
+        android:layout_marginEnd="12dp"
+        android:ems="10"
+        android:hint="@string/hint_techProcess"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="@+id/techProcess"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <TextView
+        android:id="@+id/master_commentary"
+        android:layout_width="210dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/round"
+        android:gravity="center"
+        android:text="@string/commentary"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/techProcess" />
+
+    <EditText
+        android:id="@+id/commentary_entry"
+        android:layout_width="382dp"
+        android:layout_height="116dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/round2"
+        android:ems="10"
+        android:gravity="bottom"
+        android:hint="@string/hint_2"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/master_commentary" />
+
+    <TextView
+        android:id="@+id/estimated_production_time"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/round"
+        android:gravity="center"
+        android:text="@string/estimated_time"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/input_estimated_production_time"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/input_estimated_production_time"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="12dp"
+        android:ems="10"
+        android:hint="@string/hint_1"
+        android:inputType="date"
+        app:layout_constraintBottom_toBottomOf="@+id/estimated_production_time"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
