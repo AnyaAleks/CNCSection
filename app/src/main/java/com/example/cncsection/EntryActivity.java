@@ -3,6 +3,7 @@ package com.example.cncsection;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class EntryActivity extends AppCompatActivity {
 
     TextView entry;
-    EditText num_1, num_2;
+    EditText password_1;
     Button add_button;
 
     @SuppressLint("MissingInflatedId")
@@ -31,17 +32,15 @@ public class EntryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_entry);
 
         entry = findViewById(R.id.entry);
-        num_1 = findViewById(R.id.num_1);
-        num_2 = findViewById(R.id.num_2);
+        password_1 = findViewById(R.id.password);
         add_button = findViewById(R.id.add_button);
-        add_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String login = num_1.getText().toString();
-                String password = num_2.getText().toString();
+        //add_button.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            //public void onClick(View view) {
+                //String password = password_1.getText().toString();
                 //далее надо сделать выбор определённого интерфейса (роли)
-            }
-        });
+            //}
+        //});
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -56,9 +55,9 @@ public class EntryActivity extends AppCompatActivity {
         //У каждой роли в пароле можно сделать определённые первые цифры или буквы и делать проверку по ним
         //пока стоит заглушка
 
-        Intent intent = new Intent(this,
+        Intent intent = new Intent(this, CreateOrderActivity.class);
                 //TxtViewerActivity.class);
-                PDFViewerActivity.class);
+                //PDFViewerActivity.class);
         startActivity(intent);
 
 

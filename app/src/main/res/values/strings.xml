@@ -2,8 +2,21 @@
     <string name="app_name">CNCSection</string>
     <string name="title_activity_entry">Entry Activity</string>
     <string name="entry">Вход в систему</string>
-    <string name="hint1">Логин</string>
-    <string name="hint2">Пароль</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
     <string name="sent">Отправить</string>
 
+    <string name="header">Менеджер по планированию</string>
+    <string name="item">Номер детали</string>
+    <string name="time">Время производства: </string>
+    <string name="commentary">Комментарий: </string>
+    <string name="application">Создать заявку</string>
+    <string name="applications">Заявки</string>
+    <string name="search">Поиск</string>
+    <string name="hint_1">Введите дату</string>
+    <string name="hint_2">Напишите комментарийй к заявке</string>
+    <string name="hint_3">Номер заявки</string>
+
+    <string name="application_number">  Заявка № </string>
+    <string name="status"> Статус:  </string>
 </resources>
