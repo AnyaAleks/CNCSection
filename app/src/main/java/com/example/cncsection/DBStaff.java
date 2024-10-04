@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-class DBOperator extends SQLiteOpenHelper {
+class DBStaff extends SQLiteOpenHelper {
 
     private static final String TAG = "DBHELPER";
     public static final String DBNAME = "CNCSectionDB.db";
@@ -21,7 +21,7 @@ class DBOperator extends SQLiteOpenHelper {
 
     SQLiteDatabase mDB;
 
-    public DBOperator(Context context) {
+    public DBStaff(Context context) {
         super(context,DBNAME,null,DBVERSION);
         if (!ifDBExists(context)) {
             if (!copyDBFromAssets(context)) {
@@ -64,6 +64,22 @@ class DBOperator extends SQLiteOpenHelper {
                 + " WHERE " + compare_field + " = " + search_id, null);
         Log.e("LogTag", table_name + ".getCount(): " + res.getCount());
         return res;
+    }
+
+    public long addToStaff(int id_access, String fio, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //Создание объекта для данных (добавления новых строк в таблицу)
+        ContentValues cv = new ContentValues();
+        //cv.put("id_staff", 1); - autoincrement
+        cv.put("id_access", id_access);
+        cv.put("fio", fio);
+        cv.put("password", password);
+
+        long rowID = db.insert("Staff", null, cv);
+        Log.e("LogTag", "addToEmployees" + " rowID " +rowID);
+
+        return rowID;
     }
 
     /*
