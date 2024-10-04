@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Переход
-        Intent intent = new Intent(this, EntryActivity.class);
+        Intent intent = new Intent(this, CreateOrderActivity.class);
+                //EntryActivity.class);
 
         CountDownTimer timer = new CountDownTimer(3000, 1000)
         {

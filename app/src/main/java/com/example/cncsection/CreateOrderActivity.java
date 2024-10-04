@@ -1,6 +1,7 @@
 package com.example.cncsection;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
@@ -18,7 +20,7 @@ public class CreateOrderActivity extends AppCompatActivity {
     TextView header, item_number, production_time,commentary,application_review,search_button;
     EditText input_production_time, item_number_entry, commentary_entry, search_input;
     Button button;
-    ArrayList<Status> statuses = new ArrayList<Status>();
+    ArrayList<Status> statuses ;//= new ArrayList<Status>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +28,19 @@ public class CreateOrderActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_create_order); // начальная инициализация списка
         //нужна функция откуда импортируем данные
-        setInitialData();
-        RecyclerView recyclerView = findViewById(R.id.list); // создаем адаптер
-        StatusAdapter adapter = new StatusAdapter(this, statuses); // устанавливаем для списка адаптер
-        recyclerView.setAdapter(adapter);
+//        setInitialData();
+//        RecyclerView recyclerView = findViewById(R.id.list); // создаем адаптер
+//        StatusAdapter adapter = new StatusAdapter(this, statuses); // устанавливаем для списка адаптер
+//        recyclerView.setAdapter(adapter);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_create_order);
+        RecyclerView rvContacts = (RecyclerView) findViewById(R.id.list);
+        statuses = Status.createStatusesList(20);
+        StatusAdapter adapter = new StatusAdapter(statuses);
+        rvContacts.setAdapter(adapter);
+        rvContacts.setLayoutManager(new LinearLayoutManager(this));
+
+//        EdgeToEdge.enable(this);
         header = findViewById(R.id.header);
         item_number = findViewById(R.id.item_number);
         production_time = findViewById(R.id.production_time);
@@ -60,8 +68,9 @@ public class CreateOrderActivity extends AppCompatActivity {
             return insets;
         });
     }
-    private void setInitialData(){
-        statuses.add(new Status ("1", "ready"));
-        statuses.add(new Status("1", "ready"));
-    }
+//
+//    private void setInitialData(){
+//        statuses.add(new Status ("1", "ready"));
+//        statuses.add(new Status("1", "ready"));
+//    }
 }
