@@ -35,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Переход
-        Intent intent = new Intent(this, CreateOrderActivity.class);
-                //EntryActivity.class);
+        Intent intent = new Intent(this,
+                //CreateOrderActivity.class);
+                EntryActivity.class);
 
         CountDownTimer timer = new CountDownTimer(3000, 1000)
         {
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 //
-//        Cursor csr = myDBHlpr.getAll("Machine");
+//        Cursor csr = dbManager.getAll("Machine");
 //        while(csr.moveToNext()){
 //            Log.d("DB_ROWINFO",
 //                    "ID is " + csr.getString(csr.getColumnIndex("id_machine"))

@@ -66,6 +66,13 @@ class DBStaff extends SQLiteOpenHelper {
         return res;
     }
 
+//    public Cursor restartAutoincrement(String table_name) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor res = db.rawQuery("UPDATE `sqlite_sequence` SET `seq` = 0 WHERE `name` = table_name", null);
+//        Log.e("LogTag", table_name + ".getCount(): " + res.getCount());
+//        return res;
+//    }
+
     public long addToStaff(int id_access, String fio, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
 

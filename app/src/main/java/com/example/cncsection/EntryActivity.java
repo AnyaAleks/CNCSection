@@ -2,6 +2,7 @@ package com.example.cncsection;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -16,6 +17,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 
 public class EntryActivity extends AppCompatActivity {
 
@@ -23,13 +27,28 @@ public class EntryActivity extends AppCompatActivity {
     EditText password_1;
     Button add_button;
 
-    @SuppressLint("MissingInflatedId")
+    DBStaff dbStaff;
+
+    @SuppressLint({"MissingInflatedId", "Range"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_entry);
+
+        //Проверка по фамилии и паролю
+        dbStaff = new DBStaff(this);
+
+        Cursor csr = dbStaff.getAll("Staff");
+        while(csr.moveToNext()){
+            Log.d("DB_STAFF",
+                    "ID = " + csr.getInt(csr.getColumnIndex("id_staff"))
+                            + "ID_ACCESS = " + csr.getInt(csr.getColumnIndex("id_access"))
+                            + " FIO = " + csr.getString(csr.getColumnIndex("fio"))
+                            + " PASSWORD = " + csr.getString(csr.getColumnIndex("password"))
+            );
+        }
 
         entry = findViewById(R.id.entry);
         password_1 = findViewById(R.id.password);
@@ -55,11 +74,30 @@ public class EntryActivity extends AppCompatActivity {
         //У каждой роли в пароле можно сделать определённые первые цифры или буквы и делать проверку по ним
         //пока стоит заглушка
 
-        Intent intent = new Intent(this, GenerateOrderActivity.class);//CreateOrderActivity.class);
+        Intent intent = new Intent(this,
+                GenerateOrderActivity.class);
+                //CreateOrderActivity.class);
                 //TxtViewerActivity.class);
                 //PDFViewerActivity.class);
         startActivity(intent);
+    }
 
+    public String md5(String s) {
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
 
+            // Create Hex String
+            StringBuffer hexString = new StringBuffer();
+            for (int i=0; i<messageDigest.length; i++)
+                hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }
