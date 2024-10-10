@@ -27,10 +27,23 @@
 
 
     <EditText
+        android:id="@+id/login"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:ems="8"
+        android:inputType="text"
+        android:text=""
+        android:hint="@string/login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/entry" />
+
+    <EditText
         android:id="@+id/password"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="15dp"
         android:ems="8"
         android:freezesText="true"
         android:hint="@string/password"
@@ -38,7 +51,7 @@
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/entry" />
+        app:layout_constraintTop_toBottomOf="@+id/login" />
 
     <Button
         android:id="@+id/add_button"

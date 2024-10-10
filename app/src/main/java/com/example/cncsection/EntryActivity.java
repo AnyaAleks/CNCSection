@@ -24,7 +24,7 @@ import java.security.NoSuchAlgorithmException;
 public class EntryActivity extends AppCompatActivity {
 
     TextView entry;
-    EditText password_1;
+    EditText password_1, login;
     Button add_button;
 
     DBStaff dbStaff;
@@ -52,6 +52,7 @@ public class EntryActivity extends AppCompatActivity {
 
         entry = findViewById(R.id.entry);
         password_1 = findViewById(R.id.password);
+        login = findViewById(R.id.login);
         add_button = findViewById(R.id.add_button);
         //add_button.setOnClickListener(new View.OnClickListener() {
             //@Override
@@ -75,8 +76,8 @@ public class EntryActivity extends AppCompatActivity {
         //пока стоит заглушка
 
         Intent intent = new Intent(this,
-                GenerateOrderActivity.class);
-                //CreateOrderActivity.class);
+                //GenerateOrderActivity.class);
+                CreateOrderActivity.class);
                 //TxtViewerActivity.class);
                 //PDFViewerActivity.class);
         startActivity(intent);

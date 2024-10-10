@@ -27,16 +27,10 @@ public class CreateOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_create_order); // начальная инициализация списка
-        //нужна функция откуда импортируем данные
-//        setInitialData();
-//        RecyclerView recyclerView = findViewById(R.id.list); // создаем адаптер
-//        StatusAdapter adapter = new StatusAdapter(this, statuses); // устанавливаем для списка адаптер
-//        recyclerView.setAdapter(adapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        RecyclerView rvContacts = (RecyclerView) findViewById(R.id.list);
+        RecyclerView rvContacts = (RecyclerView) findViewById(R.id.list); //создание адаптера
         statuses = Status.createStatusesList(20);
-        StatusAdapter adapter = new StatusAdapter(statuses);
+        StatusAdapter adapter = new StatusAdapter(statuses); // устанавливаем для списка адаптер
         rvContacts.setAdapter(adapter);
         rvContacts.setLayoutManager(new LinearLayoutManager(this));
 
