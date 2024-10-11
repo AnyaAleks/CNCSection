@@ -45,7 +45,7 @@ public class EntryActivity extends AppCompatActivity {
         //Проверка по фамилии и паролю
         dbStaff = new DBStaff(this);
         boolean isAuth = false;
-        int idAccess = 0;
+        String idAccess = "";
 
         Cursor csr = dbStaff.getAll("Staff");
         while(csr.moveToNext()){
@@ -61,22 +61,22 @@ public class EntryActivity extends AppCompatActivity {
             if (csr.getString(csr.getColumnIndex("fio")).equals(login) &&
                     csr.getString(csr.getColumnIndex("password")).equals(password)) {
                 isAuth = true;
-                idAccess = csr.getInt(csr.getColumnIndex("id_access"));
+                idAccess = csr.getString(csr.getColumnIndex("id_access"));
                 break;
             }
         }
 
         if (isAuth) {
-            Log.d("AUTH", "Авторизация успешна");
-            Cursor csrAccess = dbStaff.getAccess(idAccess); // получаем роль пользователя по id_access
-            if (csrAccess.moveToFirst()) {
-                String role = csrAccess.getString(csrAccess.getColumnIndex("role"));
-                Log.d("ROLE", "Роль пользователя: " + role);
-                switch (role) {
-                    case "Администратор":
-                        Intent intentAdmin = new Intent(this, RegistrationAvtivity.class);
-                        startActivity(intentAdmin);
-                        break;
+            String role = "";
+            if (idAccess.equals("1")) {
+                role = "Менеджер";}
+            else if (idAccess.equals("2")) {
+                role = "Мастер";}
+            else if (idAccess.equals("3")) {
+                role = "Оператор";}
+            else if (idAccess.equals("4")) {
+                role = "Отделкадров";}
+            switch (role) {
                     case "Менеджер":
                         Intent intentManager = new Intent(this, CreateOrderActivity.class);
                         startActivity(intentManager);
@@ -85,15 +85,19 @@ public class EntryActivity extends AppCompatActivity {
                         Intent intentMaster = new Intent(this, GenerateOrderActivity.class);
                         startActivity(intentMaster);
                         break;
-                    case "Оператор":
-                        Intent intentOperator = new Intent(this, ExecuteOrderActivity.class);
-                        startActivity(intentOperator);
-                        break;
+                    //case "Оператор":
+                        //Intent intentOperator = new Intent(this, ExecuteOrderActivity.class);
+                        //startActivity(intentOperator);
+                        //break;
+                    //case "Отделкадров":
+                        //Intent intentAdmin = new Intent(this, RegistrationAvtivity.class);
+                        //startActivity(intentAdmin);
+                        //break;
                     default:
                         Log.d("ROLE", "Неизвестная роль");
                 }
             }
-        } else {Log.d("AUTH", "Авторизация неуспешна");}
+        else {Log.d("AUTH", "Авторизация неуспешна");}
 
 
         //add_button.setOnClickListener(new View.OnClickListener() {
