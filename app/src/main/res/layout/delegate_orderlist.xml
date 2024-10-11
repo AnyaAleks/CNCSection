@@ -4,42 +4,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="20dp"
+        android:paddingBottom="5dp"
         android:paddingTop="10dp"
-        android:background="@drawable/round">
+        android:background="@drawable/round_delegat">
+
 
     <TextView
         android:id="@+id/number"
         android:layout_width="110dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
         android:text="@string/application_number"
         android:textSize="20sp" />
 
-    <EditText
+    <TextView
         android:id="@+id/input_number"
-        android:layout_width="95dp"
-        android:layout_height="30dp"
+        android:layout_width="100dp"
+        android:layout_height="31dp"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="5dp"
-        android:inputType="text" />
+        android:textSize="18dp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/status"
         android:layout_width="90dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"
         android:text="@string/status"
-        android:textSize="20sp"
-        android:visibility="visible" />
-    <EditText
+        android:textSize="20dp" />
+
+    <TextView
         android:id="@+id/input_status"
         android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="5dp"
-        android:inputType="text"
-        android:layout_gravity="center_vertical"/>
+        android:layout_height="31dp"
+        android:layout_gravity="center_vertical"
+        android:textSize="18dp"
+        android:textColor="@color/black"/>
 
 </LinearLayout>
