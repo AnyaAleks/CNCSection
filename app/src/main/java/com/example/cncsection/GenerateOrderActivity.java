@@ -14,7 +14,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class GenerateOrderActivity extends AppCompatActivity {
     TextView bench_list;
+    TextView equipment_list;
+    TextView operator_list;
+
+
     private String[] benches = new String[1];
+    private String[] equipments = new String[1];
+    private String[] operators = new String[1];
+
     Spinner bench_spinner;
     private String[] bench_types = {"Токарный", "Фрезерный", "Расточный"};
 
@@ -46,34 +53,35 @@ public class GenerateOrderActivity extends AppCompatActivity {
         FillSpinners(operator_types, operator_spinner);
 
         bench_list = findViewById(R.id.bench_list);
-
+        equipment_list = findViewById(R.id.equipment_list);
+        operator_list = findViewById(R.id.operator_list);
 
         benches[0] = bench_list.getText().toString();
-        /*
-        ArrayAdapter<String> benchTypesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,bench_types);
-        benchTypesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        equipments[0] = equipment_list.getText().toString();
+        operators[0] = operator_list.getText().toString();
+    }
 
-        Spinner spinnerBenchType = (Spinner) findViewById(R.id.bench_spinner);
-        spinnerBenchType.setAdapter(benchTypesAdapter);
-
-
-        equipment_spinner = findViewById(R.id.equipment_spinner);
-
-        ArrayAdapter<String> equipmentTypesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,equipment_types);
-        equipmentTypesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        Spinner spinnerEquipmentType = (Spinner) findViewById(R.id.equipment_spinner);
-        spinnerEquipmentType.setAdapter(equipmentTypesAdapter);
-
-
-        operator_spinner = findViewById(R.id.operator_spinner);
-
-        ArrayAdapter<String> operatorTypesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,operator_types);
-        equipmentTypesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        Spinner spinnerOperatorType = (Spinner) findViewById(R.id.operator_spinner);
-        spinnerOperatorType.setAdapter(operatorTypesAdapter);
-        */
+    public void AddBench(View view)
+    {
+        String newBench=bench_spinner.getSelectedItem().toString();
+        boolean flag = false;
+        //if(benches.length>1)
+        for (String element : benches)
+        {
+            if(newBench==element)
+                flag = true;
+        }
+        if(!flag)
+        {
+            String[] newBenches = new String[benches.length+1];
+            for (int i=0;i<benches.length;i++)
+            {
+                newBenches[i]=benches[i];
+            }
+            newBenches[newBenches.length-1]=newBench;
+            benches=newBenches;
+            OutPutList(benches,bench_list);
+        }
     }
 
     public void DeleteBench(View view)
@@ -107,39 +115,132 @@ public class GenerateOrderActivity extends AppCompatActivity {
                 }
             }
             benches=newBenches;
-            OutPutBenchList();
+            OutPutList(benches,bench_list);
         }
     }
-    public void AddBench(View view)
+
+
+    public void AddEquipment(View view)
     {
-        String newBench=bench_spinner.getSelectedItem().toString();
+        String newEquipment=equipment_spinner.getSelectedItem().toString();
         boolean flag = false;
         //if(benches.length>1)
-        for (String bench : benches)
+        for (String element : equipments)
         {
-            if(newBench==bench)
+            if(newEquipment==element)
                 flag = true;
         }
         if(!flag)
         {
-            String[] newBenches = new String[benches.length+1];
-            for (int i=0;i<benches.length;i++)
+            String[] newEquipmentes = new String[equipments.length+1];
+            for (int i=0;i<equipments.length;i++)
             {
-                newBenches[i]=benches[i];
+                newEquipmentes[i]=equipments[i];
             }
-            newBenches[newBenches.length-1]=newBench;
-            benches=newBenches;
-            OutPutBenchList();
+            newEquipmentes[newEquipmentes.length-1]=newEquipment;
+            equipments=newEquipmentes;
+            OutPutList(equipments,equipment_list);
         }
     }
-    private void OutPutBenchList()
+
+    public void DeleteEquipment(View view)
     {
-        bench_list.setText("");
-        //bench_list.clearComposingText();
-        bench_list.append(benches[0]+" ");
-        for (int i=1;i<benches.length;i++)
+        String newEquipment=bench_spinner.getSelectedItem().toString();
+        int delId = 0;
+        for (int i=1;i<equipments.length;i++)
         {
-            bench_list.append(benches[i]+"; ");
+            if(newEquipment==equipments[i])
+                delId = i;
+        }
+        if(delId >0)
+        {
+            String[] newBenches = new String[equipments.length-1];
+            newBenches[0]=equipments[0];
+
+            boolean flag=false;
+            for (int i=1;i<equipments.length-1;i++)
+            {
+                if(i==delId)
+                    flag = true;
+
+                if(!flag)
+                {
+                    newBenches[i]=equipments[i];
+                }
+                else
+                {
+                    newBenches[i]=equipments[i+1];
+                }
+            }
+            equipments=newBenches;
+            OutPutList(equipments,equipment_list);
+        }
+    }
+
+    public void AddOperator(View view)
+    {
+        String newOperator=operator_spinner.getSelectedItem().toString();
+        boolean flag = false;
+        //if(benches.length>1)
+        for (String element : operators)
+        {
+            if(newOperator==element)
+                flag = true;
+        }
+        if(!flag)
+        {
+            String[] newOperators = new String[operators.length+1];
+            for (int i=0;i<operators.length;i++)
+            {
+                newOperators[i]=operators[i];
+            }
+            newOperators[newOperators.length-1]=newOperator;
+            operators=newOperators;
+            OutPutList(operators,operator_list);
+        }
+    }
+
+    public void DeleteOperator(View view)
+    {
+        String newOperator=operator_spinner.getSelectedItem().toString();
+        int delId = 0;
+        for (int i=1;i<operators.length;i++)
+        {
+            if(newOperator==operators[i])
+                delId = i;
+        }
+        if(delId >0)
+        {
+            String[] newBenches = new String[operators.length-1];
+            newBenches[0]=operators[0];
+
+            boolean flag=false;
+            for (int i=1;i<operators.length-1;i++)
+            {
+                if(i==delId)
+                    flag = true;
+
+                if(!flag)
+                {
+                    newBenches[i]=operators[i];
+                }
+                else
+                {
+                    newBenches[i]=operators[i+1];
+                }
+            }
+            operators=newBenches;
+            OutPutList(operators,operator_list);
+        }
+    }
+    private void OutPutList(String[] list, TextView listTextView)
+    {
+        listTextView.setText("");
+        //bench_list.clearComposingText();
+        listTextView.append(list[0]+" ");
+        for (int i=1;i<list.length;i++)
+        {
+            listTextView.append(list[i]+"; ");
         }
     }
     private  void FillSpinners(String[] arrayTypes, Spinner spinner)

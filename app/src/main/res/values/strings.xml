@@ -24,8 +24,8 @@
     <string name="master_header">Мастер</string>
     <string name="estimated_time">Предположительное время производства: </string>
     <string name="bench">Станки:</string>
-    <string name="equipment">Оснаска</string>
-    <string name="operator">Оператор</string>
+    <string name="equipment">Оснаски:</string>
+    <string name="operator">Операторы:</string>
     <string name="drawing">Чертёж</string>
     <string name="hint_drawing">Введите номер чертежа</string>
     <string name="techProcess">Тех.процесс</string>
