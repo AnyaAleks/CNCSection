@@ -24,7 +24,7 @@ import java.security.NoSuchAlgorithmException;
 public class EntryActivity extends AppCompatActivity {
 
     TextView entry;
-    EditText password_1, login;
+    EditText password_raw, login_raw;
     Button add_button;
 
     DBStaff dbStaff;
@@ -37,8 +37,15 @@ public class EntryActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_entry);
 
+        entry = findViewById(R.id.entry);
+        password_raw = findViewById(R.id.password);
+        login_raw = findViewById(R.id.login);
+        add_button = findViewById(R.id.add_button);
+
         //Проверка по фамилии и паролю
         dbStaff = new DBStaff(this);
+        boolean isAuth = false;
+        int idAccess = 0;
 
         Cursor csr = dbStaff.getAll("Staff");
         while(csr.moveToNext()){
@@ -48,12 +55,47 @@ public class EntryActivity extends AppCompatActivity {
                             + " FIO = " + csr.getString(csr.getColumnIndex("fio"))
                             + " PASSWORD = " + csr.getString(csr.getColumnIndex("password"))
             );
+
+            String login = login_raw.getText().toString();
+            String password = md5(password_raw.getText().toString()); //хэширование вводимого пароля
+            if (csr.getString(csr.getColumnIndex("fio")).equals(login) &&
+                    csr.getString(csr.getColumnIndex("password")).equals(password)) {
+                isAuth = true;
+                idAccess = csr.getInt(csr.getColumnIndex("id_access"));
+                break;
+            }
         }
 
-        entry = findViewById(R.id.entry);
-        password_1 = findViewById(R.id.password);
-        login = findViewById(R.id.login);
-        add_button = findViewById(R.id.add_button);
+        if (isAuth) {
+            Log.d("AUTH", "Авторизация успешна");
+            Cursor csrAccess = dbStaff.getAccess(idAccess); // получаем роль пользователя по id_access
+            if (csrAccess.moveToFirst()) {
+                String role = csrAccess.getString(csrAccess.getColumnIndex("role"));
+                Log.d("ROLE", "Роль пользователя: " + role);
+                switch (role) {
+                    case "Администратор":
+                        Intent intentAdmin = new Intent(this, RegistrationAvtivity.class);
+                        startActivity(intentAdmin);
+                        break;
+                    case "Менеджер":
+                        Intent intentManager = new Intent(this, CreateOrderActivity.class);
+                        startActivity(intentManager);
+                        break;
+                    case "Мастер":
+                        Intent intentMaster = new Intent(this, GenerateOrderActivity.class);
+                        startActivity(intentMaster);
+                        break;
+                    case "Оператор":
+                        Intent intentOperator = new Intent(this, ExecuteOrderActivity.class);
+                        startActivity(intentOperator);
+                        break;
+                    default:
+                        Log.d("ROLE", "Неизвестная роль");
+                }
+            }
+        } else {Log.d("AUTH", "Авторизация неуспешна");}
+
+
         //add_button.setOnClickListener(new View.OnClickListener() {
             //@Override
             //public void onClick(View view) {
@@ -69,24 +111,23 @@ public class EntryActivity extends AppCompatActivity {
         });
     }
 
-    public void goNext(View V){
+    //public void goNext(View V){
         //Сделать проверку на пароль и понять какое окно грузить
         // (всем работникам при устройстве на работу должны выдавать пароль) по типу клиента
         //У каждой роли в пароле можно сделать определённые первые цифры или буквы и делать проверку по ним
         //пока стоит заглушка
-
-        Intent intent = new Intent(this,
-                GenerateOrderActivity.class);
+        //Intent intent = new Intent(this,
+                //GenerateOrderActivity.class);
                 //CreateOrderActivity.class);
                 //TxtViewerActivity.class);
                 //PDFViewerActivity.class);
-        startActivity(intent);
-    }
+        //startActivity(intent);
+    //}
 
     public String md5(String s) {
         try {
             // Create MD5 Hash
-            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            MessageDigest digest = MessageDigest.getInstance("MD5");
             digest.update(s.getBytes());
             byte messageDigest[] = digest.digest();
 
