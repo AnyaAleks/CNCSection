@@ -68,5 +68,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
+    <Button
+        android:id="@+id/go_to_Maaster"
+        android:layout_width="155dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="44dp"
+        android:onClick="goMaster"
+        android:text="@string/master_header"
+        android:textAllCaps="true"
+        android:textColorLink="#4D174D"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

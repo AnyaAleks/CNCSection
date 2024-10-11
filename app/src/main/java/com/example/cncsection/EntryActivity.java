@@ -76,10 +76,19 @@ public class EntryActivity extends AppCompatActivity {
         //пока стоит заглушка
 
         Intent intent = new Intent(this,
+                //GenerateOrderActivity.class);
+        CreateOrderActivity.class);
+        //TxtViewerActivity.class);
+        //PDFViewerActivity.class);
+        startActivity(intent);
+    }
+
+    public void goMaster(View V){
+        Intent intent = new Intent(this,
                 GenerateOrderActivity.class);
-                //CreateOrderActivity.class);
-                //TxtViewerActivity.class);
-                //PDFViewerActivity.class);
+        //CreateOrderActivity.class);
+        //TxtViewerActivity.class);
+        //PDFViewerActivity.class);
         startActivity(intent);
     }
 
