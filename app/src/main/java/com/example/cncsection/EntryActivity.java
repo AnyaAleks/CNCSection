@@ -77,35 +77,35 @@ public class EntryActivity extends AppCompatActivity {
             else if (idAccess.equals("4")) {
                 role = "Отделкадров";}
             switch (role) {
-                    case "Менеджер":
-                        Intent intentManager = new Intent(this, CreateOrderActivity.class);
-                        startActivity(intentManager);
-                        break;
-                    case "Мастер":
-                        Intent intentMaster = new Intent(this, GenerateOrderActivity.class);
-                        startActivity(intentMaster);
-                        break;
-                    //case "Оператор":
-                        //Intent intentOperator = new Intent(this, ExecuteOrderActivity.class);
-                        //startActivity(intentOperator);
-                        //break;
-                    //case "Отделкадров":
-                        //Intent intentAdmin = new Intent(this, RegistrationAvtivity.class);
-                        //startActivity(intentAdmin);
-                        //break;
-                    default:
-                        Log.d("ROLE", "Неизвестная роль");
-                }
+                case "Менеджер":
+                    Intent intentManager = new Intent(this, CreateOrderActivity.class);
+                    startActivity(intentManager);
+                    break;
+                case "Мастер":
+                    Intent intentMaster = new Intent(this, GenerateOrderActivity.class);
+                    startActivity(intentMaster);
+                    break;
+                //case "Оператор":
+                //Intent intentOperator = new Intent(this, ExecuteOrderActivity.class);
+                //startActivity(intentOperator);
+                //break;
+                //case "Отделкадров":
+                //Intent intentAdmin = new Intent(this, RegistrationAvtivity.class);
+                //startActivity(intentAdmin);
+                //break;
+                default:
+                    Log.d("ROLE", "Неизвестная роль");
             }
+        }
         else {Log.d("AUTH", "Авторизация неуспешна");}
 
 
         //add_button.setOnClickListener(new View.OnClickListener() {
-            //@Override
-            //public void onClick(View view) {
-                //String password = password_1.getText().toString();
-                //далее надо сделать выбор определённого интерфейса (роли)
-            //}
+        //@Override
+        //public void onClick(View view) {
+        //String password = password_1.getText().toString();
+        //далее надо сделать выбор определённого интерфейса (роли)
+        //}
         //});
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -115,18 +115,6 @@ public class EntryActivity extends AppCompatActivity {
         });
     }
 
-    //public void goNext(View V){
-        //Сделать проверку на пароль и понять какое окно грузить
-        // (всем работникам при устройстве на работу должны выдавать пароль) по типу клиента
-        //У каждой роли в пароле можно сделать определённые первые цифры или буквы и делать проверку по ним
-        //пока стоит заглушка
-        //Intent intent = new Intent(this,
-                //GenerateOrderActivity.class);
-                //CreateOrderActivity.class);
-                //TxtViewerActivity.class);
-                //PDFViewerActivity.class);
-        //startActivity(intent);
-    //}
 
     public String md5(String s) {
         try {
