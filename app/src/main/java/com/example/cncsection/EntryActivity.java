@@ -1,5 +1,7 @@
 package com.example.cncsection;
 
+import static android.app.PendingIntent.getActivity;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +27,7 @@ import java.security.NoSuchAlgorithmException;
 public class EntryActivity extends AppCompatActivity {
 
     TextView entry;
-    EditText password_raw, login_raw;
+    EditText password_1, login;
     Button add_button;
 
     DBStaff dbStaff;
@@ -37,89 +40,72 @@ public class EntryActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_entry);
 
-        entry = findViewById(R.id.entry);
-        password_raw = findViewById(R.id.password);
-        login_raw = findViewById(R.id.login);
-        add_button = findViewById(R.id.add_button);
-
-        //Проверка по фамилии и паролю
         dbStaff = new DBStaff(this);
-        boolean isAuth = false;
-        String idAccess = "";
+
+        entry = findViewById(R.id.entry);
+        password_1 = findViewById(R.id.password);
+        login = findViewById(R.id.login);
+        add_button = findViewById(R.id.add_button);
+        //add_button.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            //public void onClick(View view) {
+                //String password = password_1.getText().toString();
+                //далее надо сделать выбор определённого интерфейса (роли)
+            //}
+        //});
+
+
+    }
+
+    @SuppressLint("Range")
+    public void goNext(View V){
+        //Сделать проверку на пароль и понять какое окно грузить
+        // (всем работникам при устройстве на работу должны выдавать пароль) по типу клиента
+        //У каждой роли в пароле можно сделать определённые первые цифры или буквы и делать проверку по ним
+
+        //Toast.makeText(getBaseContext(), "Reason can not be blank", Toast.LENGTH_SHORT).show();
+
+        String passwordMD5 = md5(password_1.getText().toString());
 
         Cursor csr = dbStaff.getAll("Staff");
         while(csr.moveToNext()){
-            Log.d("DB_STAFF",
-                    "ID = " + csr.getInt(csr.getColumnIndex("id_staff"))
-                            + "ID_ACCESS = " + csr.getInt(csr.getColumnIndex("id_access"))
-                            + " FIO = " + csr.getString(csr.getColumnIndex("fio"))
-                            + " PASSWORD = " + csr.getString(csr.getColumnIndex("password"))
-            );
+            //Если Логин и Пароль есть в БД
+            if(login.getText().toString().equals(csr.getString(csr.getColumnIndex("fio")).toString())
+            && passwordMD5.equals(csr.getString(csr.getColumnIndex("password")).toString())
+            ){
+                //Поиск роли
+                Cursor csrAccess = dbStaff.getAll("Access");
+                while(csrAccess.moveToNext()){
 
-            String login = login_raw.getText().toString();
-            String password = md5(password_raw.getText().toString()); //хэширование вводимого пароля
-            if (csr.getString(csr.getColumnIndex("fio")).equals(login) &&
-                    csr.getString(csr.getColumnIndex("password")).equals(password)) {
-                isAuth = true;
-                idAccess = csr.getString(csr.getColumnIndex("id_access"));
-                break;
+                    if(csr.getInt(csr.getColumnIndex("id_access")) ==
+                            csrAccess.getInt(csrAccess.getColumnIndex("id_access"))){
+                        Log.d("DB_STAFF2", csr.getInt(csr.getColumnIndex("id_access"))
+                                + " " + csrAccess.getInt(csrAccess.getColumnIndex("id_access")));
+                        openActivityByAccess(csr.getInt(csrAccess.getColumnIndex("id_access")));
+                    }
+                    return;
+                }
+
+            } else {
+//                Toast toast2 = Toast.makeText(this, "Пользователь не найден", Toast.LENGTH_SHORT);
+//                toast2.show();
             }
+
+            return;
+//            Log.d("DB_STAFF",
+//                    "ID = " + csr.getInt(csr.getColumnIndex("id_staff"))
+//                            + "ID_ACCESS = " + csr.getInt(csr.getColumnIndex("id_access"))
+//                            + " FIO = " + csr.getString(csr.getColumnIndex("fio"))
+//                            + " PASSWORD = " + csr.getString(csr.getColumnIndex("password"))
+//            );
+
         }
-
-        if (isAuth) {
-            String role = "";
-            if (idAccess.equals("1")) {
-                role = "Менеджер";}
-            else if (idAccess.equals("2")) {
-                role = "Мастер";}
-            else if (idAccess.equals("3")) {
-                role = "Оператор";}
-            else if (idAccess.equals("4")) {
-                role = "Отделкадров";}
-            switch (role) {
-                case "Менеджер":
-                    Intent intentManager = new Intent(this, CreateOrderActivity.class);
-                    startActivity(intentManager);
-                    break;
-                case "Мастер":
-                    Intent intentMaster = new Intent(this, GenerateOrderActivity.class);
-                    startActivity(intentMaster);
-                    break;
-                //case "Оператор":
-                //Intent intentOperator = new Intent(this, ExecuteOrderActivity.class);
-                //startActivity(intentOperator);
-                //break;
-                //case "Отделкадров":
-                //Intent intentAdmin = new Intent(this, RegistrationAvtivity.class);
-                //startActivity(intentAdmin);
-                //break;
-                default:
-                    Log.d("ROLE", "Неизвестная роль");
-            }
-        }
-        else {Log.d("AUTH", "Авторизация неуспешна");}
-
-
-        //add_button.setOnClickListener(new View.OnClickListener() {
-        //@Override
-        //public void onClick(View view) {
-        //String password = password_1.getText().toString();
-        //далее надо сделать выбор определённого интерфейса (роли)
-        //}
-        //});
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
     }
-
 
     public String md5(String s) {
         try {
             // Create MD5 Hash
-            MessageDigest digest = MessageDigest.getInstance("MD5");
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
             digest.update(s.getBytes());
             byte messageDigest[] = digest.digest();
 
@@ -133,5 +119,25 @@ public class EntryActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return "";
+    }
+
+    public void openActivityByAccess(int role){
+        Intent intent = null;
+        switch (role){
+            case 1:
+                intent = new Intent(this, CreateOrderActivity.class);
+                break;
+            case 2:
+                intent = new Intent(this, GenerateOrderActivity.class);
+                break;
+            case 3:
+                //intent = new Intent(this, CreateOrderActivity.class);
+                break;
+            case 4:
+                //intent = new Intent(this, CreateOrderActivity.class);
+                break;
+        }
+
+        startActivity(intent);
     }
 }
