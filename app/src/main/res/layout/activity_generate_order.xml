@@ -6,21 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bac"
-    tools:context=".CreateOrderActivity"
+    tools:context=".GenerateOrderActivity"
     >
 
-
-    <TextView
-        android:id="@+id/bench_add"
-        android:layout_width="34dp"
-        android:layout_height="37dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/round"
-        android:gravity="center"
-        android:text="+"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/bench_spinner"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/equipment_add"
@@ -29,8 +17,8 @@
         android:layout_marginEnd="12dp"
         android:background="@drawable/round"
         android:gravity="center"
-        android:text="+"
-        android:textSize="20dp"
+        android:text="@string/add"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/equipment_spinner"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -42,8 +30,8 @@
         android:layout_marginBottom="5dp"
         android:background="@drawable/round"
         android:gravity="center"
-        android:text="+"
-        android:textSize="20dp"
+        android:text="@string/add"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/operator_spinner"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -76,25 +64,23 @@
 
 
     <TextView
-        android:id="@+id/bench_number"
-        android:layout_width="190dp"
-        android:layout_height="40dp"
+        android:id="@+id/bench_list"
+        android:layout_width="401dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/round"
-        android:gravity="center"
+        android:layout_marginTop="4dp"
         android:text="@string/bench"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/bench_spinner" />
 
     <Spinner
         android:id="@+id/bench_spinner"
-        android:layout_width="150dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="208dp"
-        android:gravity="left"
-        app:layout_constraintBottom_toBottomOf="@+id/bench_number"
+        android:layout_width="280dp"
+        android:layout_height="31dp"
+        android:gravity="start"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        tools:layout_editor_absoluteX="0dp"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -102,13 +88,13 @@
         android:layout_width="190dp"
         android:layout_height="40dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="96dp"
         android:background="@drawable/round"
         android:gravity="center"
         android:text="@string/equipment"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bench_number" />
+        app:layout_constraintTop_toBottomOf="@+id/bench_list" />
 
     <Spinner
         android:id="@+id/equipment_spinner"
@@ -129,19 +115,19 @@
         android:background="@drawable/round"
         android:gravity="center"
         android:text="@string/operator"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/equipment_number" />
+
 
     <Spinner
         android:id="@+id/operator_spinner"
         android:layout_width="150dp"
         android:layout_height="42dp"
-        android:layout_marginStart="208dp"
-        android:gravity="left"
+        android:layout_marginStart="8dp"
+        android:gravity="start"
         app:layout_constraintBottom_toBottomOf="@+id/operator_number"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toEndOf="@+id/operator_number" />
 
     <TextView
         android:id="@+id/drawing"
@@ -152,7 +138,7 @@
         android:background="@drawable/round"
         android:gravity="center"
         android:text="@string/drawing"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/operator_number" />
 
@@ -177,7 +163,7 @@
         android:background="@drawable/round"
         android:gravity="center"
         android:text="@string/techProcess"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/drawing" />
 
@@ -208,8 +194,8 @@
 
     <EditText
         android:id="@+id/commentary_entry"
-        android:layout_width="382dp"
-        android:layout_height="116dp"
+        android:layout_width="381dp"
+        android:layout_height="23dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/round2"
         android:ems="10"
@@ -246,6 +232,25 @@
         app:layout_constraintBottom_toBottomOf="@+id/estimated_production_time"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <Button
+        android:id="@+id/add_button_bench"
+        android:layout_width="61dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="2dp"
+        android:text="@string/add"
+        android:onClick="AddBench"
+        app:layout_constraintStart_toEndOf="@+id/bench_spinner"
+        app:layout_constraintTop_toTopOf="@+id/bench_spinner" />
+
+    <Button
+        android:id="@+id/delete_button_bench"
+        android:layout_width="60dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/delete"
+        android:onClick="DeleteBench"
+        app:layout_constraintStart_toEndOf="@+id/add_button_bench"
+        app:layout_constraintTop_toTopOf="@+id/add_button_bench" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -76,8 +76,8 @@ public class EntryActivity extends AppCompatActivity {
         //пока стоит заглушка
 
         Intent intent = new Intent(this,
-                //GenerateOrderActivity.class);
-                CreateOrderActivity.class);
+                GenerateOrderActivity.class);
+                //CreateOrderActivity.class);
                 //TxtViewerActivity.class);
                 //PDFViewerActivity.class);
         startActivity(intent);
