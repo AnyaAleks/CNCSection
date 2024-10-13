@@ -32,6 +32,9 @@
             android:name=".CreateOrderActivity"
             android:exported="false" />
         <activity
+            android:name=".ExecuteOrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".EntryActivity"
             android:exported="false"
             android:label="@string/title_activity_entry"

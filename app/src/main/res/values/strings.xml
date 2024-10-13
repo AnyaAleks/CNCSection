@@ -6,7 +6,7 @@
     <string name="password">Пароль</string>
     <string name="sent">Отправить</string>
 
-    <string name="header">Менеджер по планированию</string>
+    <string name="manager_header">Менеджер по планированию</string>
     <string name="item">Номер детали</string>
     <string name="time">Время производства: </string>
     <string name="time_button"> </string>
@@ -33,4 +33,11 @@
     <string name="add">+</string>
     <string name="delete">-</string>
     <string name="hint_techProcess">Введите номер тех.процесса</string>
+
+
+    <string name="operator_header">Оператор</string>
+    <string name="order_status">Статус</string>
+    <string name="order_number">Заказ №</string>
+    <string name="open_drawing">Открыть чертёж</string>
+    <string name="open_techProcess">Открыть техпроцесс</string>
 </resources>
