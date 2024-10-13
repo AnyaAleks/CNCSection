@@ -1,6 +1,7 @@
 package com.example.cncsection;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,11 +20,15 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.Calendar;
+import android.widget.DatePicker;
 
 public class CreateOrderActivity extends AppCompatActivity {
-    TextView header, item_number, production_time,commentary,application_review,search_button;
-    EditText input_production_time, item_number_entry, commentary_entry, search_input;
-    Button button;
+    TextView header, item_number, production_time,commentary,application_review,search_button, calendar_date;
+    EditText item_number_entry, commentary_entry, search_input;
+    Button button_create;
+    ImageView calendar_button;
+
     ArrayList<Status> statuses ;//= new ArrayList<Status>();
 
     DBManager dbManager;
@@ -46,20 +52,40 @@ public class CreateOrderActivity extends AppCompatActivity {
         commentary = findViewById(R.id.commentary);
         application_review = findViewById(R.id.application_review);
         search_button = findViewById(R.id.search_button);
-        input_production_time = findViewById(R.id.input_production_time);
         item_number_entry = findViewById(R.id.item_number_entry);
         commentary_entry = findViewById(R.id.commentary_entry);
         search_input = findViewById(R.id.search_input);
-        button = findViewById(R.id.button);
+        button_create = findViewById(R.id.button);
+        calendar_button = findViewById(R.id.calendar);
+        calendar_date = findViewById(R.id.calendar_date);
 
-        dbManager = new DBManager(this);
+        calendar_button.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        button.setOnClickListener(new View.OnClickListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        CreateOrderActivity.this,
+                        (view, year1, monthOfYear, dayOfMonth) ->
+                                calendar_date.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year1),
+                        year, month, day);
+                datePickerDialog.show();
+            }
+        });
+
+
+
+
+    dbManager = new DBManager(this);
+
+        button_create.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("Range")
             @Override
             public void onClick(View view) {
                 String number = item_number_entry.getText().toString();
-                String date = input_production_time.getText().toString();
+                //String calendar = calendar_button.getText().toString();
                 String comments = commentary_entry.getText().toString();
 
                 dbManager.addToRequest(number, 1, comments, "2024-10-13");

@@ -36,18 +36,6 @@
 
 
     <EditText
-        android:id="@+id/input_production_time"
-        android:layout_width="175dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="@string/hint_1"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_number_entry" />
-
-    <EditText
         android:id="@+id/item_number_entry"
         android:layout_width="175dp"
         android:layout_height="50dp"
@@ -81,15 +69,40 @@
         android:id="@+id/production_time"
         android:layout_width="210dp"
         android:layout_height="40dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/round"
         android:gravity="center"
         android:text="@string/time"
         android:textSize="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/input_production_time"
         app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/item_number" />
+
+    <ImageButton
+        android:id="@+id/calendar"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/baseline_calendar_month_24"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_number_entry" />
+
+    <EditText
+        android:id="@+id/calendar_date"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ems="10"
+        android:textSize="20dp"
+        android:inputType="date"
+        app:layout_constraintEnd_toStartOf="@+id/calendar"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/production_time"
+        app:layout_constraintTop_toBottomOf="@+id/item_number_entry"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/commentary"
@@ -183,5 +196,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_button"
         app:layout_constraintVertical_bias="0.0" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

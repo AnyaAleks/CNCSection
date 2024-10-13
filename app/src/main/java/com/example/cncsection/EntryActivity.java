@@ -1,7 +1,6 @@
 package com.example.cncsection;
 
 import static android.app.PendingIntent.getActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
@@ -41,30 +40,25 @@ public class EntryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_entry);
 
         dbStaff = new DBStaff(this);
-
         entry = findViewById(R.id.entry);
         password_1 = findViewById(R.id.password);
         login = findViewById(R.id.login);
         add_button = findViewById(R.id.add_button);
         //add_button.setOnClickListener(new View.OnClickListener() {
-            //@Override
-            //public void onClick(View view) {
-                //String password = password_1.getText().toString();
-                //далее надо сделать выбор определённого интерфейса (роли)
-            //}
+        //@Override
+        //public void onClick(View view) {
+        //String password = password_1.getText().toString();
+        //далее надо сделать выбор определённого интерфейса (роли)
+        //}
         //});
 
-
     }
-
     @SuppressLint("Range")
     public void goNext(View V){
         //Сделать проверку на пароль и понять какое окно грузить
         // (всем работникам при устройстве на работу должны выдавать пароль) по типу клиента
         //У каждой роли в пароле можно сделать определённые первые цифры или буквы и делать проверку по ним
-
         //Toast.makeText(getBaseContext(), "Reason can not be blank", Toast.LENGTH_SHORT).show();
-
         String passwordMD5 = md5(password_1.getText().toString());
 
         Cursor csr = dbStaff.getAll("Staff");
@@ -72,12 +66,11 @@ public class EntryActivity extends AppCompatActivity {
             //Если Логин и Пароль есть в БД
             Log.d("DB_STAFF", csr.getString(csr.getColumnIndex("fio")));
             if(login.getText().toString().equals(csr.getString(csr.getColumnIndex("fio")).toString())
-            && passwordMD5.equals(csr.getString(csr.getColumnIndex("password")).toString())
+                    && passwordMD5.equals(csr.getString(csr.getColumnIndex("password")).toString())
             ){
                 //Поиск роли
                 Cursor csrAccess = dbStaff.getAll("Access");
                 while(csrAccess.moveToNext()){
-
                     if(csr.getInt(csr.getColumnIndex("id_access")) ==
                             csrAccess.getInt(csrAccess.getColumnIndex("id_access"))){
                         Log.d("DB_STAFF2", csr.getInt(csr.getColumnIndex("id_access"))
@@ -86,7 +79,6 @@ public class EntryActivity extends AppCompatActivity {
                     }
 
                 }
-
             } else {
 //                Toast toast2 = Toast.makeText(this, "Пользователь не найден", Toast.LENGTH_SHORT);
 //                toast2.show();
@@ -120,7 +112,6 @@ public class EntryActivity extends AppCompatActivity {
         }
         return "";
     }
-
     public void openActivityByAccess(int role){
         Intent intent = null;
         switch (role){
@@ -137,7 +128,6 @@ public class EntryActivity extends AppCompatActivity {
                 //intent = new Intent(this, CreateOrderActivity.class);
                 break;
         }
-
         startActivity(intent);
     }
 }
