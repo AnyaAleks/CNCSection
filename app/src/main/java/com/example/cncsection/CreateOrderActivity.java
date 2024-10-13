@@ -75,10 +75,7 @@ public class CreateOrderActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-    dbManager = new DBManager(this);
+        dbManager = new DBManager(this);
 
         button_create.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("Range")
@@ -88,7 +85,7 @@ public class CreateOrderActivity extends AppCompatActivity {
                 //String calendar = calendar_button.getText().toString();
                 String comments = commentary_entry.getText().toString();
 
-                dbManager.addToRequest(number, 1, comments, "2024-10-13");
+                dbManager.addToRequest(number, 1, comments, calendar_date.getText().toString());
 
                 Cursor csr = dbManager.getAll("Request");
                 while(csr.moveToNext()) {
