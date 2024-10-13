@@ -17,9 +17,13 @@
     <string name="hint_1">Введите дату</string>
     <string name="hint_2">Напишите комментарий к заявке</string>
     <string name="hint_3">Номер заявки</string>
+    <string name="calendar_button_description"> Календарь  </string>
+    <string name="calendar_description"> Дата  </string>
 
     <string name="application_number">  Заявка № </string>
     <string name="status"> Статус:  </string>
+
+
 
 
     <string name="master_header">Мастер</string>

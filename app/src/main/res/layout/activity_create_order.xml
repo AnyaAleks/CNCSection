@@ -1,203 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bac"
-    tools:context=".CreateOrderActivity" >
+    android:layout_height="match_parent">
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="411dp"
-        android:layout_height="40dp"
-        android:background="@color/header"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="6dp">
 
-        <TextView
-            android:id="@+id/header"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/header"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
-
-    </TableLayout>
+            android:orientation="vertical">
 
 
-    <EditText
-        android:id="@+id/item_number_entry"
-        android:layout_width="175dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:ems="5"
-        android:hint="@string/hint_3"
-        android:inputType="text"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/header">
 
-    <TextView
-        android:id="@+id/item_number"
-        android:layout_width="210dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/round"
-        android:gravity="center"
-        android:text="@string/item"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/production_time"
-        app:layout_constraintEnd_toStartOf="@+id/item_number_entry"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-        app:layout_constraintVertical_bias="0.0" />
+                <TextView
+                    android:id="@+id/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/manager_header"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </TableLayout>
 
-    <TextView
-        android:id="@+id/production_time"
-        android:layout_width="210dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/round"
-        android:gravity="center"
-        android:text="@string/time"
-        android:textSize="20dp"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_number" />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
 
-    <ImageButton
-        android:id="@+id/calendar"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/baseline_calendar_month_24"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp">
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_number_entry" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/calendar_date"
-        android:layout_width="135dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:textSize="20dp"
-        android:inputType="date"
-        app:layout_constraintEnd_toStartOf="@+id/calendar"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toEndOf="@+id/production_time"
-        app:layout_constraintTop_toBottomOf="@+id/item_number_entry"
-        tools:ignore="MissingConstraints" />
+                        <TextView
+                            android:id="@+id/item_number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:text="@string/item"
+                            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/commentary"
-        android:layout_width="210dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/round"
-        android:gravity="center"
-        android:text="@string/commentary"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/production_time" />
+                        <EditText
+                            android:id="@+id/item_number_entry"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:hint="@string/hint_3"
+                            android:inputType="text" />
+                    </LinearLayout>
 
-    <EditText
-        android:id="@+id/commentary_entry"
-        android:layout_width="382dp"
-        android:layout_height="116dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/round2"
-        android:ems="10"
-        android:gravity="bottom"
-        android:hint="@string/hint_2"
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/commentary" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="@string/application"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/commentary_entry" />
+                        <TextView
+                            android:id="@+id/production_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:text="@string/time"
+                            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/application_review"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="84dp"
-        android:background="@drawable/round"
-        android:gravity="center"
-        android:text="@string/applications"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/commentary_entry" />
+                        <ImageButton
+                            android:id="@+id/calendar"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/calendar_button_description"
+                            android:background="@drawable/baseline_calendar_month_24" />
 
-    <TextView
-        android:id="@+id/search_button"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="84dp"
-        android:background="@drawable/round3"
-        android:gravity="center"
-        android:text="@string/search"
-        android:textSize="20dp"
-        app:layout_constraintStart_toEndOf="@+id/application_review"
-        app:layout_constraintTop_toBottomOf="@+id/commentary_entry" />
+                        <EditText
+                            android:id="@+id/calendar_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:inputType="date"
+                            android:textSize="20sp"
+                            android:hint="@string/calendar_description"
+                            />
+                    </LinearLayout>
 
-    <EditText
-        android:id="@+id/search_input"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:inputType="text"
-        android:ems="5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.40"
-        app:layout_constraintStart_toEndOf="@+id/search_button"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+                        <TextView
+                            android:id="@+id/commentary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/round"
+                            android:gravity="center"
+                            android:text="@string/commentary"
+                            android:textSize="20sp" />
 
+                        <EditText
+                            android:id="@+id/commentary_entry"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:maxHeight="150dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/round2"
+                            android:gravity="bottom"
+                            android:hint="@string/hint_2"
+                            android:maxLength="200"
+                            android:inputType="textMultiLine" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="380dp"
-        android:layout_marginTop="16dp"
-        android:textSize="20sp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_button"
-        app:layout_constraintVertical_bias="0.0" />
+                        <Button
+                            android:id="@+id/button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_gravity="right"
+                            android:text="@string/application" />
 
+                        <TextView
+                            android:id="@+id/application_review"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/round"
+                            android:gravity="center"
+                            android:text="@string/applications"
+                            android:textSize="20sp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
+                            <TextView
+                                android:id="@+id/search_button"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:background="@drawable/round3"
+                                android:gravity="center"
+                                android:text="@string/search"
+                                android:textSize="20sp" />
 
+                        </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp" />
+
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</FrameLayout>

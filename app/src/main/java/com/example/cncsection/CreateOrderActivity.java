@@ -25,7 +25,7 @@ import android.widget.DatePicker;
 
 public class CreateOrderActivity extends AppCompatActivity {
     TextView header, item_number, production_time,commentary,application_review,search_button, calendar_date;
-    EditText item_number_entry, commentary_entry, search_input;
+    EditText item_number_entry, commentary_entry;
     Button button_create;
     ImageView calendar_button;
 
@@ -54,7 +54,7 @@ public class CreateOrderActivity extends AppCompatActivity {
         search_button = findViewById(R.id.search_button);
         item_number_entry = findViewById(R.id.item_number_entry);
         commentary_entry = findViewById(R.id.commentary_entry);
-        search_input = findViewById(R.id.search_input);
+        //search_input = findViewById(R.id.search_input);
         button_create = findViewById(R.id.button);
         calendar_button = findViewById(R.id.calendar);
         calendar_date = findViewById(R.id.calendar_date);
@@ -69,7 +69,7 @@ public class CreateOrderActivity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         CreateOrderActivity.this,
                         (view, year1, monthOfYear, dayOfMonth) ->
-                                calendar_date.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year1),
+                                calendar_date.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year1),
                         year, month, day);
                 datePickerDialog.show();
             }
