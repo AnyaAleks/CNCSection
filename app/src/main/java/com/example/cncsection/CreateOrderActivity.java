@@ -1,5 +1,7 @@
 package com.example.cncsection;
 
+import android.annotation.SuppressLint;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +24,8 @@ public class CreateOrderActivity extends AppCompatActivity {
     EditText input_production_time, item_number_entry, commentary_entry, search_input;
     Button button;
     ArrayList<Status> statuses ;//= new ArrayList<Status>();
+
+    DBManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,24 +52,29 @@ public class CreateOrderActivity extends AppCompatActivity {
         search_input = findViewById(R.id.search_input);
         button = findViewById(R.id.button);
 
+        dbManager = new DBManager(this);
+
         button.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("Range")
             @Override
             public void onClick(View view) {
                 String number = item_number_entry.getText().toString();
                 String date = input_production_time.getText().toString();
                 String comments = commentary_entry.getText().toString();
+
+                dbManager.addToRequest(number, 1, comments, "2024-10-13");
+
+                Cursor csr = dbManager.getAll("Request");
+                while(csr.moveToNext()) {
+                    Log.d("DB_Manager",
+                    "ID = " + csr.getInt(csr.getColumnIndex("id_order"))
+                            + " PART_NUMBER = " + csr.getInt(csr.getColumnIndex("part_number"))
+                            + " ID_STATUS = " + csr.getInt(csr.getColumnIndex("id_status"))
+                            + " COMMENT = " + csr.getString(csr.getColumnIndex("comment"))
+                            + " DATE = " + csr.getString(csr.getColumnIndex("date"))
+                    );
+                }
             }
         });
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
     }
-//
-//    private void setInitialData(){
-//        statuses.add(new Status ("1", "ready"));
-//        statuses.add(new Status("1", "ready"));
-//    }
 }

@@ -66,29 +66,15 @@ class DBManager extends SQLiteOpenHelper {
         return res;
     }
 
-    public long addToStaff(int id_access, String fio, String password) {
-        SQLiteDatabase db = this.getWritableDatabase();
 
-        //Создание объекта для данных (добавления новых строк в таблицу)
-        ContentValues cv = new ContentValues();
-        //cv.put("id_staff", 1); - autoincrement
-        cv.put("id_access", id_access);
-        cv.put("fio", fio);
-        cv.put("password", password);
-
-        long rowID = db.insert("Staff", null, cv);
-        Log.e("LogTag", "addToEmployees" + " rowID " +rowID);
-
-        return rowID;
-    }
-
-    public long addToRequest(String part_number, int id_status, String comment) {
+    public long addToRequest(String part_number, int id_status, String comment, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
         cv.put("part_number", part_number);
         cv.put("id_status", id_status);
         cv.put("comment", comment);
+        cv.put("date", date);
 
         long rowID = db.insert("Request", null, cv);
         Log.e("LogTag", "Request" + " rowID " + rowID);

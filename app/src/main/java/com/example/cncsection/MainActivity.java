@@ -91,9 +91,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Функция создания заявки менеджером
-    public void addNewRecordToRequest(DBManager db){
-        db.addToStaff(1, "Алексеева Анна Сергеевна", "1234");
-    }
+//    public void addNewRecordToRequest(DBManager db){
+//        db.addToStaff(1, "Алексеева Анна Сергеевна", "1234");
+//    }
 
 
 }
