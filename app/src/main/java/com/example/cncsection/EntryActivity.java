@@ -70,6 +70,7 @@ public class EntryActivity extends AppCompatActivity {
         Cursor csr = dbStaff.getAll("Staff");
         while(csr.moveToNext()){
             //Если Логин и Пароль есть в БД
+            Log.d("DB_STAFF", csr.getString(csr.getColumnIndex("fio")));
             if(login.getText().toString().equals(csr.getString(csr.getColumnIndex("fio")).toString())
             && passwordMD5.equals(csr.getString(csr.getColumnIndex("password")).toString())
             ){
@@ -83,7 +84,7 @@ public class EntryActivity extends AppCompatActivity {
                                 + " " + csrAccess.getInt(csrAccess.getColumnIndex("id_access")));
                         openActivityByAccess(csr.getInt(csrAccess.getColumnIndex("id_access")));
                     }
-                    return;
+
                 }
 
             } else {
@@ -91,7 +92,6 @@ public class EntryActivity extends AppCompatActivity {
 //                toast2.show();
             }
 
-            return;
 //            Log.d("DB_STAFF",
 //                    "ID = " + csr.getInt(csr.getColumnIndex("id_staff"))
 //                            + "ID_ACCESS = " + csr.getInt(csr.getColumnIndex("id_access"))
