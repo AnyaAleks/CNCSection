@@ -163,9 +163,9 @@
     <TextView
         android:id="@+id/drawing"
         android:layout_width="196dp"
-        android:layout_height="57dp"
+        android:layout_height="45dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/round"
         android:gravity="center"
         android:text="@string/drawing"
@@ -188,7 +188,7 @@
     <TextView
         android:id="@+id/techProcess"
         android:layout_width="196dp"
-        android:layout_height="57dp"
+        android:layout_height="45dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/round"
@@ -212,10 +212,10 @@
 
     <TextView
         android:id="@+id/master_commentary"
-        android:layout_width="210dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="193dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/round"
         android:gravity="center"
         android:text="@string/commentary"

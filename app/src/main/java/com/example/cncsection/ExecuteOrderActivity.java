@@ -1,5 +1,6 @@
 package com.example.cncsection;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -25,11 +26,6 @@ public class ExecuteOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_execute_order);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
         order_status_spinner = (Spinner) findViewById(R.id.order_status_spinner);
         FillSpinners(statuses, order_status_spinner);
@@ -38,10 +34,25 @@ public class ExecuteOrderActivity extends AppCompatActivity {
         orderNumber.append("4315");
 
     }
+
     private  void FillSpinners(String[] arrayTypes, Spinner spinner)
     {
         ArrayAdapter<String> TypesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,arrayTypes);
         TypesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(TypesAdapter);
     }
+
+    /*
+    public void OpenDrawing(View view)
+    {
+        Intent intent = new Intent(this, PDFViewerActivity.class);
+        //Intent intent = new Intent(this, TxtViewerActivity.class);
+    }
+    public void OpenTechProcess(View view)
+    {
+        //Intent intent = new Intent(this, PDFViewerActivity.class);
+        Intent intent = new Intent(this, TxtViewerActivity.class);
+    }
+
+     */
 }

@@ -1,91 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bac"
-    tools:context=".ExecuteOrderActivity">
+    android:layout_height="match_parent">
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="411dp"
-        android:layout_height="40dp"
-        android:background="@color/header"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="6dp">
 
-
-        <TextView
-            android:id="@+id/operator_header"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/operator_header"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tableLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
+            android:orientation="vertical">
 
-    </TableLayout>
 
-    <TextView
-        android:id="@+id/order_status"
-        android:layout_width="97dp"
-        android:layout_height="43dp"
-        android:layout_marginBottom="56dp"
-        android:background="@drawable/round"
-        android:gravity="center"
-        android:text="@string/order_status"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/header">
 
-    <TextView
-        android:id="@+id/order_number"
-        android:layout_width="174dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/round"
-        android:gravity="center"
-        android:text="@string/order_number"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+                <TextView
+                    android:id="@+id/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/operator_header"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </TableLayout>
 
-    <Spinner
-        android:id="@+id/order_status_spinner"
-        android:layout_width="269dp"
-        android:layout_height="43dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="56dp"
-        android:gravity="start"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
 
-    <Button
-        android:id="@+id/open_drawing_button"
-        android:layout_width="199dp"
-        android:layout_height="51dp"
-        android:text="@string/open_drawing"
-        app:layout_constraintBottom_toTopOf="@+id/open_techProcess_button"
-        app:layout_constraintStart_toStartOf="@+id/open_techProcess_button" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp">
 
-    <Button
-        android:id="@+id/open_techProcess_button"
-        android:layout_width="199dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="28dp"
-        android:text="@string/open_techProcess"
-        app:layout_constraintBottom_toTopOf="@+id/order_status"
-        app:layout_constraintStart_toStartOf="parent" />
+                    <TextView
+                        android:id="@+id/order_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="@string/order_number"
+                        android:textSize="20sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/bench"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/round"
+                        android:gravity="start"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/bench"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/bench_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/round"
+                        android:gravity="start"
+                        android:hint="@string/bench"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/equipment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/round"
+                        android:gravity="start"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/equipment"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/equipment_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/round"
+                        android:gravity="start"
+                        android:hint="@string/equipment"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="120dp">
+
+                        <Button
+                            android:id="@+id/open_drawing_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:text="@string/open_drawing"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="20dp">
+
+                        <Button
+                            android:id="@+id/open_techProcess_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:text="@string/open_techProcess"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/commentary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/round"
+                        android:gravity="start"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/commentary"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/commentary_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/round"
+                        android:gravity="start"
+                        android:hint="@string/commentary"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+
+                        <TextView
+                            android:id="@+id/order_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:layout_marginEnd="4dp"
+                            android:text="@string/order_status"
+                            android:textSize="20sp" />
+
+                        <Spinner
+                            android:id="@+id/order_status_spinner"
+                            android:layout_width="260dp"
+                            android:layout_height="43dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="5dp"
+                            android:gravity="start"
+                            android:layout_gravity="end" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</FrameLayout>

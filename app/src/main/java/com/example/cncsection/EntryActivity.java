@@ -122,7 +122,7 @@ public class EntryActivity extends AppCompatActivity {
                 intent = new Intent(this, GenerateOrderActivity.class);
                 break;
             case 3:
-                //intent = new Intent(this, CreateOrderActivity.class);
+                intent = new Intent(this, ExecuteOrderActivity.class);
                 break;
             case 4:
                 //intent = new Intent(this, CreateOrderActivity.class);
