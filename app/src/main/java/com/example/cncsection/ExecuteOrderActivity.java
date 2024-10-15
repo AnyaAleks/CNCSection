@@ -24,7 +24,7 @@ public class ExecuteOrderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        //EdgeToEdge.enable(this);
         setContentView(R.layout.activity_execute_order);
 
         order_status_spinner = (Spinner) findViewById(R.id.order_status_spinner);
