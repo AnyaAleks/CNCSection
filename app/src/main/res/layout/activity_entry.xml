@@ -19,29 +19,21 @@
             android:textColor="@color/entry"
             android:textSize="25sp" />
 
-        <EditText
-            android:id="@+id/login"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/outlinedTextFieldLoginSignIn"
+            style="@style/TextInputLayoutStyle"
+            android:hint="@string/login"
+            app:endIconMode="none"
             android:layout_marginTop="50dp"
-            android:inputType="text"
-            android:hint="@string/login" />
+            app:endIconTint="@color/dark_blue">
 
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:inputType="textPassword"
-            android:hint="@string/password" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login"
+                style="@style/TextInputEditTextStyleSign"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/error_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/password"
-            android:textColor="@color/error_color"
-            android:textSize="16sp"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/outlinedTextFieldPasswordSignIn"
@@ -56,11 +48,19 @@
                 android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:id="@+id/error_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/outlinedTextFieldLoginSignIn"
+            android:textColor="@color/error_color"
+            android:textSize="16sp"/>
+
         <Button
             android:id="@+id/add_button"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:onClick="goNext"
             android:text="@string/sent"
             android:textAllCaps="true"

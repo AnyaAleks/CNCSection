@@ -43,7 +43,7 @@ public class EntryActivity extends AppCompatActivity {
 
         dbStaff = new DBStaff(this);
         entry = findViewById(R.id.entry);
-        password_1 = findViewById(R.id.password);
+        password_1 = findViewById(R.id.textInputEditPasswordSignIn);
         login = findViewById(R.id.login);
         add_button = findViewById(R.id.add_button);
 
