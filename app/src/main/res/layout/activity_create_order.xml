@@ -51,7 +51,7 @@
                             android:id="@+id/item_number"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/round"
+
                             android:layout_gravity="center_vertical"
                             android:gravity="center"
                             android:paddingStart="10dp"
@@ -80,7 +80,7 @@
                             android:id="@+id/production_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/round"
+
                             android:layout_gravity="center_vertical"
                             android:gravity="center"
                             android:paddingStart="10dp"
