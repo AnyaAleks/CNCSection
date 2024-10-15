@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--TextInputLayout in SignIn and SignUp-->
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/dark_blue</item> <!--Цвет рамки label при вводе-->
+        <item name="hintTextColor">@color/dark_blue</item> <!--Цвет текта label при вводе-->
+        <item name="android:textColorHint">@color/dark_blue</item> <!--Цвет текста в label при просмотре-->
+        <item name="boxCornerRadiusBottomEnd">16dp</item> <!--Размер сгруглений-->
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="android:layout_width">288dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_height">75dp</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+    </style>
+
+    <!--TextInputEditText in SignIn and SignUp-->
+    <style name="TextInputEditTextStyleSign" parent="">
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+</resources>
