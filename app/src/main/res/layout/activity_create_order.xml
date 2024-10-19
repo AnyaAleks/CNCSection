@@ -2,39 +2,42 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/header">
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/manager_header"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </TableLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="6dp">
+
+        android:layout_marginTop="40dp"
+        app:cardCornerRadius="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
-            <TableLayout
-                android:id="@+id/tableLayout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@color/header">
-
-                <TextView
-                    android:id="@+id/header"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/manager_header"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-            </TableLayout>
-
             <ScrollView
                 android:layout_width="match_parent"
+                android:layout_weight="1"
                 android:layout_height="0dp"
-                android:layout_weight="1">
+                tools:ignore="UselessParent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -65,10 +68,12 @@
                             android:id="@+id/item_number_entry"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
+                            android:autofillHints=""
                             android:gravity="center"
                             android:layout_marginTop="10dp"
                             android:hint="@string/hint_3"
-                            android:inputType="text" />
+                            android:inputType="text"
+                            tools:ignore="TextFields" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -125,7 +130,6 @@
                             android:id="@+id/commentary_entry"
                             android:layout_width="match_parent"
                             android:layout_height="80dp"
-                            android:maxHeight="150dp"
                             android:layout_marginTop="15dp"
                             android:background="@drawable/round2"
                             android:gravity="bottom"

@@ -4,7 +4,10 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -58,6 +61,37 @@ public class CreateOrderActivity extends AppCompatActivity {
         button_create = findViewById(R.id.button);
         calendar_button = findViewById(R.id.calendar);
         calendar_date = findViewById(R.id.calendar_date);
+
+        commentary_entry.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //инициализация новой высоты
+                int newHeight = commentary_entry.getLineCount() *
+                        commentary_entry.getLineHeight();
+
+                //перевод в dp
+                int minHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80,
+                        getResources().getDisplayMetrics());
+                int maxHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 150,
+                        getResources().getDisplayMetrics());
+
+                if (newHeight < minHeight) {newHeight = minHeight;}
+                if (newHeight > maxHeight) {newHeight = maxHeight;}
+
+                // уствновка новой высоты для EditText
+                ViewGroup.LayoutParams params = commentary_entry.getLayoutParams();
+                params.height = newHeight;
+                commentary_entry.setLayoutParams(params);
+            }
+
+
+        });
+
 
         calendar_button.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
