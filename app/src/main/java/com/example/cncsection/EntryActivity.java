@@ -143,7 +143,7 @@ public class EntryActivity extends AppCompatActivity {
                 intent = new Intent(this, ExecuteOrderActivity.class);
                 break;
             case 4:
-                //intent = new Intent(this, CreateOrderActivity.class);
+                intent = new Intent(this, RegistrationAvtivity.class);
                 break;
         }
         startActivity(intent);

@@ -73,7 +73,7 @@ class DBStaff extends SQLiteOpenHelper {
 //        return res;
 //    }
 
-    public long addToStaff(int id_access, String fio, String password) {
+    public long addToStaff(int id_access, String fio, String password, String date_of_birth) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         //Создание объекта для данных (добавления новых строк в таблицу)
@@ -82,6 +82,7 @@ class DBStaff extends SQLiteOpenHelper {
         cv.put("id_access", id_access);
         cv.put("fio", fio);
         cv.put("password", password);
+        cv.put("date_of_birth", date_of_birth);
 
         long rowID = db.insert("Staff", null, cv);
         Log.e("LogTag", "addToEmployees" + " rowID " +rowID);
