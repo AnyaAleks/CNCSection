@@ -47,14 +47,6 @@ public class EntryActivity extends AppCompatActivity {
         login = findViewById(R.id.login);
         add_button = findViewById(R.id.add_button);
 
-        //add_button.setOnClickListener(new View.OnClickListener() {
-        //@Override
-        //public void onClick(View view) {
-        //String password = password_1.getText().toString();
-        //далее надо сделать выбор определённого интерфейса (роли)
-        //}
-        //});
-
     }
 
     @SuppressLint("Range")
@@ -73,7 +65,7 @@ public class EntryActivity extends AppCompatActivity {
             if (login.getText().toString().equals(csr.getString(csr.getColumnIndex("fio")).toString())
                     && passwordMD5.equals(csr.getString(csr.getColumnIndex("password")).toString())
             ) {
-                isValid = true;
+
                 //Поиск роли
                 Cursor csrAccess = dbStaff.getAll("Access");
                 while (csrAccess.moveToNext()) {
@@ -85,8 +77,9 @@ public class EntryActivity extends AppCompatActivity {
                     }
 
                 }
+                isValid = true;
+                break;
             }
-            break;
         }
         if (!isValid) {
             login.setText("");
