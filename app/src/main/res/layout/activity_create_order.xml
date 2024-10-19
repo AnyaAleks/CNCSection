@@ -173,13 +173,21 @@
                                 android:text="@string/search"
                                 android:textSize="20sp" />
 
+                            <SearchView
+                                android:layout_marginTop="15dp"
+                                android:id="@+id/searchView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:iconifiedByDefault="true"
+                                android:queryHint="@string/status_filter" />
+
                         </LinearLayout>
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/list"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp" />
+                            android:layout_marginTop="10dp" />
 
                 </LinearLayout>
             </ScrollView>

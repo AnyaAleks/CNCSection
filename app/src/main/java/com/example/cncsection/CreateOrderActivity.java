@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.ImageView;
 
@@ -23,6 +24,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import android.widget.SearchView;
+import android.widget.Toast;
 import java.util.Calendar;
 import android.widget.DatePicker;
 
@@ -31,6 +34,9 @@ public class CreateOrderActivity extends AppCompatActivity {
     EditText item_number_entry, commentary_entry;
     Button button_create;
     ImageView calendar_button;
+
+    private StatusAdapter adapter;
+    SearchView searchView;
 
     ArrayList<Status> statuses ;//= new ArrayList<Status>();
 
@@ -44,7 +50,7 @@ public class CreateOrderActivity extends AppCompatActivity {
 
         RecyclerView rvContacts = (RecyclerView) findViewById(R.id.list); //создание адаптера
         statuses = Status.createStatusesList(20);
-        StatusAdapter adapter = new StatusAdapter(statuses); // устанавливаем для списка адаптер
+        adapter = new StatusAdapter(statuses); // устанавливаем для списка адаптер
         rvContacts.setAdapter(adapter);
         rvContacts.setLayoutManager(new LinearLayoutManager(this));
 
@@ -57,10 +63,25 @@ public class CreateOrderActivity extends AppCompatActivity {
         search_button = findViewById(R.id.search_button);
         item_number_entry = findViewById(R.id.item_number_entry);
         commentary_entry = findViewById(R.id.commentary_entry);
-        //search_input = findViewById(R.id.search_input);
         button_create = findViewById(R.id.button);
         calendar_button = findViewById(R.id.calendar);
         calendar_date = findViewById(R.id.calendar_date);
+
+        searchView=findViewById(R.id.searchView);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // Метод может быть пустым, если фильтрация происходит сразу при наборе
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // Вызываем метод фильтрации
+                filter(newText);
+                return true;
+            }
+        });
 
         commentary_entry.addTextChangedListener(new TextWatcher() {
             @Override
@@ -133,5 +154,19 @@ public class CreateOrderActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    private void filter(String text) {
+        ArrayList<Status> filteredList = new ArrayList<>();
+        for (Status st : statuses) {
+            if (st.getApplication().toLowerCase().contains(text.toLowerCase()) ||
+                    st.getStatus().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(st);
+            }
+        }
+        if (filteredList.isEmpty()) {
+            Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show();
+        } else {
+            adapter.filterList(filteredList);
+        }
     }
 }

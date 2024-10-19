@@ -21,6 +21,7 @@ public class Status {
     }
 
 
+
     //Потом стереть - просто для проверки заполнения данными
     private static int lastStatusId = 0;
     public static ArrayList<Status> createStatusesList(int numContacts) {
