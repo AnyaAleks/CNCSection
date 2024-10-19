@@ -44,4 +44,13 @@
     <string name="order_number">Заказ №</string>
     <string name="open_drawing">Открыть чертёж</string>
     <string name="open_techProcess">Открыть техпроцесс</string>
+
+
+    <string name="registration_header">Регистрация</string>
+    <string name="fio_f">Фамилия</string>
+    <string name="fio_i">Имя</string>
+    <string name="fio_o">Отчество</string>
+    <string name="role">Должность</string>
+    <string name="to_register">Зарегистрироваться</string>
+    <string name="birthday">Дата рождения</string>
 </resources>

@@ -89,6 +89,14 @@ public class EntryActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("Range")
+    public void goRegister(View V)
+    {
+        Intent intent = null;
+        intent = new Intent(this, RegistrationAvtivity.class);
+        startActivity(intent);
+    }
+
 
             // else {
 //                Toast toast2 = Toast.makeText(this, "Пользователь не найден", Toast.LENGTH_SHORT);
