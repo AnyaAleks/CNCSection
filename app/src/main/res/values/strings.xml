@@ -22,6 +22,7 @@
 
     <string name="application_number">  Заявка № </string>
     <string name="status"> Статус:  </string>
+    <string name="status_filter">Введите статус</string>
 
 
 
