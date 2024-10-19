@@ -1,5 +1,7 @@
 package com.example.cncsection;
 
+import android.annotation.SuppressLint;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,32 +18,44 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 //SQLiteOpenHelper и SQLiteDatabase
 
 
 public class RegistrationAvtivity extends AppCompatActivity {
 
     private String[] roles = {"Должность","Менеджер по планированию","Мастер","Оператор"};
+    HashMap<Integer, String> hashRoles=new HashMap<Integer, String>();
     Spinner roles_spinner;
     TextView fio_f;
     TextView fio_i;
     TextView fio_o;
     //TextView orderNumber;
 
+    DBStaff dbStaff;
+
+    @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //EdgeToEdge.enable(this);
         setContentView(R.layout.activity_registration_avtivity);
 
-        Log.e("MD5", md5("1234Ання"));
+        dbStaff = new DBStaff(this);
 
         roles_spinner = (Spinner) findViewById(R.id.role_spinner);
-        FillSpinners(roles, roles_spinner);
+//        FillSpinners(roles, roles_spinner);
 
         fio_f = (TextView) findViewById(R.id.fio_f);
         fio_i = (TextView) findViewById(R.id.fio_i);
         fio_o = (TextView) findViewById(R.id.fio_o);
+
+        //Заполнение списка для Должностей
+        Cursor csr = dbStaff.getAll("Access");
+        while (csr.moveToNext()) {
+            hashRoles.put(csr.getInt(csr.getColumnIndex("id_access")), csr.getString(csr.getColumnIndex("title")));
+        }
+        Log.d("DB_STAFF",hashRoles.toString());
     }
 
     private  void FillSpinners(String[] arrayTypes, Spinner spinner)
@@ -69,22 +83,20 @@ public class RegistrationAvtivity extends AppCompatActivity {
         }
         return "";
     }
+
     public void goRegister(View V)
     {
-        String fio =fio_f.getText().toString() + fio_i.getText().toString() + fio_o.getText().toString();
-                fio = md5(fio);
-    /*
-        Первый аргумент для метода insert() — имя таблицы.
-        Второй аргумент сообщает системе, что делать, если ContentValues пуст (то есть не было передано никаких значений).
-      */
-        /*
-        ContentValues values = new ContentValues();
-        values.put("name", "John");
-        values.put("age", 25);
-        long newRowId = db.insert("students", null, values);
-         */
+        String fio =fio_f.getText().toString() + " "
+                + fio_i.getText().toString() + " "
+                + fio_o.getText().toString();
+
+        //Сделать проверку на пустые поля и позволять добавить если поле пустое
+        //Если хоть одно поле пустое выводить toast
+
+        //Добавить ключ из роли
+        //Добавить пароль, проверки для паролей
+        //дата рождения
+        dbStaff.addToStaff(1, fio, "password", "13-43-23");
+
     }
-
-
-
 }
