@@ -97,6 +97,5 @@ public class RegistrationAvtivity extends AppCompatActivity {
         //Добавить пароль, проверки для паролей
         //дата рождения
         dbStaff.addToStaff(1, fio, "password", "13-43-23");
-
     }
 }

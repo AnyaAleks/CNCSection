@@ -53,4 +53,7 @@
     <string name="role">Должность</string>
     <string name="to_register">Зарегистрироваться</string>
     <string name="birthday">Дата рождения</string>
+
+    <string name="createOrder">Заявка</string>
+    <string name="listOrder">Список</string>
 </resources>

@@ -183,7 +183,19 @@
 
                 </LinearLayout>
             </ScrollView>
-
         </LinearLayout>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/botttom_navigation"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/shape_navigation_menu"
+            app:itemIconSize="30dp"
+            app:itemIconTint="@color/navigation_menu_items_color"
+            app:itemTextColor="@color/navigation_menu_items_color"
+            app:menu="@menu/button_navigation_menu" />
+
     </com.google.android.material.card.MaterialCardView>
 </FrameLayout>

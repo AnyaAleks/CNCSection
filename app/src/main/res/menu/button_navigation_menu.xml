@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/pageContacts"
+        android:enabled="true"
+        android:icon="@drawable/baseline_playlist_add"
+        android:title="@string/createOrder"/>
+    <item
+        android:id="@+id/pageMessage"
+        android:enabled="true"
+        android:icon="@drawable/baseline_list"
+        android:title="@string/listOrder"/>
+</menu>
