@@ -23,24 +23,28 @@ public class GenerateOrderActivity extends AppCompatActivity {
     private String[] operators = new String[1];
 
     Spinner bench_spinner;
-    private String[] bench_types = {"Токарный", "Фрезерный", "Расточный"};
+    private String[] bench_types = {"","Токарный", "Фрезерный", "Расточный"};
 
     Spinner equipment_spinner;
-    private String[] equipment_types = {"7100-0009П", "7100-0002П", "7100-0035П","7100-0005П",};
+    private String[] equipment_types = {"","7100-0009П", "7100-0002П", "7100-0035П","7100-0005П",};
 
     Spinner operator_spinner;
-    private String[] operator_types = {"Бэтмен Б.У.", "Алексеева А.С.", "Гуляева А.Д.","Леонов А.Я."};
+    private String[] operator_types = {"","Бэтмен Б.У.", "Алексеева А.С.", "Гуляева А.Д.","Леонов А.Я."};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+
+
+        //EdgeToEdge.enable(this);
         setContentView(R.layout.activity_generate_order);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        /*ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+         */
 
 
         //master_header = findViewById(R.id.master_header);
@@ -66,6 +70,8 @@ public class GenerateOrderActivity extends AppCompatActivity {
         String newBench=bench_spinner.getSelectedItem().toString();
         boolean flag = false;
         //if(benches.length>1)
+        if(newBench=="")
+            flag = true;
         for (String element : benches)
         {
             if(newBench==element)
