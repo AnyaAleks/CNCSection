@@ -1,12 +1,15 @@
 package com.example.cncsection;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -18,6 +21,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Calendar;
 import java.util.HashMap;
 //SQLiteOpenHelper и SQLiteDatabase
 
@@ -33,6 +37,8 @@ public class RegistrationAvtivity extends AppCompatActivity {
     //TextView orderNumber;
 
     DBStaff dbStaff;
+    ImageView calendar_button;
+    EditText calendar_date;
 
     @SuppressLint("Range")
     @Override
@@ -44,6 +50,10 @@ public class RegistrationAvtivity extends AppCompatActivity {
         dbStaff = new DBStaff(this);
 
         roles_spinner = (Spinner) findViewById(R.id.role_spinner);
+
+
+        calendar_button = findViewById(R.id.calendar);
+        calendar_date = findViewById(R.id.calendar_date);
 //        FillSpinners(roles, roles_spinner);
 
         fio_f = (TextView) findViewById(R.id.fio_f);
@@ -56,6 +66,24 @@ public class RegistrationAvtivity extends AppCompatActivity {
             hashRoles.put(csr.getInt(csr.getColumnIndex("id_access")), csr.getString(csr.getColumnIndex("title")));
         }
         Log.d("DB_STAFF",hashRoles.toString());
+
+
+
+        calendar_button.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        RegistrationAvtivity.this,
+                        (view, year1, monthOfYear, dayOfMonth) ->
+                                calendar_date.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year1),
+                        year, month, day);
+                datePickerDialog.show();
+            }
+        });
     }
 
     private  void FillSpinners(String[] arrayTypes, Spinner spinner)
@@ -86,6 +114,11 @@ public class RegistrationAvtivity extends AppCompatActivity {
 
     public void goRegister(View V)
     {
+        boolean sthEmpty = false;
+        if(fio_f.getText().toString()=="@strings")
+        {
+
+        }
         String fio =fio_f.getText().toString() + " "
                 + fio_i.getText().toString() + " "
                 + fio_o.getText().toString();

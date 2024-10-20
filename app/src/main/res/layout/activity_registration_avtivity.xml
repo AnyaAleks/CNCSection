@@ -45,99 +45,137 @@
                     android:orientation="vertical"
                     android:padding="4dp">
 
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginTop="20dp">
+                        android:layout_marginTop="20dp"
+                        android:weightSum="2" >
 
-                        <TextView
-                            android:id="@+id/fio_f"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                            android:layout_gravity="center_vertical"
-                            android:gravity="center"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp"
-                            android:text="@string/fio_f"
-                            android:textSize="20sp" />
-
-                        <EditText
-                            android:id="@+id/fio_f_entry"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:autofillHints=""
-                            android:gravity="center"
-                            android:layout_marginTop="10dp"
-                            android:hint="@string/fio_f"
-                            android:inputType="text"
-                            tools:ignore="TextFields" />
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_weight="1"
+                            android:weightSum="2" >
+
+                            <TextView
+                                android:id="@+id/fio_f"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:text="@string/fio_f"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+
+                                android:id="@+id/fio_f_entry"
+                                android:autofillHints=""
+                                android:gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:hint="@string/fio_f"
+                                android:inputType="text"
+                                tools:ignore="TextFields" />
+                        </LinearLayout>
                     </LinearLayout>
 
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginTop="20dp">
+                        android:layout_marginTop="20dp"
+                        android:weightSum="2" >
 
-                        <TextView
-                            android:id="@+id/fio_i"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                            android:layout_gravity="center_vertical"
-                            android:gravity="center"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp"
-                            android:text="@string/fio_i"
-                            android:textSize="20sp" />
-
-                        <EditText
-                            android:id="@+id/fio_i_entry"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:autofillHints=""
-                            android:gravity="center"
-                            android:layout_marginTop="10dp"
-                            android:hint="@string/fio_i"
-                            android:inputType="text"
-                            tools:ignore="TextFields" />
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_weight="1"
+                            android:weightSum="2" >
+
+                            <TextView
+                                android:id="@+id/fio_i"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:text="@string/fio_i"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+
+                                android:id="@+id/fio_i_entry"
+                                android:autofillHints=""
+                                android:gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:hint="@string/fio_i"
+                                android:inputType="text"
+                                tools:ignore="TextFields" />
+                        </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginTop="20dp">
+                        android:layout_marginTop="20dp"
+                        android:weightSum="2" >
 
-                        <TextView
-                            android:id="@+id/fio_o"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                            android:layout_gravity="center_vertical"
-                            android:gravity="center"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp"
-                            android:text="@string/fio_o"
-                            android:textSize="20sp" />
-
-                        <EditText
-                            android:id="@+id/fio_o_entry"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:autofillHints=""
-                            android:gravity="center"
-                            android:layout_marginTop="10dp"
-                            android:hint="@string/fio_o"
-                            android:inputType="text"
-                            tools:ignore="TextFields" />
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_weight="1"
+                            android:weightSum="2" >
+
+                            <TextView
+                                android:id="@+id/fio_o"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:text="@string/fio_o"
+                                android:textSize="20sp" />
+
+                            <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+
+                                android:id="@+id/fio_o_entry"
+                                android:autofillHints=""
+                                android:gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:hint="@string/fio_o"
+                                android:inputType="text"
+                                tools:ignore="TextFields" />
+                        </LinearLayout>
                     </LinearLayout>
 
 
