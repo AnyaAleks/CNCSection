@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".CreateOrderFragment"
     android:background="@color/header">
 
     <TableLayout
@@ -114,80 +115,80 @@
                             />
                     </LinearLayout>
 
+                    <TextView
+                        android:id="@+id/commentary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/round"
+                        android:gravity="center"
+                        android:text="@string/commentary"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/commentary_entry"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/round2"
+                        android:gravity="bottom"
+                        android:hint="@string/hint_2"
+                        android:maxLength="200"
+                        android:inputType="textMultiLine" />
+
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_gravity="right"
+                        android:text="@string/application" />
+
+                    <TextView
+                        android:id="@+id/application_review"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/round"
+                        android:gravity="center"
+                        android:text="@string/applications"
+                        android:textSize="20sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
                         <TextView
-                            android:id="@+id/commentary"
-                            android:layout_width="match_parent"
+                            android:id="@+id/search_button"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
                             android:paddingTop="5dp"
                             android:paddingBottom="5dp"
-                            android:layout_marginTop="8dp"
-                            android:background="@drawable/round"
+                            android:background="@drawable/round3"
                             android:gravity="center"
-                            android:text="@string/commentary"
+                            android:text="@string/search"
                             android:textSize="20sp" />
 
-                        <EditText
-                            android:id="@+id/commentary_entry"
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
+                        <SearchView
                             android:layout_marginTop="15dp"
-                            android:background="@drawable/round2"
-                            android:gravity="bottom"
-                            android:hint="@string/hint_2"
-                            android:maxLength="200"
-                            android:inputType="textMultiLine" />
-
-                        <Button
-                            android:id="@+id/button"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:layout_gravity="right"
-                            android:text="@string/application" />
-
-                        <TextView
-                            android:id="@+id/application_review"
+                            android:id="@+id/searchView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp"
-                            android:layout_marginTop="15dp"
-                            android:background="@drawable/round"
-                            android:gravity="center"
-                            android:text="@string/applications"
-                            android:textSize="20sp" />
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:iconifiedByDefault="true"
+                            android:queryHint="@string/status_filter" />
 
-                            <TextView
-                                android:id="@+id/search_button"
-                                android:layout_width="150dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
-                                android:background="@drawable/round3"
-                                android:gravity="center"
-                                android:text="@string/search"
-                                android:textSize="20sp" />
+                    </LinearLayout>
 
-                            <SearchView
-                                android:layout_marginTop="15dp"
-                                android:id="@+id/searchView"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:iconifiedByDefault="true"
-                                android:queryHint="@string/status_filter" />
-
-                        </LinearLayout>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/list"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp" />
 
                 </LinearLayout>
             </ScrollView>
@@ -196,4 +197,5 @@
 
 
     </com.google.android.material.card.MaterialCardView>
+
 </FrameLayout>

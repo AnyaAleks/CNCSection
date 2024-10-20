@@ -4,38 +4,30 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.database.Cursor;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.ImageView;
-
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import android.widget.SearchView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 import java.util.Calendar;
-import android.widget.DatePicker;
 
-import com.google.android.material.navigation.NavigationBarView;
+public class CreateOrderFragment extends Fragment {
 
-public class CreateOrderActivity extends AppCompatActivity {
     TextView header, item_number, production_time,commentary,application_review,search_button, calendar_date;
     EditText item_number_entry, commentary_entry;
     Button button_create;
@@ -48,32 +40,50 @@ public class CreateOrderActivity extends AppCompatActivity {
 
     DBManager dbManager;
 
+    public CreateOrderFragment() {
+        // Required empty public constructor
+    }
+    public static CreateOrderFragment newInstance(String param1, String param2) {
+        CreateOrderFragment fragment = new CreateOrderFragment();
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_create_order); // начальная инициализация списка
+    }
 
-        RecyclerView rvContacts = (RecyclerView) findViewById(R.id.list); //создание адаптера
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_create_order, container, false);
+
+//        setContentView(R.layout.activity_create_order); // начальная инициализация списка
+//
+        RecyclerView rvContacts = (RecyclerView) view.findViewById(R.id.list); //создание адаптера
         statuses = Status.createStatusesList(20);
         adapter = new StatusAdapter(statuses); // устанавливаем для списка адаптер
         rvContacts.setAdapter(adapter);
-        rvContacts.setLayoutManager(new LinearLayoutManager(this));
+        rvContacts.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-//        EdgeToEdge.enable(this);
-        header = findViewById(R.id.header);
-        item_number = findViewById(R.id.item_number);
-        production_time = findViewById(R.id.production_time);
-        commentary = findViewById(R.id.commentary);
-        application_review = findViewById(R.id.application_review);
-        search_button = findViewById(R.id.search_button);
-        item_number_entry = findViewById(R.id.item_number_entry);
-        commentary_entry = findViewById(R.id.commentary_entry);
-        button_create = findViewById(R.id.button);
-        calendar_button = findViewById(R.id.calendar);
-        calendar_date = findViewById(R.id.calendar_date);
+        header = view.findViewById(R.id.header);
+        item_number = view.findViewById(R.id.item_number);
+        production_time = view.findViewById(R.id.production_time);
+        commentary = view.findViewById(R.id.commentary);
+        application_review = view.findViewById(R.id.application_review);
+        search_button = view.findViewById(R.id.search_button);
+        item_number_entry = view.findViewById(R.id.item_number_entry);
+        commentary_entry = view.findViewById(R.id.commentary_entry);
+        button_create = view.findViewById(R.id.button);
+        calendar_button = view.findViewById(R.id.calendar);
+        calendar_date = view.findViewById(R.id.calendar_date);
 
-        searchView=findViewById(R.id.searchView);
+        searchView = view.findViewById(R.id.searchView);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -128,7 +138,7 @@ public class CreateOrderActivity extends AppCompatActivity {
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        CreateOrderActivity.this,
+                        getActivity(),
                         (view, year1, monthOfYear, dayOfMonth) ->
                                 calendar_date.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year1),
                         year, month, day);
@@ -136,7 +146,7 @@ public class CreateOrderActivity extends AppCompatActivity {
             }
         });
 
-        dbManager = new DBManager(this);
+        dbManager = new DBManager(getActivity());
 
         button_create.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("Range")
@@ -151,16 +161,23 @@ public class CreateOrderActivity extends AppCompatActivity {
                 Cursor csr = dbManager.getAll("Request");
                 while(csr.moveToNext()) {
                     Log.d("DB_Manager",
-                    "ID = " + csr.getInt(csr.getColumnIndex("id_order"))
-                            + " PART_NUMBER = " + csr.getInt(csr.getColumnIndex("part_number"))
-                            + " ID_STATUS = " + csr.getInt(csr.getColumnIndex("id_status"))
-                            + " COMMENT = " + csr.getString(csr.getColumnIndex("comment"))
-                            + " DATE = " + csr.getString(csr.getColumnIndex("date"))
+                            "ID = " + csr.getInt(csr.getColumnIndex("id_order"))
+                                    + " PART_NUMBER = " + csr.getInt(csr.getColumnIndex("part_number"))
+                                    + " ID_STATUS = " + csr.getInt(csr.getColumnIndex("id_status"))
+                                    + " COMMENT = " + csr.getString(csr.getColumnIndex("comment"))
+                                    + " DATE = " + csr.getString(csr.getColumnIndex("date"))
                     );
                 }
             }
         });
+
+        return view;
     }
+
+    public static CreateOrderFragment newInstanse(){
+        return new CreateOrderFragment();
+    }
+
     private void filter(String text) {
         ArrayList<Status> filteredList = new ArrayList<>();
         for (Status st : statuses) {
@@ -170,7 +187,7 @@ public class CreateOrderActivity extends AppCompatActivity {
             }
         }
         if (filteredList.isEmpty()) {
-            Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
         } else {
             adapter.filterList(filteredList);
         }
