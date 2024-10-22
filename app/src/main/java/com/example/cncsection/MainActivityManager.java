@@ -22,8 +22,10 @@ public class MainActivityManager extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        //EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main_manager);
+
+        //getWindow().setNavigationBarColor(getResources().getColor(R.color.dark_blue));
 
         BottomNavigationView navigation=(BottomNavigationView) findViewById(R.id.botttom_navigation);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -43,7 +45,7 @@ public class MainActivityManager extends AppCompatActivity {
                     //getSupportActionBar().setTitle(R.string.contacts_caps);
                     return true;
                 case R.id.pageOrderList:
-                    loadFragment(ListOrderManagerFragment.newInstanse());
+                    loadFragment(ListOrderFragment.newInstanse());
                     //getSupportActionBar().setTitle(R.string.messages_caps);
                     return true;
             }

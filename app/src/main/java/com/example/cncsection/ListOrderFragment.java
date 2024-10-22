@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ListOrderManagerFragment#newInstance} factory method to
+ * Use the {@link ListOrderFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ListOrderManagerFragment extends Fragment {
+public class ListOrderFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +24,7 @@ public class ListOrderManagerFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ListOrderManagerFragment() {
+    public ListOrderFragment() {
         // Required empty public constructor
     }
 
@@ -37,8 +37,8 @@ public class ListOrderManagerFragment extends Fragment {
      * @return A new instance of fragment ListOrderManagerFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ListOrderManagerFragment newInstance(String param1, String param2) {
-        ListOrderManagerFragment fragment = new ListOrderManagerFragment();
+    public static ListOrderFragment newInstance(String param1, String param2) {
+        ListOrderFragment fragment = new ListOrderFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,10 +59,10 @@ public class ListOrderManagerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_order_manager, container, false);
+        return inflater.inflate(R.layout.fragment_list_orderxml, container, false);
     }
 
-    public static ListOrderManagerFragment newInstanse(){
-        return new ListOrderManagerFragment();
+    public static ListOrderFragment newInstanse(){
+        return new ListOrderFragment();
     }
 }
