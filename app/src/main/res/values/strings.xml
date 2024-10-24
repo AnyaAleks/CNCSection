@@ -55,7 +55,7 @@
 
     <string name="createOrder">Заявка</string>
     <string name="listOrder">Список</string>
-    <string name="contacts_caps">"C O N T A C T S"</string>
-    <string name="messages_caps">"M E S S A G E S"</string>
+    <string name="ordercreate_caps">"СОЗДАНИЕ ЗАЯВКИ"</string>
+    <string name="listorder_caps">"СПИСОК ЗАЯВОК"</string>
 
 </resources>

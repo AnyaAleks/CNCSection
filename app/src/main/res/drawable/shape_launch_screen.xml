@@ -11,8 +11,8 @@
     <gradient
         android:type="radial"
         android:gradientRadius="300dp"
-        android:startColor="@color/light_blue"
-        android:endColor="@color/dark_blue"
+        android:startColor="@color/rus_red"
+        android:endColor="@color/rus_dark_blue"
         android:angle="300" />
 
 <!--Отступы-->

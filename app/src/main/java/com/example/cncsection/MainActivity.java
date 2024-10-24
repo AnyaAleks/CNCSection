@@ -9,7 +9,10 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.webkit.WebView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +23,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     DBManager dbManager;
+    TextView mainTextView;
 
     @SuppressLint("Range")
     @Override
@@ -29,10 +33,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Загрузка
-        WebView webView = (WebView) findViewById(R.id.webvidew);
-        webView.loadUrl("file:///android_asset/spinner.html");
-        webView.setBackgroundColor(Color.TRANSPARENT);
-
+        //WebView webView = (WebView) findViewById(R.id.webvidew);
+//        webView.loadUrl("file:///android_asset/loading.html");
+//        webView.setBackgroundColor(Color.TRANSPARENT);
+        mainTextView = (TextView) findViewById(R.id.mainText);
+        Animation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(300); //You can manage the blinking time with this parameter
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        mainTextView.startAnimation(anim);
 
         //Переход
         Intent intent = new Intent(this,
