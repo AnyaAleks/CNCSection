@@ -3,7 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="bac">#FFFEFC</color>
-    <color name="entry">#4D174D</color>
+    <color name="entry">#344C6C</color>
     <color name="header">#E6E6FA</color>
     <color name="half">#C0C0FF</color>
     <color name="half2">#DCE4FF</color>
@@ -13,4 +13,11 @@
 
     <color name="light_blue">#b9d7f7</color>
     <color name="dark_blue">#2966AB</color>
+
+    <color name="rus_blue">#567DB0</color>
+    <color name="rus_dark_blue">#344C6C</color>
+    <color name="rus_red">#EC505D</color>
+    <color name="rus_white">#F6EFED</color>
+    <color name="rus_white_checked">#DDD7D5</color>
+    <color name="rus_gray">#83A4B6</color>
 </resources>

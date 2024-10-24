@@ -2,9 +2,9 @@
 <resources>
     <!--TextInputLayout in SignIn and SignUp-->
     <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-        <item name="boxStrokeColor">@color/dark_blue</item> <!--Цвет рамки label при вводе-->
-        <item name="hintTextColor">@color/dark_blue</item> <!--Цвет текта label при вводе-->
-        <item name="android:textColorHint">@color/dark_blue</item> <!--Цвет текста в label при просмотре-->
+        <item name="boxStrokeColor">@color/rus_dark_blue</item> <!--Цвет рамки label при вводе-->
+        <item name="hintTextColor">@color/rus_dark_blue</item> <!--Цвет текта label при вводе-->
+        <item name="android:textColorHint">@color/rus_dark_blue</item> <!--Цвет текста в label при просмотре-->
         <item name="boxCornerRadiusBottomEnd">16dp</item> <!--Размер сгруглений-->
         <item name="boxCornerRadiusTopStart">16dp</item>
         <item name="boxCornerRadiusBottomStart">16dp</item>
@@ -19,7 +19,7 @@
 
     <!--TextInputEditText in SignIn and SignUp-->
     <style name="TextInputEditTextStyleSign" parent="">
-        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textColor">@color/rus_dark_blue</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
@@ -40,5 +40,15 @@
         <item name="cornerSizeTopLeft">30dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
         <item name="cornerSizeBottomLeft">30dp</item>
+    </style>
+
+    <!--Button Gradient Styles-->
+    <style name="AppCompatButtonStyle" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:textColor">@color/rus_white</item>
+        <item name="android:background">@drawable/shape_button</item>
     </style>
 </resources>
