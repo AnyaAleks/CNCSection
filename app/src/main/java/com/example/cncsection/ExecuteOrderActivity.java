@@ -1,6 +1,8 @@
 package com.example.cncsection;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -13,14 +15,20 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Map;
 
 
 public class ExecuteOrderActivity extends AppCompatActivity {
 
-    private String[] statuses = {"Ожидает выполнения","В процессе выполнения","Выполнен", "Отложен", "Возникли проблемы"};
+    //private String[] statuses = {"Ожидает выполнения","В процессе выполнения","Выполнен", "Отложен", "Возникли проблемы"};
+    HashMap<Integer, String> hashStatuses=new HashMap<Integer, String>();
     Spinner order_status_spinner;
     TextView orderNumber;
+    DBOperator dbOperator;
 
+    @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,18 +36,28 @@ public class ExecuteOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_execute_order);
 
         order_status_spinner = (Spinner) findViewById(R.id.order_status_spinner);
-        FillSpinners(statuses, order_status_spinner);
+
+        dbOperator = new DBOperator(this);
+
+        Cursor csr = dbOperator.getAll("Status");
+        while (csr.moveToNext()) {
+            hashStatuses.put(csr.getInt(csr.getColumnIndex("id_status")), csr.getString(csr.getColumnIndex("title")));
+        }
+
+        FillSpinners();
 
         orderNumber = (TextView) findViewById(R.id.order_number);
         orderNumber.append("4315");
 
     }
 
-    private  void FillSpinners(String[] arrayTypes, Spinner spinner)
+    private  void FillSpinners()
     {
-        ArrayAdapter<String> TypesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,arrayTypes);
+        ArrayList<String> list = new ArrayList<>(hashStatuses.values());
+        list.add(0,"");
+        ArrayAdapter<String> TypesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
         TypesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(TypesAdapter);
+        order_status_spinner.setAdapter(TypesAdapter);
     }
 
     /*
