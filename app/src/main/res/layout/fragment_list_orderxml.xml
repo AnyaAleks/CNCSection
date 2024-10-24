@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_reverse"
+    android:background="@color/rus_white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fl_profile"
     tools:context=".MainActivityManager">
@@ -20,19 +20,18 @@
             android:layout_height="wrap_content"
             android:text="@string/listorder_caps"
             android:layout_marginTop="20dp"
-            android:layout_gravity="left"
-            android:layout_marginStart="20dp"
-            android:textColor="@color/rus_white"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
             android:textSize="25sp" />
 
-        <com.google.android.material.card.MaterialCardView android:id="@+id/materialCardView1"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            app:cardBackgroundColor="@color/rus_white"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialCardView.Cut.Fragment">
+<!--        <com.google.android.material.card.MaterialCardView android:id="@+id/materialCardView1"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            app:cardBackgroundColor="@color/rus_white"-->
+<!--            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialCardView.Cut.Fragment">-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -65,6 +64,6 @@
                     </LinearLayout>
                 </LinearLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+<!--        </com.google.android.material.card.MaterialCardView>-->
     </LinearLayout>
 </FrameLayout>
