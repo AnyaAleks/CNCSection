@@ -51,4 +51,8 @@
         <item name="android:textColor">@color/rus_white</item>
         <item name="android:background">@drawable/shape_button</item>
     </style>
+
+    <style name="Theme.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@android:color/transparent</item>
+    </style>
 </resources>

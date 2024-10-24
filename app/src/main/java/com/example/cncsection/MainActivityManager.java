@@ -1,6 +1,8 @@
 package com.example.cncsection;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -18,7 +20,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivityManager extends AppCompatActivity {
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "ResourceAsColor"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 //        webView.setBackgroundColor(Color.TRANSPARENT);
         mainTextView = (TextView) findViewById(R.id.mainText);
         Animation anim = new AlphaAnimation(0.0f, 1.0f);
-        anim.setDuration(300); //You can manage the blinking time with this parameter
+        anim.setDuration(500);
         anim.setStartOffset(20);
         anim.setRepeatMode(Animation.REVERSE);
         anim.setRepeatCount(Animation.INFINITE);
