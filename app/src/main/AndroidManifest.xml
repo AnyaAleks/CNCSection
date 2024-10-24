@@ -20,7 +20,7 @@
             android:name=".MainActivityManager"
             android:exported="false" />
         <activity
-            android:name=".RegistrationAvtivity"
+            android:name=".RegistrationActivity"
             android:exported="false" />
         <activity
             android:name=".TxtViewerActivity"

@@ -4,22 +4,15 @@ import static android.app.PendingIntent.getActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -93,7 +86,7 @@ public class EntryActivity extends AppCompatActivity {
     public void goRegister(View V)
     {
         Intent intent = null;
-        intent = new Intent(this, RegistrationAvtivity.class);
+        intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
     }
 
@@ -144,7 +137,7 @@ public class EntryActivity extends AppCompatActivity {
                 intent = new Intent(this, ExecuteOrderActivity.class);
                 break;
             case 4:
-                intent = new Intent(this, RegistrationAvtivity.class);
+                intent = new Intent(this, RegistrationActivity.class);
                 break;
         }
         startActivity(intent);

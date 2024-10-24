@@ -79,12 +79,11 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-
+                                android:hint=""
                                 android:id="@+id/fio_f_entry"
                                 android:autofillHints=""
                                 android:gravity="center"
                                 android:layout_marginTop="10dp"
-                                android:hint="@string/fio_f"
                                 android:inputType="text"
                                 tools:ignore="TextFields" />
                         </LinearLayout>
@@ -110,26 +109,24 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-
+                                android:text="@string/fio_i"
                                 android:layout_gravity="center_vertical"
                                 android:gravity="center"
                                 android:paddingStart="10dp"
                                 android:paddingEnd="10dp"
                                 android:paddingTop="5dp"
                                 android:paddingBottom="5dp"
-                                android:text="@string/fio_i"
                                 android:textSize="20sp" />
 
                             <EditText
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-
+                                android:hint=""
                                 android:id="@+id/fio_i_entry"
                                 android:autofillHints=""
                                 android:gravity="center"
                                 android:layout_marginTop="10dp"
-                                android:hint="@string/fio_i"
                                 android:inputType="text"
                                 tools:ignore="TextFields" />
                         </LinearLayout>
@@ -167,12 +164,11 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-
+                                android:hint=""
                                 android:id="@+id/fio_o_entry"
                                 android:autofillHints=""
                                 android:gravity="center"
                                 android:layout_marginTop="10dp"
-                                android:hint="@string/fio_o"
                                 android:inputType="text"
                                 tools:ignore="TextFields" />
                         </LinearLayout>
@@ -249,12 +245,48 @@
                             />
                     </LinearLayout>
 
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/outlinedTextFieldPasswordSignUpFirst"
+                        style="@style/TextInputLayoutStyle"
+                        android:hint="@string/password"
+                        app:endIconMode="password_toggle"
+                        app:endIconTint="@color/rus_dark_blue">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputEditPasswordSignUpFirst"
+                            style="@style/TextInputEditTextStyleSign"
+                            android:inputType="textPassword"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/outlinedTextFieldPasswordSignUpSecond"
+                        style="@style/TextInputLayoutStyle"
+                        android:hint="@string/re_password"
+                        app:endIconMode="password_toggle"
+                        app:endIconTint="@color/rus_dark_blue">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textInputEditPasswordSignUpSecond"
+                            style="@style/TextInputEditTextStyleSign"
+                            android:inputType="textPassword"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/error_text_view"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/outlinedTextFieldLoginSignIn"
+                        android:textColor="@color/rus_red"
+                        android:textSize="16sp"/>
                     <Button
                         android:id="@+id/button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:layout_gravity="right"
+                        android:onClick="goRegistToDB"
                         android:text="@string/to_register" />
 
 

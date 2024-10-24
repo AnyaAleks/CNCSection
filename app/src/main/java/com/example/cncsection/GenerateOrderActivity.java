@@ -1,5 +1,7 @@
 package com.example.cncsection;
 
+import android.annotation.SuppressLint;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,6 +14,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Map;
+
 public class GenerateOrderActivity extends AppCompatActivity {
     TextView bench_list;
     TextView equipment_list;
@@ -22,39 +28,60 @@ public class GenerateOrderActivity extends AppCompatActivity {
     private String[] equipments = new String[1];
     private String[] operators = new String[1];
 
+    HashMap<Integer, String> hashRoles=new HashMap<Integer, String>();
+
     Spinner bench_spinner;
-    private String[] bench_types = {"","Токарный", "Фрезерный", "Расточный"};
+    //private String[] bench_types = {"","Токарный", "Фрезерный", "Расточный"};
+    HashMap<Integer, String> hashBench=new HashMap<Integer, String>();
 
     Spinner equipment_spinner;
-    private String[] equipment_types = {"","7100-0009П", "7100-0002П", "7100-0035П","7100-0005П",};
+    //private String[] equipment_types = {"","7100-0009П", "7100-0002П", "7100-0035П","7100-0005П",};
+    HashMap<Integer, String> hashEquipment=new HashMap<Integer, String>();
 
     Spinner operator_spinner;
-    private String[] operator_types = {"","Бэтмен Б.У.", "Алексеева А.С.", "Гуляева А.Д.","Леонов А.Я."};
+    //private String[] operator_types = {"","Бэтмен Б.У.", "Алексеева А.С.", "Гуляева А.Д.","Леонов А.Я."};
+    HashMap<Integer, String> hashOperator=new HashMap<Integer, String>();
 
+    DBMaster dbMaster;
+
+    @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_generate_order);
+
+        dbMaster = new DBMaster(this);
+
+        Cursor csrb = dbMaster.getAll("Machine");
+        while (csrb.moveToNext()) {
+            hashBench.put(csrb.getInt(csrb.getColumnIndex("id_machine")), csrb.getString(csrb.getColumnIndex("type")));
+        }
+
+        Cursor csre = dbMaster.getAll("Osnaska");
+        while (csre.moveToNext()) {
+            hashEquipment.put(csre.getInt(csre.getColumnIndex("id_osnaska")), csre.getString(csre.getColumnIndex("title")));
+        }
+
+        Cursor csro = dbMaster.getAll("Staff");
+        while (csro.moveToNext()) {
+            hashOperator.put(csro.getInt(csro.getColumnIndex("id_staff")), csro.getString(csro.getColumnIndex("fio")));
+        }
+
+        //hashEquipment.put(csr.getInt(csr.getColumnIndex("id_osnaska")), csr.getString(csr.getColumnIndex("title")));
+        //hashOperator.put(csr.getInt(csr.getColumnIndex("id_osnaska")), csr.getString(csr.getColumnIndex("title")));
 
         //EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_generate_order);
-        /*ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
-         */
 
 
         //master_header = findViewById(R.id.master_header);
         //bench_spinner = findViewById(R.id.bench_spinner);
         bench_spinner = (Spinner) findViewById(R.id.bench_spinner);
-        FillSpinners(bench_types, bench_spinner);
+        FillSpinners(hashBench, bench_spinner);
         equipment_spinner = findViewById(R.id.equipment_spinner);
-        FillSpinners(equipment_types, equipment_spinner);
+        FillSpinners(hashEquipment, equipment_spinner);
         operator_spinner = findViewById(R.id.operator_spinner);
-        FillSpinners(operator_types, operator_spinner);
+        FillSpinners(hashOperator, operator_spinner);
 
         bench_list = findViewById(R.id.bench_list);
         equipment_list = findViewById(R.id.equipment_list);
@@ -249,9 +276,11 @@ public class GenerateOrderActivity extends AppCompatActivity {
             listTextView.append(list[i]+"; ");
         }
     }
-    private  void FillSpinners(String[] arrayTypes, Spinner spinner)
+    private  void FillSpinners(HashMap<Integer,String> hashMap, Spinner spinner)
     {
-        ArrayAdapter<String> TypesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,arrayTypes);
+        ArrayList<String> list = new ArrayList<>(hashMap.values());
+        list.add(0,"");
+        ArrayAdapter<String> TypesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
         TypesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(TypesAdapter);
     }
