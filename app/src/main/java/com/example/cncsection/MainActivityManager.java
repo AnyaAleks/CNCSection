@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.activity.EdgeToEdge;
@@ -26,14 +27,13 @@ public class MainActivityManager extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main_manager);
-
         //getWindow().setNavigationBarColor(getResources().getColor(R.color.dark_blue));
 
-        BottomNavigationView navigation=(BottomNavigationView) findViewById(R.id.botttom_navigation);
+        BottomNavigationView navigation=(BottomNavigationView) findViewById(R.id.bottom_navigation);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
 
         //Появление пункта меню messages
-        loadFragment(CreateOrderFragment.newInstanse());
+        loadFragment(CreateOrderFragment.newInstance());
         navigation.setSelectedItemId(R.id.pageOrder);
     }
 
@@ -43,11 +43,11 @@ public class MainActivityManager extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()){
                 case R.id.pageOrder:
-                    loadFragment(CreateOrderFragment.newInstanse());
+                    loadFragment(CreateOrderFragment.newInstance());
                     //getSupportActionBar().setTitle(R.string.contacts_caps);
                     return true;
                 case R.id.pageOrderList:
-                    loadFragment(ListOrderFragment.newInstanse());
+                    loadFragment(ListOrderFragment.newInstance());
                     //getSupportActionBar().setTitle(R.string.messages_caps);
                     return true;
             }

@@ -28,15 +28,12 @@ import java.util.Calendar;
 
 public class CreateOrderFragment extends Fragment {
 
-    TextView header, item_number, production_time,commentary,application_review,search_button, calendar_date;
+    TextView item_number, production_time,commentary, calendar_date;
     EditText item_number_entry, commentary_entry;
     Button button_create;
     ImageView calendar_button;
 
-    private StatusAdapter adapter;
-    SearchView searchView;
 
-    ArrayList<Status> statuses ;//= new ArrayList<Status>();
 
     DBManager dbManager;
 
@@ -63,41 +60,15 @@ public class CreateOrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_create_order, container, false);
 
-//        setContentView(R.layout.activity_create_order); // начальная инициализация списка
-//
-        RecyclerView rvContacts = (RecyclerView) view.findViewById(R.id.list); //создание адаптера
-        statuses = Status.createStatusesList(20);
-        adapter = new StatusAdapter(statuses); // устанавливаем для списка адаптер
-        rvContacts.setAdapter(adapter);
-        rvContacts.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        header = view.findViewById(R.id.header);
         item_number = view.findViewById(R.id.item_number);
         production_time = view.findViewById(R.id.production_time);
         commentary = view.findViewById(R.id.commentary);
-        application_review = view.findViewById(R.id.application_review);
-        search_button = view.findViewById(R.id.search_button);
         item_number_entry = view.findViewById(R.id.item_number_entry);
         commentary_entry = view.findViewById(R.id.commentary_entry);
         button_create = view.findViewById(R.id.button);
         calendar_button = view.findViewById(R.id.calendar);
         calendar_date = view.findViewById(R.id.calendar_date);
 
-        searchView = view.findViewById(R.id.searchView);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                // Метод может быть пустым, если фильтрация происходит сразу при наборе
-                return false;
-            }
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                // Вызываем метод фильтрации
-                filter(newText);
-                return true;
-            }
-        });
 
         commentary_entry.addTextChangedListener(new TextWatcher() {
             @Override
@@ -107,12 +78,12 @@ public class CreateOrderFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                //инициализация новой высоты
+
                 int newHeight = commentary_entry.getLineCount() *
                         commentary_entry.getLineHeight();
 
                 //перевод в dp
-                int minHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80,
+                int minHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100,
                         getResources().getDisplayMetrics());
                 int maxHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 150,
                         getResources().getDisplayMetrics());
@@ -120,7 +91,7 @@ public class CreateOrderFragment extends Fragment {
                 if (newHeight < minHeight) {newHeight = minHeight;}
                 if (newHeight > maxHeight) {newHeight = maxHeight;}
 
-                // уствновка новой высоты для EditText
+
                 ViewGroup.LayoutParams params = commentary_entry.getLayoutParams();
                 params.height = newHeight;
                 commentary_entry.setLayoutParams(params);
@@ -174,22 +145,7 @@ public class CreateOrderFragment extends Fragment {
         return view;
     }
 
-    public static CreateOrderFragment newInstanse(){
+    public static CreateOrderFragment newInstance(){
         return new CreateOrderFragment();
-    }
-
-    private void filter(String text) {
-        ArrayList<Status> filteredList = new ArrayList<>();
-        for (Status st : statuses) {
-            if (st.getApplication().toLowerCase().contains(text.toLowerCase()) ||
-                    st.getStatus().toLowerCase().contains(text.toLowerCase())) {
-                filteredList.add(st);
-            }
-        }
-        if (filteredList.isEmpty()) {
-            Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
-        } else {
-            adapter.filterList(filteredList);
-        }
     }
 }
