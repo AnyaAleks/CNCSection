@@ -16,9 +16,9 @@
     <string name="search">Поиск</string>
     <string name="hint_1">Введите дату</string>
     <string name="hint_2">Напишите комментарий к заявке</string>
-    <string name="hint_3">Номер заявки</string>
+    <string name="hint_3">CNC-0001-AL</string>
     <string name="calendar_button_description"> Календарь  </string>
-    <string name="calendar_description"> Дата  </string>
+    <string name="calendar_description"> 01.09.24  </string>
 
     <string name="application_number">  Заявка № </string>
     <string name="status"> Статус:  </string>

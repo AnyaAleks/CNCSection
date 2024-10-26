@@ -5,18 +5,15 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.HorizontalScrollView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.util.HashMap;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class GenerateOrderActivity extends AppCompatActivity {
     TextView bench_list;
@@ -50,6 +47,17 @@ public class GenerateOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_generate_order);
+
+        ScrollView scrollView = findViewById(R.id.scroll_view);
+
+        if (scrollView != null) {
+            scrollView.post(new Runnable() {
+                @Override
+                public void run() {
+                    scrollView.fullScroll(View.FOCUS_DOWN);
+                }
+            });
+        }
 
         dbMaster = new DBMaster(this);
 
