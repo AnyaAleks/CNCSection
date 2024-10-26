@@ -3,306 +3,267 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/rus_white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/header">
+    android:id="@+id/fl_profile"
+    tools:context=".MainActivityManager">
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="match_parent"
-        android:layout_height="40dp">
-
-        <TextView
-            android:id="@+id/header"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/master_header"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-    </TableLayout>
-
-    <com.google.android.material.card.MaterialCardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        android:layout_marginTop="40dp"
-        app:cardCornerRadius="20dp">
+        <TextView
+            android:id="@+id/entry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ordercreate_caps"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <ScrollView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="0dp"
-                tools:ignore="UselessParent">
+                android:layout_height="wrap_content"
+                android:layout_gravity="clip_horizontal"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <TextView
+                    android:id="@+id/bench_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/bench"
+                    android:layout_marginBottom="15dp"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bench_spinner" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="4dp">
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="4dp">
+                    <Spinner
+                        android:id="@+id/bench_spinner"
+                        android:layout_width="280dp"
+                        android:layout_height="31dp"
+                        android:gravity="start"/>
 
-                        <Spinner
-                            android:id="@+id/bench_spinner"
-                            android:layout_width="280dp"
-                            android:layout_height="31dp"
-                            android:gravity="start"/>
+                    <ImageButton
+                        android:id="@+id/add_button_bench"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="end"
+                        android:onClick="AddBench"
+                        android:background="@drawable/baseline_add_circle_24" />
 
-                        <ImageButton
-                            android:id="@+id/add_button_bench"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_gravity="end"
-                            android:onClick="AddBench"
-                            android:background="@drawable/baseline_add_circle_24" />
-
-                        <ImageButton
-                            android:id="@+id/delete_button_bench"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_gravity="end"
-                            android:background="@drawable/baseline_do_disturb_on_24"
-                            android:onClick="DeleteBench" />
-
-                    </LinearLayout>
-
-
-                    <TextView
-                        android:id="@+id/bench_list"
-                        android:layout_width="401dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:text="@string/bench"
-                        android:textSize="20sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/bench_spinner" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="4dp">
-
-                        <Spinner
-                            android:id="@+id/equipment_spinner"
-                            android:layout_width="280dp"
-                            android:layout_height="31dp"
-                            android:gravity="start"/>
-
-                        <ImageButton
-                            android:id="@+id/add_button_equipment"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_gravity="end"
-                            android:onClick="AddEquipment"
-                            android:background="@drawable/baseline_add_circle_24" />
-
-                        <ImageButton
-                            android:id="@+id/delete_button_equipment"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_gravity="end|center"
-                            android:background="@drawable/baseline_do_disturb_on_24"
-                            android:onClick="DeleteEquipment" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/equipment_list"
-                        android:layout_width="401dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:text="@string/equipment"
-                        android:textSize="20sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/equipment_spinner" />
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="4dp">
-
-                        <Spinner
-                            android:id="@+id/operator_spinner"
-                            android:layout_width="280dp"
-                            android:layout_height="31dp"
-                            android:gravity="start"/>
-
-                        <ImageButton
-                            android:id="@+id/add_button_operator"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_gravity="end"
-                            android:onClick="AddOperator"
-                            android:background="@drawable/baseline_add_circle_24" />
-
-                        <ImageButton
-                            android:id="@+id/delete_button_operator"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_gravity="end|center"
-                            android:background="@drawable/baseline_do_disturb_on_24"
-                            android:onClick="DeleteOperator" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/operator_list"
-                        android:layout_width="401dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:text="@string/operator"
-                        android:textSize="20sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/equipment_spinner" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_weight="1"
-                        android:weightSum="2"
-                        android:padding="4dp">
-
-
-                        <TextView
-                            android:layout_weight="1"
-                            android:id="@+id/drawing"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp"
-                            android:layout_marginTop="8dp"
-                            android:background="@drawable/shape_of_elements"
-                            android:gravity="center"
-                            android:text="@string/drawing"
-                            android:textSize="20sp" />
-
-                        <EditText
-                            android:layout_weight="1"
-                            android:id="@+id/item_number_entry"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:autofillHints=""
-                            android:gravity="center"
-                            android:layout_marginTop="10dp"
-                            android:hint="@string/hint_drawing"
-                            android:inputType="text"
-                            tools:ignore="TextFields" />
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_weight="1"
-                        android:weightSum="2"
-                        android:padding="4dp">
-
-
-                        <TextView
-                            android:layout_weight="1"
-                            android:id="@+id/techProcess"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp"
-                            android:layout_marginTop="8dp"
-                            android:background="@drawable/shape_of_elements"
-                            android:gravity="center"
-                            android:text="@string/techProcess"
-                            android:textSize="20sp" />
-
-                        <EditText
-                            android:layout_weight="1"
-                            android:id="@+id/input_techProcess"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:autofillHints=""
-                            android:gravity="center"
-                            android:layout_marginTop="10dp"
-                            android:hint="@string/hint_techProcess"
-                            android:inputType="text"
-                            tools:ignore="TextFields" />
-
-                    </LinearLayout>
-                    <TextView
-                        android:id="@+id/commentary"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/shape_of_elements"
-                        android:gravity="center"
-                        android:text="@string/commentary"
-                        android:textSize="20sp" />
-
-                    <EditText
-                        android:id="@+id/commentary_entry"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:layout_marginTop="15dp"
-                        android:background="@drawable/round2"
-                        android:gravity="bottom"
-                        android:hint="@string/hint_2"
-                        android:maxLength="200"
-                        android:inputType="textMultiLine" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_weight="1"
-                        android:weightSum="2"
-                        android:padding="4dp">
-
-
-                        <TextView
-                            android:layout_weight="1"
-                            android:id="@+id/estimated_production_time"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp"
-                            android:layout_marginTop="8dp"
-                            android:background="@drawable/shape_of_elements"
-                            android:gravity="center"
-                            android:text="@string/estimated_time"
-                            android:textSize="20sp" />
-
-                        <EditText
-                            android:layout_weight="1"
-                            android:id="@+id/input_estimated_production_time"
-                            android:layout_width="0dp"
-                            android:layout_height="50dp"
-                            android:autofillHints=""
-                            android:gravity="center"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="10dp"
-                            android:hint="@string/hint_1"
-                            android:inputType="date"
-                            tools:ignore="TextFields" />
-
-                    </LinearLayout>
-
+                    <ImageButton
+                        android:id="@+id/delete_button_bench"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="end"
+                        android:background="@drawable/baseline_do_disturb_on_24"
+                        android:onClick="DeleteBench" />
                 </LinearLayout>
 
-            </ScrollView>
-        </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+
+
+                <TextView
+                    android:id="@+id/equipment_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/equipment"
+                    android:textSize="20sp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/equipment_spinner" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/equipment_spinner"
+                        android:layout_width="280dp"
+                        android:layout_height="31dp"
+                        android:gravity="start"/>
+
+                    <ImageButton
+                        android:id="@+id/add_button_equipment"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="end"
+                        android:onClick="AddEquipment"
+                        android:background="@drawable/baseline_add_circle_24" />
+
+                    <ImageButton
+                        android:id="@+id/delete_button_equipment"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="end"
+                        android:background="@drawable/baseline_do_disturb_on_24"
+                        android:onClick="DeleteEquipment" />
+                </LinearLayout>
+
+
+
+                <TextView
+                    android:id="@+id/operator_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="@string/operator"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/equipment_spinner" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/operator_spinner"
+                        android:layout_width="280dp"
+                        android:layout_height="31dp"
+                        android:gravity="start"/>
+
+                    <ImageButton
+                        android:id="@+id/add_button_operator"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="end"
+                        android:onClick="AddOperator"
+                        android:background="@drawable/baseline_add_circle_24" />
+
+                    <ImageButton
+                        android:id="@+id/delete_button_operator"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="end"
+                        android:background="@drawable/baseline_do_disturb_on_24"
+                        android:onClick="DeleteOperator" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/drawing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape_of_elements"
+                    android:gravity="center"
+                    android:text="@string/drawing"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:layout_weight="1"
+                    android:id="@+id/item_number_entry"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:autofillHints=""
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/hint_drawing"
+                    android:inputType="text"
+                    tools:ignore="TextFields" />
+
+
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/techProcess"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape_of_elements"
+                    android:gravity="center"
+                    android:text="@string/techProcess"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:layout_weight="1"
+                    android:id="@+id/input_techProcess"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:autofillHints=""
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/hint_techProcess"
+                    android:inputType="text"
+                    tools:ignore="TextFields" />
+
+                <TextView
+                    android:id="@+id/commentary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape_of_elements"
+                    android:gravity="center"
+                    android:text="@string/commentary"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/commentary_entry"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/round2"
+                    android:gravity="bottom"
+                    android:hint="@string/hint_2"
+                    android:maxLength="200"
+                    android:inputType="textMultiLine" />
+
+
+
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/estimated_production_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape_of_elements"
+                    android:gravity="center"
+                    android:text="@string/estimated_time"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:layout_weight="1"
+                    android:id="@+id/input_estimated_production_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:autofillHints=""
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/hint_1"
+                    android:inputType="date"
+                    tools:ignore="TextFields" />
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
 </FrameLayout>
