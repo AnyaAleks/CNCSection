@@ -85,7 +85,7 @@ public class CreateOrderFragment extends Fragment {
                 //перевод в dp
                 int minHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100,
                         getResources().getDisplayMetrics());
-                int maxHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 150,
+                int maxHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 250,
                         getResources().getDisplayMetrics());
 
                 if (newHeight < minHeight) {newHeight = minHeight;}
@@ -95,6 +95,7 @@ public class CreateOrderFragment extends Fragment {
                 ViewGroup.LayoutParams params = commentary_entry.getLayoutParams();
                 params.height = newHeight;
                 commentary_entry.setLayoutParams(params);
+                commentary_entry.requestLayout();
             }
 
 
