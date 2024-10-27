@@ -29,6 +29,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="clip_horizontal"
+                android:layout_margin="20dp"
                 android:orientation="vertical"
                 android:padding="4dp">
 
@@ -47,18 +49,14 @@
                     android:textSize="20sp" />
 
                 <TextView
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/shape_of_elements"
-                    android:gravity="center"
-                    android:textSize="20sp"
-
                     android:id="@+id/bench"
-                    android:text="@string/bench"/>
+                    android:text="@string/bench"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/bench_content"
@@ -68,109 +66,48 @@
                     android:paddingBottom="5dp"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
-                    android:layout_marginTop="8dp"
                     android:background="@drawable/shape_of_elements"
                     android:gravity="start"
                     android:hint="@string/bench"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/equipment"
+                    android:text="@string/equipment"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/shape_of_elements"
-                    android:gravity="start"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/equipment"
-                    android:textSize="20sp" />
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                     />
 
                 <TextView
                     android:id="@+id/equipment_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/shape_of_elements"
-                    android:gravity="start"
                     android:hint="@string/equipment"
-                    android:textSize="20sp" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:background="@drawable/shape_of_elements"
+                    android:gravity="start"
+                    android:textSize="18sp"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="120dp">
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
 
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/open_drawing_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/shape_of_elements"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
-                        android:text="@string/open_drawing"
-                        android:textSize="20sp" />
+                        style="@style/AppCompatButtonStyle"
+                        android:text="@string/open_drawing" />
 
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="20dp">
-
-                    <Button
-                        android:id="@+id/open_techProcess_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/shape_of_elements"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
-                        android:text="@string/open_techProcess"
-                        android:textSize="20sp" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/commentary"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/shape_of_elements"
-                    android:gravity="start"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/commentary"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/commentary_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/shape_of_elements"
-                    android:gravity="start"
-                    android:hint="@string/commentary"
-                    android:textSize="20sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -178,31 +115,67 @@
                     android:orientation="horizontal"
                     android:layout_marginTop="20dp">
 
-                    <TextView
-                        android:id="@+id/order_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/shape_of_elements"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:layout_marginEnd="4dp"
-                        android:text="@string/order_status"
-                        android:textSize="20sp" />
-
-                    <Spinner
-                        android:id="@+id/order_status_spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginBottom="5dp"
-                        android:gravity="start"
-                        android:layout_gravity="end" />
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/open_techProcess_button"
+                        style="@style/AppCompatButtonStyle"
+                        android:text="@string/open_techProcess"/>
 
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/commentary"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="15dp"
+
+                    android:gravity="left"
+                    android:padding="5dp"
+                    android:text="@string/commentary"
+                    android:textSize="18sp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/commentary_entry"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_of_elements"
+                        android:gravity="bottom"
+                        android:hint="@string/hint_2"
+                        android:inputType="textMultiLine"
+                        android:maxLength="200"
+                        android:textSize="18sp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:scrollbars="vertical"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/order_status"
+                    android:text="@string/order_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:textSize="18sp"/>
+
+                <Spinner
+                    android:id="@+id/order_status_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="start"
+                    android:dropDownVerticalOffset="50dp"
+                    android:background="@drawable/spinner_shape"
+                    android:layout_gravity="end" />
 
             </LinearLayout>
         </ScrollView>
