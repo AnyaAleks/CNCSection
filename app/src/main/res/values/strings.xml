@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">CNCSection</string>
-    <string name="title_activity_entry">Entry Activity</string>
+    <string name="app_name" translatable="false">CNCSection</string>
+    <string name="title_activity_entry" translatable="false">Entry Activity</string>
     <string name="entry">Вход в систему</string>
-    <string name="login">Логин</string>
-    <string name="password">Пароль</string>
+    <string name="login" translatable="false">Логин</string>
+    <string name="password" translatable="false">Пароль</string>
     <string name="sent">Отправить</string>
 
     <string name="manager_header">Менеджер по планированию</string>
@@ -52,6 +52,7 @@
     <string name="role">Должность</string>
     <string name="to_register">Зарегистрироваться</string>
     <string name="birthday">Дата рождения</string>
+    <string name="choose_a_password">Введите пароль:</string>
     <string name="re_password">Повторите пароль</string>
     <string name="date_description"> 01.01.87  </string>
 
