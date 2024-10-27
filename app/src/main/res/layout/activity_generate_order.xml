@@ -4,9 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/rus_white"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/fl_profile"
-    tools:context=".MainActivityManager">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,67 +36,75 @@
 
                 <TextView
                     android:id="@+id/bench_list"
-                    android:layout_width="match_parent"
+                    android:text="@string/bench"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@string/bench"
                     android:layout_marginBottom="15dp"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/bench_spinner" />
+                    android:gravity="center"
+                    android:textSize="18sp"/>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <Spinner
                         android:id="@+id/bench_spinner"
-                        android:layout_width="280dp"
-                        android:layout_height="31dp"
-                        android:gravity="start"/>
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:gravity="start"
+                        android:dropDownVerticalOffset="50dp"
+                        android:background="@drawable/spinner_shape"
+                        android:layout_gravity="end" />
 
                     <ImageButton
                         android:id="@+id/add_button_bench"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:layout_gravity="end"
-                        android:onClick="AddBench"
-                        android:background="@drawable/baseline_add_circle_24" />
+                        android:layout_gravity="start"
+                        android:layout_marginEnd="5dp"
+                        android:layout_toStartOf="@+id/delete_button_bench"
+                        android:background="@drawable/baseline_add_circle_24"
+                        android:onClick="AddBench" />
 
                     <ImageButton
                         android:id="@+id/delete_button_bench"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="5dp"
                         android:background="@drawable/baseline_do_disturb_on_24"
                         android:onClick="DeleteBench" />
-                </LinearLayout>
+                </RelativeLayout>
 
 
 
 
                 <TextView
                     android:id="@+id/equipment_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:text="@string/equipment"
-                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="15dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/equipment_spinner" />
+                    android:gravity="center"
+                    android:textSize="18sp"/>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <Spinner
                         android:id="@+id/equipment_spinner"
-                        android:layout_width="280dp"
-                        android:layout_height="31dp"
-                        android:gravity="start"/>
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:gravity="start"
+                        android:dropDownVerticalOffset="50dp"
+                        android:background="@drawable/spinner_shape"
+                        android:layout_gravity="end" />
 
                     <ImageButton
                         android:id="@+id/add_button_equipment"
@@ -106,6 +112,8 @@
                         android:layout_height="35dp"
                         android:layout_gravity="end"
                         android:onClick="AddEquipment"
+                        android:layout_marginEnd="5dp"
+                        android:layout_toStartOf="@+id/delete_button_equipment"
                         android:background="@drawable/baseline_add_circle_24" />
 
                     <ImageButton
@@ -113,33 +121,37 @@
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="5dp"
                         android:background="@drawable/baseline_do_disturb_on_24"
                         android:onClick="DeleteEquipment" />
-                </LinearLayout>
+                </RelativeLayout>
 
 
 
                 <TextView
                     android:id="@+id/operator_list"
-                    android:layout_width="match_parent"
+                    android:text="@string/operator"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="15dp"
-                    android:text="@string/operator"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/equipment_spinner" />
+                    android:gravity="center"
+                    android:textSize="18sp" />
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <Spinner
                         android:id="@+id/operator_spinner"
-                        android:layout_width="280dp"
-                        android:layout_height="31dp"
-                        android:gravity="start"/>
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:gravity="start"
+                        android:dropDownVerticalOffset="50dp"
+                        android:background="@drawable/spinner_shape"
+                        android:layout_gravity="end" />
 
                     <ImageButton
                         android:id="@+id/add_button_operator"
@@ -147,6 +159,8 @@
                         android:layout_height="35dp"
                         android:layout_gravity="end"
                         android:onClick="AddOperator"
+                        android:layout_marginEnd="5dp"
+                        android:layout_toStartOf="@+id/delete_button_operator"
                         android:background="@drawable/baseline_add_circle_24" />
 
                     <ImageButton
@@ -154,112 +168,134 @@
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="5dp"
                         android:background="@drawable/baseline_do_disturb_on_24"
                         android:onClick="DeleteOperator" />
-                </LinearLayout>
+                </RelativeLayout>
 
 
                 <TextView
-                    android:layout_weight="1"
                     android:id="@+id/drawing"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/shape_of_elements"
-                    android:gravity="center"
                     android:text="@string/drawing"
-                    android:textSize="20sp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:textSize="18sp" />
 
                 <EditText
-                    android:layout_weight="1"
                     android:id="@+id/item_number_entry"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:autofillHints=""
-                    android:gravity="center"
-                    android:layout_marginTop="10dp"
                     android:hint="@string/hint_drawing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_input"
+                    android:padding="12dp"
+                    android:gravity="left"
                     android:inputType="text"
-                    tools:ignore="TextFields" />
-
+                    android:textSize="18sp"/>
 
                 <TextView
-                    android:layout_weight="1"
                     android:id="@+id/techProcess"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/shape_of_elements"
-                    android:gravity="center"
                     android:text="@string/techProcess"
-                    android:textSize="20sp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:textSize="18sp" />
 
                 <EditText
-                    android:layout_weight="1"
                     android:id="@+id/input_techProcess"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:autofillHints=""
-                    android:gravity="center"
-                    android:layout_marginTop="10dp"
                     android:hint="@string/hint_techProcess"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_input"
+                    android:padding="12dp"
+                    android:gravity="left"
                     android:inputType="text"
-                    tools:ignore="TextFields" />
+                    android:textSize="18sp"/>
+
 
                 <TextView
                     android:id="@+id/commentary"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/shape_of_elements"
-                    android:gravity="center"
-                    android:text="@string/commentary"
-                    android:textSize="20sp" />
-
-                <EditText
-                    android:id="@+id/commentary_entry"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="45dp"
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/round2"
-                    android:gravity="bottom"
-                    android:hint="@string/hint_2"
-                    android:maxLength="200"
-                    android:inputType="textMultiLine" />
 
+                    android:gravity="left"
+                    android:padding="5dp"
+                    android:text="@string/commentary"
+                    android:textSize="18sp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/commentary_entry"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_of_elements"
+                        android:gravity="bottom"
+                        android:hint="@string/hint_2"
+                        android:inputType="textMultiLine"
+                        android:maxLength="200"
+                        android:textSize="18sp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:scrollbars="vertical"/>
+                </LinearLayout>
 
 
                 <TextView
-                    android:layout_weight="1"
                     android:id="@+id/estimated_production_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+
+                    android:text="@string/estimated_time"
+                    android:textSize="18sp" />
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/shape_of_elements"
-                    android:gravity="center"
-                    android:text="@string/estimated_time"
-                    android:textSize="20sp" />
+                    android:layout_marginBottom="20dp">
 
-                <EditText
-                    android:layout_weight="1"
-                    android:id="@+id/input_estimated_production_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:autofillHints=""
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:hint="@string/hint_1"
-                    android:inputType="date"
-                    tools:ignore="TextFields" />
+                    <EditText
+                        android:id="@+id/input_estimated_production_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_input"
+                        android:padding="12dp"
+                        android:hint="@string/calendar_description"
+                        android:inputType="date"
+                        android:paddingEnd="60dp"
+                        android:textSize="18sp" />
+
+                    <ImageButton
+                        android:id="@+id/calendar"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@null"
+                        android:layout_marginEnd="15dp"
+                        android:src="@drawable/baseline_calendar_month_24"
+                        android:contentDescription="@string/calendar_button_description"
+                        android:scaleType="fitCenter" />
+                </RelativeLayout>
 
 
             </LinearLayout>

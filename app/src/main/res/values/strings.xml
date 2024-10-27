@@ -31,11 +31,11 @@
     <string name="equipment">Оснастки:</string>
     <string name="operator">Операторы:</string>
     <string name="drawing">Чертёж</string>
-    <string name="hint_drawing">Введите номер чертежа</string>
+    <string name="hint_drawing">as.ГУАП.431513.007</string>
     <string name="techProcess">Тех.процесс</string>
     <string name="add">+</string>
     <string name="delete">-</string>
-    <string name="hint_techProcess">Введите номер тех.процесса</string>
+    <string name="hint_techProcess">ТТК Чайник</string>
 
 
     <string name="operator_header">ОПЕРАТОР</string>
