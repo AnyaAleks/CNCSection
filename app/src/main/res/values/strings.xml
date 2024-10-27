@@ -25,7 +25,7 @@
     <string name="status_filter">Введите статус</string>
 
 
-    <string name="master_header">Мастер</string>
+    <string name="master_header">МАСТЕР</string>
     <string name="estimated_time">Предположительное время производства: </string>
     <string name="bench">Станки:</string>
     <string name="equipment">Оснастки:</string>
@@ -38,14 +38,14 @@
     <string name="hint_techProcess">Введите номер тех.процесса</string>
 
 
-    <string name="operator_header">Оператор</string>
+    <string name="operator_header">ОПЕРАТОР</string>
     <string name="order_status">Статус</string>
     <string name="order_number">Заказ №</string>
     <string name="open_drawing">Открыть чертёж</string>
     <string name="open_techProcess">Открыть техпроцесс</string>
 
 
-    <string name="registration_header">Регистрация</string>
+    <string name="registration_header">РЕГИСТРАЦИЯ</string>
     <string name="fio_f">Фамилия</string>
     <string name="fio_i">Имя</string>
     <string name="fio_o">Отчество</string>
@@ -53,6 +53,7 @@
     <string name="to_register">Зарегистрироваться</string>
     <string name="birthday">Дата рождения</string>
     <string name="re_password">Повторите пароль</string>
+    <string name="date_description"> 01.01.87  </string>
 
     <string name="createOrder">Заявка</string>
     <string name="listOrder">Список</string>
