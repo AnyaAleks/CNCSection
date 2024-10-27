@@ -175,35 +175,29 @@
                     </LinearLayout>
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/role"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="20dp">
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/shape_of_elements"
+                        android:gravity="center"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/role"
+                        android:textSize="20sp" />
 
-                        <TextView
-                            android:id="@+id/role"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp"
-                            android:layout_marginTop="8dp"
-                            android:background="@drawable/shape_of_elements"
-                            android:gravity="center"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:text="@string/role"
-                            android:textSize="20sp" />
+                    <Spinner
+                        android:id="@+id/role_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="start"
+                        android:dropDownVerticalOffset="50dp"
+                        android:background="@drawable/spinner_shape"
+                        android:layout_gravity="end" />
 
-                        <Spinner
-                            android:id="@+id/role_spinner"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:layout_marginEnd="4dp"
-                            android:layout_marginBottom="5dp"
-                            android:gravity="start"
-                            android:layout_gravity="end" />
-                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -244,7 +238,6 @@
                             android:hint="@string/calendar_description"
                             />
                     </LinearLayout>
-
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/outlinedTextFieldPasswordSignUpFirst"

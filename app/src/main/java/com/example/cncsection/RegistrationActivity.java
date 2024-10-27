@@ -1,5 +1,7 @@
 package com.example.cncsection;
 
+import static java.security.AccessController.getContext;
+
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.database.Cursor;
@@ -7,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
