@@ -55,7 +55,7 @@
                     android:textSize="18dp" />
 
                 <EditText
-                    android:id="@+id/item_number_entry"
+                    android:id="@+id/detailNumberEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -64,6 +64,7 @@
                     android:gravity="left"
                     android:hint="@string/hint_3"
                     android:inputType="text"
+                    android:enabled="false"
                     android:textSize="18dp" />
 
                 <TextView
@@ -109,31 +110,16 @@
                     android:text="@string/time_start"
                     android:textSize="18sp" />
 
-                <RelativeLayout
+                <EditText
+                    android:id="@+id/dateEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/custom_input"
-                        android:padding="12dp"
-                        android:hint="@string/calendar_description"
-                        android:inputType="date"
-                        android:paddingEnd="60dp"
-                        android:textSize="18sp" />
-
-                    <ImageButton
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:background="@null"
-                        android:layout_marginEnd="15dp"
-                        android:src="@drawable/baseline_calendar_month_24"
-                        android:contentDescription="@string/calendar_button_description"
-                        android:scaleType="fitCenter" />
-                </RelativeLayout>
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_input"
+                    android:padding="12dp"
+                    android:inputType="date"
+                    android:paddingEnd="60dp"
+                    android:textSize="18sp"
+                    android:enabled="false"/>
 
                 <TextView
                     android:id="@+id/production_time"
@@ -146,33 +132,16 @@
                     android:text="@string/time"
                     android:textSize="18sp" />
 
-                <RelativeLayout
+                <EditText
+                    android:id="@+id/productionTimeEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/calendar_date"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/custom_input"
-                        android:padding="12dp"
-                        android:hint="@string/calendar_description"
-                        android:inputType="date"
-                        android:paddingEnd="60dp"
-                        android:textSize="18sp" />
-
-                    <ImageButton
-                        android:id="@+id/calendar"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:background="@null"
-                        android:layout_marginEnd="15dp"
-                        android:src="@drawable/baseline_calendar_month_24"
-                        android:contentDescription="@string/calendar_button_description"
-                        android:scaleType="fitCenter" />
-                </RelativeLayout>
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_input"
+                    android:padding="12dp"
+                    android:inputType="date"
+                    android:paddingEnd="60dp"
+                    android:textSize="18sp"
+                    android:enabled="false"/>
 
                 <TextView
                     android:id="@+id/commentary"
@@ -192,7 +161,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/commentary_entry"
+                        android:id="@+id/commentaryEntryEditText"
                         android:layout_width="0dp"
                         android:layout_height="100dp"
                         android:layout_marginBottom="15dp"

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -32,6 +33,10 @@ public class OrderInformation extends AppCompatActivity {
     DBStaff dbStaff;
 
     TextView idOrderTextView;
+    EditText detailNumberEditText;
+    EditText commentaryEntryEditText;
+    EditText dateEditText;
+    EditText productionTimeEditText;
 
     @SuppressLint("Range")
     @Override
@@ -40,21 +45,12 @@ public class OrderInformation extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_order_information);
 
-//        Bundle arguments = getIntent().getExtras();
-//        Status status;
-//        status = (Status) arguments.getSerializable(Status.class.getSimpleName());
-        Intent intent = getIntent();
-        String str = intent.getStringExtra("id_current_order");
+        dbStaff = new DBStaff(this);
 
-        idOrderTextView = findViewById(R.id.idOrderTextView);
-        idOrderTextView.setText(str);
-
-
-        //ВЫСТАВЛЕНИЕ СТАТУСА
         stateInformerButton = findViewById(R.id.stateInformer);
         statesSpinner = (Spinner) findViewById(R.id.states_spinner);
+
         //Заполнение списка для состояний индикатора
-        dbStaff = new DBStaff(this);
         Cursor csr = dbStaff.getAll("Status");
         while (csr.moveToNext()) {
             hashSates.put(csr.getInt(csr.getColumnIndex("id_status")), csr.getString(csr.getColumnIndex("title")));
@@ -67,7 +63,7 @@ public class OrderInformation extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 stateInformerButton.setBackgroundDrawable(getResources().getDrawable( getRoleColor(position+1)));
                 stateInformerButton.setImageResource( getRoleIcon(position+1));
-                        //getRoleColor(position+1));
+                //getRoleColor(position+1));
             }
 
             @Override
@@ -75,6 +71,50 @@ public class OrderInformation extends AppCompatActivity {
 
             }
         });
+
+        Intent intent = getIntent();
+        String id_current_order = intent.getStringExtra("id_current_order");
+
+        idOrderTextView = findViewById(R.id.idOrderTextView);
+        idOrderTextView.setText(id_current_order);
+
+        detailNumberEditText = findViewById(R.id.detailNumberEditText);
+        commentaryEntryEditText = findViewById(R.id.commentaryEntryEditText);
+        dateEditText = findViewById(R.id.dateEditText);
+        productionTimeEditText = findViewById(R.id.productionTimeEditText);
+
+        Cursor csrRequest = dbStaff.getAll("Request");
+        while (csrRequest.moveToNext()) {
+            if(csrRequest.getInt(csrRequest.getColumnIndex("id_order")) == Integer.parseInt(id_current_order)){
+                detailNumberEditText.setText(csrRequest.getString(csrRequest.getColumnIndex("part_number")));
+
+                int id_status = csrRequest.getInt(csrRequest.getColumnIndex("id_status"));
+                stateInformerButton.setBackgroundDrawable(getResources().getDrawable( getRoleColor(id_status)));
+                stateInformerButton.setImageResource( getRoleIcon(id_status));
+                statesSpinner.setSelection(id_status-1);
+
+                commentaryEntryEditText.setText(csrRequest.getString(csrRequest.getColumnIndex("comment")));
+
+                dateEditText.setText(csrRequest.getString(csrRequest.getColumnIndex("date")));
+            }
+        }
+
+        Cursor csrOrder = dbStaff.getAllOrder();
+        while (csrOrder.moveToNext()) {
+//            Log.d("ORDERRR", String.valueOf(csrOrder.getInt(csrOrder.getColumnIndex("id_request"))));
+            if(csrOrder.getInt(csrOrder.getColumnIndex("id_request")) == Integer.parseInt(id_current_order)){
+                productionTimeEditText.setText(csrOrder.getString(csrOrder.getColumnIndex("production_time")));
+            }
+        }
+
+
+
+
+
+
+
+
+
     }
 
     private  void fillStatesSpinner()

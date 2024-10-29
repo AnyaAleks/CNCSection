@@ -50,6 +50,12 @@ class DBStaff extends SQLiteOpenHelper {
         return res;
     }
 
+    public Cursor getAllOrder() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from 'Order'", null);
+        return res;
+    }
+
     public Cursor sortInOrder(String table_name, String sort_field) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from " + table_name
