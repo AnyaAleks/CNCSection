@@ -3,289 +3,208 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/header">
+    android:background="@color/rus_white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TableLayout
-        android:id="@+id/tableLayout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/registration_header"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/registration_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
             android:textColor="@color/black"
-            android:textSize="20sp" />
-    </TableLayout>
+            android:textSize="25dp" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:layout_marginTop="40dp"
-        app:cardCornerRadius="20dp">
-
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            tools:ignore="UselessParent">
 
-            <ScrollView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="0dp"
-                tools:ignore="UselessParent">
+                android:layout_height="wrap_content"
+                android:layout_gravity="clip_horizontal"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                android:padding="4dp">
 
-                <LinearLayout
+
+                <TextView
+                    android:id="@+id/fio_f"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:text="@string/fio_f"
+                    android:textSize="18dp" />
+
+                <EditText
+                    android:id="@+id/fio_f_entry"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="4dp">
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_input"
+                    android:padding="12dp"
+                    android:gravity="left"
+                    android:inputType="text"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/fio_i"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:text="@string/fio_i"
+                    android:textSize="18dp" />
+
+                <EditText
+                    android:id="@+id/fio_i_entry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_input"
+                    android:padding="12dp"
+                    android:gravity="left"
+                    android:inputType="text"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/fio_o"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:text="@string/fio_o"
+                    android:textSize="18dp" />
+
+                <EditText
+                    android:id="@+id/fio_o_entry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_input"
+                    android:padding="12dp"
+                    android:gravity="left"
+                    android:inputType="text"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/role"
+                    android:text="@string/role"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:textSize="18sp"/>
+
+                <Spinner
+                    android:id="@+id/role_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="start"
+                    android:dropDownVerticalOffset="50dp"
+                    android:background="@drawable/spinner_shape"
+                    android:layout_gravity="end" />
 
 
-                    <LinearLayout
+                <TextView
+                    android:id="@+id/birthday"
+                    android:text="@string/birthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:textSize="18sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/calendar_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="20dp"
-                        android:weightSum="2" >
+                        android:background="@drawable/custom_input"
+                        android:padding="12dp"
+                        android:hint="@string/date_description"
+                        android:inputType="date"
+                        android:paddingEnd="60dp"
+                        android:textSize="18sp" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_weight="1"
-                            android:weightSum="2" >
+                    <ImageButton
+                        android:id="@+id/calendar"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@null"
+                        android:layout_marginEnd="15dp"
+                        android:src="@drawable/baseline_calendar_month_24"
+                        android:contentDescription="@string/calendar_button_description"
+                        android:scaleType="fitCenter" />
+                </RelativeLayout>
 
-                            <TextView
-                                android:id="@+id/fio_f"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
+                <TextView
+                    android:id="@+id/choose_password"
+                    android:text="@string/choose_a_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:textSize="18sp" />
 
-                                android:layout_gravity="center_vertical"
-                                android:gravity="center"
-                                android:paddingStart="10dp"
-                                android:paddingEnd="10dp"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
-                                android:text="@string/fio_f"
-                                android:textSize="20sp" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/outlinedTextFieldPasswordSignUpFirst"
+                    style="@style/TextInputLayoutStyle"
+                    android:hint="@string/password"
+                    app:endIconMode="password_toggle"
+                    app:endIconTint="@color/rus_dark_blue">
 
-                            <EditText
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:hint=""
-                                android:id="@+id/fio_f_entry"
-                                android:autofillHints=""
-                                android:gravity="center"
-                                android:layout_marginTop="10dp"
-                                android:inputType="text"
-                                tools:ignore="TextFields" />
-                        </LinearLayout>
-                    </LinearLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditPasswordSignUpFirst"
+                        style="@style/TextInputEditTextStyleSign"
+                        android:inputType="textPassword"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/outlinedTextFieldPasswordSignUpSecond"
+                    style="@style/TextInputLayoutStyle"
+                    android:hint="@string/re_password"
+                    app:endIconMode="password_toggle"
+                    app:endIconTint="@color/rus_dark_blue">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="20dp"
-                        android:weightSum="2" >
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_weight="1"
-                            android:weightSum="2" >
-
-                            <TextView
-                                android:id="@+id/fio_i"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:text="@string/fio_i"
-                                android:layout_gravity="center_vertical"
-                                android:gravity="center"
-                                android:paddingStart="10dp"
-                                android:paddingEnd="10dp"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
-                                android:textSize="20sp" />
-
-                            <EditText
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:hint=""
-                                android:id="@+id/fio_i_entry"
-                                android:autofillHints=""
-                                android:gravity="center"
-                                android:layout_marginTop="10dp"
-                                android:inputType="text"
-                                tools:ignore="TextFields" />
-                        </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="20dp"
-                        android:weightSum="2" >
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:layout_weight="1"
-                            android:weightSum="2" >
-
-                            <TextView
-                                android:id="@+id/fio_o"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-
-                                android:layout_gravity="center_vertical"
-                                android:gravity="center"
-                                android:paddingStart="10dp"
-                                android:paddingEnd="10dp"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
-                                android:text="@string/fio_o"
-                                android:textSize="20sp" />
-
-                            <EditText
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:hint=""
-                                android:id="@+id/fio_o_entry"
-                                android:autofillHints=""
-                                android:gravity="center"
-                                android:layout_marginTop="10dp"
-                                android:inputType="text"
-                                tools:ignore="TextFields" />
-                        </LinearLayout>
-                    </LinearLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditPasswordSignUpSecond"
+                        style="@style/TextInputEditTextStyleSign"
+                        android:inputType="textPassword"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-                    <TextView
-                        android:id="@+id/role"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/shape_of_elements"
-                        android:gravity="center"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
-                        android:text="@string/role"
-                        android:textSize="20sp" />
-
-                    <Spinner
-                        android:id="@+id/role_spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:gravity="start"
-                        android:dropDownVerticalOffset="50dp"
-                        android:background="@drawable/spinner_shape"
-                        android:layout_gravity="end" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/add_button"
+                    style="@style/AppCompatButtonStyle"
+                    android:onClick="goRegistToDB"
+                    android:text="@string/to_register"
+                    android:layout_marginBottom="100dp"/>
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="20dp">
+            </LinearLayout>
+        </ScrollView>
 
-                        <TextView
-                            android:id="@+id/birthday"
-                            android:text="@string/birthday"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:background="@drawable/shape_of_elements"
-                            android:gravity="center"
-                            android:layout_gravity="center_vertical"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp"
-                            android:textSize="20sp" />
-
-                        <ImageButton
-                            android:id="@+id/calendar"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_gravity="center"
-                            android:contentDescription="@string/calendar_button_description"
-                            android:background="@drawable/baseline_calendar_month_24" />
-
-                        <EditText
-                            android:id="@+id/calendar_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:inputType="date"
-                            android:textSize="20sp"
-                            android:hint="@string/calendar_description"
-                            />
-                    </LinearLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/outlinedTextFieldPasswordSignUpFirst"
-                        style="@style/TextInputLayoutStyle"
-                        android:hint="@string/password"
-                        app:endIconMode="password_toggle"
-                        app:endIconTint="@color/rus_dark_blue">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/textInputEditPasswordSignUpFirst"
-                            style="@style/TextInputEditTextStyleSign"
-                            android:inputType="textPassword"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/outlinedTextFieldPasswordSignUpSecond"
-                        style="@style/TextInputLayoutStyle"
-                        android:hint="@string/re_password"
-                        app:endIconMode="password_toggle"
-                        app:endIconTint="@color/rus_dark_blue">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/textInputEditPasswordSignUpSecond"
-                            style="@style/TextInputEditTextStyleSign"
-                            android:inputType="textPassword"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <TextView
-                        android:id="@+id/error_text_view"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/outlinedTextFieldLoginSignIn"
-                        android:textColor="@color/rus_red"
-                        android:textSize="16sp"/>
-                    <Button
-                        android:id="@+id/button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:layout_gravity="right"
-                        android:onClick="goRegistToDB"
-                        android:text="@string/to_register" />
-
-
-                </LinearLayout>
-            </ScrollView>
-
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 </FrameLayout>

@@ -1,24 +1,32 @@
 package com.example.cncsection;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.HorizontalScrollView;
-import android.widget.ScrollView;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class GenerateOrderActivity extends AppCompatActivity {
-    TextView bench_list;
+    TextView bench_list, input_estimated_production_time;
     TextView equipment_list;
     TextView operator_list;
+
+    ImageView calendar_button;
 
 
     private String[] benches = new String[1];
@@ -48,18 +56,9 @@ public class GenerateOrderActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_generate_order);
 
-        ScrollView scrollView = findViewById(R.id.scroll_view);
-
-        if (scrollView != null) {
-            scrollView.post(new Runnable() {
-                @Override
-                public void run() {
-                    scrollView.fullScroll(View.FOCUS_DOWN);
-                }
-            });
-        }
-
         dbMaster = new DBMaster(this);
+
+
 
         Cursor csrb = dbMaster.getAll("Machine");
         while (csrb.moveToNext()) {
@@ -98,6 +97,25 @@ public class GenerateOrderActivity extends AppCompatActivity {
         benches[0] = bench_list.getText().toString();
         equipments[0] = equipment_list.getText().toString();
         operators[0] = operator_list.getText().toString();
+
+        calendar_button = findViewById(R.id.calendar);
+        input_estimated_production_time = findViewById(R.id.input_estimated_production_time);
+
+        calendar_button.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        GenerateOrderActivity.this,
+                        (view, year1, monthOfYear, dayOfMonth) ->
+                                input_estimated_production_time.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year1),
+                        year, month, day);
+                datePickerDialog.show();
+            }
+        });
     }
 
     public void AddBench(View view)

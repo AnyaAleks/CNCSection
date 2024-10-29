@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">CNCSection</string>
-    <string name="title_activity_entry">Entry Activity</string>
+    <string name="app_name" translatable="false">CNCSection</string>
+    <string name="title_activity_entry" translatable="false">Entry Activity</string>
     <string name="entry">Вход в систему</string>
-    <string name="login">Логин</string>
-    <string name="password">Пароль</string>
+    <string name="login" translatable="false">Логин</string>
+    <string name="password" translatable="false">Пароль</string>
     <string name="sent">Отправить</string>
 
     <string name="manager_header">Менеджер по планированию</string>
@@ -26,21 +26,21 @@
     <string name="status_filter">Введите статус</string>
 
 
-    <string name="master_header">Мастер</string>
+    <string name="master_header">МАСТЕР</string>
     <string name="estimated_time">Предположительное время производства: </string>
     <string name="bench">Станки</string>
     <string name="equipment">Оснастки</string>
     <string name="operator">Операторы</string>
     <string name="tools">Инструменты</string>
     <string name="drawing">Чертёж</string>
-    <string name="hint_drawing">Введите номер чертежа</string>
+    <string name="hint_drawing">as.ГУАП.431513.007</string>
     <string name="techProcess">Тех.процесс</string>
     <string name="add">+</string>
     <string name="delete">-</string>
-    <string name="hint_techProcess">Введите номер тех.процесса</string>
+    <string name="hint_techProcess">ТТК Чайник</string>
 
 
-    <string name="operator_header">Оператор</string>
+    <string name="operator_header">ОПЕРАТОР</string>
     <string name="order_status">Статус</string>
     <string name="order_number">Заказ №</string>
     <string name="open_drawing">Открыть чертёж</string>
@@ -48,14 +48,16 @@
     <string name="open_program">Открыть программу</string>
 
 
-    <string name="registration_header">Регистрация</string>
+    <string name="registration_header">РЕГИСТРАЦИЯ</string>
     <string name="fio_f">Фамилия</string>
     <string name="fio_i">Имя</string>
     <string name="fio_o">Отчество</string>
     <string name="role">Должность</string>
     <string name="to_register">Зарегистрироваться</string>
     <string name="birthday">Дата рождения</string>
+    <string name="choose_a_password">Введите пароль:</string>
     <string name="re_password">Повторите пароль</string>
+    <string name="date_description"> 01.01.87  </string>
 
     <string name="createOrder">Заявка</string>
     <string name="listOrder">Список</string>

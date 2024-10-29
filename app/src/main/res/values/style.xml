@@ -9,7 +9,7 @@
         <item name="boxCornerRadiusTopStart">16dp</item>
         <item name="boxCornerRadiusBottomStart">16dp</item>
         <item name="boxCornerRadiusTopEnd">16dp</item>
-        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:layout_height">75dp</item>
         <item name="layout_constraintBottom_toBottomOf">parent</item>
@@ -48,7 +48,7 @@
 
     <!--Button Gradient Styles-->
     <style name="AppCompatButtonStyle" parent="">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">300dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:layout_marginTop">20dp</item>
