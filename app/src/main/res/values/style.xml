@@ -60,4 +60,8 @@
         <item name="android:color">@android:color/transparent</item>
     </style>
 
+    <style name="Button.Color" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/rus_light_gray</item>
+    </style>
+
 </resources>

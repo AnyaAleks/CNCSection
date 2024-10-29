@@ -7,7 +7,7 @@
                     <!--    Контур фигуры-->
                     <stroke
                         android:width="2dp"
-                        android:color="@color/rus_dark_blue" />
+                        android:color="#e0d8d6" />
 
                     <!--    Создаёт закругленные углы для фигуры-->
                     <corners android:radius="16dp" />

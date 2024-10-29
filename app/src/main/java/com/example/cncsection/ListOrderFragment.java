@@ -1,14 +1,19 @@
 package com.example.cncsection;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +26,8 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class ListOrderFragment extends Fragment {
+
+    Button button_openInfo;
 
     TextView search_button;
     private StatusAdapter adapter;
@@ -67,6 +74,7 @@ public class ListOrderFragment extends Fragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -92,6 +100,17 @@ public class ListOrderFragment extends Fragment {
             public boolean onQueryTextChange(String newText) {
                 filter(newText);
                 return true;
+            }
+        });
+
+        button_openInfo = view.findViewById(R.id.buttonOpenInfo);
+        button_openInfo.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("Range")
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(new Intent(getActivity(), OrderInformation.class));
+                //intent.putExtra(Contacts.class.getSimpleName(), contactsList.get(position));
+                startActivity(intent);
             }
         });
 

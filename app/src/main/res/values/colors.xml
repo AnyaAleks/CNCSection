@@ -21,5 +21,6 @@
     <color name="rus_white_checked">#DDD7D5</color>
     <color name="rus_gray">#83A4B6</color>
     <color name="rus_light_gray">#e1e9ed</color>
+    <color name="color_state">#ff0000</color>
 
 </resources>
