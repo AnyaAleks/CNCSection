@@ -72,6 +72,13 @@ class DBStaff extends SQLiteOpenHelper {
         return res;
     }
 
+    public Cursor searchStatusById(String search_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select 'title' from 'Status'"
+                + " WHERE 'id_status' = " + search_id, null);
+        return res;
+    }
+
 //    public Cursor restartAutoincrement(String table_name) {
 //        SQLiteDatabase db = this.getWritableDatabase();
 //        Cursor res = db.rawQuery("UPDATE `sqlite_sequence` SET `seq` = 0 WHERE `name` = table_name", null);

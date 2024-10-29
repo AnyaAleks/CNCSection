@@ -90,14 +90,27 @@
                         android:layout_marginRight="20dp">
                     </ImageButton>
 
-                    <Spinner
+<!--                    <Spinner-->
+<!--                        android:id="@+id/states_spinner"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:gravity="start"-->
+<!--                        android:dropDownVerticalOffset="50dp"-->
+<!--                        android:background="@drawable/spinner_shape"-->
+<!--                        android:layout_gravity="end" />-->
+
+                    <EditText
                         android:id="@+id/states_spinner"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:gravity="start"
-                        android:dropDownVerticalOffset="50dp"
-                        android:background="@drawable/spinner_shape"
-                        android:layout_gravity="end" />
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_input"
+                        android:padding="12dp"
+                        android:gravity="left"
+                        android:hint="@string/hint_3"
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:textSize="18dp" />
                 </LinearLayout>
 
                 <TextView

@@ -28,7 +28,7 @@ import java.util.Map;
 public class OrderInformation extends AppCompatActivity {
 
     ImageButton stateInformerButton;
-    Spinner statesSpinner;
+    EditText statesSpinner;
     HashMap<Integer, String> hashSates=new HashMap<Integer, String>();
     DBStaff dbStaff;
 
@@ -48,29 +48,7 @@ public class OrderInformation extends AppCompatActivity {
         dbStaff = new DBStaff(this);
 
         stateInformerButton = findViewById(R.id.stateInformer);
-        statesSpinner = (Spinner) findViewById(R.id.states_spinner);
-
-        //Заполнение списка для состояний индикатора
-        Cursor csr = dbStaff.getAll("Status");
-        while (csr.moveToNext()) {
-            hashSates.put(csr.getInt(csr.getColumnIndex("id_status")), csr.getString(csr.getColumnIndex("title")));
-        }
-//        Log.d("DB_STAFF",hashSates.toString());
-        fillStatesSpinner();
-        statesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @SuppressLint("UseCompatLoadingForDrawables")
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                stateInformerButton.setBackgroundDrawable(getResources().getDrawable( getRoleColor(position+1)));
-                stateInformerButton.setImageResource( getRoleIcon(position+1));
-                //getRoleColor(position+1));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+        statesSpinner = findViewById(R.id.states_spinner);
 
         Intent intent = getIntent();
         String id_current_order = intent.getStringExtra("id_current_order");
@@ -91,7 +69,13 @@ public class OrderInformation extends AppCompatActivity {
                 int id_status = csrRequest.getInt(csrRequest.getColumnIndex("id_status"));
                 stateInformerButton.setBackgroundDrawable(getResources().getDrawable( getRoleColor(id_status)));
                 stateInformerButton.setImageResource( getRoleIcon(id_status));
-                statesSpinner.setSelection(id_status-1);
+
+                Cursor csrStatus = dbStaff.getAll("Status");
+                while(csrStatus.moveToNext()){
+                    if(csrStatus.getInt(csrStatus.getColumnIndex("id_status")) == id_status){
+                        statesSpinner.setText(csrStatus.getString(csrStatus.getColumnIndex("title")));
+                    }
+                }
 
                 commentaryEntryEditText.setText(csrRequest.getString(csrRequest.getColumnIndex("comment")));
 
@@ -117,17 +101,8 @@ public class OrderInformation extends AppCompatActivity {
 
     }
 
-    private  void fillStatesSpinner()
-    {
-        ArrayList<String> list = new ArrayList<>(hashSates.values());
-        ArrayAdapter<String> TypesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
-        TypesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        statesSpinner.setAdapter(TypesAdapter);
-    }
-
     private int getRoleColor(int key)
     {
-        //"@drawable/roundcorner"
         int color;
         switch (key){
             case 1: color = R.drawable.state_color_gray; break;
@@ -144,7 +119,6 @@ public class OrderInformation extends AppCompatActivity {
 
     private int getRoleIcon(int key)
     {
-        //"@drawable/roundcorner"
         int icon;
         switch (key){
             case 1: icon = R.drawable.null_icon; break;
