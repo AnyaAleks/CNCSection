@@ -18,10 +18,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/infoorder_caps"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
             android:layout_gravity="center"
             android:textColor="@color/black"
             android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/idOrderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="id"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
 
         <ScrollView
             android:layout_width="match_parent"

@@ -4,9 +4,66 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingBottom="15dp"
-    android:paddingTop="15dp"
-    android:background="@drawable/round_delegat">
+    android:background="@color/rus_white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/settings"/>
+
+            <TextView
+                android:id="@+id/input_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textColor="@color/black"/>
+
+            <ImageButton
+                android:id="@+id/stateInformerInList"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/osnaska"
+                android:background="@drawable/state_color_red">
+            </ImageButton>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/rus_dark_blue" />
+
+        <TextView
+            android:id="@+id/input_status2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+
+
+
+
+
 
     <TextView
         android:id="@+id/number"
@@ -20,31 +77,9 @@
         android:paddingLeft="4dp"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
-        android:textSize="18sp" />
+        android:textSize="18sp"
 
-    <TextView
-        android:id="@+id/input_number"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textSize="18dp"
-        android:textColor="@color/black"/>
-
-    <TextView
-        android:id="@+id/status"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/status"
-        android:paddingRight="4dp"
-        android:paddingLeft="4dp"
-        android:paddingTop="4dp"
-        android:paddingBottom="4dp"
-        android:textSize="18sp" />
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/input_status"
@@ -54,6 +89,8 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="18dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+
+        android:visibility="gone"/>
 
 </LinearLayout>

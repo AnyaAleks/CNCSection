@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,12 +30,12 @@ import java.util.ArrayList;
  */
 public class ListOrderFragment extends Fragment {
 
-    Button button_openInfo;
+    DBStaff dbStaff;
 
     TextView search_button;
     private StatusAdapter adapter;
     private SearchView searchView;
-    private ArrayList<Status> statuses;
+    ArrayList<Status> statuses = new ArrayList<Status>();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,7 +77,7 @@ public class ListOrderFragment extends Fragment {
         }
     }
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "Range"})
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,10 +88,28 @@ public class ListOrderFragment extends Fragment {
         RecyclerView rvContacts = view.findViewById(R.id.list);
 
         // Инициализация списка статусов
-        statuses = Status.createStatusesList(20);
+        dbStaff = new DBStaff(getActivity());
+        Cursor csr = dbStaff.getAll("Request");
+        while (csr.moveToNext()) {
+            statuses.add(new Status(csr.getString(csr.getColumnIndex("part_number"))
+                    , csr.getInt(csr.getColumnIndex("id_status"))
+                    , csr.getInt(csr.getColumnIndex("id_order"))
+            ));
+        }
+        //statuses = Status.createStatusesList(20);
         adapter = new StatusAdapter(statuses);
         rvContacts.setAdapter(adapter);
         rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter.setOnItemClickListener(new StatusAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+//                Log.d("GGG",""+statuses.get(position).getIdOrder());
+                Intent intent = new Intent(getActivity(), OrderInformation.class);
+                intent.putExtra("id_current_order", ""+statuses.get(position).getIdOrder());
+                startActivity(intent);
+            }
+        });
+
 
         // Установка слушателя для SearchView
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -103,25 +124,16 @@ public class ListOrderFragment extends Fragment {
             }
         });
 
-        button_openInfo = view.findViewById(R.id.buttonOpenInfo);
-        button_openInfo.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("Range")
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(new Intent(getActivity(), OrderInformation.class));
-                //intent.putExtra(Contacts.class.getSimpleName(), contactsList.get(position));
-                startActivity(intent);
-            }
-        });
-
         return view;
     }
 
     private void filter(String text) {
         ArrayList<Status> filteredList = new ArrayList<>();
         for (Status st : statuses) {
-            if (st.getApplication().toLowerCase().contains(text.toLowerCase()) ||
-                    st.getStatus().toLowerCase().contains(text.toLowerCase())) {
+            if (st.getApplication().toLowerCase().contains(text.toLowerCase())
+//                    ||
+//                    st.getStatus().toLowerCase().contains(text.toLowerCase())
+            ) {
                 filteredList.add(st);
             }
         }

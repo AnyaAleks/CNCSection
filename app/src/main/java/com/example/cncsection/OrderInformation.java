@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,8 @@ public class OrderInformation extends AppCompatActivity {
     HashMap<Integer, String> hashSates=new HashMap<Integer, String>();
     DBStaff dbStaff;
 
+    TextView idOrderTextView;
+
     @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,17 @@ public class OrderInformation extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_order_information);
 
+//        Bundle arguments = getIntent().getExtras();
+//        Status status;
+//        status = (Status) arguments.getSerializable(Status.class.getSimpleName());
+        Intent intent = getIntent();
+        String str = intent.getStringExtra("id_current_order");
 
+        idOrderTextView = findViewById(R.id.idOrderTextView);
+        idOrderTextView.setText(str);
+
+
+        //ВЫСТАВЛЕНИЕ СТАТУСА
         stateInformerButton = findViewById(R.id.stateInformer);
         statesSpinner = (Spinner) findViewById(R.id.states_spinner);
         //Заполнение списка для состояний индикатора
