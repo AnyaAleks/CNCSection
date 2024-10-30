@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--Button Navigation Menu-->
+    <FrameLayout
+        android:id="@+id/fragment_container_master"
+        android:layout_width="match_parent"
+        android:layout_height="743dp"
+        android:layout_weight="1" >
+
+        <!-- Base CardView -->
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation_master"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/shape_navigation_menu"
+            app:itemActiveIndicatorStyle="@style/Theme.BottomNavigationView.ActiveIndicator"
+            app:itemIconSize="30dp"
+            app:itemIconTint="@color/navigation_menu_items_color"
+            app:itemTextColor="@color/navigation_menu_items_color"
+            app:menu="@menu/botton_navigation_menu_master" />
+
+
+    </FrameLayout>
+</LinearLayout>

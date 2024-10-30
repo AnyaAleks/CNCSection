@@ -131,7 +131,7 @@ public class EntryActivity extends AppCompatActivity {
                         //CreateOrderActivity.class);
                 break;
             case 2:
-                intent = new Intent(this, GenerateOrderActivity.class);
+                intent = new Intent(this, MainActivityMaster.class);
                 break;
             case 3:
                 intent = new Intent(this, MainActivityOperator.class);

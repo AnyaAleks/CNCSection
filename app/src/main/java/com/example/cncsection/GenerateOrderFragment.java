@@ -4,27 +4,36 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.database.Cursor;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Map;
 
-public class GenerateOrderActivity extends AppCompatActivity {
-    TextView bench_list, input_estimated_production_time;
-    TextView equipment_list;
-    TextView operator_list;
+public class GenerateOrderFragment extends Fragment {
+
+    TextView bench_list, equipment_list, operator_list, input_estimated_production_time;
 
     ImageView calendar_button;
 
@@ -49,16 +58,26 @@ public class GenerateOrderActivity extends AppCompatActivity {
 
     DBMaster dbMaster;
 
+    public GenerateOrderFragment() {
+        // Required empty public constructor
+    }
+    public static GenerateOrderFragment newInstance(String param1, String param2) {
+        return new GenerateOrderFragment();
+    }
 
-
-    @SuppressLint("Range")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_generate_order);
+    }
 
-        dbMaster = new DBMaster(this);
+    @SuppressLint({"MissingInflatedId", "Range"})
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_generate_order, container, false);
+
+        dbMaster = new DBMaster(getActivity());
 
 
 
@@ -85,23 +104,23 @@ public class GenerateOrderActivity extends AppCompatActivity {
 
         //master_header = findViewById(R.id.master_header);
         //bench_spinner = findViewById(R.id.bench_spinner);
-        bench_spinner = (Spinner) findViewById(R.id.bench_spinner);
+        bench_spinner = (Spinner) view.findViewById(R.id.bench_spinner);
         FillSpinners(hashBench, bench_spinner);
-        equipment_spinner = findViewById(R.id.equipment_spinner);
+        equipment_spinner = view.findViewById(R.id.equipment_spinner);
         FillSpinners(hashEquipment, equipment_spinner);
-        operator_spinner = findViewById(R.id.operator_spinner);
+        operator_spinner = view.findViewById(R.id.operator_spinner);
         FillSpinners(hashOperator, operator_spinner);
 
-        bench_list = findViewById(R.id.bench_list);
-        equipment_list = findViewById(R.id.equipment_list);
-        operator_list = findViewById(R.id.operator_list);
+        bench_list = view.findViewById(R.id.bench_list);
+        equipment_list = view.findViewById(R.id.equipment_list);
+        operator_list = view.findViewById(R.id.operator_list);
 
         benches[0] = bench_list.getText().toString();
         equipments[0] = equipment_list.getText().toString();
         operators[0] = operator_list.getText().toString();
 
-        calendar_button = findViewById(R.id.calendar);
-        input_estimated_production_time = findViewById(R.id.input_estimated_production_time);
+        calendar_button = view.findViewById(R.id.calendar);
+        input_estimated_production_time = view.findViewById(R.id.input_estimated_production_time);
 
         calendar_button.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
@@ -111,13 +130,20 @@ public class GenerateOrderActivity extends AppCompatActivity {
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        GenerateOrderActivity.this,
+                        getActivity(),
                         (view, year1, monthOfYear, dayOfMonth) ->
                                 input_estimated_production_time.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year1),
                         year, month, day);
                 datePickerDialog.show();
             }
         });
+
+
+        return view;
+    }
+
+    public static GenerateOrderFragment newInstance(){
+        return new GenerateOrderFragment();
     }
 
     public void AddBench(View view)
@@ -307,9 +333,9 @@ public class GenerateOrderActivity extends AppCompatActivity {
     private  void FillSpinners(HashMap<Integer,String> hashMap, Spinner spinner)
     {
         ArrayList<String> list = new ArrayList<>(hashMap.values());
-        list.add(0,"");
-        ArrayAdapter<String> TypesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
+        ArrayAdapter<String> TypesAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,list);
         TypesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(TypesAdapter);
     }
+
 }
