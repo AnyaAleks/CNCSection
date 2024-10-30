@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name" translatable="false">CNCSection</string>
-    <string name="title_activity_entry" translatable="false">Entry Activity</string>
+    <string name="app_name" >CNCSection</string>
+    <string name="title_activity_entry" >Entry Activity</string>
     <string name="entry">Вход в систему</string>
-    <string name="login" translatable="false">Логин</string>
-    <string name="password" translatable="false">Пароль</string>
+    <string name="login" >Логин</string>
+    <string name="password" >Пароль</string>
     <string name="sent">Отправить</string>
 
     <string name="manager_header">Менеджер по планированию</string>
@@ -19,7 +19,7 @@
     <string name="hint_2">Напишите комментарий к заявке</string>
     <string name="hint_3">CNC-0001-AL</string>
     <string name="calendar_button_description"> Календарь  </string>
-    <string name="calendar_description"> 01.09.24  </string>
+    <string name="calendar_description"> 01.09.2024  </string>
 
     <string name="application_number">Заявка №</string>
     <string name="status">Статус</string>
