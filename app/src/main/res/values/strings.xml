@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name" >CNCSection</string>
-    <string name="title_activity_entry" >Entry Activity</string>
+    <string name="app_name">CNCSection</string>
+    <string name="title_activity_entry">Entry Activity</string>
     <string name="entry">Вход в систему</string>
-    <string name="login" >Логин</string>
-    <string name="password" >Пароль</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
     <string name="sent">Отправить</string>
 
     <string name="manager_header">Менеджер по планированию</string>

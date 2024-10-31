@@ -17,6 +17,9 @@
         android:theme="@style/Theme.CNCSection"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivityMaster"
+            android:exported="false" />
+        <activity
             android:name=".MainActivityOperator"
             android:exported="false" />
         <activity

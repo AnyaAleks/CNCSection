@@ -36,6 +36,7 @@ public class ListOrderFragment extends Fragment {
     private StatusAdapter adapter;
     private SearchView searchView;
     ArrayList<Status> statuses = new ArrayList<Status>();
+    RecyclerView rvContacts;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -85,7 +86,7 @@ public class ListOrderFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_list_orderxml, container, false);
 
         searchView = view.findViewById(R.id.searchView);
-        RecyclerView rvContacts = view.findViewById(R.id.list);
+        rvContacts = view.findViewById(R.id.list);
 
         // Инициализация списка статусов
         dbStaff = new DBStaff(getActivity());
@@ -140,7 +141,19 @@ public class ListOrderFragment extends Fragment {
         if (filteredList.isEmpty()) {
             Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
         } else {
-            adapter.filterList(filteredList);
+            adapter = new StatusAdapter(filteredList);
+            rvContacts.setAdapter(adapter);
+            rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
+            adapter.setOnItemClickListener(new StatusAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+//                Log.d("GGG",""+statuses.get(position).getIdOrder());
+                    Intent intent = new Intent(getActivity(), OrderInformation.class);
+                    intent.putExtra("id_current_order", ""+filteredList.get(position).getIdOrder());
+                    startActivity(intent);
+                }
+            });
+            //adapter.filterList(filteredList);
         }
     }
 

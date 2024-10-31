@@ -27,7 +27,5 @@
             app:itemIconTint="@color/navigation_menu_items_color"
             app:itemTextColor="@color/navigation_menu_items_color"
             app:menu="@menu/botton_navigation_menu_operator" />
-
-
     </FrameLayout>
 </LinearLayout>
