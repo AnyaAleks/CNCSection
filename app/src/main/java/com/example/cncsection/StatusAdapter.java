@@ -31,8 +31,8 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
 
     // method for filtering our recyclerview items.
     @SuppressLint("NotifyDataSetChanged")
-    public void filterList(ArrayList<Status> filterList) {
-        statuses = filterList;
+    public void filterList(ArrayList<Status> filteredList) {
+        this.statuses = filteredList;
         notifyDataSetChanged();
     }
 
