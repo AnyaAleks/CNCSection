@@ -1,4 +1,4 @@
-package com.example.cncsection;
+package Manager;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,13 +16,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.example.cncsection.R;
+
 import java.util.Calendar;
 
 public class CreateOrderFragment extends Fragment {

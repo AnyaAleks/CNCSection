@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/pageStaffList"
+        android:enabled="true"
+        android:icon="@drawable/baseline_playlist_add_check_circle"
+        android:title="@string/listOrder"/>
+    <item
+        android:id="@+id/pageOrderStaff"
+        android:enabled="true"
+        android:icon="@drawable/baseline_add_circle"
+        android:title="@string/createOrder"/>
+
+</menu>

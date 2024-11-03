@@ -1,4 +1,4 @@
-package com.example.cncsection;
+package Enter;
 
 import static android.app.PendingIntent.getActivity;
 import android.annotation.SuppressLint;
@@ -14,8 +14,16 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cncsection.R;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import Manager.MainActivityManager;
+import Master.MainActivityMaster;
+import Operator.MainActivityOperator;
+import Staff.DBStaff;
+import Staff.RegistrationActivity;
 
 
 public class EntryActivity extends AppCompatActivity {

@@ -1,48 +1,36 @@
-package com.example.cncsection;
+package Staff;
 
 import android.annotation.SuppressLint;
-import android.app.DatePickerDialog;
 import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.SearchView;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.cncsection.R;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 
-public class OperatorOrderFragment extends Fragment {
+public class StaffOrderFragment extends Fragment {
 
     ImageButton stateInformerButton;
     Spinner statesSpinner;
     HashMap<Integer, String> hashSates=new HashMap<Integer, String>();
     DBStaff dbStaff;
 
-    public OperatorOrderFragment() {
+    public StaffOrderFragment() {
         // Required empty public constructor
     }
-    public static OperatorOrderFragment newInstance(String param1, String param2) {
-        OperatorOrderFragment fragment = new OperatorOrderFragment();
+    public static StaffOrderFragment newInstance(String param1, String param2) {
+        StaffOrderFragment fragment = new StaffOrderFragment();
 //        Bundle args = new Bundle();
 //        args.putString(ARG_PARAM1, param1);
 //        args.putString(ARG_PARAM2, param2);
@@ -60,7 +48,7 @@ public class OperatorOrderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_operator_order, container, false);
+        View view = inflater.inflate(R.layout.fragment_staff_order, container, false);
 
         dbStaff = new DBStaff(getActivity());
 

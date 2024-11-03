@@ -1,6 +1,4 @@
-package com.example.cncsection;
-
-import static java.security.AccessController.getContext;
+package Staff;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -9,13 +7,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.cncsection.R;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

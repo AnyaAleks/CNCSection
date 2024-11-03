@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="Manager.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:background="@drawable/shape_launch_screen"
-        tools:context=".MainActivity">
+        tools:context="Manager.MainActivity">
 
         <ImageView
             android:id="@+id/imageViewIconContactsInfo"

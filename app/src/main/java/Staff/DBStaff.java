@@ -1,4 +1,4 @@
-package com.example.cncsection;
+package Staff;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-class DBManager extends SQLiteOpenHelper {
+public class DBStaff extends SQLiteOpenHelper {
 
     private static final String TAG = "DBHELPER";
     public static final String DBNAME = "CNCSectionDB.db";
@@ -21,7 +21,7 @@ class DBManager extends SQLiteOpenHelper {
 
     SQLiteDatabase mDB;
 
-    public DBManager(Context context) {
+    public DBStaff(Context context) {
         super(context,DBNAME,null,DBVERSION);
         if (!ifDBExists(context)) {
             if (!copyDBFromAssets(context)) {
@@ -50,6 +50,12 @@ class DBManager extends SQLiteOpenHelper {
         return res;
     }
 
+    public Cursor getAllOrder() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from 'Order'", null);
+        return res;
+    }
+
     public Cursor sortInOrder(String table_name, String sort_field) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from " + table_name
@@ -66,18 +72,33 @@ class DBManager extends SQLiteOpenHelper {
         return res;
     }
 
+    public Cursor searchStatusById(String search_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select 'title' from 'Status'"
+                + " WHERE 'id_status' = " + search_id, null);
+        return res;
+    }
 
-    public long addToRequest(String part_number, int id_status, String comment, String date) {
+//    public Cursor restartAutoincrement(String table_name) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor res = db.rawQuery("UPDATE `sqlite_sequence` SET `seq` = 0 WHERE `name` = table_name", null);
+//        Log.e("LogTag", table_name + ".getCount(): " + res.getCount());
+//        return res;
+//    }
+
+    public long addToStaff(int id_access, String fio, String password, String date_of_birth) {
         SQLiteDatabase db = this.getWritableDatabase();
 
+        //Создание объекта для данных (добавления новых строк в таблицу)
         ContentValues cv = new ContentValues();
-        cv.put("part_number", part_number);
-        cv.put("id_status", id_status);
-        cv.put("comment", comment);
-        cv.put("date", date);
+        //cv.put("id_staff", 1); - autoincrement
+        cv.put("id_access", id_access);
+        cv.put("fio", fio);
+        cv.put("password", password);
+        cv.put("date_of_birth", date_of_birth);
 
-        long rowID = db.insert("Request", null, cv);
-        Log.e("LogTag", "Request" + " rowID " + rowID);
+        long rowID = db.insert("Staff", null, cv);
+        Log.e("LogTag", "addToEmployees" + " rowID " +rowID);
 
         return rowID;
     }

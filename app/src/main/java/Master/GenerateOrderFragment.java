@@ -1,4 +1,4 @@
-package com.example.cncsection;
+package Master;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -6,26 +6,16 @@ import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.cncsection.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,7 +23,7 @@ import java.util.HashMap;
 
 public class GenerateOrderFragment extends Fragment {
 
-    TextView bench_list, equipment_list, operator_list, input_estimated_production_time;
+    TextView bench_list, equipment_list, operator_list, tool_list, input_estimated_production_time;
 
     ImageView calendar_button;
 
@@ -41,6 +31,7 @@ public class GenerateOrderFragment extends Fragment {
     private String[] benches = new String[1];
     private String[] equipments = new String[1];
     private String[] operators = new String[1];
+    private String[] tools = new String[1];
 
     HashMap<Integer, String> hashRoles=new HashMap<Integer, String>();
 
@@ -55,6 +46,9 @@ public class GenerateOrderFragment extends Fragment {
     Spinner operator_spinner;
     //private String[] operator_types = {"","Бэтмен Б.У.", "Алексеева А.С.", "Гуляева А.Д.","Леонов А.Я."};
     HashMap<Integer, String> hashOperator=new HashMap<Integer, String>();
+
+    Spinner tool_spinner;
+    HashMap<Integer, String> hashTool=new HashMap<Integer, String>();
 
     DBMaster dbMaster;
 
@@ -96,11 +90,16 @@ public class GenerateOrderFragment extends Fragment {
             hashOperator.put(csro.getInt(csro.getColumnIndex("id_staff")), csro.getString(csro.getColumnIndex("fio")));
         }
 
+        Cursor csrt = dbMaster.getAll("Tool");
+        while (csrt.moveToNext()) {
+            hashOperator.put(csrt.getInt(csrt.getColumnIndex("id_tool")), csrt.getString(csrt.getColumnIndex("title")));
+        }
+
         //hashEquipment.put(csr.getInt(csr.getColumnIndex("id_osnaska")), csr.getString(csr.getColumnIndex("title")));
         //hashOperator.put(csr.getInt(csr.getColumnIndex("id_osnaska")), csr.getString(csr.getColumnIndex("title")));
 
         //EdgeToEdge.enable(this);
-
+//
 
         //master_header = findViewById(R.id.master_header);
         //bench_spinner = findViewById(R.id.bench_spinner);
@@ -110,14 +109,22 @@ public class GenerateOrderFragment extends Fragment {
         FillSpinners(hashEquipment, equipment_spinner);
         operator_spinner = view.findViewById(R.id.operator_spinner);
         FillSpinners(hashOperator, operator_spinner);
+        tool_spinner = view.findViewById(R.id.tool_spinner);
+        FillSpinners(hashTool, tool_spinner);
 
         bench_list = view.findViewById(R.id.bench_list);
         equipment_list = view.findViewById(R.id.equipment_list);
         operator_list = view.findViewById(R.id.operator_list);
+        tool_list = view.findViewById(R.id.tool_list);
 
-        benches[0] = bench_list.getText().toString();
-        equipments[0] = equipment_list.getText().toString();
-        operators[0] = operator_list.getText().toString();
+//        benches[0] = "";
+//        equipments[0] = "";
+//        operators[0] = "";
+////        tools[0] = "";
+//        benches[0] = bench_list.getText().toString();
+//        equipments[0] = equipment_list.getText().toString();
+//        operators[0] = operator_list.getText().toString();
+//        tools[0] = tool_list.getText().toString();
 
         calendar_button = view.findViewById(R.id.calendar);
         input_estimated_production_time = view.findViewById(R.id.input_estimated_production_time);
@@ -140,6 +147,24 @@ public class GenerateOrderFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void OutPutList(String[] list, TextView listTextView)
+    {
+        listTextView.setText("");
+        //bench_list.clearComposingText();
+        listTextView.append(list[0]+" ");
+        for (int i=1;i<list.length;i++)
+        {
+            listTextView.append(list[i]+"; ");
+        }
+    }
+    private  void FillSpinners(HashMap<Integer,String> hashMap, Spinner spinner)
+    {
+        ArrayList<String> list = new ArrayList<>(hashMap.values());
+        ArrayAdapter<String> TypesAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,list);
+        TypesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(TypesAdapter);
     }
 
     public static GenerateOrderFragment newInstance(){
@@ -319,23 +344,6 @@ public class GenerateOrderFragment extends Fragment {
             operators=newBenches;
             OutPutList(operators,operator_list);
         }
-    }
-    private void OutPutList(String[] list, TextView listTextView)
-    {
-        listTextView.setText("");
-        //bench_list.clearComposingText();
-        listTextView.append(list[0]+" ");
-        for (int i=1;i<list.length;i++)
-        {
-            listTextView.append(list[i]+"; ");
-        }
-    }
-    private  void FillSpinners(HashMap<Integer,String> hashMap, Spinner spinner)
-    {
-        ArrayList<String> list = new ArrayList<>(hashMap.values());
-        ArrayAdapter<String> TypesAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,list);
-        TypesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(TypesAdapter);
     }
 
 }

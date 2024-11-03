@@ -51,7 +51,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="15dp"
                     android:gravity="center"
-                    android:text="@string/item"
+                    android:text="@string/fio_f"
                     android:textSize="18dp" />
 
                 <EditText
@@ -90,14 +90,14 @@
                         android:layout_marginRight="20dp">
                     </ImageButton>
 
-<!--                    <Spinner-->
-<!--                        android:id="@+id/states_spinner"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="50dp"-->
-<!--                        android:gravity="start"-->
-<!--                        android:dropDownVerticalOffset="50dp"-->
-<!--                        android:background="@drawable/spinner_shape"-->
-<!--                        android:layout_gravity="end" />-->
+                    <!--                    <Spinner-->
+                    <!--                        android:id="@+id/states_spinner"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="50dp"-->
+                    <!--                        android:gravity="start"-->
+                    <!--                        android:dropDownVerticalOffset="50dp"-->
+                    <!--                        android:background="@drawable/spinner_shape"-->
+                    <!--                        android:layout_gravity="end" />-->
 
                     <EditText
                         android:id="@+id/states_spinner"

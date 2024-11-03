@@ -1,6 +1,5 @@
-package com.example.cncsection;
+package Operator;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;

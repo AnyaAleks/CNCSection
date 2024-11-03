@@ -1,23 +1,19 @@
-package com.example.cncsection;
+package Operator;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.cncsection.R;
+
 import java.util.HashMap;
 import java.util.ArrayList;
-import java.util.Map;
 
 
 public class ExecuteOrderActivity extends AppCompatActivity {
