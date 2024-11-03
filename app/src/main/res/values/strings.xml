@@ -62,6 +62,7 @@
     <string name="createOrder">Заявка</string>
     <string name="listOrder">Список</string>
     <string name="ordercreate_caps">"СОЗДАНИЕ ЗАЯВКИ"</string>
+    <string name="ordergenerate_caps">"ОБРАБОТКА ЗАЯВКИ"</string>
     <string name="listorder_caps">"СПИСОК ЗАЯВОК"</string>
     <string name="infoorder_caps">"ИНФОРМАЦИЯ ПО ЗАЯВКЕ"</string>
     <string name="delete_order">"Удалить заявку"</string>

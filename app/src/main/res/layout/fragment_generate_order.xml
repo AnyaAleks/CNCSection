@@ -16,7 +16,7 @@
             android:id="@+id/entry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ordercreate_caps"
+            android:text="@string/ordergenerate_caps"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:textColor="@color/black"
@@ -42,8 +42,8 @@
                     android:text="@string/bench"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
                     android:gravity="center"
                     android:textSize="18sp"/>
 
@@ -90,8 +90,8 @@
                     android:text="@string/equipment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:gravity="center"
                     android:textSize="18sp"/>
 
@@ -137,8 +137,8 @@
                     android:text="@string/operator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:gravity="center"
                     android:textSize="18sp" />
 
@@ -175,6 +175,51 @@
                         android:layout_marginEnd="5dp"
                         android:background="@drawable/baseline_do_disturb_on_24"
                         android:onClick="DeleteOperator" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tool_list"
+                    android:text="@string/tools"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:textSize="18sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/tool_spinner"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:gravity="start"
+                        android:dropDownVerticalOffset="50dp"
+                        android:background="@drawable/spinner_shape"
+                        android:layout_gravity="end" />
+
+                    <ImageButton
+                        android:id="@+id/add_button_tool"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="end"
+                        android:onClick="AddTool"
+                        android:layout_marginEnd="5dp"
+                        android:layout_toStartOf="@+id/delete_button_tool"
+                        android:background="@drawable/baseline_add_circle_24" />
+
+                    <ImageButton
+                        android:id="@+id/delete_button_tool"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="end"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/baseline_do_disturb_on_24"
+                        android:onClick="DeleteTool" />
                 </RelativeLayout>
 
 
@@ -274,7 +319,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp">
+                    android:layout_marginBottom="300dp">
 
                     <EditText
                         android:id="@+id/input_estimated_production_time"
