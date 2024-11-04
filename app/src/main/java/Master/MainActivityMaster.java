@@ -2,6 +2,8 @@ package Master;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewTreeObserver;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,11 +25,24 @@ public class MainActivityMaster extends AppCompatActivity {
         //getWindow().setNavigationBarColor(getResources().getColor(R.color.dark_blue));
 
         BottomNavigationView navigation=(BottomNavigationView) findViewById(R.id.bottom_navigation_master);
+        View fragmentContainer = findViewById(R.id.fragment_container_master);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
 
         //Появление пункта меню messages
         loadFragment(ListOrderFragment.newInstance());
         navigation.setSelectedItemId(R.id.pageOrderList);
+
+        fragmentContainer.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                int heightDiff = fragmentContainer.getRootView().getHeight() - fragmentContainer.getHeight();
+                if (heightDiff > 200) { // Если высота больше чем 200, клавиатура открыта
+                    navigation.setVisibility(View.GONE); // Скрываем BottomNavigationView
+                } else {
+                    navigation.setVisibility(View.VISIBLE); // Показываем BottomNavigationView
+                }
+            }
+        });
     }
 
     //Выбор пункта меню NavigationBarView
