@@ -1,4 +1,4 @@
-package Staff;
+package com.example.cncsection;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -11,9 +11,9 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.cncsection.R;
-
 import java.util.HashMap;
+
+import Staff.DBStaff;
 
 public class OrderInformation extends AppCompatActivity {
 

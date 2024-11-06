@@ -1,4 +1,4 @@
-package Staff;
+package com.example.cncsection;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -21,6 +21,8 @@ import com.example.cncsection.Status;
 import com.example.cncsection.StatusAdapter;
 
 import java.util.ArrayList;
+
+import Staff.DBStaff;
 
 /**
  * A simple {@link Fragment} subclass.

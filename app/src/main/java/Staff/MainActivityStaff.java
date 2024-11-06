@@ -8,9 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.cncsection.ListOfPeopleFragment;
 import com.example.cncsection.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+
+
 public class MainActivityStaff extends AppCompatActivity {
 
     @Override
@@ -24,7 +27,7 @@ public class MainActivityStaff extends AppCompatActivity {
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
 
         //Появление пункта меню messages
-        loadFragment(ListOrderFragment.newInstance());
+        loadFragment(ListOfPeopleFragment.newInstance());
         navigation.setSelectedItemId(R.id.pageOrderList);
     }
 
@@ -34,11 +37,11 @@ public class MainActivityStaff extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()){
                 case R.id.pageStaffList:
-                    loadFragment(StaffOrderFragment.newInstance());
+                    loadFragment(RegistrationFragment.newInstance());
                     //getSupportActionBar().setTitle(R.string.contacts_caps);
                     return true;
                 case R.id.pageOrderStaff:
-                    loadFragment(ListOrderFragment.newInstance());
+                    loadFragment(ListOfPeopleFragment.newInstance());
                     //getSupportActionBar().setTitle(R.string.messages_caps);
                     return true;
             }

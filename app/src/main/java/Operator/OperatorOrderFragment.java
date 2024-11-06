@@ -1,4 +1,4 @@
-package Staff;
+package Operator;
 
 import android.annotation.SuppressLint;
 import android.database.Cursor;
@@ -19,18 +19,20 @@ import com.example.cncsection.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class StaffOrderFragment extends Fragment {
+import Staff.DBStaff;
+
+public class OperatorOrderFragment extends Fragment {
 
     ImageButton stateInformerButton;
     Spinner statesSpinner;
     HashMap<Integer, String> hashSates=new HashMap<Integer, String>();
     DBStaff dbStaff;
 
-    public StaffOrderFragment() {
+    public OperatorOrderFragment() {
         // Required empty public constructor
     }
-    public static StaffOrderFragment newInstance(String param1, String param2) {
-        StaffOrderFragment fragment = new StaffOrderFragment();
+    public static OperatorOrderFragment newInstance(String param1, String param2) {
+        OperatorOrderFragment fragment = new OperatorOrderFragment();
 //        Bundle args = new Bundle();
 //        args.putString(ARG_PARAM1, param1);
 //        args.putString(ARG_PARAM2, param2);
@@ -48,7 +50,7 @@ public class StaffOrderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_staff_order, container, false);
+        View view = inflater.inflate(R.layout.fragment_operator_order, container, false);
 
         dbStaff = new DBStaff(getActivity());
 

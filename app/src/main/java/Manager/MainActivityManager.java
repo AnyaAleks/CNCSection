@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import Staff.ListOrderFragment;
+import com.example.cncsection.ListOrderFragment;
 import com.example.cncsection.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -41,7 +41,7 @@ public class MainActivityManager extends AppCompatActivity {
             @Override
             public void onGlobalLayout() {
                 int heightDiff = fragmentContainer.getRootView().getHeight() - fragmentContainer.getHeight();
-                if (heightDiff > 200) { // Если высота больше чем 200, клавиатура открыта
+                if (heightDiff > 300) { // Если высота больше чем 300, клавиатура открыта
                     navigation.setVisibility(View.GONE); // Скрываем BottomNavigationView
                 } else {
                     navigation.setVisibility(View.VISIBLE); // Показываем BottomNavigationView

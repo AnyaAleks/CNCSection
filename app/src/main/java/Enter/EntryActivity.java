@@ -23,6 +23,7 @@ import Manager.MainActivityManager;
 import Master.MainActivityMaster;
 import Operator.MainActivityOperator;
 import Staff.DBStaff;
+import Staff.MainActivityStaff;
 import Staff.RegistrationActivity;
 
 
@@ -145,7 +146,7 @@ public class EntryActivity extends AppCompatActivity {
                 intent = new Intent(this, MainActivityOperator.class);
                 break;
             case 4:
-                intent = new Intent(this, RegistrationActivity.class);
+                intent = new Intent(this, MainActivityStaff.class);
                 break;
         }
         startActivity(intent);

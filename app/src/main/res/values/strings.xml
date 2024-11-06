@@ -24,6 +24,7 @@
     <string name="application_number">Заявка №</string>
     <string name="status">Статус</string>
     <string name="status_filter">Введите статус</string>
+    <string name="people_filter">Введите ФИО работника</string>
 
 
     <string name="master_header">МАСТЕР</string>
@@ -64,6 +65,7 @@
     <string name="ordercreate_caps">"СОЗДАНИЕ ЗАЯВКИ"</string>
     <string name="ordergenerate_caps">"ОБРАБОТКА ЗАЯВКИ"</string>
     <string name="listorder_caps">"СПИСОК ЗАЯВОК"</string>
+    <string name="list_people_caps">"СПИСОК РАБОТНИКОВ"</string>
     <string name="infoorder_caps">"ИНФОРМАЦИЯ ПО ЗАЯВКЕ"</string>
     <string name="delete_order">"Удалить заявку"</string>
     <!-- TODO: Remove or change this placeholder text -->

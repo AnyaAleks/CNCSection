@@ -23,7 +23,7 @@
             android:name="Operator.MainActivityOperator"
             android:exported="false" />
         <activity
-            android:name="Staff.OrderInformation"
+            android:name=".OrderInformation"
             android:exported="false" />
         <activity
             android:name="Manager.MainActivityManager"
