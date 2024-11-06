@@ -26,6 +26,6 @@
             app:itemIconSize="30dp"
             app:itemIconTint="@color/navigation_menu_items_color"
             app:itemTextColor="@color/navigation_menu_items_color"
-            app:menu="@menu/botton_navigation_menu_operator" />
+            app:menu="@menu/bottom_navigation_menu_staff" />
     </FrameLayout>
 </LinearLayout>

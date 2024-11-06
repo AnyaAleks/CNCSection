@@ -9,6 +9,6 @@
         android:id="@+id/pageOrderStaff"
         android:enabled="true"
         android:icon="@drawable/baseline_add_circle"
-        android:title="@string/createOrder"/>
+        android:title="@string/createStaff"/>
 
 </menu>

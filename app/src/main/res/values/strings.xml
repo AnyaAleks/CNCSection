@@ -61,6 +61,7 @@
     <string name="date_description"> 01.01.87  </string>
 
     <string name="createOrder">Заявка</string>
+    <string name="createStaff">Добавить</string>
     <string name="listOrder">Список</string>
     <string name="ordercreate_caps">"СОЗДАНИЕ ЗАЯВКИ"</string>
     <string name="ordergenerate_caps">"ОБРАБОТКА ЗАЯВКИ"</string>

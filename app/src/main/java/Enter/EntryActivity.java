@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cncsection.MainActivityStaff;
 import com.example.cncsection.R;
 
 import java.security.MessageDigest;
@@ -23,7 +24,6 @@ import Manager.MainActivityManager;
 import Master.MainActivityMaster;
 import Operator.MainActivityOperator;
 import Staff.DBStaff;
-import Staff.MainActivityStaff;
 import Staff.RegistrationActivity;
 
 
