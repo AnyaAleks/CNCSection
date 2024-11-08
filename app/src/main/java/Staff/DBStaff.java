@@ -79,6 +79,16 @@ public class DBStaff extends SQLiteOpenHelper {
         return res;
     }
 
+    public void deleteStaffById(String del_id) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor res = db.rawQuery("delete from 'Staff' WHERE 'id_staff' = " + del_id, null);
+//        return res;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Staff", "id_staff=?", new String[]{del_id});
+        db.close();
+    }
+
 //    public Cursor restartAutoincrement(String table_name) {
 //        SQLiteDatabase db = this.getWritableDatabase();
 //        Cursor res = db.rawQuery("UPDATE `sqlite_sequence` SET `seq` = 0 WHERE `name` = table_name", null);

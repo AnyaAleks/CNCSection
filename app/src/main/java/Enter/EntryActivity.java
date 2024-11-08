@@ -24,7 +24,6 @@ import Manager.MainActivityManager;
 import Master.MainActivityMaster;
 import Operator.MainActivityOperator;
 import Staff.DBStaff;
-import Staff.RegistrationActivity;
 
 
 public class EntryActivity extends AppCompatActivity {
@@ -91,13 +90,7 @@ public class EntryActivity extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("Range")
-    public void goRegister(View V)
-    {
-        Intent intent = null;
-        intent = new Intent(this, RegistrationActivity.class);
-        startActivity(intent);
-    }
+
 
 
             // else {

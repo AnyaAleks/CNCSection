@@ -44,7 +44,7 @@ public class OrderInformation extends AppCompatActivity {
         String id_current_order = intent.getStringExtra("id_current_order");
 
         idOrderTextView = findViewById(R.id.idOrderTextView);
-        idOrderTextView.setText(id_current_order);
+        idOrderTextView.setText("№ " + id_current_order);
 
         detailNumberEditText = findViewById(R.id.detailNumberEditText);
         commentaryEntryEditText = findViewById(R.id.commentaryEntryEditText);
