@@ -80,12 +80,19 @@ public class DBStaff extends SQLiteOpenHelper {
     }
 
     public void deleteStaffById(String del_id) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor res = db.rawQuery("delete from 'Staff' WHERE 'id_staff' = " + del_id, null);
-//        return res;
-
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("Staff", "id_staff=?", new String[]{del_id});
+        db.close();
+    }
+
+    public void deleteOrderByIdInRequest(String del_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Request", "id_order=?", new String[]{del_id});
+        db.close();
+    }
+    public void deleteOrderByIdInOrder(String del_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Request", "id_order=?", new String[]{del_id});
         db.close();
     }
 

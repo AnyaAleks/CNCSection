@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -27,8 +29,9 @@ public class OrderInformation extends AppCompatActivity {
     EditText commentaryEntryEditText;
     EditText dateEditText;
     EditText productionTimeEditText;
+    Button deleteOrderButton;
 
-    @SuppressLint("Range")
+    @SuppressLint({"Range", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +40,7 @@ public class OrderInformation extends AppCompatActivity {
 
         dbStaff = new DBStaff(this);
 
+        deleteOrderButton = findViewById(R.id.deleteOrder);
         stateInformerButton = findViewById(R.id.stateInformer);
         statesSpinner = findViewById(R.id.states_spinner);
 
@@ -82,6 +86,15 @@ public class OrderInformation extends AppCompatActivity {
         }
 
 
+        deleteOrderButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("Range")
+            @Override
+            public void onClick(View view) {
+                //dbStaff.deleteOrderByIdInRequest(id_current_order);
+                //dbStaff.deleteOrderByIdInOrder(id_current_order)
+                finish();
+            }
+        });
 
 
 

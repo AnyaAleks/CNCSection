@@ -61,6 +61,7 @@
     <string name="date_description"> 01.01.87  </string>
 
     <string name="deleteStaff">Удалить сотрудника</string>
+    <string name="deleteOrder">Удалить заявку</string>
 
     <string name="createOrder">Заявка</string>
     <string name="createStaff">Добавить</string>
