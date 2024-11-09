@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +29,12 @@ import com.example.cncsection.StatusAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class GenerateOrderFragment extends Fragment {
 
@@ -89,6 +96,8 @@ public class GenerateOrderFragment extends Fragment {
 
         add_button_bench =  view.findViewById(R.id.add_button_bench);
 
+        List<String> list = new ArrayList<>();
+        adapter = new MasterAdapter(list);
 
         rvContacts.setAdapter(adapter);
         rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -203,8 +212,10 @@ public class GenerateOrderFragment extends Fragment {
         boolean flag = false;
         if(!flag)
         {
-            adapter.statuses.add(newBench);
-
+            List<String> list = new ArrayList<>();
+            list.add(newBench);
+            //adapter.statuses.add(newBench);
+            adapter.add(newBench);
             rvContacts.setAdapter(adapter);
             rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
         }
