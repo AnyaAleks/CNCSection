@@ -96,7 +96,6 @@ public class CreateOrderFragment extends Fragment {
                 commentary_entry.requestLayout();
             }
 
-
         });
 
         calendar_date.addTextChangedListener(new TextWatcher() {
