@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import Staff.DBStaff;
 
@@ -130,6 +131,14 @@ public class ListOfPeopleFragment extends Fragment {
 //                }
 //            });
             //adapter.filterList(filteredList);
+        }
+    }
+
+    public class staffFioComparator implements Comparator<People>
+    {
+        @Override
+        public int compare(People p1, People p2) {
+            return p1.getfio().compareTo(p2.getfio());
         }
     }
 

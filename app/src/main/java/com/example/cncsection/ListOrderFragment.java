@@ -138,7 +138,6 @@ public class ListOrderFragment extends Fragment {
             filter(searchView.getQuery().toString(), isChecked);
         });
 
-
         return view;
     }
 
