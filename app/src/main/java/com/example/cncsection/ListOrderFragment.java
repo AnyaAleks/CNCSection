@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ import com.example.cncsection.Status;
 import com.example.cncsection.StatusAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import Staff.DBStaff;
 
@@ -37,6 +40,7 @@ public class ListOrderFragment extends Fragment {
     private StatusAdapter adapter;
     private SearchView searchView;
     ArrayList<Status> statuses = new ArrayList<Status>();
+    ArrayList<Status> baseStatusList = new ArrayList<Status>();
     RecyclerView rvContacts;
     private CheckBox filterStatusCheckbox;
 
@@ -124,6 +128,7 @@ public class ListOrderFragment extends Fragment {
             }
             @Override
             public boolean onQueryTextChange(String newText) {
+                //newText - название детали
                 filter(newText, filterStatusCheckbox.isChecked());
                 return true;
             }
@@ -138,30 +143,43 @@ public class ListOrderFragment extends Fragment {
     }
 
     private void filter(String text,  boolean isFilterByStatus) {
-        ArrayList<Status> filteredList = new ArrayList<>();
+        baseStatusList = statuses;
+        Collections.sort(statuses, new statusesComparator());
 
-        for (Status st : statuses) {
-            boolean matchesText = st.getApplication().toLowerCase().contains(text.toLowerCase());
-            boolean matchesStatus = isFilterByStatus && (st.getIdOrder() >= 1 && st.getIdOrder() <= 7);
-
-            if (matchesText || (isFilterByStatus && matchesStatus)) {
-                filteredList.add(st);
-            }
-        }
-        if (filteredList.isEmpty()) {
-            Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
-        } else {
-            adapter.filterList(filteredList);
+        if(isFilterByStatus){
+            adapter = new StatusAdapter(statuses);
+            rvContacts.setAdapter(adapter);
+            rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
             adapter.setOnItemClickListener(new StatusAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
-//                Log.d("GGG",""+statuses.get(position).getIdOrder());
                     Intent intent = new Intent(getActivity(), OrderInformation.class);
-                    intent.putExtra("id_current_order", ""+filteredList.get(position).getIdOrder());
+                    intent.putExtra("id_current_order", ""+statuses.get(position).getIdOrder());
                     startActivity(intent);
                 }
             });
-            //adapter.filterList(filteredList);
+        } else{
+            adapter = new StatusAdapter(baseStatusList);
+            rvContacts.setAdapter(adapter);
+            rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
+            adapter.setOnItemClickListener(new StatusAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                    Intent intent = new Intent(getActivity(), OrderInformation.class);
+                    intent.putExtra("id_current_order", ""+baseStatusList.get(position).getIdOrder());
+                    startActivity(intent);
+                }
+            });
+        }
+    }
+
+    public class statusesComparator implements Comparator<Status>
+    {
+        @Override
+        public int compare(Status st1, Status st2) {
+            int a = st1.getStatus();
+            int b = st2.getStatus();
+            return a > b ? 1 : (a == b ? 0 : -1);
         }
     }
 
