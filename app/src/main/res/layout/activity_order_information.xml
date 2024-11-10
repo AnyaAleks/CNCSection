@@ -257,4 +257,10 @@
         </ScrollView>
     </LinearLayout>
 
+    <FrameLayout
+        android:id="@+id/fragment_container_orderInformation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

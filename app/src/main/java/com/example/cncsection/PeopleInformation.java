@@ -18,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.HashMap;
 
@@ -65,8 +67,9 @@ public class PeopleInformation extends AppCompatActivity {
             @SuppressLint("Range")
             @Override
             public void onClick(View view) {
-                dbStaff.deleteStaffById(id_current_person);
-                finish();
+                loadConfirmationDialog();
+                //dbStaff.deleteStaffById(id_current_person);
+                //finish();
             }
         });
     }
@@ -81,5 +84,11 @@ public class PeopleInformation extends AppCompatActivity {
             default: icon = R.drawable.baseline_groups_24;
         }
         return icon;
+    }
+
+    private void loadConfirmationDialog(){
+        FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+        ft.add(R.id.fragment_container_peopleInformation, ConfirmationDialogFragment.newInstance(id_current_person, "Staff"));
+        ft.commit();
     }
 }

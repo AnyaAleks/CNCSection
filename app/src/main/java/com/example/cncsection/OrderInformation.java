@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.HashMap;
 
@@ -31,6 +32,8 @@ public class OrderInformation extends AppCompatActivity {
     EditText productionTimeEditText;
     Button deleteOrderButton;
 
+    String id_current_order;
+
     @SuppressLint({"Range", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,7 @@ public class OrderInformation extends AppCompatActivity {
         statesSpinner = findViewById(R.id.states_spinner);
 
         Intent intent = getIntent();
-        String id_current_order = intent.getStringExtra("id_current_order");
+        id_current_order = intent.getStringExtra("id_current_order");
 
         idOrderTextView = findViewById(R.id.idOrderTextView);
         idOrderTextView.setText("№ " + id_current_order);
@@ -90,18 +93,18 @@ public class OrderInformation extends AppCompatActivity {
             @SuppressLint("Range")
             @Override
             public void onClick(View view) {
+                loadConfirmationDialog();
                 //dbStaff.deleteOrderByIdInRequest(id_current_order);
                 //dbStaff.deleteOrderByIdInOrder(id_current_order)
-                finish();
+                //finish();
             }
         });
+    }
 
-
-
-
-
-
-
+    private void loadConfirmationDialog(){
+        FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+        ft.add(R.id.fragment_container_orderInformation, ConfirmationDialogFragment.newInstance(id_current_order, "Order"));
+        ft.commit();
     }
 
     private int getRoleColor(int key)

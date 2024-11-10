@@ -23,4 +23,6 @@
     <color name="rus_light_gray">#e1e9ed</color>
     <color name="color_state">#ff0000</color>
 
+    <color name="transparent_purple">#344C6CFC</color>
+
 </resources>
