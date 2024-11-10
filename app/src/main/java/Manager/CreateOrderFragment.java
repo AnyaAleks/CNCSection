@@ -58,6 +58,10 @@ public class CreateOrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_create_order, container, false);
 
+        TextView errorNumber = view.findViewById(R.id.error_number);
+        TextView errorDate = view.findViewById(R.id.error_calendar);
+        TextView errorCommentary = view.findViewById(R.id.error_commentary);
+
         item_number = view.findViewById(R.id.item_number);
         production_time = view.findViewById(R.id.production_time);
         commentary = view.findViewById(R.id.commentary);
@@ -67,6 +71,7 @@ public class CreateOrderFragment extends Fragment {
         calendar_button = view.findViewById(R.id.calendar);
         calendar_date = view.findViewById(R.id.calendar_date);
 
+        boolean isValid = false;
 
         commentary_entry.addTextChangedListener(new TextWatcher() {
             @Override
@@ -212,19 +217,67 @@ public class CreateOrderFragment extends Fragment {
 
         dbManager = new DBManager(getActivity());
 
+
+        item_number_entry.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                errorNumber.setText("");}
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
+        calendar_date.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                errorDate.setText("");}
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
+        commentary_entry.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                errorCommentary.setText("");}
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
         button_create.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("Range")
             @Override
             public void onClick(View view) {
-                String number = item_number_entry.getText().toString();
-                //String calendar = calendar_button.getText().toString();
-                String comments = commentary_entry.getText().toString();
+                String number = item_number_entry.getText().toString().trim();
+                String date = calendar_date.getText().toString().trim();
+                String comments = commentary_entry.getText().toString().trim();
 
-                dbManager.addToRequest(number, 1, comments, calendar_date.getText().toString());
+                boolean itIsError = false;
+                if (number.isEmpty()) {
+                    errorNumber.setText("Необходимо заполнить поле номера");
+                    itIsError = true;
+                }
+                if (comments.isEmpty()) {
+                    errorCommentary.setText("Необходимо заполнить поле комментария");
+                    itIsError = true;
+                }
+                if (date.isEmpty()) {
+                    errorDate.setText("Необходимо заполнить поле даты");
+                    itIsError = true;
+                }
+                if (itIsError) {
+                    return;
+                }
 
+                dbManager.addToRequest(number, 1, comments, date);
                 Toast.makeText(getActivity(), "Успешное добавление", Toast.LENGTH_SHORT).show();
+
                 Cursor csr = dbManager.getAll("Request");
-                while(csr.moveToNext()) {
+                while (csr.moveToNext()) {
                     Log.d("DB_Manager",
                             "ID = " + csr.getInt(csr.getColumnIndex("id_order"))
                                     + " PART_NUMBER = " + csr.getInt(csr.getColumnIndex("part_number"))
