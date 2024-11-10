@@ -10,7 +10,7 @@
                 android:endColor="@color/rus_dark_blue" />
 
             <!--Создаёт закругленные углы для фигуры-->
-            <corners android:radius="25dp" />
+<!--            <corners android:radius="25dp" />-->
         </shape>
     </item>
     <item
