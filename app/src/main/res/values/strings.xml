@@ -8,7 +8,7 @@
 
     <string name="manager_header">Менеджер по планированию</string>
     <string name="item">Номер детали</string>
-    <string name="time">Время производства (мин) </string>
+    <string name="time">Время создания заявки </string>
     <string name="time_start">Дата создания заявки</string>
     <string name="time_button"> </string>
     <string name="commentary">Комментарий </string>

@@ -60,7 +60,6 @@ public class CreateOrderFragment extends Fragment {
 
         TextView errorNumber = view.findViewById(R.id.error_number);
         TextView errorDate = view.findViewById(R.id.error_calendar);
-        TextView errorCommentary = view.findViewById(R.id.error_commentary);
 
         item_number = view.findViewById(R.id.item_number);
         production_time = view.findViewById(R.id.production_time);
@@ -238,15 +237,6 @@ public class CreateOrderFragment extends Fragment {
             public void afterTextChanged(Editable s) {}
         });
 
-        commentary_entry.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                errorCommentary.setText("");}
-            @Override
-            public void afterTextChanged(Editable s) {}
-        });
 
         button_create.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("Range")
@@ -261,10 +251,6 @@ public class CreateOrderFragment extends Fragment {
                     errorNumber.setText("Необходимо заполнить поле номера");
                     itIsError = true;
                 }
-                if (comments.isEmpty()) {
-                    errorCommentary.setText("Необходимо заполнить поле комментария");
-                    itIsError = true;
-                }
                 if (date.isEmpty()) {
                     errorDate.setText("Необходимо заполнить поле даты");
                     itIsError = true;
@@ -275,6 +261,10 @@ public class CreateOrderFragment extends Fragment {
 
                 dbManager.addToRequest(number, 1, comments, date);
                 Toast.makeText(getActivity(), "Успешное добавление", Toast.LENGTH_SHORT).show();
+
+                item_number_entry.setText("");
+                calendar_date.setText("");
+                commentary_entry.setText("");
 
                 Cursor csr = dbManager.getAll("Request");
                 while (csr.moveToNext()) {
