@@ -53,14 +53,9 @@ public class RegistrationFragment extends Fragment {
     Button add_button;
 
     public RegistrationFragment() {
-        // Required empty public constructor
     }
     public RegistrationFragment newInstance(String param1, String param2) {
         RegistrationFragment fragment = new RegistrationFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
         return fragment;
     }
 
