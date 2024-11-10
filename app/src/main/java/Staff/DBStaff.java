@@ -79,6 +79,23 @@ public class DBStaff extends SQLiteOpenHelper {
         return res;
     }
 
+    public void deleteStaffById(String del_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Staff", "id_staff=?", new String[]{del_id});
+        db.close();
+    }
+
+    public void deleteOrderByIdInRequest(String del_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Request", "id_order=?", new String[]{del_id});
+        db.close();
+    }
+    public void deleteOrderByIdInOrder(String del_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Request", "id_order=?", new String[]{del_id});
+        db.close();
+    }
+
 //    public Cursor restartAutoincrement(String table_name) {
 //        SQLiteDatabase db = this.getWritableDatabase();
 //        Cursor res = db.rawQuery("UPDATE `sqlite_sequence` SET `seq` = 0 WHERE `name` = table_name", null);

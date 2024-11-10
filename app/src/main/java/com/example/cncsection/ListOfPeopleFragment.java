@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,31 +60,28 @@ public class ListOfPeopleFragment extends Fragment {
         searchView = view.findViewById(R.id.searchView);
         rvContacts = view.findViewById(R.id.list);
 
+        dbStaff = new DBStaff(getActivity());
+        Cursor csr = dbStaff.getAll("Staff");
+        while (csr.moveToNext()) {
+            peopleList.add(
+                    new People(csr.getString(csr.getColumnIndex("fio"))
+                            , csr.getInt(csr.getColumnIndex("id_access"))
+                            , csr.getInt(csr.getColumnIndex("id_staff"))
+            ));
+        }
 
-        //Тут должна быть инициализация списка сотрудников, но я не знаю, есть ли она у нас.
-
-//
-//        dbStaff = new DBStaff(getActivity());
-//        Cursor csr = dbStaff.getAll("Request");
-//        while (csr.moveToNext()) {
-//            peopleList.add(new People(csr.getString(csr.getColumnIndex("part_number")),
-//                    csr.getInt(csr.getColumnIndex("id_status")),
-//                    csr.getInt(csr.getColumnIndex("id_order"))
-//            ));
-//        }
-//        csr.close();
-
-//        adapter = new PeopleAdapter(peopleList);
-//        rvContacts.setAdapter(adapter);
-//        rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
-//        adapter.setOnItemClickListener(new PeopleAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(int position) {
-//                Intent intent = new Intent(getActivity(), OrderInformation.class);
-//                intent.putExtra("id_current_order", "" + peopleList.get(position).getIdOrder());
-//                startActivity(intent);
-//            }
-//        });
+        adapter = new PeopleAdapter(peopleList);
+        rvContacts.setAdapter(adapter);
+        rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter.setOnItemClickListener(new PeopleAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+//                Log.d("GGG",""+statuses.get(position).getIdOrder());
+                Intent intent = new Intent(getActivity(), PeopleInformation.class);
+                intent.putExtra("id_current_person", ""+peopleList.get(position).getId());
+                startActivity(intent);
+            }
+        });
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

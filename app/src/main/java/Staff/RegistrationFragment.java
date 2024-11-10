@@ -13,11 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cncsection.R;
 
@@ -46,7 +48,9 @@ public class RegistrationFragment extends Fragment {
 
     EditText password_first;
     EditText password_second;
-    TextView errorTextView;
+    //TextView errorTextView;
+
+    Button add_button;
 
     public RegistrationFragment() {
         // Required empty public constructor
@@ -74,6 +78,8 @@ public class RegistrationFragment extends Fragment {
 
         dbStaff = new DBStaff(getActivity());
 
+        add_button = view.findViewById(R.id.add_button);
+
         roles_spinner = (Spinner) view.findViewById(R.id.role_spinner);
         password_first = view.findViewById(R.id.textInputEditPasswordSignUpFirst);
         password_second = view.findViewById(R.id.textInputEditPasswordSignUpSecond);
@@ -87,7 +93,7 @@ public class RegistrationFragment extends Fragment {
         fio_f = (TextView) view.findViewById(R.id.fio_f_entry);
         fio_i = (TextView) view.findViewById(R.id.fio_i_entry);
         fio_o = (TextView) view.findViewById(R.id.fio_o_entry);
-        errorTextView = view.findViewById(R.id.error_text_view);
+        //errorTextView = view.findViewById(R.id.error_text_view);
 
         //Заполнение списка для Должностей
         Cursor csr = dbStaff.getAll("Access");
@@ -111,6 +117,67 @@ public class RegistrationFragment extends Fragment {
                                 calendar_date.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year1),
                         year, month, day);
                 datePickerDialog.show();
+            }
+        });
+
+        add_button.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("Range")
+            @Override
+            public void onClick(View view) {
+                boolean fio_wrong=false;
+
+                boolean password_wrong=false;
+
+                //boolean sthEmpty = false;
+                //if(fio_f.getHint().toString().equals("") || fio_i.getHint().toString().equals("") || fio_o.getHint().toString().equals("") || calendar_date.getHint().toString().equals("")
+                //||fio_f.getHint().toString().equals("Заполните поле") || fio_i.getHint().toString().equals("Заполните поле") || fio_o.getHint().toString().equals("Заполните поле"))
+                String fio="";
+                String password="";
+                if(fio_f.getText().toString().equals("") || fio_i.getText().toString().equals("") || fio_o.getText().toString().equals("")|| calendar_date.getHint().toString().equals(""))
+                {
+                    fio_wrong=true;
+                }
+                else
+                {
+                    fio =fio_f.getText().toString() + " "
+                            + fio_i.getText().toString() + " "
+                            + fio_o.getText().toString();
+                }
+                String pas1,pas2;
+                pas1=password_first.getText().toString();
+                pas2=password_second.getText().toString();
+
+                if(!pas1.equals(pas2) || pas1.isEmpty())//password_second.getText().toString().equals(password_first.getText().toString()))
+                {
+                    password_wrong=true;
+                }
+                else
+                {
+                    password=md5(password_first.getText().toString());
+                }
+
+                if(fio_wrong || password_wrong)
+                {
+                    if(fio_wrong && password_wrong)
+                    {
+                       // errorTextView.setText("Не все поля заполнены и пароли не совпадают");
+                    }
+                    else
+                    {
+                        //if(fio_wrong)
+                           // errorTextView.setText("Не все поля заполнены");
+
+                        //if(password_wrong)
+                            //errorTextView.setText("Пароли не совпадают");
+                    }
+                }
+                else
+                {
+                    //errorTextView.setText("");
+                    Toast.makeText(getActivity(), "Успешное добавление", Toast.LENGTH_SHORT).show();
+                    Log.i("GGGGGG", getRoleKey() + " " + fio + " " + password + " " + calendar_date.getText().toString());
+                    dbStaff.addToStaff(getRoleKey(), fio, password, calendar_date.getText().toString());
+                }
             }
         });
 
@@ -208,20 +275,20 @@ public class RegistrationFragment extends Fragment {
         {
             if(fio_wrong && password_wrong)
             {
-                errorTextView.setText("Не все поля заполнены и пароли не совпадают");
+                //errorTextView.setText("Не все поля заполнены и пароли не совпадают");
             }
             else
             {
-                if(fio_wrong)
-                    errorTextView.setText("Не все поля заполнены");
+                //if(fio_wrong)
+                    //errorTextView.setText("Не все поля заполнены");
 
-                if(password_wrong)
-                    errorTextView.setText("Пароли не совпадают");
+                //if(password_wrong)
+                    //errorTextView.setText("Пароли не совпадают");
             }
         }
         else
         {
-            errorTextView.setText("");
+            //errorTextView.setText("");
             dbStaff.addToStaff(getRoleKey(), fio, password, calendar_date.getText().toString());
         }
 

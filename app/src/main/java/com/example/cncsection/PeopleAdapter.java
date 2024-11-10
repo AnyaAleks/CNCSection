@@ -2,10 +2,12 @@ package com.example.cncsection;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,7 +50,7 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView fioView;
-        ImageButton roleInformerInList;
+        ImageView roleInformerInList;
 
         public ViewHolder(View itemView, OnItemClickListener listener) {
             super(itemView);

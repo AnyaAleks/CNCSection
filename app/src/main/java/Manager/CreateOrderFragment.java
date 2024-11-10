@@ -222,6 +222,7 @@ public class CreateOrderFragment extends Fragment {
 
                 dbManager.addToRequest(number, 1, comments, calendar_date.getText().toString());
 
+                Toast.makeText(getActivity(), "Успешное добавление", Toast.LENGTH_SHORT).show();
                 Cursor csr = dbManager.getAll("Request");
                 while(csr.moveToNext()) {
                     Log.d("DB_Manager",

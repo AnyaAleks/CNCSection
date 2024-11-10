@@ -2,31 +2,50 @@ package Master;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.cncsection.MasterAdapter;
+import com.example.cncsection.OrderInformation;
 import com.example.cncsection.R;
+import com.example.cncsection.StatusAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class GenerateOrderFragment extends Fragment {
 
     TextView bench_list, equipment_list, operator_list, tool_list, input_estimated_production_time;
 
+    private MasterAdapter adapter;
     ImageView calendar_button;
+    RecyclerView rvContacts;
 
+
+    ImageButton add_button_bench;
 
     private String[] benches = new String[1];
     private String[] equipments = new String[1];
@@ -73,6 +92,15 @@ public class GenerateOrderFragment extends Fragment {
 
         dbMaster = new DBMaster(getActivity());
 
+        rvContacts = view.findViewById(R.id.bench_list_view);
+
+        add_button_bench =  view.findViewById(R.id.add_button_bench);
+
+        List<String> list = new ArrayList<>();
+        adapter = new MasterAdapter(list);
+
+        rvContacts.setAdapter(adapter);
+        rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
         Cursor csrb = dbMaster.getAll("Machine");
@@ -120,7 +148,7 @@ public class GenerateOrderFragment extends Fragment {
 //        benches[0] = "";
 //        equipments[0] = "";
 //        operators[0] = "";
-////        tools[0] = "";
+////        tools[0] = "";ч
 //        benches[0] = bench_list.getText().toString();
 //        equipments[0] = equipment_list.getText().toString();
 //        operators[0] = operator_list.getText().toString();
@@ -145,6 +173,13 @@ public class GenerateOrderFragment extends Fragment {
             }
         });
 
+        add_button_bench.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("Range")
+            @Override
+            public void onClick(View view) {
+                AddBench(view);
+            }
+        });
 
         return view;
     }
@@ -175,25 +210,17 @@ public class GenerateOrderFragment extends Fragment {
     {
         String newBench=bench_spinner.getSelectedItem().toString();
         boolean flag = false;
-        //if(benches.length>1)
-        if(newBench=="")
-            flag = true;
-        for (String element : benches)
-        {
-            if(newBench==element)
-                flag = true;
-        }
         if(!flag)
         {
-            String[] newBenches = new String[benches.length+1];
-            for (int i=0;i<benches.length;i++)
-            {
-                newBenches[i]=benches[i];
-            }
-            newBenches[newBenches.length-1]=newBench;
-            benches=newBenches;
-            OutPutList(benches,bench_list);
+            List<String> list = new ArrayList<>();
+            list.add(newBench);
+            //adapter.statuses.add(newBench);
+            adapter.add(newBench);
+            rvContacts.setAdapter(adapter);
+            rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
         }
+
+
     }
 
     public void DeleteBench(View view)

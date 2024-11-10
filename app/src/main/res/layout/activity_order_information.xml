@@ -246,9 +246,21 @@
                     style="@style/AppCompatButtonStyle"
                     android:onClick="goNext"
                     android:text="@string/open_program"
+                    android:layout_marginBottom="50dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/deleteOrder"
+                    style="@style/AppCompatButtonStyle"
+                    android:text="@string/deleteOrder"
                     android:layout_marginBottom="100dp"/>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_container_orderInformation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
