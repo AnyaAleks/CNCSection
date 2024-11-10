@@ -28,21 +28,12 @@ public class ListOfPeopleFragment extends Fragment {
     private SearchView searchView;
     private ArrayList<People> peopleList = new ArrayList<>();
     private RecyclerView rvContacts;
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private String mParam1;
-    private String mParam2;
 
     public ListOfPeopleFragment() {
-        // Required empty public constructor
     }
 
     public static ListOfPeopleFragment newInstance(String param1, String param2) {
         ListOfPeopleFragment fragment = new ListOfPeopleFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
         return fragment;
     }
 
@@ -114,23 +105,6 @@ public class ListOfPeopleFragment extends Fragment {
             adapter = new PeopleAdapter(filteredList);
             rvContacts.setAdapter(adapter);
             rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
-
-            //Тут надо заменить или настроить getIdOrder());
-
-
-
-//            adapter.setOnItemClickListener(new StatusAdapter.OnItemClickListener() {
-//                @Override
-//                public void onItemClick(int position) {
-////                Log.d("GGG",""+statuses.get(position).getIdOrder());
-//                    Intent intent = new Intent(getActivity(), OrderInformation.class);
-//                    intent.putExtra("id_current_order", "" + filteredList.get(position).getIdOrder());
-//                    startActivity(intent);
-//                }
-//            });
-            //adapter.filterList(filteredList);
         }
     }
 

@@ -102,23 +102,6 @@ public class EntryActivity extends AppCompatActivity {
         }
     }
 
-
-
-
-            // else {
-//                Toast toast2 = Toast.makeText(this, "Пользователь не найден", Toast.LENGTH_SHORT);
-//                toast2.show();
- //           }
-
-//            Log.d("DB_STAFF",
-//                    "ID = " + csr.getInt(csr.getColumnIndex("id_staff"))
-//                            + "ID_ACCESS = " + csr.getInt(csr.getColumnIndex("id_access"))
-//                            + " FIO = " + csr.getString(csr.getColumnIndex("fio"))
-//                            + " PASSWORD = " + csr.getString(csr.getColumnIndex("password"))
-//            );
-
-
-
     public String md5(String s) {
         try {
             // Create MD5 Hash
