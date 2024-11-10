@@ -29,7 +29,6 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
         statuses = st;
     }
 
-    // method for filtering our recyclerview items.
     @SuppressLint("NotifyDataSetChanged")
     public void filterList(ArrayList<Status> filteredList) {
         this.statuses = filteredList;
@@ -81,13 +80,9 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
     @Override
     public void onBindViewHolder(StatusAdapter.ViewHolder holder, int position) {
         Status status = statuses.get(position);
-        TextView textView = holder.applicationView;
-        textView.setText(status.getApplication());
-        //TextView textView2 = holder.statusView;
-        //textView2.setText(status.getStatus());
-        ImageButton stateInformerButton = holder.stateInformerButton;
-        stateInformerButton.setBackgroundDrawable(holder.itemView.getContext().getResources().getDrawable( getRoleColor(status.getStatus())));
-        stateInformerButton.setImageResource(getRoleIcon(status.getStatus()));
+        holder.applicationView.setText(status.getApplication());
+        holder.stateInformerButton.setBackgroundDrawable(holder.itemView.getContext().getResources().getDrawable(getRoleColor(status.getStatus())));
+        holder.stateInformerButton.setImageResource(getRoleIcon(status.getStatus()));
     }
 
     @Override

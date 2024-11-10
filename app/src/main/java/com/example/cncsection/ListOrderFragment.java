@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,11 +34,11 @@ public class ListOrderFragment extends Fragment {
 
     DBStaff dbStaff;
 
-    TextView search_button;
     private StatusAdapter adapter;
     private SearchView searchView;
     ArrayList<Status> statuses = new ArrayList<Status>();
     RecyclerView rvContacts;
+    private CheckBox filterStatusCheckbox;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -88,6 +89,8 @@ public class ListOrderFragment extends Fragment {
 
         searchView = view.findViewById(R.id.searchView);
         rvContacts = view.findViewById(R.id.list);
+        filterStatusCheckbox = view.findViewById(R.id.filter_status_checkbox);
+
 
         // Инициализация списка статусов
         dbStaff = new DBStaff(getActivity());
@@ -121,30 +124,34 @@ public class ListOrderFragment extends Fragment {
             }
             @Override
             public boolean onQueryTextChange(String newText) {
-                filter(newText);
+                filter(newText, filterStatusCheckbox.isChecked());
                 return true;
             }
         });
 
+        filterStatusCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            filter(searchView.getQuery().toString(), isChecked);
+        });
+
+
         return view;
     }
 
-    private void filter(String text) {
+    private void filter(String text,  boolean isFilterByStatus) {
         ArrayList<Status> filteredList = new ArrayList<>();
+
         for (Status st : statuses) {
-            if (st.getApplication().toLowerCase().contains(text.toLowerCase())
-//                    ||
-//                    st.getStatus().toLowerCase().contains(text.toLowerCase())
-            ) {
+            boolean matchesText = st.getApplication().toLowerCase().contains(text.toLowerCase());
+            boolean matchesStatus = isFilterByStatus && (st.getIdOrder() >= 1 && st.getIdOrder() <= 7);
+
+            if (matchesText || (isFilterByStatus && matchesStatus)) {
                 filteredList.add(st);
             }
         }
         if (filteredList.isEmpty()) {
             Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
         } else {
-            adapter = new StatusAdapter(filteredList);
-            rvContacts.setAdapter(adapter);
-            rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
+            adapter.filterList(filteredList);
             adapter.setOnItemClickListener(new StatusAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
