@@ -2,7 +2,9 @@ package Enter;
 
 import static android.app.PendingIntent.getActivity;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cncsection.MainActivityStaff;
 import com.example.cncsection.R;
+import com.example.cncsection.UserSettings;
+import com.google.gson.Gson;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -33,6 +37,7 @@ public class EntryActivity extends AppCompatActivity {
     Button add_button;
 
     DBStaff dbStaff;
+    UserSettings userSettings = new UserSettings();
 
     @SuppressLint({"MissingInflatedId", "Range"})
     @Override
@@ -74,6 +79,13 @@ public class EntryActivity extends AppCompatActivity {
                             csrAccess.getInt(csrAccess.getColumnIndex("id_access"))) {
                         Log.d("DB_STAFF2", csr.getInt(csr.getColumnIndex("id_access"))
                                 + " " + csrAccess.getInt(csrAccess.getColumnIndex("id_access")));
+
+                        //Сохранение настроек
+                        userSettings.setRoleUser(csr.getInt(csrAccess.getColumnIndex("id_access")));
+                        userSettings.setIdUser(csr.getString(csr.getColumnIndex("id_staff")));
+                        saveJsonData();
+
+                        //Переход в окно
                         openActivityByAccess(csr.getInt(csrAccess.getColumnIndex("id_access")));
                     }
 
@@ -143,5 +155,15 @@ public class EntryActivity extends AppCompatActivity {
                 break;
         }
         startActivity(intent);
+    }
+
+    //Сохранение в настройки
+    public void saveJsonData(){
+        SharedPreferences sharedPreferences = this.getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(userSettings);
+        editor.putString("user settings", json);
+        editor.apply();
     }
 }

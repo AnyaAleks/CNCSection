@@ -67,9 +67,7 @@ public class PeopleInformation extends AppCompatActivity {
             @SuppressLint("Range")
             @Override
             public void onClick(View view) {
-                loadConfirmationDialog();
-                //dbStaff.deleteStaffById(id_current_person);
-                //finish();
+                loadConfirmationDialog(); //Удаление сотрудника
             }
         });
     }

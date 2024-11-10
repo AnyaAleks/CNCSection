@@ -198,7 +198,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/add_button"
                     style="@style/AppCompatButtonStyle"
-                    android:text="@string/to_register"
+                    android:text="@string/createStaff"
                     android:layout_marginBottom="100dp"/>
 
 

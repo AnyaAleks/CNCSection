@@ -1,7 +1,9 @@
 package com.example.cncsection;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -9,10 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.google.gson.Gson;
 
 import java.util.HashMap;
 
@@ -24,6 +29,7 @@ public class OrderInformation extends AppCompatActivity {
     EditText statesSpinner;
     HashMap<Integer, String> hashSates=new HashMap<Integer, String>();
     DBStaff dbStaff;
+    UserSettings userSettings = new UserSettings();
 
     TextView idOrderTextView;
     EditText detailNumberEditText;
@@ -42,8 +48,14 @@ public class OrderInformation extends AppCompatActivity {
         setContentView(R.layout.activity_order_information);
 
         dbStaff = new DBStaff(this);
+        loadJsonData();
 
         deleteOrderButton = findViewById(R.id.deleteOrder);
+        //Log.d("GGG", "Staff" + " "+userSettings.getIdUser() + " " + userSettings.getRoleUser());
+        if(userSettings.getRoleUser() != 1){
+            deleteOrderButton.setVisibility(View.GONE);
+        }
+
         stateInformerButton = findViewById(R.id.stateInformer);
         statesSpinner = findViewById(R.id.states_spinner);
 
@@ -93,10 +105,7 @@ public class OrderInformation extends AppCompatActivity {
             @SuppressLint("Range")
             @Override
             public void onClick(View view) {
-                loadConfirmationDialog();
-                //dbStaff.deleteOrderByIdInRequest(id_current_order);
-                //dbStaff.deleteOrderByIdInOrder(id_current_order)
-                //finish();
+                loadConfirmationDialog(); //Удаление заявки (в 2х таблицах)
             }
         });
     }
@@ -137,5 +146,18 @@ public class OrderInformation extends AppCompatActivity {
             default: icon = R.drawable.null_icon;
         }
         return icon;
+    }
+
+    //Доставание из настроек
+    public void loadJsonData() {
+        SharedPreferences sharedPreferences = this.getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("user settings", null);
+        userSettings = gson.fromJson(json, UserSettings.class);
+
+        if (userSettings == null) {
+            Toast.makeText(this, "Empty Settings!", Toast.LENGTH_SHORT).show();
+            //userSettings = new UserSettings(userId);
+        }
     }
 }
