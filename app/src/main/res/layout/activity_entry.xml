@@ -58,33 +58,11 @@
             android:textColor="@color/rus_red"
             android:textSize="16sp"/>
 
-<!--        <Button-->
-<!--            android:id="@+id/add_button"-->
-<!--            android:layout_width="300dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:onClick="goNext"-->
-<!--            android:text="@string/sent"-->
-<!--            android:textAllCaps="true"-->
-<!--            android:textColorLink="#4D174D"-->
-<!--            android:textSize="16sp" />-->
-
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/add_button"
             style="@style/AppCompatButtonStyle"
             android:onClick="goNext"
             android:text="@string/sent"/>
-
-<!--        <Button-->
-<!--            android:id="@+id/register_button"-->
-<!--            android:layout_width="300dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:onClick="goRegister"-->
-<!--            android:text="@string/to_register"-->
-<!--            android:textAllCaps="true"-->
-<!--            android:textColorLink="#4D174D"-->
-<!--            android:textSize="16sp" />-->
 
         </LinearLayout>
 
