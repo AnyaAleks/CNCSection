@@ -5,6 +5,8 @@
     <string name="login">Логин</string>
     <string name="password">Пароль</string>
     <string name="sent">Отправить</string>
+    <string name="filter_status">Сортировать от Создана до Выполнена</string>
+    <string name="filter_people">Сортировать от А до Я</string>
 
     <string name="manager_header">Менеджер по планированию</string>
     <string name="item">Номер детали</string>
@@ -79,5 +81,9 @@
     <string name="are_you_sure">"Вы уверены?"</string>
     <string name="yes">Да</string>
     <string name="cancel">Закрыть</string>
+
+    <string name="first_name">Введите фамилию</string>
+    <string name="second_name">Введите имя</string>
+    <string name="third_name">Введите отчество</string>
 
 </resources>

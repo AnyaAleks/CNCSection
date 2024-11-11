@@ -55,7 +55,7 @@
                     android:id="@+id/filter_people_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Фильтровать по ролям" />
+                    android:text="@string/filter_people" />
 
                 <ScrollView
                     android:layout_width="match_parent"

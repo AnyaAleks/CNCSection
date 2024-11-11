@@ -55,7 +55,7 @@
                         android:id="@+id/filter_status_checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Фильтровать от 'Создана' до 'Готова'" />
+                        android:text="@string/filter_status" />
 
                         <ScrollView
                             android:layout_width="match_parent"

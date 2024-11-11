@@ -2,10 +2,10 @@
 <resources>
     <!--TextInputLayout in SignIn and SignUp-->
     <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-        <item name="boxStrokeColor">@color/rus_dark_blue</item> <!--Цвет рамки label при вводе-->
-        <item name="hintTextColor">@color/rus_dark_blue</item> <!--Цвет текта label при вводе-->
-        <item name="android:textColorHint">@color/rus_dark_blue</item> <!--Цвет текста в label при просмотре-->
-        <item name="boxCornerRadiusBottomEnd">16dp</item> <!--Размер сгруглений-->
+        <item name="boxStrokeColor">@color/rus_dark_blue</item>
+        <item name="hintTextColor">@color/rus_dark_blue</item>
+        <item name="android:textColorHint">@color/rus_dark_blue</item>
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
         <item name="boxCornerRadiusTopStart">16dp</item>
         <item name="boxCornerRadiusBottomStart">16dp</item>
         <item name="boxCornerRadiusTopEnd">16dp</item>
