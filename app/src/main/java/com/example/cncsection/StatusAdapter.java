@@ -29,12 +29,6 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
         statuses = st;
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    public void filterList(ArrayList<Status> filteredList) {
-        this.statuses = filteredList;
-        notifyDataSetChanged();
-    }
-
     @NonNull
     @Override
     public StatusAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

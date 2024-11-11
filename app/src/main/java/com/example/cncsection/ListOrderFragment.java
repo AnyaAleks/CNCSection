@@ -105,19 +105,21 @@ public class ListOrderFragment extends Fragment {
                     , csr.getInt(csr.getColumnIndex("id_order"))
             ));
         }
+
+        setupAdapter(statuses);
         //statuses = Status.createStatusesList(20);
-        adapter = new StatusAdapter(statuses);
-        rvContacts.setAdapter(adapter);
-        rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter.setOnItemClickListener(new StatusAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-//                Log.d("GGG",""+statuses.get(position).getIdOrder());
-                Intent intent = new Intent(getActivity(), OrderInformation.class);
-                intent.putExtra("id_current_order", ""+statuses.get(position).getIdOrder());
-                startActivity(intent);
-            }
-        });
+//        adapter = new StatusAdapter(statuses);
+//        rvContacts.setAdapter(adapter);
+//        rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
+//        adapter.setOnItemClickListener(new StatusAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(int position) {
+////                Log.d("GGG",""+statuses.get(position).getIdOrder());
+//                Intent intent = new Intent(getActivity(), OrderInformation.class);
+//                intent.putExtra("id_current_order", ""+statuses.get(position).getIdOrder());
+//                startActivity(intent);
+//            }
+//        });
 
 
         // Установка слушателя для SearchView
@@ -141,35 +143,62 @@ public class ListOrderFragment extends Fragment {
         return view;
     }
 
-    private void filter(String text,  boolean isFilterByStatus) {
-        baseStatusList = statuses;
-        Collections.sort(statuses, new statusesComparator());
+    private void setupAdapter(ArrayList<Status> statusList) {
+        adapter = new StatusAdapter(statusList);
+        rvContacts.setAdapter(adapter);
+        rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter.setOnItemClickListener(position -> {
+            Intent intent = new Intent(getActivity(), OrderInformation.class);
+            intent.putExtra("id_current_order", "" + statusList.get(position).getIdOrder());
+            startActivity(intent);
+        });
+    }
 
-        if(isFilterByStatus){
-            adapter = new StatusAdapter(statuses);
-            rvContacts.setAdapter(adapter);
-            rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
-            adapter.setOnItemClickListener(new StatusAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(int position) {
-                    Intent intent = new Intent(getActivity(), OrderInformation.class);
-                    intent.putExtra("id_current_order", ""+statuses.get(position).getIdOrder());
-                    startActivity(intent);
-                }
-            });
-        } else{
-            adapter = new StatusAdapter(baseStatusList);
-            rvContacts.setAdapter(adapter);
-            rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
-            adapter.setOnItemClickListener(new StatusAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(int position) {
-                    Intent intent = new Intent(getActivity(), OrderInformation.class);
-                    intent.putExtra("id_current_order", ""+baseStatusList.get(position).getIdOrder());
-                    startActivity(intent);
-                }
-            });
+//    private void filter(String text,  boolean isFilterByStatus) {
+//        baseStatusList = statuses;
+//        Collections.sort(statuses, new statusesComparator());
+//
+//        if(isFilterByStatus){
+//            adapter = new StatusAdapter(statuses);
+//            rvContacts.setAdapter(adapter);
+//            rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
+//            adapter.setOnItemClickListener(new StatusAdapter.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(int position) {
+//                    Intent intent = new Intent(getActivity(), OrderInformation.class);
+//                    intent.putExtra("id_current_order", ""+statuses.get(position).getIdOrder());
+//                    startActivity(intent);
+//                }
+//            });
+//        } else{
+//            adapter = new StatusAdapter(baseStatusList);
+//            rvContacts.setAdapter(adapter);
+//            rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
+//            adapter.setOnItemClickListener(new StatusAdapter.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(int position) {
+//                    Intent intent = new Intent(getActivity(), OrderInformation.class);
+//                    intent.putExtra("id_current_order", ""+baseStatusList.get(position).getIdOrder());
+//                    startActivity(intent);
+//                }
+//            });
+//        }
+//    }
+
+    private void filter(String text, boolean isFilterByStatus) {
+        ArrayList<Status> filteredList = new ArrayList<>();
+        for (Status status : statuses) {
+            if (status.getApplication().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(status);
+            }
         }
+        if (filteredList.isEmpty()) {
+            Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
+        }
+        if (isFilterByStatus) {
+            Collections.sort(filteredList, new statusesComparator());
+        }
+        setupAdapter(filteredList);
     }
 
     public class statusesComparator implements Comparator<Status>

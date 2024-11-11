@@ -50,6 +50,13 @@
                     android:layout_height="wrap_content"
                     android:iconifiedByDefault="true"
                     android:queryHint="@string/people_filter" />
+
+                <CheckBox
+                    android:id="@+id/filter_people_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Фильтровать по ролям" />
+
                 <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
