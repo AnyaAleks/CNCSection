@@ -5,6 +5,7 @@ import static androidx.appcompat.content.res.AppCompatResources.getDrawable;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -22,8 +23,10 @@ import java.util.List;
 
 public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder> {
 
-    private List<Status> statuses;
+    private final List<Status> statuses;
     private StatusAdapter.OnItemClickListener mListener;
+    private StatusAdapter.OnItemLongClickListener mLongClickListener;
+
 
     public StatusAdapter(List<Status> st) {
         statuses = st;
@@ -35,15 +38,23 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View contactView = inflater.inflate(R.layout.delegate_orderlist, parent, false);
-        return new ViewHolder(contactView, mListener);
+        return new ViewHolder(contactView, mListener, mLongClickListener);
     }
 
     public void setOnItemClickListener(StatusAdapter.OnItemClickListener onItemClickListener) {
         mListener=onItemClickListener;
     }
 
+    public void setOnItemLongClickListener(StatusAdapter.OnItemLongClickListener longClickListener) {
+        mLongClickListener = longClickListener;
+    }
+
     public interface OnItemClickListener {
         void onItemClick(int position);
+    }
+
+    public interface OnItemLongClickListener {
+        void onItemLongClick(int position);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -51,7 +62,8 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
         //public TextView statusView;
         ImageButton stateInformerButton;
 
-        public ViewHolder(View itemView, StatusAdapter.OnItemClickListener listener) {
+        public ViewHolder(View itemView, StatusAdapter.OnItemClickListener listener,
+                          StatusAdapter.OnItemLongClickListener longClickListener) {
             super(itemView);
             applicationView = (TextView) itemView.findViewById(R.id.input_number);
             //statusView = (TextView) itemView.findViewById(R.id.input_status);
@@ -67,6 +79,19 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
                         }
                     }
                 }
+            });
+
+            // Установка слушателя долгого нажатия на itemView
+            applicationView.setOnLongClickListener(v -> {
+                Log.d("StatusAdapter", "Long click detected at position: " + getAdapterPosition());
+                if (longClickListener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        longClickListener.onItemLongClick(position);
+                        return true;
+                    }
+                }
+                return false;
             });
         }
     }

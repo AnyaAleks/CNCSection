@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import Operator.OperatorOrderFragment;
 import Staff.DBStaff;
 
 /**
@@ -40,7 +41,7 @@ public class ListOrderFragment extends Fragment {
     private StatusAdapter adapter;
     private SearchView searchView;
     ArrayList<Status> statuses = new ArrayList<Status>();
-    ArrayList<Status> baseStatusList = new ArrayList<Status>();
+    //ArrayList<Status> baseStatusList = new ArrayList<Status>();
     RecyclerView rvContacts;
     private CheckBox filterStatusCheckbox;
 
@@ -151,6 +152,15 @@ public class ListOrderFragment extends Fragment {
             Intent intent = new Intent(getActivity(), OrderInformation.class);
             intent.putExtra("id_current_order", "" + statusList.get(position).getIdOrder());
             startActivity(intent);
+        });
+
+        adapter.setOnItemLongClickListener(position -> {
+            // Переход к фрагменту OperatorOrderFragment
+            OperatorOrderFragment operatorOrderFragment = OperatorOrderFragment.newInstance();
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container_operator, operatorOrderFragment)
+                    .addToBackStack(null)
+                    .commit();
         });
     }
 
