@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.cncsection.R;
 
@@ -27,6 +29,7 @@ public class OperatorOrderFragment extends Fragment {
     Spinner statesSpinner;
     HashMap<Integer, String> hashSates=new HashMap<Integer, String>();
     DBStaff dbStaff;
+    TextView idOrderTextView;
 
     public OperatorOrderFragment() {
         // Required empty public constructor
@@ -56,6 +59,12 @@ public class OperatorOrderFragment extends Fragment {
 
         stateInformerButton = view.findViewById(R.id.stateInformer);
         statesSpinner = (Spinner) view.findViewById(R.id.states_spinner);
+        idOrderTextView = view.findViewById(R.id.idOrderTextView);
+
+        //Получение id
+        Bundle bundle = this.getArguments();
+        int idOrder = bundle.getInt("idOrder");
+        idOrderTextView.setText("№ " + idOrder);
 
         //Заполнение списка для состояний индикатора
         Cursor csr = dbStaff.getAll("Status");

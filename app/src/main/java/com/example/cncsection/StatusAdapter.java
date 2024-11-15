@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -61,6 +62,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
         public TextView applicationView;
         //public TextView statusView;
         ImageButton stateInformerButton;
+        LinearLayout linearLayoutDelegateOrderList;
 
         public ViewHolder(View itemView, StatusAdapter.OnItemClickListener listener,
                           StatusAdapter.OnItemLongClickListener longClickListener) {
@@ -68,8 +70,9 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
             applicationView = (TextView) itemView.findViewById(R.id.input_number);
             //statusView = (TextView) itemView.findViewById(R.id.input_status);
             stateInformerButton = (ImageButton) itemView.findViewById(R.id.stateInformerInList);
+            linearLayoutDelegateOrderList = (LinearLayout) itemView.findViewById(R.id.linearLayoutDelegateOrderList);
 
-            applicationView.setOnClickListener(new View.OnClickListener(){
+            linearLayoutDelegateOrderList.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
                     if(listener!=null){
@@ -82,7 +85,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder
             });
 
             // Установка слушателя долгого нажатия на itemView
-            applicationView.setOnLongClickListener(v -> {
+            linearLayoutDelegateOrderList.setOnLongClickListener(v -> {
                 Log.d("StatusAdapter", "Long click detected at position: " + getAdapterPosition());
                 if (longClickListener != null) {
                     int position = getAdapterPosition();

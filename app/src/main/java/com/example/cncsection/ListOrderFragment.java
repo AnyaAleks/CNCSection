@@ -1,7 +1,9 @@
 package com.example.cncsection;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -21,6 +23,7 @@ import android.widget.Toast;
 import com.example.cncsection.R;
 import com.example.cncsection.Status;
 import com.example.cncsection.StatusAdapter;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,6 +40,7 @@ import Staff.DBStaff;
 public class ListOrderFragment extends Fragment {
 
     DBStaff dbStaff;
+    UserSettings userSettings = new UserSettings();
 
     private StatusAdapter adapter;
     private SearchView searchView;
@@ -45,44 +49,21 @@ public class ListOrderFragment extends Fragment {
     RecyclerView rvContacts;
     private CheckBox filterStatusCheckbox;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public ListOrderFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ListOrderManagerFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static ListOrderFragment newInstance(String param1, String param2) {
         ListOrderFragment fragment = new ListOrderFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @SuppressLint({"MissingInflatedId", "Range"})
@@ -95,6 +76,14 @@ public class ListOrderFragment extends Fragment {
         searchView = view.findViewById(R.id.searchView);
         rvContacts = view.findViewById(R.id.list);
         filterStatusCheckbox = view.findViewById(R.id.filter_status_checkbox);
+
+//        //Сохранение настроек
+//        userSettings.setRoleUser(csr.getInt(csrAccess.getColumnIndex("id_access")));
+//        userSettings.setIdUser(csr.getString(csr.getColumnIndex("id_staff")));
+//        saveJsonData();
+
+        //Доставание из настроек
+        loadJsonData();
 
 
         // Инициализация списка статусов
@@ -155,12 +144,20 @@ public class ListOrderFragment extends Fragment {
         });
 
         adapter.setOnItemLongClickListener(position -> {
-            // Переход к фрагменту OperatorOrderFragment
-            OperatorOrderFragment operatorOrderFragment = OperatorOrderFragment.newInstance();
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container_operator, operatorOrderFragment)
-                    .addToBackStack(null)
-                    .commit();
+            //Проверка на роль в настройках
+            if(userSettings.getRoleUser() == 3){
+                // Переход к фрагменту OperatorOrderFragment
+                OperatorOrderFragment operatorOrderFragment = OperatorOrderFragment.newInstance();
+
+                Bundle bundle = new Bundle();
+                bundle.putInt("idOrder", statusList.get(position).getIdOrder());
+                operatorOrderFragment.setArguments(bundle);
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container_operator, operatorOrderFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
         });
     }
 
@@ -223,5 +220,28 @@ public class ListOrderFragment extends Fragment {
 
     public static ListOrderFragment newInstance(){
         return new ListOrderFragment();
+    }
+
+    //Сохранение в настройки
+    public void saveJsonData(){
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(userSettings);
+        editor.putString("user settings", json);
+        editor.apply();
+    }
+
+    //Доставание из настроек
+    public void loadJsonData() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("user settings", null);
+        userSettings = gson.fromJson(json, UserSettings.class);
+
+        if (userSettings == null) {
+            Toast.makeText(getActivity(), "Empty Settings!", Toast.LENGTH_SHORT).show();
+            //userSettings = new UserSettings(userId);
+        }
     }
 }
