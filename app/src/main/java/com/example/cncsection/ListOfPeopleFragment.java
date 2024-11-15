@@ -99,17 +99,32 @@ public class ListOfPeopleFragment extends Fragment {
         });
 
         //Проверка на обновление адаптера
-        CountDownTimer timer = new CountDownTimer(1000, 1000)
-        {
-            public void onTick(long l){
-                Log.i("Ticked", String.valueOf(10));
+        new CountDownTimer(30000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                Cursor csrCount = dbStaff.getAll("Staff");
+                if(peopleList.size() != csrCount.getCount()){
+                    Log.d("CountR", String.valueOf(peopleList.size()) + "--" + csrCount.getCount());
+
+                    peopleList.clear();
+                    while (csrCount.moveToNext()) {
+                        peopleList.add(
+                                new People(csrCount.getString(csrCount.getColumnIndex("fio"))
+                                        , csrCount.getInt(csrCount.getColumnIndex("id_access"))
+                                        , csrCount.getInt(csrCount.getColumnIndex("id_staff"))
+                                ));
+                    }
+
+                    adapter = new PeopleAdapter(peopleList);
+                    rvContacts.setAdapter(adapter);
+                    rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
+                }
             }
 
-            @Override
-            public void onFinish()
-            {
+            public void onFinish() {
+                //mTextField.setText("done!");
+            }
 
-            };
         }.start();
 
         return view;

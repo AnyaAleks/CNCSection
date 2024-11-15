@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -129,6 +130,34 @@ public class ListOrderFragment extends Fragment {
         filterStatusCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             filter(searchView.getQuery().toString(), isChecked);
         });
+
+        //Проверка на обновление адаптера
+        new CountDownTimer(30000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                Cursor csrCount = dbStaff.getAll("Request");
+                if(statuses.size() != csrCount.getCount()){
+                    Log.d("CountR", String.valueOf(statuses.size()) + "--" + csrCount.getCount());
+
+                    statuses.clear();
+                    while (csrCount.moveToNext()) {
+                        statuses.add(new Status(csrCount.getString(csrCount.getColumnIndex("part_number"))
+                                , csrCount.getInt(csrCount.getColumnIndex("id_status"))
+                                , csrCount.getInt(csrCount.getColumnIndex("id_order"))
+                        ));
+                    }
+
+                    adapter = new StatusAdapter(statuses);
+                    rvContacts.setAdapter(adapter);
+                    rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
+                }
+            }
+
+            public void onFinish() {
+                //mTextField.setText("done!");
+            }
+
+        }.start();
 
         return view;
     }

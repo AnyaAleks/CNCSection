@@ -212,7 +212,6 @@ public class RegistrationFragment extends Fragment {
                                 calendar_date_staff.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year1),
                         year, month, day);
                 calendar.set(year, month, day);
-                datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
 
                 datePickerDialog.show();
             }
