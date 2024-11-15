@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,6 +97,20 @@ public class ListOfPeopleFragment extends Fragment {
         filterPeopleCheckbox.setOnCheckedChangeListener((buttonView, isCheck) -> {
             filter(searchView.getQuery().toString(), isCheck);
         });
+
+        //Проверка на обновление адаптера
+        CountDownTimer timer = new CountDownTimer(1000, 1000)
+        {
+            public void onTick(long l){
+                Log.i("Ticked", String.valueOf(10));
+            }
+
+            @Override
+            public void onFinish()
+            {
+
+            };
+        }.start();
 
         return view;
     }
