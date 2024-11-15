@@ -75,7 +75,6 @@
     <string name="infoorder_caps">"ЗАЯВКА"</string>
     <string name="person_caps">"СОТРУДНИК"</string>
     <string name="delete_order">"Удалить заявку"</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="are_you_sure">"Вы уверены?"</string>
@@ -86,4 +85,5 @@
     <string name="second_name">Введите имя</string>
     <string name="third_name">Введите отчество</string>
 
+    <string name="saveButton">Сохранить</string>
 </resources>

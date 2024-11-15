@@ -12,10 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.cncsection.ConfirmationDialogFragment;
 import com.example.cncsection.R;
 
 import java.util.ArrayList;
@@ -30,6 +33,10 @@ public class OperatorOrderFragment extends Fragment {
     HashMap<Integer, String> hashSates=new HashMap<Integer, String>();
     DBStaff dbStaff;
     TextView idOrderTextView;
+    Button saveButton;
+
+    int idOrder;
+    int selectedNewRole;
 
     public OperatorOrderFragment() {
         // Required empty public constructor
@@ -60,10 +67,11 @@ public class OperatorOrderFragment extends Fragment {
         stateInformerButton = view.findViewById(R.id.stateInformer);
         statesSpinner = (Spinner) view.findViewById(R.id.states_spinner);
         idOrderTextView = view.findViewById(R.id.idOrderTextView);
+        saveButton = view.findViewById(R.id.saveButton);
 
         //Получение id
         Bundle bundle = this.getArguments();
-        int idOrder = bundle.getInt("idOrder");
+        idOrder = bundle.getInt("idOrder");
         idOrderTextView.setText("№ " + idOrder);
 
         //Заполнение списка для состояний индикатора
@@ -79,11 +87,25 @@ public class OperatorOrderFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 stateInformerButton.setBackgroundDrawable(getResources().getDrawable( getRoleColor(position+1)));
                 stateInformerButton.setImageResource( getRoleIcon(position+1));
+                selectedNewRole = position+1;
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+
+        saveButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                //String table_name, String update_idField, String update_id,
+                // String update_field, String update_value
+                dbStaff.updateValueById("Request", "id_order"
+                        , idOrder,"id_status", "2");
+                Toast.makeText(getActivity(), "Данные обновлены", Toast.LENGTH_SHORT).show();
             }
         });
 

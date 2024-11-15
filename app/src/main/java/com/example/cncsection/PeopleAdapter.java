@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -51,13 +52,15 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView fioView;
         ImageView roleInformerInList;
+        LinearLayout linearLayoutDelegatePeopleList;
 
         public ViewHolder(View itemView, OnItemClickListener listener) {
             super(itemView);
             fioView = itemView.findViewById(R.id.input_name);
             roleInformerInList = itemView.findViewById(R.id.roleInformerInList);
+            linearLayoutDelegatePeopleList = itemView.findViewById(R.id.linearLayoutDelegatePeopleList);
 
-            fioView.setOnClickListener(new View.OnClickListener() {
+            linearLayoutDelegatePeopleList.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (listener != null) {

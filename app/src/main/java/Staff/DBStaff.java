@@ -96,6 +96,16 @@ public class DBStaff extends SQLiteOpenHelper {
         db.close();
     }
 
+    public Cursor updateValueById(String table_name, String update_idField, int update_id, String update_field, String update_value){
+        //"update "+Table_name+" set availability='0' where product_name like 'bar'"
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("update " + table_name
+                + " set " + update_field + " = " + update_value + " where " + update_idField + " like " + update_id, null);
+        Log.e("LogTag", table_name + ".getCount(): " + res.getCount());
+        return res;
+    }
+
+
 //    public Cursor restartAutoincrement(String table_name) {
 //        SQLiteDatabase db = this.getWritableDatabase();
 //        Cursor res = db.rawQuery("UPDATE `sqlite_sequence` SET `seq` = 0 WHERE `name` = table_name", null);

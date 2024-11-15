@@ -64,7 +64,6 @@ class DBOperator extends SQLiteOpenHelper {
         Log.e("LogTag", table_name + ".getCount(): " + res.getCount());
         return res;
     }
-
     /*
         Copies the database from the assets folder to the apps database folder (with logging)
         note databases folder is typically data/data/the_package_name/database

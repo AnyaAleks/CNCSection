@@ -75,6 +75,11 @@
                         android:layout_gravity="end" />
                 </LinearLayout>
 
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/saveButton"
+                    style="@style/AppCompatButtonStyle"
+                    android:text="@string/saveButton"/>
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
