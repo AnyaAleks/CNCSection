@@ -186,6 +186,7 @@ public class ListOrderFragment extends Fragment {
                         .replace(R.id.fragment_container_operator, operatorOrderFragment)
                         .addToBackStack(null)
                         .commit();
+                Log.d("FragmentTransaction", "OperatorOrderFragment added to back stack");
             }
         });
     }

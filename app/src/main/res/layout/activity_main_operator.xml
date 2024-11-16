@@ -10,22 +10,22 @@
     <FrameLayout
         android:id="@+id/fragment_container_operator"
         android:layout_width="match_parent"
-        android:layout_height="743dp"
+        android:layout_height="0dp"
         android:layout_weight="1" >
 
         <!-- Base CardView -->
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation_operator"
-            android:layout_width="280dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/shape_navigation_menu"
-            app:itemActiveIndicatorStyle="@style/Theme.BottomNavigationView.ActiveIndicator"
-            app:itemIconSize="30dp"
-            app:itemIconTint="@color/navigation_menu_items_color"
-            app:itemTextColor="@color/navigation_menu_items_color"
-            app:menu="@menu/botton_navigation_menu_operator" />
+<!--        <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--            android:id="@+id/bottom_navigation_operator"-->
+<!--            android:layout_width="280dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="bottom|center_horizontal"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:background="@drawable/shape_navigation_menu"-->
+<!--            app:itemActiveIndicatorStyle="@style/Theme.BottomNavigationView.ActiveIndicator"-->
+<!--            app:itemIconSize="30dp"-->
+<!--            app:itemIconTint="@color/navigation_menu_items_color"-->
+<!--            app:itemTextColor="@color/navigation_menu_items_color"-->
+<!--            app:menu="@menu/botton_navigation_menu_operator" />-->
     </FrameLayout>
 </LinearLayout>

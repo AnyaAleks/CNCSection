@@ -4,10 +4,17 @@ import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -18,7 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.cncsection.ConfirmationDialogFragment;
+import com.example.cncsection.ListOrderFragment;
 import com.example.cncsection.R;
 
 import java.util.ArrayList;
@@ -62,6 +69,15 @@ public class OperatorOrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_operator_order, container, false);
 
+        // Настройка Toolbar
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_new_24);
+        }
+
         dbStaff = new DBStaff(getActivity());
 
         stateInformerButton = view.findViewById(R.id.stateInformer);
@@ -104,12 +120,23 @@ public class OperatorOrderFragment extends Fragment {
                 //String table_name, String update_idField, String update_id,
                 // String update_field, String update_value
                 dbStaff.updateValueById("Request", "id_order"
-                        , idOrder,"id_status", "2");
+                        , idOrder,"id_status", String.valueOf(selectedNewRole));
                 Toast.makeText(getActivity(), "Данные обновлены", Toast.LENGTH_SHORT).show();
             }
         });
 
         return view;
+    }
+
+    //не работает логика перехода назад к фрагменту со списком заявок
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            requireActivity().onBackPressed();
+            Log.d("OperatorOrderFragment", "Back button pressed");
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public static OperatorOrderFragment newInstance(){
