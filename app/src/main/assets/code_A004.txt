@@ -1,0 +1,172 @@
+from typing import TypeVar, Generic, Optional, Callable
+import unittest
+
+from DoublyLinkedList import DoublyLinkedList, Student
+
+T = TypeVar("T")
+
+class TestDoublyLinkedList(unittest.TestCase):
+
+ def setUp(self) -> None:
+  self.doublyLinkedList = DoublyLinkedList[Student]()
+
+ def test_len(self) -> None:
+  self.doublyLinkedList.push_head(Student("Mikhail Yuryevich Lermontov", "4318", 3, 23, 4.3))
+  self.assertEqual(len(self.doublyLinkedList), 1)
+
+  self.doublyLinkedList.push_head(Student("Alexander Alexandrovich Blok", "4316", 4, 38, 5.0))
+  self.assertEqual(len(self.doublyLinkedList), 2)
+
+  del self.doublyLinkedList[1] #delitem
+  self.assertEqual(len(self.doublyLinkedList), 1)
+
+ def test_setitem(self) -> None:
+  self.doublyLinkedList.push_tail(Student("Sergey Alexandrovich Yesenin", "4315", 2, 27, 3.5))
+  self.doublyLinkedList[0] = Student("Fedr Mikhailovich Dostoevsky", "4316", 4, 40, 5.0)
+  self.assertEqual(len(self.doublyLinkedList), 2)
+  self.assertEqual(self.doublyLinkedList[0].fio, "Fedr Mikhailovich Dostoevsky")
+
+  self.doublyLinkedList.push_tail(Student("Nikolai Vasilyevich Gogol", "4316", 2, 43, 3.3))
+  self.doublyLinkedList[1] = Student("Mikhail Afanasyevich Bulgakov", "4312", 4, 50, 4.8)
+  self.assertEqual(self.doublyLinkedList[1].fio, "Mikhail Afanasyevich Bulgakov")
+
+ def test_getitem(self) -> None:
+  self.doublyLinkedList.push_head(Student("Mikhail Yuryevich Lermontov", "4318", 3, 23, 4.3))
+  self.doublyLinkedList.push_tail(Student("Alexander Alexandrovich Blok", "4316", 4, 38, 5.0))
+  self.doublyLinkedList[0] = Student("Sergey Alexandrovich Yesenin", "4315", 2, 27, 3.5)
+  del self.doublyLinkedList[2]
+  self.doublyLinkedList.push_tail(Student("Fedr Mikhailovich Dostoevsky", "4316", 4, 40, 5.0))
+
+  self.assertEqual(self.doublyLinkedList[0].fio, "Sergey Alexandrovich Yesenin")
+  self.assertEqual(self.doublyLinkedList[1].fio, "Mikhail Yuryevich Lermontov")
+  self.assertEqual(self.doublyLinkedList[2].fio, "Fedr Mikhailovich Dostoevsky")
+
+ def test_del(self) -> None:
+  self.doublyLinkedList.push_tail(Student("Mikhail Yuryevich Lermontov", "4318", 3, 23, 4.3))
+  self.doublyLinkedList.push_tail(Student("Alexander Alexandrovich Blok", "4316", 4, 38, 5.0))
+  self.doublyLinkedList.push_tail(Student("Sergey Alexandrovich Yesenin", "4315", 2, 27, 3.5))
+
+  del self.doublyLinkedList[1]
+  self.assertEqual(len(self.doublyLinkedList), 2)
+
+  del self.doublyLinkedList[0]
+  self.assertEqual(self.doublyLinkedList[0].fio, "Sergey Alexandrovich Yesenin")
+
+  del self.doublyLinkedList[0]
+  self.assertEqual(len(self.doublyLinkedList), 0)
+
+ def test_is_empty(self) -> None:
+  self.assertEqual(self.doublyLinkedList.is_empty(), True)
+  self.doublyLinkedList.push_tail(Student("Sergey Alexandrovich Yesenin", "4315", 2, 27, 3.5))
+  self.assertEqual(self.doublyLinkedList.is_empty(), False)
+  del self.doublyLinkedList[0]
+  self.assertEqual(self.doublyLinkedList.is_empty(), True)
+
+ def test_check_range(self) -> None:
+  self.doublyLinkedList.push_tail(Student("Mikhail Yuryevich Lermontov", "4318", 3, 23, 4.3))
+  self.doublyLinkedList.push_tail(Student("Alexander Alexandrovich Blok", "4316", 4, 38, 5.0))
+  self.doublyLinkedList.push_tail(Student("Sergey Alexandrovich Yesenin", "4315", 2, 27, 3.5))
+
+  self.assertEqual(self.doublyLinkedList.check_range(0), True)
+  self.assertEqual(self.doublyLinkedList.check_range(1), True)
+  self.assertEqual(self.doublyLinkedList.check_range(2), True)
+  self.assertEqual(self.doublyLinkedList.check_range(3), False)
+  self.assertEqual(self.doublyLinkedList.check_range(-1), False)
+
+ def test_push_tail(self) -> None:
+  self.doublyLinkedList.push_tail(Student("Mikhail Yuryevich Lermontov", "4318", 3, 23, 4.3))
+  self.assertEqual(self.doublyLinkedList[0].fio, "Mikhail Yuryevich Lermontov")
+
+  self.doublyLinkedList.push_tail(Student("Alexander Alexandrovich Blok", "4316", 4, 38, 5.0))
+  self.assertEqual(len(self.doublyLinkedList), 2)
+
+  self.doublyLinkedList.push_tail(Student("Sergey Alexandrovich Yesenin", "4315", 2, 27, 3.5))
+  self.assertEqual(self.doublyLinkedList[0].fio, "Mikhail Yuryevich Lermontov")
+  self.assertEqual(len(self.doublyLinkedList), 3)
+
+ def test_push_head(self) -> None:
+  self.doublyLinkedList.push_head(Student("Mikhail Yuryevich Lermontov", "4318", 3, 23, 4.3))
+  self.assertEqual(self.doublyLinkedList[0].fio, "Mikhail Yuryevich Lermontov")
+
+  self.doublyLinkedList.push_head(Student("Alexander Alexandrovich Blok", "4316", 4, 38, 5.0))
+  self.assertEqual(len(self.doublyLinkedList), 2)
+
+  self.doublyLinkedList.push_head(Student("Sergey Alexandrovich Yesenin", "4315", 2, 27, 3.5))
+  self.assertEqual(self.doublyLinkedList[0].fio, "Sergey Alexandrovich Yesenin")
+  self.assertEqual(len(self.doublyLinkedList), 3)
+
+ def test_comb_sort_age(self) -> None:
+  self.doublyLinkedList.push_tail(Student("Mikhail Yuryevich Lermontov", "4318", 3, 23, 4.3))
+  self.doublyLinkedList.push_tail(Student("Alexander Alexandrovich Blok", "4316", 4, 38, 5.0))
+  self.doublyLinkedList.push_tail(Student("Sergey Alexandrovich Yesenin", "4315", 2, 27, 3.5))
+  self.doublyLinkedList.push_tail(Student("Fedr Mikhailovich Dostoevsky", "4316", 4, 40, 5.0))
+  self.doublyLinkedList.push_tail(Student("Nikolai Vasilyevich Gogol", "4316", 2, 43, 3.3))
+  self.doublyLinkedList.push_tail(Student("Mikhail Afanasyevich Bulgakov", "4312", 4, 50, 4.8))
+  self.doublyLinkedList.push_tail(Student("Lev Nikolayevich Tolstoy", "4316", 4, 80, 4.5))
+  self.doublyLinkedList.push_tail(Student("Boris Leonidovich Pasternak", "4312", 1, 38, 4.3))
+  self.doublyLinkedList.push_tail(Student("Nikolai Stepanovich Gumilev", "4318", 2, 50, 3.5))
+  self.doublyLinkedList.push_tail(Student("Joseph Alexandrovich Brodsky", "4315", 3, 50, 4.3))
+
+  self.doublyLinkedList.comb_sort_age()
+  self.assertEqual(self.doublyLinkedList[0].fio, "Mikhail Yuryevich Lermontov")
+  self.assertEqual(self.doublyLinkedList[1].fio, "Alexander Alexandrovich Blok")
+  self.assertEqual(self.doublyLinkedList[2].fio, "Sergey Alexandrovich Yesenin")
+  self.assertEqual(self.doublyLinkedList[3].fio, "Fedr Mikhailovich Dostoevsky")
+  self.assertEqual(self.doublyLinkedList[4].fio, "Nikolai Vasilyevich Gogol")
+  self.assertEqual(self.doublyLinkedList[5].fio, "Mikhail Afanasyevich Bulgakov")
+  self.assertEqual(self.doublyLinkedList[6].fio, "Lev Nikolayevich Tolstoy")
+  self.assertEqual(self.doublyLinkedList[7].fio, "Boris Leonidovich Pasternak")
+  self.assertEqual(self.doublyLinkedList[8].fio, "Nikolai Stepanovich Gumilev")
+  self.assertEqual(self.doublyLinkedList[9].fio, "Joseph Alexandrovich Brodsky")
+
+ def test_is_sorted_by_age(self) -> None:
+  self.assertEqual(self.doublyLinkedList.is_sorted_by_age(), True)
+
+  self.doublyLinkedList.push_tail(Student("Lev Nikolayevich Tolstoy", "4316", 4, 80, 4.5))
+  self.doublyLinkedList.push_tail(Student("Boris Leonidovich Pasternak", "4312", 1, 38, 4.3))
+  self.doublyLinkedList.push_tail(Student("Nikolai Stepanovich Gumilev", "4318", 2, 50, 3.5))
+  self.doublyLinkedList.push_tail(Student("Joseph Alexandrovich Brodsky", "4315", 3, 50, 4.3))
+  self.assertEqual(self.doublyLinkedList.is_sorted_by_age(), False)
+
+  self.doublyLinkedList.comb_sort_age()
+  self.assertEqual(self.doublyLinkedList.is_sorted_by_age(), True)
+
+ def test_linear_search_by_age(self) -> None:
+  self.doublyLinkedList.push_tail(Student("Mikhail Yuryevich Lermontov", "4318", 3, 23, 4.3))
+  self.doublyLinkedList.push_tail(Student("Alexander Alexandrovich Blok", "4316", 4, 38, 5.0))
+  self.doublyLinkedList.push_tail(Student("Sergey Alexandrovich Yesenin", "4315", 2, 27, 3.5))
+  self.doublyLinkedList.push_tail(Student("Fedr Mikhailovich Dostoevsky", "4316", 4, 40, 5.0))
+  self.doublyLinkedList.push_tail(Student("Nikolai Vasilyevich Gogol", "4316", 2, 43, 3.3))
+  self.doublyLinkedList.push_tail(Student("Mikhail Afanasyevich Bulgakov", "4312", 4, 50, 4.8))
+  self.doublyLinkedList.push_tail(Student("Lev Nikolayevich Tolstoy", "4316", 4, 80, 4.5))
+  self.doublyLinkedList.push_tail(Student("Boris Leonidovich Pasternak", "4312", 1, 38, 4.3))
+  self.doublyLinkedList.push_tail(Student("Nikolai Stepanovich Gumilev", "4318", 2, 50, 3.5))
+  self.doublyLinkedList.push_tail(Student("Joseph Alexandrovich Brodsky", "4315", 3, 50, 4.3))
+  self.doublyLinkedList.comb_sort_age()
+
+  result = self.doublyLinkedList.linear_search_by_age(50)
+  expected = [
+   Student("Mikhail Afanasyevich Bulgakov", "4312", 4, 50, 4.8),
+   Student("Nikolai Stepanovich Gumilev", "4318", 2, 50, 3.5),
+   Student("Joseph Alexandrovich Brodsky", "4315", 3, 50, 4.3),
+  ]
+  self.assertEqual(result, expected)
+
+  result2 = self.doublyLinkedList.linear_search_by_age(30)
+  self.assertEqual(result2, [])
+
+  result3 = self.doublyLinkedList.linear_search_by_age(38)
+  expected3 = [
+   Student("Alexander Alexandrovich Blok", "4316", 4, 38, 5.0),
+   Student("Boris Leonidovich Pasternak", "4312", 1, 38, 4.3),
+  ]
+  self.assertEqual(result3, expected3)
+
+  unsorted_list = DoublyLinkedList[Student]()
+  unsorted_list.push_tail(Student("Nikolai Stepanovich Gumilev", "4315", 1, 30, 4.0))
+  unsorted_list.push_tail(Student("Joseph Alexandrovich Brodsky", "4317", 2, 25, 3.5))
+  with self.assertRaises(ValueError):
+   unsorted_list.linear_search_by_age(30)
+
+if __name__ == "__main__":
+ unittest.main()

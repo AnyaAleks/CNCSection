@@ -233,18 +233,16 @@
                     android:textSize="18sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/openProgramButton"
                     style="@style/AppCompatButtonStyle"
-                    android:onClick="goNext"
                     android:text="@string/open_drawing"/>
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/AppCompatButtonStyle"
-                    android:onClick="goNext"
                     android:text="@string/open_techProcess"/>
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/AppCompatButtonStyle"
-                    android:onClick="goNext"
                     android:text="@string/open_program"
                     android:layout_marginBottom="50dp"/>
 

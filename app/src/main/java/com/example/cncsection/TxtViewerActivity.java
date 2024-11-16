@@ -1,5 +1,6 @@
 package com.example.cncsection;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -22,11 +23,12 @@ public class TxtViewerActivity extends AppCompatActivity {
 
         TextView myTextView = (TextView)findViewById(R.id.txtTextView);
 
-        String myOutput;
-        InputStream myInputStream;
+        Intent intent = getIntent();
+        String file_title = intent.getStringExtra("current_file_name");
 
+        InputStream myInputStream;
         try {
-            myInputStream = getAssets().open("ShaderDocumentationQt6.txt");
+            myInputStream = getAssets().open(file_title);
             int size = myInputStream.available();
             byte[] buffer = new byte[size];
             myInputStream.read(buffer);

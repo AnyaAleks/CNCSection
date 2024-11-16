@@ -37,8 +37,10 @@ public class OrderInformation extends AppCompatActivity {
     EditText dateEditText;
     EditText productionTimeEditText;
     Button deleteOrderButton;
+    Button openProgramButton;
 
     String id_current_order;
+    String part_number;
 
     @SuppressLint({"Range", "MissingInflatedId"})
     @Override
@@ -56,6 +58,7 @@ public class OrderInformation extends AppCompatActivity {
             deleteOrderButton.setVisibility(View.GONE);
         }
 
+        openProgramButton = findViewById(R.id.openProgramButton);
         stateInformerButton = findViewById(R.id.stateInformer);
         statesSpinner = findViewById(R.id.states_spinner);
 
@@ -74,6 +77,7 @@ public class OrderInformation extends AppCompatActivity {
         while (csrRequest.moveToNext()) {
             if(csrRequest.getInt(csrRequest.getColumnIndex("id_order")) == Integer.parseInt(id_current_order)){
                 detailNumberEditText.setText(csrRequest.getString(csrRequest.getColumnIndex("part_number")));
+                part_number = csrRequest.getString(csrRequest.getColumnIndex("part_number"));
 
                 int id_status = csrRequest.getInt(csrRequest.getColumnIndex("id_status"));
                 stateInformerButton.setBackgroundDrawable(getResources().getDrawable( getRoleColor(id_status)));
@@ -106,6 +110,28 @@ public class OrderInformation extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 loadConfirmationDialog(); //Удаление заявки (в 2х таблицах)
+            }
+        });
+
+        Intent intentTxtViewer = new Intent(this, TxtViewerActivity.class);
+        openProgramButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("Range")
+            @Override
+            public void onClick(View view) {
+                //Открытие чертежа по part_number
+                Cursor csrProgramm= dbStaff.getAll("Programm");
+                boolean flagIsFind = false;
+                while (csrProgramm.moveToNext()) {
+                    if(csrProgramm.getString(csrProgramm.getColumnIndex("part_number")).equals(part_number)){
+                        intentTxtViewer.putExtra("current_file_name", csrProgramm.getString(csrProgramm.getColumnIndex("title")));
+                        startActivity(intentTxtViewer);
+                        flagIsFind = true;
+                    }
+                }
+
+                if(!flagIsFind){
+                    Toast.makeText(getApplicationContext(), "Чертеж не найден", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
