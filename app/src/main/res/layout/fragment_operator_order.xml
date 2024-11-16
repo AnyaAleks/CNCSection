@@ -57,6 +57,101 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="15dp"
                     android:gravity="center"
+                    android:text="@string/bench"
+                    android:textSize="18dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/benchInformer"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/osnaska"
+                        android:background="@drawable/state_color_red"
+                        android:layout_marginRight="20dp">
+                    </ImageButton>
+
+                    <Spinner
+                        android:id="@+id/bench_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="start"
+                        android:dropDownVerticalOffset="50dp"
+                        android:background="@drawable/spinner_shape"
+                        android:layout_gravity="end" />
+                </LinearLayout>
+
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:text="@string/equipment"
+                android:textSize="18dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/equipmentInformer"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/state_color_red"
+                        android:layout_marginRight="20dp">
+                    </ImageButton>
+
+                    <Spinner
+                        android:id="@+id/equipment_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="start"
+                        android:dropDownVerticalOffset="50dp"
+                        android:background="@drawable/spinner_shape"
+                        android:layout_gravity="end" />
+                </LinearLayout>
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:text="@string/tools"
+                android:textSize="18dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/toolInformer"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/state_color_red"
+                        android:layout_marginRight="20dp">
+                    </ImageButton>
+
+                    <Spinner
+                        android:id="@+id/tool_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="start"
+                        android:dropDownVerticalOffset="50dp"
+                        android:background="@drawable/spinner_shape"
+                        android:layout_gravity="end" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
                     android:text="@string/status"
                     android:textSize="18dp" />
 
@@ -69,7 +164,6 @@
                         android:id="@+id/stateInformer"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/osnaska"
                         android:background="@drawable/state_color_red"
                         android:layout_marginRight="20dp">
                     </ImageButton>
@@ -83,6 +177,8 @@
                         android:background="@drawable/spinner_shape"
                         android:layout_gravity="end" />
                 </LinearLayout>
+
+
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/saveButton"
