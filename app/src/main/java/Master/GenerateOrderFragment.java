@@ -212,12 +212,12 @@ public class GenerateOrderFragment extends Fragment {
         boolean flag = false;
         if(!flag)
         {
-            List<String> list = new ArrayList<>();
-            list.add(newBench);
-            //adapter.statuses.add(newBench);
-            adapter.add(newBench);
-            rvContacts.setAdapter(adapter);
-            rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
+            //List<String> list = new ArrayList<>();
+            //list.add(newBench);
+            adapter.statuses.add(newBench);
+            //adapter.add(newBench);
+            //rvContacts.setAdapter(adapter);
+            //rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
         }
 
 

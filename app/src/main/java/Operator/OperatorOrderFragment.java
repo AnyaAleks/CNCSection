@@ -1,6 +1,7 @@
 package Operator;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -11,6 +12,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,15 +24,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cncsection.ListOrderFragment;
+import com.example.cncsection.OrderInformation;
 import com.example.cncsection.R;
+import com.example.cncsection.Status;
+import com.example.cncsection.StatusAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import Staff.DBStaff;
 
@@ -41,6 +51,10 @@ public class OperatorOrderFragment extends Fragment {
     DBStaff dbStaff;
     TextView idOrderTextView;
     Button saveButton;
+    StringAdapter adapter;// = new StringAdapter(getActivity(), new ArrayList<String>());
+
+    List<String> benches = new ArrayList<String>();
+    ListView lvBenches;
 
     int idOrder;
     int selectedNewRole;
@@ -69,6 +83,8 @@ public class OperatorOrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_operator_order, container, false);
 
+        lvBenches = view.findViewById(R.id.bench_list);
+
         // Настройка Toolbar
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
@@ -85,6 +101,9 @@ public class OperatorOrderFragment extends Fragment {
         idOrderTextView = view.findViewById(R.id.idOrderTextView);
         saveButton = view.findViewById(R.id.saveButton);
 
+
+
+
         //Получение id
         Bundle bundle = this.getArguments();
         idOrder = bundle.getInt("idOrder");
@@ -96,6 +115,33 @@ public class OperatorOrderFragment extends Fragment {
             hashSates.put(csr.getInt(csr.getColumnIndex("id_status")), csr.getString(csr.getColumnIndex("title")));
         }
 //        Log.d("DB_STAFF",hashSates.toString());
+
+        //Заполнение списка станков
+        benches.add("Станок№1");
+        benches.add("Станок№2");
+        benches.add("Станок№3");
+//        csr = dbStaff.getAll("Request");
+//        while (csr.moveToNext()) {
+//            benches.add(new Status(csr.getString(csr.getColumnIndex("part_number"))
+//                    , csr.getInt(csr.getColumnIndex("id_status"))
+//                    , csr.getInt(csr.getColumnIndex("id_order"))
+//            ));
+//        }
+        adapter = new StringAdapter(getActivity(), benches);
+
+        // Устанавливаем адаптер для ListView
+        //lvBenches.setAdapter(adapter);
+        //fillListview(benches,lvBenches);
+
+
+
+
+
+
+
+
+
+
         fillStatesSpinner();
         statesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @SuppressLint("UseCompatLoadingForDrawables")
@@ -151,6 +197,18 @@ public class OperatorOrderFragment extends Fragment {
         statesSpinner.setAdapter(TypesAdapter);
     }
 
+    private void fillListview(List<String> list, ListView lv) {
+
+
+        // Создаем адаптер
+
+        adapter = new StringAdapter(getActivity(), list);
+
+        // Устанавливаем адаптер для ListView
+        lv.setAdapter(adapter);
+
+
+    }
     private int getRoleColor(int key)
     {
         //"@drawable/roundcorner"
