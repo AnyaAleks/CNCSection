@@ -55,6 +55,10 @@ public class OperatorOrderFragment extends Fragment {
 
     List<String> benches = new ArrayList<String>();
     ListView lvBenches;
+    List<String> equipments = new ArrayList<String>();
+    ListView lvEquipments;
+    List<String> tools = new ArrayList<String>();
+    ListView lvTools;
 
     int idOrder;
     int selectedNewRole;
@@ -83,7 +87,7 @@ public class OperatorOrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_operator_order, container, false);
 
-        lvBenches = view.findViewById(R.id.bench_list);
+        //lvBenches = view.findViewById(R.id.bench_list);
 
         // Настройка Toolbar
         Toolbar toolbar = view.findViewById(R.id.toolbar);
@@ -101,7 +105,9 @@ public class OperatorOrderFragment extends Fragment {
         idOrderTextView = view.findViewById(R.id.idOrderTextView);
         saveButton = view.findViewById(R.id.saveButton);
 
-
+        lvBenches=view.findViewById((R.id.bench_listView));
+        lvEquipments=view.findViewById((R.id.equipment_listview));
+        lvTools=view.findViewById((R.id.tools_listview));
 
 
         //Получение id
@@ -127,13 +133,22 @@ public class OperatorOrderFragment extends Fragment {
 //                    , csr.getInt(csr.getColumnIndex("id_order"))
 //            ));
 //        }
-        adapter = new StringAdapter(getActivity(), benches);
 
-        // Устанавливаем адаптер для ListView
-        //lvBenches.setAdapter(adapter);
-        //fillListview(benches,lvBenches);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, benches);
+        lvBenches.setAdapter(adapter);
 
+        //Заполнение списка оснасток
+        equipments.add("Оснастка№1");
+        equipments.add("Оснастка№2");
+        equipments.add("Оснастка№3");
+        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, equipments);
+        lvEquipments.setAdapter(adapter);
 
+        tools.add("Инструмент№1");
+        tools.add("Инструмент№2");
+        tools.add("Инструмент№3");
+        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, tools);
+        lvTools.setAdapter(adapter);
 
 
 
@@ -199,13 +214,20 @@ public class OperatorOrderFragment extends Fragment {
 
     private void fillListview(List<String> list, ListView lv) {
 
+        // Найдите ListView
 
-        // Создаем адаптер
+        // Используйте ArrayAdapter для подключения списка
+        //ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_expandable_list_item_1, items);
 
-        adapter = new StringAdapter(getActivity(), list);
+        //listView.setAdapter(adapter);//---------------------------------------
 
-        // Устанавливаем адаптер для ListView
-        lv.setAdapter(adapter);
+
+//        // Создаем адаптер
+//
+//        adapter = new StringAdapter(getActivity(), list);
+//
+//        // Устанавливаем адаптер для ListView
+//        lv.setAdapter(adapter);
 
 
     }
