@@ -51,7 +51,6 @@ public class OperatorOrderFragment extends Fragment {
     DBStaff dbStaff;
     TextView idOrderTextView;
     Button saveButton;
-    StringAdapter adapter;// = new StringAdapter(getActivity(), new ArrayList<String>());
 
     List<String> benches = new ArrayList<String>();
     ListView lvBenches;
@@ -87,7 +86,6 @@ public class OperatorOrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_operator_order, container, false);
 
-        //lvBenches = view.findViewById(R.id.bench_list);
 
         // Настройка Toolbar
         Toolbar toolbar = view.findViewById(R.id.toolbar);
