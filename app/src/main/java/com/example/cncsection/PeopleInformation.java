@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -41,6 +45,15 @@ public class PeopleInformation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_people_information);
+
+        // Настройка Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar_info_people);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_new_24);
+        }
 
         dbStaff = new DBStaff(this);
 
@@ -89,4 +102,21 @@ public class PeopleInformation extends AppCompatActivity {
         ft.add(R.id.fragment_container_peopleInformation, ConfirmationDialogFragment.newInstance(id_current_person, "Staff"));
         ft.commit();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return false;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed(); // Возврат на предыдущий экран
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }

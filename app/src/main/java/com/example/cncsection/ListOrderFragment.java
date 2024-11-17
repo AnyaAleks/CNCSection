@@ -83,7 +83,7 @@ public class ListOrderFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_list_orderxml, container, false);
 
         // Настройка Toolbar
-        Toolbar toolbarentry = view.findViewById(R.id.toolbar_entry);
+        Toolbar toolbarentry = view.findViewById(R.id.toolbar_entry_list_order);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbarentry);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
@@ -182,7 +182,6 @@ public class ListOrderFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         //inflater.inflate(R.menu.back_menu, menu); // Замените на ваш файл меню
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

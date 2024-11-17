@@ -2,15 +2,20 @@ package Manager;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.ViewTreeObserver;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
@@ -26,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cncsection.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Calendar;
 
@@ -57,6 +63,7 @@ public class CreateOrderFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
 
     }
 
@@ -64,6 +71,15 @@ public class CreateOrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_create_order, container, false);
+
+        // Настройка Toolbar
+        Toolbar toolbar_entry = view.findViewById(R.id.toolbar_entry_manager);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar_entry);
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_new_24);
+        }
 
         TextView errorNumber = view.findViewById(R.id.error_number);
         TextView errorDate = view.findViewById(R.id.error_calendar);
@@ -77,7 +93,7 @@ public class CreateOrderFragment extends Fragment {
         calendar_button = view.findViewById(R.id.calendar);
         calendar_date = view.findViewById(R.id.calendar_date);
 
-        boolean isValid = false;
+        //boolean isValid = false;
 
         commentary_entry.addTextChangedListener(new TextWatcher() {
             @Override
@@ -298,7 +314,6 @@ public class CreateOrderFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         //inflater.inflate(R.menu.back_menu, menu); // Замените на ваш файл меню
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

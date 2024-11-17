@@ -200,13 +200,10 @@ public class OperatorOrderFragment extends Fragment {
         //inflater.inflate(R.menu.back_menu, menu); // Замените на ваш файл меню
     }
 
-    //не работает логика перехода назад к фрагменту со списком заявок
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // Здесь вы можете либо вернуться к предыдущему фрагменту,
-                // либо использовать popBackStack, чтобы вернуться назад.
                 requireActivity().getSupportFragmentManager().popBackStack();
                 return true;
             default:
