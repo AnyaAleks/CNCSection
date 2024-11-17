@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,6 +79,7 @@ public class OperatorOrderFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
 
     }
 
@@ -86,6 +89,8 @@ public class OperatorOrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_operator_order, container, false);
 
+        int backStackEntryCount = requireActivity().getSupportFragmentManager().getBackStackEntryCount();
+        Log.d("FragmentBackStack", "Back stack entry count: " + backStackEntryCount);
 
         // Настройка Toolbar
         Toolbar toolbar = view.findViewById(R.id.toolbar);
@@ -150,13 +155,6 @@ public class OperatorOrderFragment extends Fragment {
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, tools);
         lvTools.setAdapter(adapter);
 
-
-
-
-
-
-
-
         fillStatesSpinner();
         statesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @SuppressLint("UseCompatLoadingForDrawables")
@@ -197,15 +195,19 @@ public class OperatorOrderFragment extends Fragment {
 
         return view;
     }
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        //inflater.inflate(R.menu.back_menu, menu); // Замените на ваш файл меню
+    }
 
     //не работает логика перехода назад к фрагменту со списком заявок
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()){
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case android.R.id.home:
-                getActivity().getFragmentManager().popBackStack();
-//                startActivity(new Intent(this, SignInActivity.class));
-//                finish();
+                // Здесь вы можете либо вернуться к предыдущему фрагменту,
+                // либо использовать popBackStack, чтобы вернуться назад.
+                requireActivity().getSupportFragmentManager().popBackStack();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -18,7 +18,9 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/rus_gray"
             app:title="Оператор"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            />
+
 
         <TextView
             android:id="@+id/entry"
