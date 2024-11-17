@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -23,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import Enter.EntryActivity;
 import Staff.DBStaff;
 
 public class ListOfPeopleFragment extends Fragment {
@@ -185,5 +189,23 @@ public class ListOfPeopleFragment extends Fragment {
 
     public static ListOfPeopleFragment newInstance() {
         return new ListOfPeopleFragment();
+    }
+
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        //inflater.inflate(R.menu.back_menu, menu); // Замените на ваш файл меню
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // Переход к EntryActivity
+                Intent intent = new Intent(getActivity(), EntryActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

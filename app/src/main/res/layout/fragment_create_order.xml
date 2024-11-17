@@ -13,25 +13,40 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_createOrder"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/rus_white"
+            app:title="Выход"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/black" />
+
         <TextView
             android:id="@+id/entry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ordercreate_caps"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:textColor="@color/black"
             android:textSize="25dp" />
 
         <ScrollView
             android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
             android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="clip_horizontal"
-                android:layout_margin="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="vertical"
                 android:padding="4dp">
 
@@ -39,7 +54,6 @@
                     android:id="@+id/item_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="15dp"
                     android:gravity="center"
                     android:text="@string/item"
@@ -128,24 +142,25 @@
                         android:id="@+id/commentary_entry"
                         android:layout_width="0dp"
                         android:layout_height="100dp"
+                        android:layout_marginBottom="20dp"
                         android:layout_weight="1"
                         android:background="@drawable/shape_of_elements"
                         android:gravity="bottom"
                         android:hint="@string/hint_2"
                         android:inputType="textMultiLine"
                         android:maxLength="200"
-                        android:textSize="18sp"
                         android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
                         android:paddingTop="10dp"
+                        android:paddingRight="10dp"
                         android:paddingBottom="5dp"
-                        android:layout_marginBottom="20dp"
-                        android:scrollbars="vertical"/>
+                        android:scrollbars="vertical"
+                        android:textSize="18sp" />
                 </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/button"
                     style="@style/AppCompatButtonStyle"
+                    android:layout_marginTop="-5dp"
                     android:text="@string/application" />
 
             </LinearLayout>

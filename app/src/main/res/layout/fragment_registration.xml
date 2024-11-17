@@ -10,6 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_entry"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/rus_white"
+            app:title="Выход"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/black" />
 
         <TextView
             android:id="@+id/registration_header"
@@ -17,7 +28,7 @@
             android:text="@string/registration_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:textColor="@color/black"
             android:textSize="25dp" />
@@ -26,13 +37,17 @@
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="100dp"
             tools:ignore="UselessParent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="clip_horizontal"
-                android:layout_margin="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginTop="5dp"
                 android:orientation="vertical"
                 android:padding="4dp">
@@ -42,7 +57,6 @@
                     android:id="@+id/fio_f"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="15dp"
                     android:gravity="center"
                     android:text="@string/fio_f"

@@ -2,10 +2,15 @@ package Manager;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
@@ -23,6 +28,8 @@ import android.widget.Toast;
 import com.example.cncsection.R;
 
 import java.util.Calendar;
+
+import Enter.EntryActivity;
 
 public class CreateOrderFragment extends Fragment {
 
@@ -287,6 +294,23 @@ public class CreateOrderFragment extends Fragment {
         return new CreateOrderFragment();
     }
 
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        //inflater.inflate(R.menu.back_menu, menu); // Замените на ваш файл меню
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // Переход к EntryActivity
+                Intent intent = new Intent(getActivity(), EntryActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
 
 

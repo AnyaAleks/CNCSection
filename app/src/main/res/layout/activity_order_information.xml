@@ -13,12 +13,26 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_operatorInfo"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/rus_white"
+            android:layout_marginTop="40dp"
+            app:title="Просмотр"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/black" />
+
+
         <TextView
             android:id="@+id/entry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/infoorder_caps"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:textColor="@color/black"
             android:textSize="25dp" />
@@ -34,13 +48,16 @@
 
         <ScrollView
             android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
             android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="clip_horizontal"
-                android:layout_margin="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="vertical"
                 android:padding="4dp">
 
@@ -48,7 +65,6 @@
                     android:id="@+id/item_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="15dp"
                     android:gravity="center"
                     android:text="@string/item"

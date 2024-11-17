@@ -14,12 +14,24 @@
         android:orientation="vertical"
         tools:ignore="UselessParent">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_entry"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/rus_white"
+            app:title="Выход"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/black" />
+
         <TextView
             android:id="@+id/entry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/list_people_caps"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:textColor="@color/black"
             android:textSize="25sp" />
@@ -44,7 +56,6 @@
                 android:orientation="vertical">
 
                 <SearchView
-                    android:layout_marginTop="15dp"
                     android:id="@+id/searchView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
