@@ -1,5 +1,6 @@
 package Operator;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,8 +52,6 @@ public class MainActivityOperator extends AppCompatActivity {
 //            }
 //            return false;
 //        }
-//    };
-
 
     private void loadFragment(Fragment fragment){
         FragmentTransaction ft=getSupportFragmentManager().beginTransaction();

@@ -93,7 +93,7 @@ public class OperatorOrderFragment extends Fragment {
         Log.d("FragmentBackStack", "Back stack entry count: " + backStackEntryCount);
 
         // Настройка Toolbar
-        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        Toolbar toolbar = view.findViewById(R.id.toolbar_operator);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
