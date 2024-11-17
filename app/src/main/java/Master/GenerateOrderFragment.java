@@ -2,39 +2,28 @@ package Master;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.cncsection.MasterAdapter;
-import com.example.cncsection.OrderInformation;
 import com.example.cncsection.R;
-import com.example.cncsection.StatusAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.Objects;
 
 public class GenerateOrderFragment extends Fragment {
 
@@ -42,12 +31,13 @@ public class GenerateOrderFragment extends Fragment {
 
     private MasterAdapter adapter;
     ImageView calendar_button;
-    RecyclerView rvContacts;
+    ListView lvBenches;
 
 
     ImageButton add_button_bench;
+    ImageButton update_button_bench;
 
-    private String[] benches = new String[1];
+    private ArrayList<MasterString> benches = new ArrayList<>();
     private String[] equipments = new String[1];
     private String[] operators = new String[1];
     private String[] tools = new String[1];
@@ -92,15 +82,16 @@ public class GenerateOrderFragment extends Fragment {
 
         dbMaster = new DBMaster(getActivity());
 
-        rvContacts = view.findViewById(R.id.bench_list_view);
+        lvBenches = view.findViewById(R.id.bench_list_view);
 
         add_button_bench =  view.findViewById(R.id.add_button_bench);
+        update_button_bench =  view.findViewById(R.id.update_button_bench);
 
-        List<String> list = new ArrayList<>();
-        adapter = new MasterAdapter(list);
+        ArrayList<MasterString> list = new ArrayList<>();
+        adapter = new MasterAdapter(getActivity(),list);
 
-        rvContacts.setAdapter(adapter);
-        rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
+        lvBenches.setAdapter(adapter);
+        //rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
         Cursor csrb = dbMaster.getAll("Machine");
@@ -145,6 +136,17 @@ public class GenerateOrderFragment extends Fragment {
         operator_list = view.findViewById(R.id.operator_list);
         tool_list = view.findViewById(R.id.tool_list);
 
+        benches.add(new MasterString("1"));
+        benches.add(new MasterString("2"));
+        benches.add(new MasterString("3"));
+        benches.add(new MasterString("4"));
+        benches.add(new MasterString("5"));
+        benches.add(new MasterString("6"));
+        benches.add(new MasterString("7"));
+        benches.add(new MasterString("8"));
+        benches.add(new MasterString("9"));
+        adapter = new MasterAdapter(getActivity(),benches);
+        lvBenches.setAdapter(adapter);
 //        benches[0] = "";
 //        equipments[0] = "";
 //        operators[0] = "";
@@ -180,6 +182,26 @@ public class GenerateOrderFragment extends Fragment {
                 AddBench(view);
             }
         });
+        update_button_bench.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //AddBench(view);
+
+                int i=0;
+                while (i<benches.size())
+                {
+                    if(Objects.equals(benches.get(i).getName(), "empty"))
+                    {
+                        benches.remove(i);
+                    }
+                    else
+                        i++;
+                }
+
+                adapter = new MasterAdapter(getActivity(),benches);
+                lvBenches.setAdapter(adapter);
+            }
+        });
 
         return view;
     }
@@ -212,165 +234,168 @@ public class GenerateOrderFragment extends Fragment {
         boolean flag = false;
         if(!flag)
         {
+            benches.add(new MasterString(newBench));
+            adapter = new MasterAdapter(getActivity(),benches);
+            lvBenches.setAdapter(adapter);
             //List<String> list = new ArrayList<>();
             //list.add(newBench);
-            adapter.statuses.add(newBench);
+            //adapter..add(newBench);
             //adapter.add(newBench);
-            //rvContacts.setAdapter(adapter);
+//            lvBenches.setAdapter(adapter);
             //rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
         }
 
 
     }
 
-    public void DeleteBench(View view)
-    {
-        String newBench=bench_spinner.getSelectedItem().toString();
-        int delId = 0;
-        //if(benches.length>1)
-        for (int i=1;i<benches.length;i++)
-        {
-            if(newBench==benches[i])
-                delId = i;
-        }
-        if(delId >0)
-        {
-            String[] newBenches = new String[benches.length-1];
-            newBenches[0]=benches[0];
-
-            boolean flag=false;
-            for (int i=1;i<benches.length-1;i++)
-            {
-                if(i==delId)
-                    flag = true;
-
-                if(!flag)
-                {
-                    newBenches[i]=benches[i];
-                }
-                else
-                {
-                    newBenches[i]=benches[i+1];
-                }
-            }
-            benches=newBenches;
-            OutPutList(benches,bench_list);
-        }
-    }
-
-
-    public void AddEquipment(View view)
-    {
-        String newEquipment=equipment_spinner.getSelectedItem().toString();
-        boolean flag = false;
-        //if(benches.length>1)
-        for (String element : equipments)
-        {
-            if(newEquipment==element)
-                flag = true;
-        }
-        if(!flag)
-        {
-            String[] newEquipmentes = new String[equipments.length+1];
-            for (int i=0;i<equipments.length;i++)
-            {
-                newEquipmentes[i]=equipments[i];
-            }
-            newEquipmentes[newEquipmentes.length-1]=newEquipment;
-            equipments=newEquipmentes;
-            OutPutList(equipments,equipment_list);
-        }
-    }
-
-    public void DeleteEquipment(View view)
-    {
-        String newEquipment=bench_spinner.getSelectedItem().toString();
-        int delId = 0;
-        for (int i=1;i<equipments.length;i++)
-        {
-            if(newEquipment==equipments[i])
-                delId = i;
-        }
-        if(delId >0)
-        {
-            String[] newBenches = new String[equipments.length-1];
-            newBenches[0]=equipments[0];
-
-            boolean flag=false;
-            for (int i=1;i<equipments.length-1;i++)
-            {
-                if(i==delId)
-                    flag = true;
-
-                if(!flag)
-                {
-                    newBenches[i]=equipments[i];
-                }
-                else
-                {
-                    newBenches[i]=equipments[i+1];
-                }
-            }
-            equipments=newBenches;
-            OutPutList(equipments,equipment_list);
-        }
-    }
-
-    public void AddOperator(View view)
-    {
-        String newOperator=operator_spinner.getSelectedItem().toString();
-        boolean flag = false;
-        //if(benches.length>1)
-        for (String element : operators)
-        {
-            if(newOperator==element)
-                flag = true;
-        }
-        if(!flag)
-        {
-            String[] newOperators = new String[operators.length+1];
-            for (int i=0;i<operators.length;i++)
-            {
-                newOperators[i]=operators[i];
-            }
-            newOperators[newOperators.length-1]=newOperator;
-            operators=newOperators;
-            OutPutList(operators,operator_list);
-        }
-    }
-
-    public void DeleteOperator(View view)
-    {
-        String newOperator=operator_spinner.getSelectedItem().toString();
-        int delId = 0;
-        for (int i=1;i<operators.length;i++)
-        {
-            if(newOperator==operators[i])
-                delId = i;
-        }
-        if(delId >0)
-        {
-            String[] newBenches = new String[operators.length-1];
-            newBenches[0]=operators[0];
-
-            boolean flag=false;
-            for (int i=1;i<operators.length-1;i++)
-            {
-                if(i==delId)
-                    flag = true;
-
-                if(!flag)
-                {
-                    newBenches[i]=operators[i];
-                }
-                else
-                {
-                    newBenches[i]=operators[i+1];
-                }
-            }
-            operators=newBenches;
-            OutPutList(operators,operator_list);
-        }
-    }
+//    public void DeleteBench(View view)
+//    {
+//        String newBench=bench_spinner.getSelectedItem().toString();
+//        int delId = 0;
+//        //if(benches.length>1)
+//        for (int i=1;i<benches.length;i++)
+//        {
+//            if(newBench==benches[i])
+//                delId = i;
+//        }
+//        if(delId >0)
+//        {
+//            String[] newBenches = new String[benches.length-1];
+//            newBenches[0]=benches[0];
+//
+//            boolean flag=false;
+//            for (int i=1;i<benches.length-1;i++)
+//            {
+//                if(i==delId)
+//                    flag = true;
+//
+//                if(!flag)
+//                {
+//                    newBenches[i]=benches[i];
+//                }
+//                else
+//                {
+//                    newBenches[i]=benches[i+1];
+//                }
+//            }
+//            benches=newBenches;
+//            OutPutList(benches,bench_list);
+//        }
+//    }
+//
+//
+//    public void AddEquipment(View view)
+//    {
+//        String newEquipment=equipment_spinner.getSelectedItem().toString();
+//        boolean flag = false;
+//        //if(benches.length>1)
+//        for (String element : equipments)
+//        {
+//            if(newEquipment==element)
+//                flag = true;
+//        }
+//        if(!flag)
+//        {
+//            String[] newEquipmentes = new String[equipments.length+1];
+//            for (int i=0;i<equipments.length;i++)
+//            {
+//                newEquipmentes[i]=equipments[i];
+//            }
+//            newEquipmentes[newEquipmentes.length-1]=newEquipment;
+//            equipments=newEquipmentes;
+//            OutPutList(equipments,equipment_list);
+//        }
+//    }
+//
+//    public void DeleteEquipment(View view)
+//    {
+//        String newEquipment=bench_spinner.getSelectedItem().toString();
+//        int delId = 0;
+//        for (int i=1;i<equipments.length;i++)
+//        {
+//            if(newEquipment==equipments[i])
+//                delId = i;
+//        }
+//        if(delId >0)
+//        {
+//            String[] newBenches = new String[equipments.length-1];
+//            newBenches[0]=equipments[0];
+//
+//            boolean flag=false;
+//            for (int i=1;i<equipments.length-1;i++)
+//            {
+//                if(i==delId)
+//                    flag = true;
+//
+//                if(!flag)
+//                {
+//                    newBenches[i]=equipments[i];
+//                }
+//                else
+//                {
+//                    newBenches[i]=equipments[i+1];
+//                }
+//            }
+//            equipments=newBenches;
+//            OutPutList(equipments,equipment_list);
+//        }
+//    }
+//
+//    public void AddOperator(View view)
+//    {
+//        String newOperator=operator_spinner.getSelectedItem().toString();
+//        boolean flag = false;
+//        //if(benches.length>1)
+//        for (String element : operators)
+//        {
+//            if(newOperator==element)
+//                flag = true;
+//        }
+//        if(!flag)
+//        {
+//            String[] newOperators = new String[operators.length+1];
+//            for (int i=0;i<operators.length;i++)
+//            {
+//                newOperators[i]=operators[i];
+//            }
+//            newOperators[newOperators.length-1]=newOperator;
+//            operators=newOperators;
+//            OutPutList(operators,operator_list);
+//        }
+//    }
+//
+//    public void DeleteOperator(View view)
+//    {
+//        String newOperator=operator_spinner.getSelectedItem().toString();
+//        int delId = 0;
+//        for (int i=1;i<operators.length;i++)
+//        {
+//            if(newOperator==operators[i])
+//                delId = i;
+//        }
+//        if(delId >0)
+//        {
+//            String[] newBenches = new String[operators.length-1];
+//            newBenches[0]=operators[0];
+//
+//            boolean flag=false;
+//            for (int i=1;i<operators.length-1;i++)
+//            {
+//                if(i==delId)
+//                    flag = true;
+//
+//                if(!flag)
+//                {
+//                    newBenches[i]=operators[i];
+//                }
+//                else
+//                {
+//                    newBenches[i]=operators[i+1];
+//                }
+//            }
+//            operators=newBenches;
+//            OutPutList(operators,operator_list);
+//        }
+//    }
 
 }

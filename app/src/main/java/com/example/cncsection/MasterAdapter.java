@@ -1,94 +1,50 @@
 package com.example.cncsection;
-
-import static android.app.PendingIntent.getActivity;
-
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.view.View;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.List;
 
-public class MasterAdapter extends RecyclerView.Adapter<MasterAdapter.ViewHolder> {
+import Master.MasterString;
 
-    public List<String> statuses;
-    private MasterAdapter.OnItemClickListener mListener;
+public class MasterAdapter extends ArrayAdapter<MasterString> {
 
-    public MasterAdapter(List<String> st) {
-        statuses = st;
-    }
+    public MasterAdapter(@NonNull Context context, ArrayList<MasterString> arrayList) {
 
-    // method for filtering our recyclerview items.
-    @SuppressLint("NotifyDataSetChanged")
-    public void filterList(ArrayList<String> filteredList) {
-        this.statuses = filteredList;
-        notifyDataSetChanged();
+        super(context, 0, arrayList);
     }
 
     @NonNull
     @Override
-    public MasterAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View contactView = inflater.inflate(R.layout.fragment_generate_order, parent, false);
-        return new ViewHolder(contactView, mListener);
-    }
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        View currentItemView = convertView;
 
-    public void setOnItemClickListener(MasterAdapter.OnItemClickListener onItemClickListener) {
-        mListener=onItemClickListener;
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick(int position);
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView applicationView;
-        //public TextView statusView;
-        ImageButton stateInformerButton;
-
-        public ViewHolder(View itemView, MasterAdapter.OnItemClickListener listener) {
-            super(itemView);
-            applicationView = (TextView) itemView.findViewById(R.id.input_number);
-            //statusView = (TextView) itemView.findViewById(R.id.input_status);
-            stateInformerButton = (ImageButton) itemView.findViewById(R.id.stateInformerInList);
-
-            applicationView.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v){
-                    if(listener!=null){
-                        int position=getAdapterPosition();
-                        if(position!=RecyclerView.NO_POSITION){
-                            listener.onItemClick(position);
-                        }
-                    }
-                }
-            });
+        if (currentItemView == null) {
+            currentItemView = LayoutInflater.from(getContext()).inflate(R.layout.delegate_master, parent, false);
         }
-    }
 
-    @Override
-    public void onBindViewHolder(MasterAdapter.ViewHolder holder, int position) {
-        String status = statuses.get(position);
-        TextView textView = holder.applicationView;
-        textView.setText(status);
-        //TextView textView2 = holder.statusView;
-        //textView2.setText(status.getStatus());
-        ImageButton stateInformerButton = holder.stateInformerButton;
-    }
+        MasterString currentNumberPosition = getItem(position);
 
-    @Override
-    public int getItemCount() {
-        return statuses.size();
-    }
 
-    public void add(String s) {
+        TextView itemText = currentItemView.findViewById(R.id.input_name_item);
+        itemText.setText(currentNumberPosition.getName());
+
+        ImageButton deleteImage = currentItemView.findViewById(R.id.delete_button);
+        deleteImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MasterString currentNumberPosition = getItem(position);
+                currentNumberPosition.Delete();
+            }
+        });
+
+        // then return the recyclable view
+        return currentItemView;
     }
 }

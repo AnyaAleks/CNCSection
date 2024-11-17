@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/rus_white"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context="Master.GenerateOrderFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,86 +68,32 @@
                         android:layout_height="35dp"
                         android:layout_gravity="start"
                         android:layout_marginEnd="5dp"
-                        android:layout_toStartOf="@+id/delete_button_bench"
+                        android:layout_toStartOf="@+id/update_button_bench"
                         android:background="@drawable/baseline_add_circle_24"
                         />
 
                     <ImageButton
-                        android:id="@+id/delete_button_bench"
+                        android:id="@+id/update_button_bench"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_gravity="end"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="5dp"
-                        android:background="@drawable/baseline_do_disturb_on_24"
-                        android:onClick="DeleteBench" />
+                        android:background="@drawable/baseline_add_circle"
+                        android:onClick="UpdateBench" />
                 </RelativeLayout>
 
 
 
-                <androidx.recyclerview.widget.RecyclerView
+                <ListView
                     android:id="@+id/bench_list_view"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/input_number"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:textSize="18dp"
-                            android:textColor="@color/black"/>
-
-                        <ImageButton
-                            android:id="@+id/stateInformerInList"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/osnaska"
-                            android:background="@drawable/state_color_red">
-                        </ImageButton>
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/rus_dark_blue" />
-
-                    <TextView
-                        android:id="@+id/input_status2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textSize="18dp"
-                        android:textColor="@color/black"/>
-                </LinearLayout>
-
-
-
-
-
-
-
-
-
-
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_of_elements"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="10dp"
+                    />
 
                 <TextView
                     android:id="@+id/equipment_list"
@@ -392,7 +339,7 @@
                         android:padding="12dp"
                         android:hint="@string/calendar_description"
                         android:inputType="date"
-                        android:paddingEnd="60dp"
+                        android:paddingEnd="20dp"
                         android:textSize="18sp" />
 
                     <ImageButton
