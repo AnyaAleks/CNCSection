@@ -186,8 +186,20 @@ public class ListOrderFragment extends Fragment {
                         .replace(R.id.fragment_container_operator, operatorOrderFragment)
                         .addToBackStack(null)
                         .commit();
-                Log.d("FragmentTransaction", "OperatorOrderFragment added to back stack");
             }
+//            if(userSettings.getRoleUser() == 2){
+//                OperatorOrderFragment operatorOrderFragment = OperatorOrderFragment.newInstance();
+//
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("idOrder", statusList.get(position).getIdOrder());
+//                operatorOrderFragment.setArguments(bundle);
+//
+//                getActivity().getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_container_operator, operatorOrderFragment)
+//                        .addToBackStack(null)
+//                        .commit();
+//                Log.d("FragmentTransaction", "OperatorOrderFragment added to back stack");
+//            }
         });
     }
 
