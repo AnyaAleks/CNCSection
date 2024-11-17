@@ -115,6 +115,8 @@ public class OperatorOrderFragment extends Fragment {
         idOrder = bundle.getInt("idOrder");
         idOrderTextView.setText("№ " + idOrder);
 
+
+
         //Заполнение списка для состояний индикатора
         Cursor csr = dbStaff.getAll("Status");
         while (csr.moveToNext()) {
@@ -172,6 +174,15 @@ public class OperatorOrderFragment extends Fragment {
 
             }
         });
+        //Установка значений при входе в выпадающий список
+        Cursor csrRequest = dbStaff.getAll("Request");
+        while (csrRequest.moveToNext()) {
+            if(csrRequest.getInt(csrRequest.getColumnIndex("id_order")) == idOrder){
+
+                int _id_status = csrRequest.getInt(csrRequest.getColumnIndex("id_status"));
+                statesSpinner.setSelection(_id_status-1);
+            }
+        }
 
         saveButton.setOnClickListener(new View.OnClickListener()
         {
@@ -191,13 +202,16 @@ public class OperatorOrderFragment extends Fragment {
 
     //не работает логика перехода назад к фрагменту со списком заявок
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            requireActivity().onBackPressed();
-            Log.d("OperatorOrderFragment", "Back button pressed");
-            return true;
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case android.R.id.home:
+                getActivity().getFragmentManager().popBackStack();
+//                startActivity(new Intent(this, SignInActivity.class));
+//                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     public static OperatorOrderFragment newInstance(){

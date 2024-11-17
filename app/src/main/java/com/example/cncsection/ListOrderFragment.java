@@ -90,6 +90,7 @@ public class ListOrderFragment extends Fragment {
         // Инициализация списка статусов
         dbStaff = new DBStaff(getActivity());
         Cursor csr = dbStaff.getAll("Request");
+        statuses.clear();
         while (csr.moveToNext()) {
             statuses.add(new Status(csr.getString(csr.getColumnIndex("part_number"))
                     , csr.getInt(csr.getColumnIndex("id_status"))
@@ -140,16 +141,15 @@ public class ListOrderFragment extends Fragment {
                     Log.d("CountR", String.valueOf(statuses.size()) + "--" + csrCount.getCount());
 
                     statuses.clear();
+                    ArrayList<Status> statuses2 = new ArrayList<Status>();
                     while (csrCount.moveToNext()) {
-                        statuses.add(new Status(csrCount.getString(csrCount.getColumnIndex("part_number"))
+                        statuses2.add(new Status(csrCount.getString(csrCount.getColumnIndex("part_number"))
                                 , csrCount.getInt(csrCount.getColumnIndex("id_status"))
                                 , csrCount.getInt(csrCount.getColumnIndex("id_order"))
                         ));
                     }
-
-                    adapter = new StatusAdapter(statuses);
-                    rvContacts.setAdapter(adapter);
-                    rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
+                    statuses.addAll(statuses2);
+                    adapter.notifyDataSetChanged();
                 }
             }
 
@@ -186,8 +186,20 @@ public class ListOrderFragment extends Fragment {
                         .replace(R.id.fragment_container_operator, operatorOrderFragment)
                         .addToBackStack(null)
                         .commit();
-                Log.d("FragmentTransaction", "OperatorOrderFragment added to back stack");
             }
+//            if(userSettings.getRoleUser() == 2){
+//                OperatorOrderFragment operatorOrderFragment = OperatorOrderFragment.newInstance();
+//
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("idOrder", statusList.get(position).getIdOrder());
+//                operatorOrderFragment.setArguments(bundle);
+//
+//                getActivity().getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_container_operator, operatorOrderFragment)
+//                        .addToBackStack(null)
+//                        .commit();
+//                Log.d("FragmentTransaction", "OperatorOrderFragment added to back stack");
+//            }
         });
     }
 
