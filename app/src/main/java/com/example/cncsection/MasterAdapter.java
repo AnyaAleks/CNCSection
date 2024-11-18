@@ -40,7 +40,8 @@ public class MasterAdapter extends ArrayAdapter<MasterString> {
             @Override
             public void onClick(View v) {
                 MasterString currentNumberPosition = getItem(position);
-                currentNumberPosition.Delete();
+                remove(currentNumberPosition);
+                notifyDataSetChanged();
             }
         });
 

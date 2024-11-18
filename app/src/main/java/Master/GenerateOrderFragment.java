@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +28,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.cncsection.MasterAdapter;
+import com.example.cncsection.OrderInformation;
 import com.example.cncsection.R;
 
 import java.util.ArrayList;

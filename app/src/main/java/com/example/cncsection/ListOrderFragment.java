@@ -227,7 +227,7 @@ public class ListOrderFragment extends Fragment {
                         .addToBackStack(null)
                         .commit();
             }
-            //Тут будет редактирование (возможно то же окно)
+            //Тут будет редактирование (возможно то же окно,,,)
 //            if(userSettings.getRoleUser() == 2){
 //                GenerateOrderFragment generateOrderFragment = GenerateOrderFragment.newInstance();
 //
