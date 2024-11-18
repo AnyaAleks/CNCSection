@@ -82,7 +82,7 @@ public class EntryActivity extends AppCompatActivity {
 
                         //Сохранение настроек
                         userSettings.setRoleUser(csr.getInt(csrAccess.getColumnIndex("id_access")));
-                        userSettings.setIdUser(csr.getString(csr.getColumnIndex("id_staff")));
+                        userSettings.setIdUser(csr.getInt(csrAccess.getColumnIndex("id_staff")));
                         saveJsonData();
 
                         //Переход в окно

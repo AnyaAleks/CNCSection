@@ -8,6 +8,7 @@
     tools:context="Master.GenerateOrderFragment">
 
     <LinearLayout
+        android:id="@+id/mainLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -36,6 +37,14 @@
             android:text="@string/ordergenerate_caps"
             android:textColor="@color/black"
             android:textSize="25dp" />
+        <TextView
+            android:id="@+id/idRequestTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="id"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
 
         <ScrollView
             android:id="@+id/scroll_view"
@@ -361,12 +370,32 @@
 
 
                 <TextView
-                    android:id="@+id/estimated_production_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="15dp"
                     android:text="@string/estimated_time"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/productionTimeInput"
+                    android:hint="300"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_input"
+                    android:padding="12dp"
+                    android:gravity="left"
+                    android:inputType="text"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/estimated_production_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="Дата оформления"
                     android:textSize="18sp" />
 
                 <RelativeLayout
@@ -398,7 +427,7 @@
                         android:scaleType="fitCenter" />
                 </RelativeLayout>
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/button"
+                    android:id="@+id/addOrderButton"
                     style="@style/AppCompatButtonStyle"
                     android:layout_marginTop="-5dp"
                     android:text="Оформить заявку" />

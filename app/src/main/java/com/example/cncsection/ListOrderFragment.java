@@ -113,7 +113,7 @@ public class ListOrderFragment extends Fragment {
         //Доставание из настроек
         loadJsonData();
 
-        //Только у менеджера и мастера будет нижнее меню => убрать отступ
+        //Только у менеджера будет нижнее меню => убрать отступ
         mainLinearLayout = view.findViewById(R.id.mainLinearLayout);
         if(userSettings.getRoleUser() != 1){
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mainLinearLayout
@@ -233,7 +233,6 @@ public class ListOrderFragment extends Fragment {
                         .replace(R.id.fragment_container_master, generateOrderFragment)
                         .addToBackStack(null)
                         .commit();
-                Log.d("FragmentTransaction", "OperatorOrderFragment added to back stack");
             }
         });
     }

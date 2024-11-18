@@ -2,7 +2,9 @@ package Master;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -22,16 +24,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cncsection.ListOrderFragment;
 import com.example.cncsection.MasterAdapter;
 import com.example.cncsection.OrderInformation;
 import com.example.cncsection.R;
+import com.example.cncsection.UserSettings;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -41,6 +50,14 @@ import java.util.Objects;
 import Enter.EntryActivity;
 
 public class GenerateOrderFragment extends Fragment {
+
+    int idOrder;
+    TextView idRequestTextView;
+    EditText productionTimeInput;
+
+    UserSettings userSettings = new UserSettings();
+
+    LinearLayout mainLinearLayout;
 
     TextView bench_list, equipment_list, operator_list, tool_list, input_estimated_production_time;
 
@@ -59,6 +76,8 @@ public class GenerateOrderFragment extends Fragment {
     ImageButton update_button_operator;
     ImageButton add_button_tool;
     ImageButton update_button_tool;
+
+    Button addOrderButton;
 
     private ArrayList<MasterString> benches = new ArrayList<>();
     private ArrayList<MasterString> equipments = new ArrayList<>();
@@ -151,6 +170,9 @@ public class GenerateOrderFragment extends Fragment {
         add_button_tool =  view.findViewById(R.id.add_button_tool);
         update_button_tool =  view.findViewById(R.id.update_button_tool);
 
+        addOrderButton = view.findViewById(R.id.addOrderButton);
+        productionTimeInput = view.findViewById(R.id.productionTimeInput);
+
         ArrayList<MasterString> list = new ArrayList<>();
         adapter = new MasterAdapter(getActivity(),list);
 
@@ -160,6 +182,21 @@ public class GenerateOrderFragment extends Fragment {
         lvTools.setAdapter(adapter);
         //rvContacts.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        //Доставание из настроек
+        loadJsonData();
+
+        //Только у менеджера будет нижнее меню => убрать отступ
+        mainLinearLayout = view.findViewById(R.id.mainLinearLayout);
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mainLinearLayout
+                .getLayoutParams();
+        layoutParams.setMargins(0, 0, 0, 0);
+
+
+        idRequestTextView = view.findViewById(R.id.idRequestTextView);
+        //Получение id
+        Bundle bundle = this.getArguments();
+        idOrder = bundle.getInt("idOrder");
+        idRequestTextView.setText("№ " + idOrder);
 
         Cursor csrb = dbMaster.getAll("Machine");
         while (csrb.moveToNext()) {
@@ -363,6 +400,37 @@ public class GenerateOrderFragment extends Fragment {
             }
         });
 
+        addOrderButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                //ПРОВЕРКУ НА НЕПУСТОЕ ВРЕМЯ
+                //Сделать календарь с датов
+                //создали заявку
+                dbMaster.addToOrder(userSettings.getIdUser(), String.valueOf(productionTimeInput.getText()), idOrder, "18.11.2024");
+
+                //забрали id у новой заявки
+                Cursor csrOrder = dbMaster.getAll("Order");
+                int id_current_order = 0;
+                while (csrOrder.moveToNext()) {
+                    if(idOrder == csrOrder.getInt(csrOrder.getColumnIndex("id_request"))){
+                        id_current_order = csrOrder.getInt(csrOrder.getColumnIndex("id_order"));
+                    }
+                }
+
+                //Machine
+                for(int i=0; i<benches.size(); i++){
+                    //СДЕЛАТЬ id СТАНКА и тп в arrayadapter
+                    //dbMaster.addToOrder_and_Machine(id_current_order, benches.get(i).);
+                }
+
+                //Operator addToOrder_and_Operator
+                //Osnaska addToOrder_and_Osnaska
+                //Tool addToOrder_and_Tool
+            }
+        });
+
         return view;
     }
 
@@ -388,4 +456,16 @@ public class GenerateOrderFragment extends Fragment {
         return new GenerateOrderFragment();
     }
 
+    //Доставание из настроек
+    public void loadJsonData() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("user settings", null);
+        userSettings = gson.fromJson(json, UserSettings.class);
+
+        if (userSettings == null) {
+            Toast.makeText(getActivity(), "Empty Settings!", Toast.LENGTH_SHORT).show();
+            //userSettings = new UserSettings(userId);
+        }
+    }
 }

@@ -1,7 +1,7 @@
 package com.example.cncsection;
 
 public class UserSettings {
-    public String idUser;
+    public int idUser;
     public int roleUser;
 
     public int modeUser;
@@ -10,7 +10,7 @@ public class UserSettings {
     public int localisationUser;
     public String passwordUser;
 
-    public UserSettings(String idUser, String passwordUser){
+    public UserSettings(int idUser, String passwordUser){
         this.idUser = idUser;
         this.passwordUser = passwordUser;
         this.modeUser=1; //светлая тема
@@ -22,7 +22,7 @@ public class UserSettings {
     public UserSettings(){
     }
 
-    public void setIdUser(String idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 
@@ -54,7 +54,7 @@ public class UserSettings {
         return passwordUser;
     }
 
-    public String getIdUser() {
+    public int getIdUser() {
         return idUser;
     }
 

@@ -82,6 +82,78 @@ class DBMaster extends SQLiteOpenHelper {
         return rowID;
     }
 
+    public long addToOrder(int id_staff_master, String production_time, int id_request, String date_start) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //Создание объекта для данных (добавления новых строк в таблицу)
+        ContentValues cv = new ContentValues();
+        cv.put("id_staff_master", id_staff_master);
+        cv.put("production_time", production_time);
+        cv.put("id_request", id_request);
+        cv.put("date_start", date_start);
+
+        long rowID = db.insert("Order", null, cv);
+        Log.e("LogTag", "addToOrder" + " rowID " +rowID);
+
+        return rowID;
+    }
+
+    public long addToOrder_and_Machine(int id_order, int id_machine) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //Создание объекта для данных (добавления новых строк в таблицу)
+        ContentValues cv = new ContentValues();
+        cv.put("id_order", id_order);
+        cv.put("id_machine", id_machine);
+
+        long rowID = db.insert("Order_and_Machine", null, cv);
+        Log.e("LogTag", "addToOrder_and_Machine" + " rowID " +rowID);
+
+        return rowID;
+    }
+
+    public long addToOrder_and_Operator(int id_order, int id_staff) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //Создание объекта для данных (добавления новых строк в таблицу)
+        ContentValues cv = new ContentValues();
+        cv.put("id_order", id_order);
+        cv.put("id_staff", id_staff);
+
+        long rowID = db.insert("Order_and_Operator", null, cv);
+        Log.e("LogTag", "addToOrder_and_Operator" + " rowID " +rowID);
+
+        return rowID;
+    }
+
+    public long addToOrder_and_Osnaska(int id_order, int id_osnaska) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //Создание объекта для данных (добавления новых строк в таблицу)
+        ContentValues cv = new ContentValues();
+        cv.put("id_order", id_order);
+        cv.put("id_osnaska", id_osnaska);
+
+        long rowID = db.insert("Order_and_Osnaska", null, cv);
+        Log.e("LogTag", "addToOrder_and_Osnaska" + " rowID " +rowID);
+
+        return rowID;
+    }
+
+    public long addToOrder_and_Tool(int id_order, int id_tool) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //Создание объекта для данных (добавления новых строк в таблицу)
+        ContentValues cv = new ContentValues();
+        cv.put("id_order", id_order);
+        cv.put("id_tool", id_tool);
+
+        long rowID = db.insert("Order_and_Tool", null, cv);
+        Log.e("LogTag", "addToOrder_and_Tool" + " rowID " +rowID);
+
+        return rowID;
+    }
+
     /*
         Copies the database from the assets folder to the apps database folder (with logging)
         note databases folder is typically data/data/the_package_name/database
