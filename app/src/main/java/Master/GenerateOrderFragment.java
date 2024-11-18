@@ -12,6 +12,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.cncsection.ListOrderFragment;
 import com.example.cncsection.MasterAdapter;
 import com.example.cncsection.OrderInformation;
 import com.example.cncsection.R;
@@ -93,25 +95,6 @@ public class GenerateOrderFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-
-    }
-
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        //inflater.inflate(R.menu.back_menu, menu); // Замените на ваш файл меню
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // Переход к EntryActivity
-                Intent intent = new Intent(getActivity(), EntryActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     @SuppressLint({"MissingInflatedId", "Range"})
@@ -128,6 +111,26 @@ public class GenerateOrderFragment extends Fragment {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_new_24);
         }
+
+        // Установка слушателя для обработки нажатий на элементы меню
+        toolbar_entry.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Переход к ListOrderFragment
+                ListOrderFragment listOrderFragment = new ListOrderFragment();
+
+//                // Создаем Bundle и передаем idOrder
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("idOrder", idOrder); // Передаем idOrder, если нужно
+//                listOrderFragment.setArguments(bundle);
+
+                // Заменяем текущий фрагмент на ListOrderFragment
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container_master, listOrderFragment); // Убедитесь, что ID контейнера правильный
+                transaction.addToBackStack(null); // Добавляем в стек возврата
+                transaction.commit();
+            }
+        });
 
         dbMaster = new DBMaster(getActivity());
 

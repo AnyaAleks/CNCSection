@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -51,7 +52,6 @@ public class ListOfPeopleFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
     }
 
     @SuppressLint({"MissingInflatedId", "Range"})
@@ -69,6 +69,18 @@ public class ListOfPeopleFragment extends Fragment {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_new_24);
         }
+
+        // Установка слушателя для обработки нажатий на элементы меню
+        toolbarentry.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Переход к EntryActivity
+                Intent intent = new Intent(getActivity(), EntryActivity.class);
+                startActivity(intent);
+                getActivity().finish(); // Закрываем текущую активность
+            }
+        });
+
 
         searchView = view.findViewById(R.id.searchView);
         rvContacts = view.findViewById(R.id.list);
@@ -204,20 +216,5 @@ public class ListOfPeopleFragment extends Fragment {
         return new ListOfPeopleFragment();
     }
 
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        //inflater.inflate(R.menu.back_menu, menu); // Замените на ваш файл меню
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // Переход к EntryActivity
-                Intent intent = new Intent(getActivity(), EntryActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+
 }

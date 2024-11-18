@@ -24,13 +24,13 @@ public class MainActivityMaster extends AppCompatActivity {
         setContentView(R.layout.activity_main_master);
         //getWindow().setNavigationBarColor(getResources().getColor(R.color.dark_blue));
 
-        BottomNavigationView navigation=(BottomNavigationView) findViewById(R.id.bottom_navigation_master);
-        View fragmentContainer = findViewById(R.id.fragment_container_master);
-        navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
+//        BottomNavigationView navigation=(BottomNavigationView) findViewById(R.id.bottom_navigation_master);
+//        View fragmentContainer = findViewById(R.id.fragment_container_master);
+//        navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
 
         //Появление пункта меню messages
         loadFragment(ListOrderFragment.newInstance());
-        navigation.setSelectedItemId(R.id.pageOrderList);
+//        navigation.setSelectedItemId(R.id.pageOrderList);
 
 //        fragmentContainer.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 //            @Override
@@ -45,23 +45,23 @@ public class MainActivityMaster extends AppCompatActivity {
 //        });
     }
 
-    //Выбор пункта меню NavigationBarView
-    private NavigationBarView.OnItemSelectedListener mOnNavigationItemSelectedListener = new NavigationBarView.OnItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()){
-                case R.id.pageOrderMaster:
-                    loadFragment(GenerateOrderFragment.newInstance());
-                    //getSupportActionBar().setTitle(R.string.contacts_caps);
-                    return true;
-                case R.id.pageOrderList:
-                    loadFragment(ListOrderFragment.newInstance());
-                    //getSupportActionBar().setTitle(R.string.messages_caps);
-                    return true;
-            }
-            return false;
-        }
-    };
+//    //Выбор пункта меню NavigationBarView
+//    private NavigationBarView.OnItemSelectedListener mOnNavigationItemSelectedListener = new NavigationBarView.OnItemSelectedListener() {
+//        @Override
+//        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//            switch (item.getItemId()){
+//                case R.id.pageOrderMaster:
+//                    loadFragment(GenerateOrderFragment.newInstance());
+//                    //getSupportActionBar().setTitle(R.string.contacts_caps);
+//                    return true;
+//                case R.id.pageOrderList:
+//                    loadFragment(ListOrderFragment.newInstance());
+//                    //getSupportActionBar().setTitle(R.string.messages_caps);
+//                    return true;
+//            }
+//            return false;
+//        }
+//    };
 
     private void loadFragment(Fragment fragment){
         FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
