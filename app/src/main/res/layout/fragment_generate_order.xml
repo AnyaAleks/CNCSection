@@ -89,8 +89,8 @@
                         android:id="@+id/update_button_bench"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:layout_gravity="end"
                         android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
                         android:layout_marginEnd="5dp"
                         android:background="@drawable/baseline_add_circle"
                         android:onClick="UpdateBench" />
@@ -101,7 +101,7 @@
                 <ListView
                     android:id="@+id/bench_list_view"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="250dp"
                     android:layout_weight="1"
                     android:background="@drawable/shape_of_elements"
                     android:layout_marginBottom="5dp"
@@ -139,20 +139,30 @@
                         android:layout_gravity="end"
                         android:onClick="AddEquipment"
                         android:layout_marginEnd="5dp"
-                        android:layout_toStartOf="@+id/delete_button_equipment"
+                        android:layout_toStartOf="@+id/update_button_equipment"
                         android:background="@drawable/baseline_add_circle_24" />
 
                     <ImageButton
-                        android:id="@+id/delete_button_equipment"
+                        android:id="@+id/update_button_equipment"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:layout_gravity="end"
                         android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
                         android:layout_marginEnd="5dp"
-                        android:background="@drawable/baseline_do_disturb_on_24"
-                        android:onClick="DeleteEquipment" />
+                        android:background="@drawable/baseline_add_circle"
+                        android:onClick="UpdateEquipment" />
                 </RelativeLayout>
 
+
+                <ListView
+                    android:id="@+id/equipment_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="175dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_of_elements"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="10dp"
+                    />
 
 
                 <TextView
@@ -186,19 +196,29 @@
                         android:layout_gravity="end"
                         android:onClick="AddOperator"
                         android:layout_marginEnd="5dp"
-                        android:layout_toStartOf="@+id/delete_button_operator"
+                        android:layout_toStartOf="@+id/update_button_operator"
                         android:background="@drawable/baseline_add_circle_24" />
 
                     <ImageButton
-                        android:id="@+id/delete_button_operator"
+                        android:id="@+id/update_button_operator"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:layout_gravity="end"
                         android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
                         android:layout_marginEnd="5dp"
-                        android:background="@drawable/baseline_do_disturb_on_24"
-                        android:onClick="DeleteOperator" />
+                        android:background="@drawable/baseline_add_circle"
+                        android:onClick="UpdateOperator" />
                 </RelativeLayout>
+
+                <ListView
+                    android:id="@+id/operator_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="175dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_of_elements"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="10dp"
+                    />
 
                 <TextView
                     android:id="@+id/tool_list"
@@ -231,20 +251,30 @@
                         android:layout_gravity="end"
                         android:onClick="AddTool"
                         android:layout_marginEnd="5dp"
-                        android:layout_toStartOf="@+id/delete_button_tool"
+                        android:layout_toStartOf="@+id/update_button_tool"
                         android:background="@drawable/baseline_add_circle_24" />
 
                     <ImageButton
-                        android:id="@+id/delete_button_tool"
+                        android:id="@+id/update_button_tool"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:layout_gravity="end"
                         android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
                         android:layout_marginEnd="5dp"
-                        android:background="@drawable/baseline_do_disturb_on_24"
-                        android:onClick="DeleteTool" />
+                        android:background="@drawable/baseline_add_circle"
+                        android:onClick="UpdateTool" />
                 </RelativeLayout>
 
+
+                <ListView
+                    android:id="@+id/tool_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_of_elements"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="10dp"
+                    />
 
                 <TextView
                     android:id="@+id/drawing"
