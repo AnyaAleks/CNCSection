@@ -32,17 +32,17 @@ public class MainActivityMaster extends AppCompatActivity {
         loadFragment(ListOrderFragment.newInstance());
         navigation.setSelectedItemId(R.id.pageOrderList);
 
-        fragmentContainer.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                int heightDiff = fragmentContainer.getRootView().getHeight() - fragmentContainer.getHeight();
-                if (heightDiff > 200) { // Если высота больше чем 200, клавиатура открыта
-                    navigation.setVisibility(View.GONE); // Скрываем BottomNavigationView
-                } else {
-                    navigation.setVisibility(View.VISIBLE); // Показываем BottomNavigationView
-                }
-            }
-        });
+//        fragmentContainer.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//            @Override
+//            public void onGlobalLayout() {
+//                int heightDiff = fragmentContainer.getRootView().getHeight() - fragmentContainer.getHeight();
+//                if (heightDiff > 200) { // Если высота больше чем 200, клавиатура открыта
+//                    navigation.setVisibility(View.GONE); // Скрываем BottomNavigationView
+//                } else {
+//                    navigation.setVisibility(View.VISIBLE); // Показываем BottomNavigationView
+//                }
+//            }
+//        });
     }
 
     //Выбор пункта меню NavigationBarView

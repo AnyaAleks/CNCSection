@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_marginBottom="90dp"
         tools:ignore="UselessParent">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_entry_list_staff"
@@ -33,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/list_people_caps"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:textColor="@color/black"
             android:textSize="25sp" />
@@ -79,7 +80,6 @@
                         android:id="@+id/list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="130dp"
                         android:layout_marginTop="10dp" />
                 </ScrollView>
 

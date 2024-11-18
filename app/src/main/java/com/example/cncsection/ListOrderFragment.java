@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,11 +43,6 @@ import Master.GenerateOrderFragment;
 import Operator.OperatorOrderFragment;
 import Staff.DBStaff;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ListOrderFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ListOrderFragment extends Fragment {
 
     DBStaff dbStaff;
@@ -58,6 +54,7 @@ public class ListOrderFragment extends Fragment {
     //ArrayList<Status> baseStatusList = new ArrayList<Status>();
     RecyclerView rvContacts;
     private CheckBox filterStatusCheckbox;
+    LinearLayout mainLinearLayout;
 
     public ListOrderFragment() {
         // Required empty public constructor
@@ -96,6 +93,7 @@ public class ListOrderFragment extends Fragment {
         rvContacts = view.findViewById(R.id.list);
         filterStatusCheckbox = view.findViewById(R.id.filter_status_checkbox);
 
+
 //        //Сохранение настроек
 //        userSettings.setRoleUser(csr.getInt(csrAccess.getColumnIndex("id_access")));
 //        userSettings.setIdUser(csr.getString(csr.getColumnIndex("id_staff")));
@@ -104,6 +102,14 @@ public class ListOrderFragment extends Fragment {
         //Доставание из настроек
         loadJsonData();
 
+        //Только у менеджера и мастера будет нижнее меню => убрать отступ
+        mainLinearLayout = view.findViewById(R.id.mainLinearLayout);
+        if(userSettings.getRoleUser() == 1 || userSettings.getRoleUser() == 2){
+        } else{
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mainLinearLayout
+                    .getLayoutParams();
+            layoutParams.setMargins(0, 0, 0, 0);
+        }
 
         // Инициализация списка статусов
         dbStaff = new DBStaff(getActivity());
@@ -221,19 +227,20 @@ public class ListOrderFragment extends Fragment {
                         .addToBackStack(null)
                         .commit();
             }
-            if(userSettings.getRoleUser() == 2){
-                GenerateOrderFragment generateOrderFragment = GenerateOrderFragment.newInstance();
-
-                Bundle bundle = new Bundle();
-                bundle.putInt("idOrder", statusList.get(position).getIdOrder());
-                generateOrderFragment.setArguments(bundle);
-
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container_master, generateOrderFragment)
-                        .addToBackStack(null)
-                        .commit();
-                Log.d("FragmentTransaction", "OperatorOrderFragment added to back stack");
-            }
+            //Тут будет редактирование (возможно то же окно)
+//            if(userSettings.getRoleUser() == 2){
+//                GenerateOrderFragment generateOrderFragment = GenerateOrderFragment.newInstance();
+//
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("idOrder", statusList.get(position).getIdOrder());
+//                generateOrderFragment.setArguments(bundle);
+//
+//                getActivity().getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_container_master, generateOrderFragment)
+//                        .addToBackStack(null)
+//                        .commit();
+//                Log.d("FragmentTransaction", "OperatorOrderFragment added to back stack");
+//            }
         });
     }
 

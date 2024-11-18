@@ -2,6 +2,7 @@ package Master;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -46,7 +47,6 @@ public class GenerateOrderFragment extends Fragment {
     ListView lvOperators;
     ListView lvTools;
 
-
     ImageButton add_button_bench;
     ImageButton update_button_bench;
     ImageButton add_button_equipment;
@@ -61,11 +61,6 @@ public class GenerateOrderFragment extends Fragment {
     private ArrayList<MasterString> operators = new ArrayList<>();
     private ArrayList<MasterString> tools = new ArrayList<>();
 
-
-
-    //private String[] equipments = new String[1];
-//    private String[] operators = new String[1];
-//    private String[] tools = new String[1];
 
     HashMap<Integer, String> hashRoles=new HashMap<Integer, String>();
 
@@ -98,6 +93,23 @@ public class GenerateOrderFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
+    }
+
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        //inflater.inflate(R.menu.back_menu, menu); // Замените на ваш файл меню
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // Переход к EntryActivity
+                Intent intent = new Intent(getActivity(), EntryActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @SuppressLint({"MissingInflatedId", "Range"})

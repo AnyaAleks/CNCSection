@@ -30,7 +30,7 @@
 
 
     <string name="master_header">МАСТЕР</string>
-    <string name="estimated_time">Предположительное время производства: </string>
+    <string name="estimated_time">Время производства: </string>
     <string name="bench">Станки</string>
     <string name="equipment">Оснастки</string>
     <string name="operator">Операторы</string>
@@ -69,7 +69,7 @@
     <string name="createStaff">Добавить</string>
     <string name="listOrder">Список</string>
     <string name="ordercreate_caps">"СОЗДАНИЕ ЗАЯВКИ"</string>
-    <string name="ordergenerate_caps">"ОБРАБОТКА ЗАЯВКИ"</string>
+    <string name="ordergenerate_caps">"ОФОРМЛЕНИЕ ЗАЯВКИ"</string>
     <string name="listorder_caps">"СПИСОК ЗАЯВОК"</string>
     <string name="list_people_caps">"СПИСОК РАБОТНИКОВ"</string>
     <string name="infoorder_caps">"ЗАЯВКА"</string>
