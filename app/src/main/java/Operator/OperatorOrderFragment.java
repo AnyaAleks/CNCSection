@@ -43,6 +43,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import Enter.EntryActivity;
 import Staff.DBStaff;
 
 public class OperatorOrderFragment extends Fragment {
@@ -79,8 +80,6 @@ public class OperatorOrderFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-
     }
 
     @SuppressLint({"MissingInflatedId", "Range"})
@@ -93,13 +92,34 @@ public class OperatorOrderFragment extends Fragment {
         Log.d("FragmentBackStack", "Back stack entry count: " + backStackEntryCount);
 
         // Настройка Toolbar
-        Toolbar toolbar = view.findViewById(R.id.toolbar_operator);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        Toolbar toolbar_entry = view.findViewById(R.id.toolbar_operator);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar_entry);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_new_24);
         }
+        // Установка слушателя для обработки нажатий на элементы меню
+        toolbar_entry.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Переход к ListOrderFragment
+                ListOrderFragment listOrderFragment = new ListOrderFragment();
+
+                // Создаем Bundle и передаем idOrder
+                Bundle bundle = new Bundle();
+                bundle.putInt("idOrder", idOrder); // Передаем idOrder, если нужно
+                listOrderFragment.setArguments(bundle);
+
+                // Заменяем текущий фрагмент на ListOrderFragment
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container_operator, listOrderFragment); // Убедитесь, что ID контейнера правильный
+                transaction.addToBackStack(null); // Добавляем в стек возврата
+                transaction.commit();
+            }
+        });
+
+
 
         dbStaff = new DBStaff(getActivity());
 
@@ -195,21 +215,7 @@ public class OperatorOrderFragment extends Fragment {
 
         return view;
     }
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        //inflater.inflate(R.menu.back_menu, menu); // Замените на ваш файл меню
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                requireActivity().getSupportFragmentManager().popBackStack();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     public static OperatorOrderFragment newInstance(){
         return new OperatorOrderFragment();

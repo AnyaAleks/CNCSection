@@ -25,6 +25,7 @@ import com.google.gson.Gson;
 
 import java.util.HashMap;
 
+import Enter.EntryActivity;
 import Staff.DBStaff;
 
 public class OrderInformation extends AppCompatActivity {
@@ -61,6 +62,7 @@ public class OrderInformation extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_new_24);
         }
+
 
         dbStaff = new DBStaff(this);
         loadJsonData();

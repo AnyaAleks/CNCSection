@@ -12,16 +12,16 @@
         android:layout_height="match_parent"
         android:layout_weight="1" >
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation_master"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:background="@drawable/shape_navigation_menu"
-            app:itemActiveIndicatorStyle="@style/Theme.BottomNavigationView.ActiveIndicator"
-            app:itemIconSize="30dp"
-            app:itemIconTint="@color/navigation_menu_items_color"
-            app:itemTextColor="@color/navigation_menu_items_color"
-            app:menu="@menu/botton_navigation_menu_master" />
+<!--        <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--            android:id="@+id/bottom_navigation_master"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="bottom|center_horizontal"-->
+<!--            android:background="@drawable/shape_navigation_menu"-->
+<!--            app:itemActiveIndicatorStyle="@style/Theme.BottomNavigationView.ActiveIndicator"-->
+<!--            app:itemIconSize="30dp"-->
+<!--            app:itemIconTint="@color/navigation_menu_items_color"-->
+<!--            app:itemTextColor="@color/navigation_menu_items_color"-->
+<!--            app:menu="@menu/botton_navigation_menu_master" />-->
     </FrameLayout>
 </LinearLayout>

@@ -70,7 +70,7 @@ public class ListOrderFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+
     }
 
     @SuppressLint({"MissingInflatedId", "Range"})
@@ -87,7 +87,18 @@ public class ListOrderFragment extends Fragment {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_new_24);
+
         }
+        // Установка слушателя для обработки нажатий на элементы меню
+        toolbarentry.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Переход к EntryActivity
+                Intent intent = new Intent(getActivity(), EntryActivity.class);
+                startActivity(intent);
+                getActivity().finish(); // Закрываем текущую активность
+            }
+        });
 
         searchView = view.findViewById(R.id.searchView);
         rvContacts = view.findViewById(R.id.list);
@@ -104,8 +115,7 @@ public class ListOrderFragment extends Fragment {
 
         //Только у менеджера и мастера будет нижнее меню => убрать отступ
         mainLinearLayout = view.findViewById(R.id.mainLinearLayout);
-        if(userSettings.getRoleUser() == 1 || userSettings.getRoleUser() == 2){
-        } else{
+        if(userSettings.getRoleUser() != 1){
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mainLinearLayout
                     .getLayoutParams();
             layoutParams.setMargins(0, 0, 0, 0);
@@ -185,22 +195,6 @@ public class ListOrderFragment extends Fragment {
 
         return view;
     }
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        //inflater.inflate(R.menu.back_menu, menu); // Замените на ваш файл меню
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // Переход к EntryActivity
-                Intent intent = new Intent(getActivity(), EntryActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     private void setupAdapter(ArrayList<Status> statusList) {
         adapter = new StatusAdapter(statusList);
@@ -228,19 +222,19 @@ public class ListOrderFragment extends Fragment {
                         .commit();
             }
             //Тут будет редактирование (возможно то же окно,,,)
-//            if(userSettings.getRoleUser() == 2){
-//                GenerateOrderFragment generateOrderFragment = GenerateOrderFragment.newInstance();
-//
-//                Bundle bundle = new Bundle();
-//                bundle.putInt("idOrder", statusList.get(position).getIdOrder());
-//                generateOrderFragment.setArguments(bundle);
-//
-//                getActivity().getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.fragment_container_master, generateOrderFragment)
-//                        .addToBackStack(null)
-//                        .commit();
-//                Log.d("FragmentTransaction", "OperatorOrderFragment added to back stack");
-//            }
+            if(userSettings.getRoleUser() == 2){
+                GenerateOrderFragment generateOrderFragment = GenerateOrderFragment.newInstance();
+
+                Bundle bundle = new Bundle();
+                bundle.putInt("idOrder", statusList.get(position).getIdOrder());
+                generateOrderFragment.setArguments(bundle);
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container_master, generateOrderFragment)
+                        .addToBackStack(null)
+                        .commit();
+                Log.d("FragmentTransaction", "OperatorOrderFragment added to back stack");
+            }
         });
     }
 

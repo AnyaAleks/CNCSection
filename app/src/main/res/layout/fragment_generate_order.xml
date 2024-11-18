@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/rus_white"
-            app:title="Выход"
+            app:title="Возврат в список заявок"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             />
         <View

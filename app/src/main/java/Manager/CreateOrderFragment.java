@@ -63,8 +63,6 @@ public class CreateOrderFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-
     }
 
     @Override
@@ -80,6 +78,17 @@ public class CreateOrderFragment extends Fragment {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_new_24);
         }
+
+        // Установка слушателя для обработки нажатий на элементы меню
+        toolbar_entry.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Переход к EntryActivity
+                Intent intent = new Intent(getActivity(), EntryActivity.class);
+                startActivity(intent);
+                getActivity().finish(); // Закрываем текущую активность
+            }
+        });
 
         TextView errorNumber = view.findViewById(R.id.error_number);
         TextView errorDate = view.findViewById(R.id.error_calendar);
@@ -308,23 +317,6 @@ public class CreateOrderFragment extends Fragment {
 
     public static CreateOrderFragment newInstance(){
         return new CreateOrderFragment();
-    }
-
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        //inflater.inflate(R.menu.back_menu, menu); // Замените на ваш файл меню
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // Переход к EntryActivity
-                Intent intent = new Intent(getActivity(), EntryActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 }
 

@@ -86,13 +86,24 @@ public class RegistrationFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_registration, container, false);
 
         // Настройка Toolbar
-        Toolbar toolbar = view.findViewById(R.id.toolbar_entry_staff);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        Toolbar toolbar_entry = view.findViewById(R.id.toolbar_entry_staff);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar_entry);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_ios_new_24);
         }
+
+        // Установка слушателя для обработки нажатий на элементы меню
+        toolbar_entry.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Переход к EntryActivity
+                Intent intent = new Intent(getActivity(), EntryActivity.class);
+                startActivity(intent);
+                getActivity().finish(); // Закрываем текущую активность
+            }
+        });
 
         TextView errorFirstName = view.findViewById(R.id.error_first_name);
         TextView errorSecondName = view.findViewById(R.id.error_second_name);
