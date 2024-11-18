@@ -2,6 +2,8 @@ package com.example.cncsection;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewTreeObserver;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -28,10 +30,23 @@ public class MainActivityStaff extends AppCompatActivity {
 
         BottomNavigationView navigation=(BottomNavigationView) findViewById(R.id.bottom_navigation_staff);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
+        View fragmentContainer = findViewById(R.id.fragment_container_staff);
 
         //Появление пункта меню messages
         loadFragment(ListOfPeopleFragment.newInstance());
         navigation.setSelectedItemId(R.id.pageOrderList);
+
+        fragmentContainer.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                int heightDiff = fragmentContainer.getRootView().getHeight() - fragmentContainer.getHeight();
+                if (heightDiff > 300) { // Если высота больше чем 300, клавиатура открыта
+                    navigation.setVisibility(View.GONE); // Скрываем BottomNavigationView
+                } else {
+                    navigation.setVisibility(View.VISIBLE); // Показываем BottomNavigationView
+                }
+            }
+        });
     }
 
     //Выбор пункта меню NavigationBarView

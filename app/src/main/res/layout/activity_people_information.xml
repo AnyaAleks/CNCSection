@@ -13,12 +13,26 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_info_people"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/rus_white"
+            android:layout_marginTop="20dp"
+            app:title="Возврат к списку сотрудников"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+
         <TextView
             android:id="@+id/entry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/person_caps"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:textColor="@color/black"
             android:textSize="25dp" />
