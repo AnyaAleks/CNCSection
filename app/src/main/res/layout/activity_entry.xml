@@ -61,7 +61,6 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/add_button"
             style="@style/AppCompatButtonStyle"
-            android:onClick="goNext"
             android:text="@string/sent"/>
 
         </LinearLayout>

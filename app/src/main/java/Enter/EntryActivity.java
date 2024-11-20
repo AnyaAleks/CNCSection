@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,53 +54,66 @@ public class EntryActivity extends AppCompatActivity {
         login = findViewById(R.id.login);
         add_button = findViewById(R.id.add_button);
 
-    }
 
-    @SuppressLint("Range")
-    public void goNext(View V) {
-        //Сделать проверку на пароль и понять какое окно грузить
-        // (всем работникам при устройстве на работу должны выдавать пароль) по типу клиента
-        //У каждой роли в пароле можно сделать определённые первые цифры или буквы и делать проверку по ним
-        //Toast.makeText(getBaseContext(), "Reason can not be blank", Toast.LENGTH_SHORT).show();
-        String passwordMD5 = md5(password_1.getText().toString());
-        boolean isValid = false;
+        add_button.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                //Сделать проверку на пароль и понять какое окно грузить
+                // (всем работникам при устройстве на работу должны выдавать пароль) по типу клиента
+                //У каждой роли в пароле можно сделать определённые первые цифры или буквы и делать проверку по ним
+                //Toast.makeText(getBaseContext(), "Reason can not be blank", Toast.LENGTH_SHORT).show();
+                String passwordMD5 = md5(password_1.getText().toString());
+                boolean isValid = false;
 
-        Cursor csr = dbStaff.getAll("Staff");
-        while (csr.moveToNext()) {
-            //Если Логин и Пароль есть в БД
-            Log.d("DB_STAFF", csr.getString(csr.getColumnIndex("fio")));
-            if (login.getText().toString().equals(csr.getString(csr.getColumnIndex("fio")).toString())
-                    && passwordMD5.equals(csr.getString(csr.getColumnIndex("password")).toString())
-            ) {
-
-                //Поиск роли
-                Cursor csrAccess = dbStaff.getAll("Access");
-                while (csrAccess.moveToNext()) {
-                    if (csr.getInt(csr.getColumnIndex("id_access")) ==
-                            csrAccess.getInt(csrAccess.getColumnIndex("id_access"))) {
-                        Log.d("DB_STAFF2", csr.getInt(csr.getColumnIndex("id_access"))
-                                + " " + csrAccess.getInt(csrAccess.getColumnIndex("id_access")));
-
+                Cursor csr = dbStaff.getAll("Staff");
+                while (csr.moveToNext()) {
+                    //Если Логин и Пароль есть в БД
+                    Log.d("DB_STAFF", csr.getString(csr.getColumnIndex("fio")));
+                    if (login.getText().toString().equals(csr.getString(csr.getColumnIndex("fio")).toString())
+                            && passwordMD5.equals(csr.getString(csr.getColumnIndex("password")).toString())
+                    ) {
                         //Сохранение настроек
-                        userSettings.setRoleUser(csr.getInt(csrAccess.getColumnIndex("id_access")));
-                        userSettings.setIdUser(csr.getInt(csrAccess.getColumnIndex("id_staff")));
+                        userSettings.setRoleUser(csr.getInt(csr.getColumnIndex("id_access")));
+                        userSettings.setIdUser(csr.getInt(csr.getColumnIndex("id_staff")));
                         saveJsonData();
 
                         //Переход в окно
-                        openActivityByAccess(csr.getInt(csrAccess.getColumnIndex("id_access")));
-                    }
+                        openActivityByAccess(csr.getInt(csr.getColumnIndex("id_access")));
 
+
+                        //Поиск роли
+//                        Cursor csrAccess = dbStaff.getAll("Access");
+//                        while (csrAccess.moveToNext()) {
+//                            if (csr.getInt(csr.getColumnIndex("id_access")) ==
+//                                    csrAccess.getInt(csrAccess.getColumnIndex("id_access"))) {
+//                                Log.d("DB_STAFF2", csr.getInt(csr.getColumnIndex("id_access"))
+//                                        + " " + csrAccess.getInt(csrAccess.getColumnIndex("id_access")));
+//
+//                                //Сохранение настроек
+//                                userSettings.setRoleUser(csr.getInt(csrAccess.getColumnIndex("id_access")));
+//                                userSettings.setIdUser(csr.getInt(csrAccess.getColumnIndex("id_staff")));
+//                                saveJsonData();
+//
+//                                //Переход в окно
+//                                openActivityByAccess(csr.getInt(csrAccess.getColumnIndex("id_access")));
+//                            }
+//
+//                        }
+                        isValid = true;
+                        break;
+                    }
                 }
-                isValid = true;
-                break;
+                if (!isValid) {
+                    login.setText("");
+                    password_1.setText("");
+                    TextView errorTextView = findViewById(R.id.error_text_view);
+                    errorTextView.setText("Логин или пароль введены неправильно");
+                }
             }
-        }
-        if (!isValid) {
-            login.setText("");
-            password_1.setText("");
-            TextView errorTextView = findViewById(R.id.error_text_view);
-            errorTextView.setText("Логин или пароль введены неправильно");
-        }
+        });
+
     }
 
     public String md5(String s) {
