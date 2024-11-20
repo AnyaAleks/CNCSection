@@ -33,7 +33,10 @@ public class MasterAdapter extends ArrayAdapter<MasterString> {
 
 
         TextView itemText = currentItemView.findViewById(R.id.input_name_item);
-        itemText.setText(currentNumberPosition.getName());
+
+        String s=currentNumberPosition.getName()+currentNumberPosition.getId();
+        itemText.setText(s);
+        //itemText.setText(currentNumberPosition.getName());
 
         ImageButton deleteImage = currentItemView.findViewById(R.id.delete_button);
         deleteImage.setOnClickListener(new View.OnClickListener() {

@@ -46,6 +46,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.Map.Entry;
 
 import Enter.EntryActivity;
 
@@ -265,10 +266,19 @@ public class GenerateOrderFragment extends Fragment {
             public void onClick(View view) {
                 //AddBench(view);
                 String newBench=bench_spinner.getSelectedItem().toString();
+                int id=42;
+
+                for (Entry<Integer, String> entry : hashBench.entrySet()) {
+                    if (entry.getValue().equals(newBench)) {
+                        id=entry.getKey();
+                        break;
+                    }
+                }
+
                 boolean flag = false;
                 if(!flag)
                 {
-                    benches.add(new MasterString(newBench));
+                    benches.add(new MasterString(newBench,id));
                     adapter = new MasterAdapter(getActivity(),benches);
                     lvBenches.setAdapter(adapter);
                 }
@@ -301,9 +311,17 @@ public class GenerateOrderFragment extends Fragment {
                 //AddBench(view);
                 String newBench=equipment_spinner.getSelectedItem().toString();
                 boolean flag = false;
+                int id=42;
+
+                for (Entry<Integer, String> entry : hashBench.entrySet()) {
+                    if (entry.getValue().equals(newBench)) {
+                        id=entry.getKey();
+                        break;
+                    }
+                }
                 if(!flag)
                 {
-                    equipments.add(new MasterString(newBench));
+                    equipments.add(new MasterString(newBench,id));
                     adapter = new MasterAdapter(getActivity(),equipments);
                     lvEquipments.setAdapter(adapter);
                 }
@@ -336,9 +354,17 @@ public class GenerateOrderFragment extends Fragment {
                 //AddBench(view);
                 String newBench=operator_spinner.getSelectedItem().toString();
                 boolean flag = false;
+                int id=42;
+
+                for (Entry<Integer, String> entry : hashBench.entrySet()) {
+                    if (entry.getValue().equals(newBench)) {
+                        id=entry.getKey();
+                        break;
+                    }
+                }
                 if(!flag)
                 {
-                    operators.add(new MasterString(newBench));
+                    operators.add(new MasterString(newBench,id));
                     adapter = new MasterAdapter(getActivity(),operators);
                     lvOperators.setAdapter(adapter);
                 }
@@ -371,9 +397,17 @@ public class GenerateOrderFragment extends Fragment {
                 //AddBench(view);
                 String newBench=tool_spinner.getSelectedItem().toString();
                 boolean flag = false;
+                int id=42;
+
+                for (Entry<Integer, String> entry : hashBench.entrySet()) {
+                    if (entry.getValue().equals(newBench)) {
+                        id=entry.getKey();
+                        break;
+                    }
+                }
                 if(!flag)
                 {
-                    tools.add(new MasterString(newBench));
+                    tools.add(new MasterString(newBench,id));
                     adapter = new MasterAdapter(getActivity(),tools);
                     lvTools.setAdapter(adapter);
                 }
