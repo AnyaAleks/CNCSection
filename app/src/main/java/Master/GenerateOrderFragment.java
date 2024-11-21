@@ -38,6 +38,7 @@ import com.example.cncsection.ListOrderFragment;
 import com.example.cncsection.MasterAdapter;
 import com.example.cncsection.OrderInformation;
 import com.example.cncsection.R;
+import com.example.cncsection.TxtViewerActivity;
 import com.example.cncsection.UserSettings;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
@@ -53,8 +54,12 @@ import Enter.EntryActivity;
 public class GenerateOrderFragment extends Fragment {
 
     int idOrder;
+    String part_number;
     TextView idRequestTextView;
     EditText productionTimeInput;
+    ImageButton stateInformerButton;
+    EditText statesSpinner;
+    Button openProgramButton;
 
     UserSettings userSettings = new UserSettings();
 
@@ -174,6 +179,8 @@ public class GenerateOrderFragment extends Fragment {
         addOrderButton = view.findViewById(R.id.addOrderButton);
         productionTimeInput = view.findViewById(R.id.productionTimeInput);
 
+        openProgramButton = view.findViewById(R.id.openProgramButton);
+
         ArrayList<MasterString> list = new ArrayList<>();
         adapter = new MasterAdapter(getActivity(),list);
 
@@ -218,6 +225,52 @@ public class GenerateOrderFragment extends Fragment {
         while (csrt.moveToNext()) {
             hashOperator.put(csrt.getInt(csrt.getColumnIndex("id_tool")), csrt.getString(csrt.getColumnIndex("title")));
         }
+
+
+
+        //Выставление статуса
+        stateInformerButton = view.findViewById(R.id.stateInformer);
+        statesSpinner = view.findViewById(R.id.states_spinner);
+        Cursor csrRequest = dbMaster.getAll("Request");
+        while (csrRequest.moveToNext()) {
+            if(csrRequest.getInt(csrRequest.getColumnIndex("id_order")) == idOrder){
+                part_number = csrRequest.getString(csrRequest.getColumnIndex("part_number"));
+
+                int id_status = csrRequest.getInt(csrRequest.getColumnIndex("id_status"));
+                stateInformerButton.setBackgroundDrawable(getResources().getDrawable( getRoleColor(id_status)));
+                stateInformerButton.setImageResource( getRoleIcon(id_status));
+
+                Cursor csrStatus = dbMaster.getAll("Status");
+                while(csrStatus.moveToNext()){
+                    if(csrStatus.getInt(csrStatus.getColumnIndex("id_status")) == id_status){
+                        statesSpinner.setText(csrStatus.getString(csrStatus.getColumnIndex("title")));
+                    }
+                }
+            }
+        }
+
+        //Выставление чертежа
+        Intent intentTxtViewer = new Intent(getActivity(), TxtViewerActivity.class);
+        openProgramButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("Range")
+            @Override
+            public void onClick(View view) {
+                //Открытие чертежа по part_number
+                Cursor csrProgramm= dbMaster.getAll("Programm");
+                boolean flagIsFind = false;
+                while (csrProgramm.moveToNext()) {
+                    if(csrProgramm.getString(csrProgramm.getColumnIndex("part_number")).equals(part_number)){
+                        intentTxtViewer.putExtra("current_file_name", csrProgramm.getString(csrProgramm.getColumnIndex("title")));
+                        startActivity(intentTxtViewer);
+                        flagIsFind = true;
+                    }
+                }
+
+                if(!flagIsFind){
+                    Toast.makeText(getActivity(), "Чертеж не найден", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         //hashEquipment.put(csr.getInt(csr.getColumnIndex("id_osnaska")), csr.getString(csr.getColumnIndex("title")));
         //hashOperator.put(csr.getInt(csr.getColumnIndex("id_osnaska")), csr.getString(csr.getColumnIndex("title")));
@@ -523,4 +576,37 @@ public class GenerateOrderFragment extends Fragment {
             //userSettings = new UserSettings(userId);
         }
     }
+
+    private int getRoleColor(int key)
+    {
+        int color;
+        switch (key){
+            case 1: color = R.drawable.state_color_gray; break;
+            case 2: color = R.drawable.state_color_green; break;
+            case 3: color = R.drawable.state_color_yellow; break;
+            case 4: color = R.drawable.state_color_red; break;
+            case 5: color = R.drawable.state_color_red; break;
+            case 6: color = R.drawable.state_color_red; break;
+            case 7: color = R.drawable.state_color_blue; break;
+            default: color = R.drawable.state_color_red;
+        }
+        return color;
+    }
+
+    private int getRoleIcon(int key)
+    {
+        int icon;
+        switch (key){
+            case 1: icon = R.drawable.null_icon; break;
+            case 2: icon = R.drawable.null_icon; break;
+            case 3: icon = R.drawable.null_icon; break;
+            case 4: icon = R.drawable.null_icon; break;
+            case 5: icon = R.drawable.osnaska; break;
+            case 6: icon = R.drawable.architecture; break;
+            case 7: icon = R.drawable.null_icon; break;
+            default: icon = R.drawable.null_icon;
+        }
+        return icon;
+    }
+
 }

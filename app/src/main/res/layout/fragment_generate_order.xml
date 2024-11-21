@@ -288,86 +288,54 @@
                     />
 
                 <TextView
-                    android:id="@+id/drawing"
-                    android:text="@string/drawing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="15dp"
                     android:gravity="center"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/item_number_entry"
-                    android:hint="@string/hint_drawing"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/custom_input"
-                    android:padding="12dp"
-                    android:gravity="left"
-                    android:inputType="text"
-                    android:textSize="18sp"/>
-
-                <TextView
-                    android:id="@+id/techProcess"
-                    android:text="@string/techProcess"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="15dp"
-                    android:gravity="center"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/input_techProcess"
-                    android:hint="@string/hint_techProcess"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/custom_input"
-                    android:padding="12dp"
-                    android:gravity="left"
-                    android:inputType="text"
-                    android:textSize="18sp"/>
-
-
-                <TextView
-                    android:id="@+id/commentary"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginTop="15dp"
-
-                    android:gravity="left"
-                    android:padding="5dp"
-                    android:text="@string/commentary"
-                    android:textSize="18sp" />
-
+                    android:text="@string/status"
+                    android:textSize="18dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
+                    <ImageButton
+                        android:id="@+id/stateInformer"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/osnaska"
+                        android:background="@drawable/state_color_red"
+                        android:layout_marginRight="20dp">
+                    </ImageButton>
+
                     <EditText
-                        android:id="@+id/commentary_entry"
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_marginBottom="15dp"
+                        android:id="@+id/states_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/shape_of_elements"
-                        android:gravity="bottom"
-                        android:hint="@string/hint_2"
-                        android:inputType="textMultiLine"
-                        android:maxLength="200"
-                        android:textSize="18sp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="10dp"
-                        android:scrollbars="vertical"/>
+                        android:background="@drawable/custom_input"
+                        android:padding="12dp"
+                        android:gravity="left"
+                        android:hint="@string/hint_3"
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:textSize="18dp" />
                 </LinearLayout>
 
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/openProgramButton"
+                    style="@style/AppCompatButtonStyle"
+                    android:text="@string/open_drawing"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/AppCompatButtonStyle"
+                    android:text="@string/open_techProcess"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/AppCompatButtonStyle"
+                    android:text="@string/open_program" />
 
                 <TextView
                     android:layout_width="wrap_content"
