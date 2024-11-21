@@ -440,9 +440,12 @@ public class GenerateOrderFragment extends Fragment {
             public void onClick(View v)
             {
                 //ПРОВЕРКУ НА НЕПУСТОЕ ВРЕМЯ
-                //Сделать календарь с датов
+                //Сделать календарь с датой
                 //создали заявку
-                dbMaster.addToOrder(userSettings.getIdUser(), String.valueOf(productionTimeInput.getText()), idOrder, "18.11.2024");
+                dbMaster.addToOrder(userSettings.getIdUser(),
+                        String.valueOf(productionTimeInput.getText()),
+                        idOrder,
+                        "18.11.2024");
 
                 //забрали id у новой заявки
                 Cursor csrOrder = dbMaster.getAll("Order");
@@ -455,13 +458,31 @@ public class GenerateOrderFragment extends Fragment {
 
                 //Machine
                 for(int i=0; i<benches.size(); i++){
-                    //СДЕЛАТЬ id СТАНКА и тп в arrayadapter
-                    //dbMaster.addToOrder_and_Machine(id_current_order, benches.get(i).);
+                    dbMaster.addToOrder_and_Machine(id_current_order, benches.get(i).getId());
                 }
 
-                //Operator addToOrder_and_Operator
-                //Osnaska addToOrder_and_Osnaska
+                //Osnaska
+                for(int i=0; i<equipments.size(); i++){
+                    dbMaster.addToOrder_and_Osnaska(id_current_order, equipments.get(i).getId());
+                }
+
+                //Operator
+                for(int i=0; i<operators.size(); i++){
+                    dbMaster.addToOrder_and_Operator(id_current_order, operators.get(i).getId());
+                }
+
                 //Tool addToOrder_and_Tool
+                for(int i=0; i<tools.size(); i++){
+                    dbMaster.addToOrder_and_Tool(id_current_order, tools.get(i).getId());
+                }
+
+
+                Toast.makeText(getActivity(), "Данные успешно добавлены", Toast.LENGTH_SHORT).show();
+                ListOrderFragment listOrderFragment = new ListOrderFragment();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container_master, listOrderFragment); // Убедитесь, что ID контейнера правильный
+                transaction.addToBackStack(null); // Добавляем в стек возврата
+                transaction.commit();
             }
         });
 
