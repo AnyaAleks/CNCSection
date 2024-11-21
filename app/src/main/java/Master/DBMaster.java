@@ -154,6 +154,15 @@ class DBMaster extends SQLiteOpenHelper {
         return rowID;
     }
 
+    public Cursor updateValueById(String table_name, String update_idField, int update_id, String update_field, int update_value){
+        //"update "+Table_name+" set availability='0' where product_name like 'bar'"
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("update " + table_name
+                + " set " + update_field + " = " + update_value + " where " + update_idField + " like " + update_id, null);
+        Log.e("LogTag", table_name + ".getCount(): " + res.getCount());
+        return res;
+    }
+
     /*
         Copies the database from the assets folder to the apps database folder (with logging)
         note databases folder is typically data/data/the_package_name/database

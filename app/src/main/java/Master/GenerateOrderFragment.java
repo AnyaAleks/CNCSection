@@ -530,6 +530,10 @@ public class GenerateOrderFragment extends Fragment {
                 }
 
 
+                //Изменение статуса заявки
+                dbMaster.updateValueById("Request", "id_order"
+                        , idOrder,"id_status", 2);
+
                 Toast.makeText(getActivity(), "Данные успешно добавлены", Toast.LENGTH_SHORT).show();
                 ListOrderFragment listOrderFragment = new ListOrderFragment();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
