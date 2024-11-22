@@ -34,7 +34,7 @@ public class MasterAdapter extends ArrayAdapter<MasterString> {
 
         TextView itemText = currentItemView.findViewById(R.id.input_name_item);
 
-        String s=currentNumberPosition.getName()+currentNumberPosition.getId();
+        String s=currentNumberPosition.getName();//+currentNumberPosition.getId();
         itemText.setText(s);
         //itemText.setText(currentNumberPosition.getName());
 

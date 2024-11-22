@@ -78,13 +78,13 @@ public class GenerateOrderFragment extends Fragment {
     ListView lvTools;
 
     ImageButton add_button_bench;
-    ImageButton update_button_bench;
+//    ImageButton update_button_bench;
     ImageButton add_button_equipment;
-    ImageButton update_button_equipment;
+//    ImageButton update_button_equipment;
     ImageButton add_button_operator;
-    ImageButton update_button_operator;
+//    ImageButton update_button_operator;
     ImageButton add_button_tool;
-    ImageButton update_button_tool;
+//    ImageButton update_button_tool;
 
     Button addOrderButton;
 
@@ -171,16 +171,16 @@ public class GenerateOrderFragment extends Fragment {
         lvTools = view.findViewById(R.id.tool_list_view);
 
         add_button_bench =  view.findViewById(R.id.add_button_bench);
-        update_button_bench =  view.findViewById(R.id.update_button_bench);
+//        update_button_bench =  view.findViewById(R.id.update_button_bench);
 
         add_button_equipment =  view.findViewById(R.id.add_button_equipment);
-        update_button_equipment =  view.findViewById(R.id.update_button_equipment);
+//        update_button_equipment =  view.findViewById(R.id.update_button_equipment);
 
         add_button_operator =  view.findViewById(R.id.add_button_operator);
-        update_button_operator =  view.findViewById(R.id.update_button_operator);
+//        update_button_operator =  view.findViewById(R.id.update_button_operator);
 
         add_button_tool =  view.findViewById(R.id.add_button_tool);
-        update_button_tool =  view.findViewById(R.id.update_button_tool);
+//        update_button_tool =  view.findViewById(R.id.update_button_tool);
 
         addOrderButton = view.findViewById(R.id.addOrderButton);
         productionTimeInput = view.findViewById(R.id.productionTimeInput);
@@ -414,174 +414,201 @@ public class GenerateOrderFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //AddBench(view);
-                String newBench=bench_spinner.getSelectedItem().toString();
-                int id=42;
+                if (hashBench.size() > 0) {
+                    String newBench = bench_spinner.getSelectedItem().toString();
+                    int id = 42;
 
-                for (Entry<Integer, String> entry : hashBench.entrySet()) {
-                    if (entry.getValue().equals(newBench)) {
-                        id=entry.getKey();
-                        break;
+                    for (Entry<Integer, String> entry : hashBench.entrySet()) {
+                        if (entry.getValue().equals(newBench)) {
+                            id = entry.getKey();
+                            break;
+                        }
                     }
-                }
 
-                boolean flag = false;
-                if(!flag)
-                {
-                    benches.add(new MasterString(newBench,id));
-                    adapter = new MasterAdapter(getActivity(),benches);
-                    lvBenches.setAdapter(adapter);
+                    boolean flag = true;
+                    for (int i = 0; i < benches.size(); i++) {
+                        if(Objects.equals(benches.get(i).getName(), newBench)){
+                            flag = false;
+                        }
+                    }
+
+                    if (flag) {
+                        benches.add(new MasterString(newBench, id));
+                        adapter = new MasterAdapter(getActivity(), benches);
+                        lvBenches.setAdapter(adapter);
+                    }
                 }
             }
         });
-        update_button_bench.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //AddBench(view);
-
-                int i=0;
-                while (i<benches.size())
-                {
-                    if(Objects.equals(benches.get(i).getName(), "empty"))
-                    {
-                        benches.remove(i);
-                    }
-                    else
-                        i++;
-                }
-
-                adapter = new MasterAdapter(getActivity(),benches);
-                lvBenches.setAdapter(adapter);
-            }
-        });
+//        update_button_bench.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //AddBench(view);
+//
+//                int i=0;
+//                while (i<benches.size())
+//                {
+//                    if(Objects.equals(benches.get(i).getName(), "empty"))
+//                    {
+//                        benches.remove(i);
+//                    }
+//                    else
+//                        i++;
+//                }
+//
+//                adapter = new MasterAdapter(getActivity(),benches);
+//                lvBenches.setAdapter(adapter);
+//            }
+//        });
         add_button_equipment.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("Range")
             @Override
             public void onClick(View view) {
                 //AddBench(view);
-                String newBench=equipment_spinner.getSelectedItem().toString();
-                boolean flag = false;
-                int id=42;
+                if (hashEquipment.size() > 0) {
+                    String newBench = equipment_spinner.getSelectedItem().toString();
+                    int id = 42;
 
-                for (Entry<Integer, String> entry : hashBench.entrySet()) {
-                    if (entry.getValue().equals(newBench)) {
-                        id=entry.getKey();
-                        break;
+                    for (Entry<Integer, String> entry : hashEquipment.entrySet()) {
+                        if (entry.getValue().equals(newBench)) {
+                            id = entry.getKey();
+                            break;
+                        }
                     }
-                }
-                if(!flag)
-                {
-                    equipments.add(new MasterString(newBench,id));
-                    adapter = new MasterAdapter(getActivity(),equipments);
-                    lvEquipments.setAdapter(adapter);
+                    boolean flag = true;
+                    for (int i = 0; i < equipments.size(); i++) {
+                        if(Objects.equals(equipments.get(i).getName(), newBench)){
+                            flag = false;
+                        }
+                    }
+
+                    if (flag) {
+                        equipments.add(new MasterString(newBench, id));
+                        adapter = new MasterAdapter(getActivity(), equipments);
+                        lvEquipments.setAdapter(adapter);
+                    }
                 }
             }
         });
-        update_button_equipment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //AddBench(view);
-
-                int i=0;
-                while (i<equipments.size())
-                {
-                    if(Objects.equals(equipments.get(i).getName(), "empty"))
-                    {
-                        equipments.remove(i);
-                    }
-                    else
-                        i++;
-                }
-
-                adapter = new MasterAdapter(getActivity(),equipments);
-                lvEquipments.setAdapter(adapter);
-            }
-        });
+//        update_button_equipment.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //AddBench(view);
+//
+//                int i=0;
+//                while (i<equipments.size())
+//                {
+//                    if(Objects.equals(equipments.get(i).getName(), "empty"))
+//                    {
+//                        equipments.remove(i);
+//                    }
+//                    else
+//                        i++;
+//                }
+//
+//                adapter = new MasterAdapter(getActivity(),equipments);
+//                lvEquipments.setAdapter(adapter);
+//            }
+//        });
         add_button_operator.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("Range")
             @Override
             public void onClick(View view) {
                 //AddBench(view);
-                String newBench=operator_spinner.getSelectedItem().toString();
-                boolean flag = false;
-                int id=42;
-
-                for (Entry<Integer, String> entry : hashBench.entrySet()) {
-                    if (entry.getValue().equals(newBench)) {
-                        id=entry.getKey();
-                        break;
+                if (hashOperator.size() > 0) {
+                    String newBench = operator_spinner.getSelectedItem().toString();
+                    int id = 42;
+                    for (Entry<Integer, String> entry : hashOperator.entrySet()) {
+                        if (entry.getValue().equals(newBench)) {
+                            id = entry.getKey();
+                            break;
+                        }
                     }
-                }
-                if(!flag)
-                {
-                    operators.add(new MasterString(newBench,id));
-                    adapter = new MasterAdapter(getActivity(),operators);
-                    lvOperators.setAdapter(adapter);
+                    boolean flag = true;
+                    for (int i = 0; i < operators.size(); i++) {
+                        if(Objects.equals(operators.get(i).getName(), newBench)){
+                            flag = false;
+                        }
+                    }
+
+                    if (flag) {
+                        operators.add(new MasterString(newBench, id));
+                        adapter = new MasterAdapter(getActivity(), operators);
+                        lvOperators.setAdapter(adapter);
+                    }
                 }
             }
         });
-        update_button_operator.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //AddBench(view);
-
-                int i=0;
-                while (i<operators.size())
-                {
-                    if(Objects.equals(operators.get(i).getName(), "empty"))
-                    {
-                        operators.remove(i);
-                    }
-                    else
-                        i++;
-                }
-
-                adapter = new MasterAdapter(getActivity(),operators);
-                lvOperators.setAdapter(adapter);
-            }
-        });
+//        update_button_operator.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //AddBench(view);
+//
+//                int i=0;
+//                while (i<operators.size())
+//                {
+//                    if(Objects.equals(operators.get(i).getName(), "empty"))
+//                    {
+//                        operators.remove(i);
+//                    }
+//                    else
+//                        i++;
+//                }
+//
+//                adapter = new MasterAdapter(getActivity(),operators);
+//                lvOperators.setAdapter(adapter);
+//            }
+//        });
         add_button_tool.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("Range")
             @Override
             public void onClick(View view) {
                 //AddBench(view);
-                String newBench=tool_spinner.getSelectedItem().toString();
-                boolean flag = false;
-                int id=42;
+                if (hashTool.size() > 0) {
+                    String newBench=tool_spinner.getSelectedItem().toString();
+                    int id=42;
 
-                for (Entry<Integer, String> entry : hashBench.entrySet()) {
-                    if (entry.getValue().equals(newBench)) {
-                        id=entry.getKey();
-                        break;
+                    for (Entry<Integer, String> entry : hashTool.entrySet()) {
+                        if (entry.getValue().equals(newBench)) {
+                            id=entry.getKey();
+                            break;
+                        }
                     }
-                }
-                if(!flag)
-                {
-                    tools.add(new MasterString(newBench,id));
-                    adapter = new MasterAdapter(getActivity(),tools);
-                    lvTools.setAdapter(adapter);
+                    boolean flag = true;
+                    for (int i = 0; i < tools.size(); i++) {
+                        if(Objects.equals(tools.get(i).getName(), newBench)){
+                            flag = false;
+                        }
+                    }
+
+                    if (flag) {
+                        tools.add(new MasterString(newBench, id));
+                        adapter = new MasterAdapter(getActivity(), tools);
+                        lvTools.setAdapter(adapter);
+                    }
                 }
             }
         });
-        update_button_tool.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //AddBench(view);
-
-                int i=0;
-                while (i<tools.size())
-                {
-                    if(Objects.equals(tools.get(i).getName(), "empty"))
-                    {
-                        tools.remove(i);
-                    }
-                    else
-                        i++;
-                }
-
-                adapter = new MasterAdapter(getActivity(),tools);
-                lvTools.setAdapter(adapter);
-            }
-        });
+//        update_button_tool.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //AddBench(view);
+//
+//                int i=0;
+//                while (i<tools.size())
+//                {
+//                    if(Objects.equals(tools.get(i).getName(), "empty"))
+//                    {
+//                        tools.remove(i);
+//                    }
+//                    else
+//                        i++;
+//                }
+//
+//                adapter = new MasterAdapter(getActivity(),tools);
+//                lvTools.setAdapter(adapter);
+//            }
+//        });
 
         input_estimated_production_time.addTextChangedListener(new TextWatcher() {
             @Override
@@ -686,16 +713,16 @@ public class GenerateOrderFragment extends Fragment {
         return view;
     }
 
-    private void OutPutList(String[] list, TextView listTextView)
-    {
-        listTextView.setText("");
-        //bench_list.clearComposingText();
-        listTextView.append(list[0]+" ");
-        for (int i=1;i<list.length;i++)
-        {
-            listTextView.append(list[i]+"; ");
-        }
-    }
+//    private void OutPutList(String[] list, TextView listTextView)
+//    {
+//        listTextView.setText("");
+//        //bench_list.clearComposingText();
+//        listTextView.append(list[0]+" ");
+//        for (int i=1;i<list.length;i++)
+//        {
+//            listTextView.append(list[i]+"; ");
+//        }
+//    }
     private  void FillSpinners(HashMap<Integer,String> hashMap, Spinner spinner)
     {
         ArrayList<String> list = new ArrayList<>(hashMap.values());
