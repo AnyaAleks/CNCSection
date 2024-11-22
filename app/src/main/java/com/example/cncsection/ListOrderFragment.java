@@ -115,7 +115,7 @@ public class ListOrderFragment extends Fragment {
 
         //Только у менеджера будет нижнее меню => убрать отступ
         mainLinearLayout = view.findViewById(R.id.mainLinearLayout);
-        if(userSettings.getRoleUser() != 1){
+         if(userSettings.getRoleUser() != 1){
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mainLinearLayout
                     .getLayoutParams();
             layoutParams.setMargins(0, 0, 0, 0);
@@ -209,18 +209,28 @@ public class ListOrderFragment extends Fragment {
 
         adapter.setOnItemLongClickListener(position -> {
             //Проверка на роль в настройках
+
+            //Изменение статуса у Оператора
             if(userSettings.getRoleUser() == 3){
                 // Переход к фрагменту OperatorOrderFragment
                 OperatorOrderFragment operatorOrderFragment = OperatorOrderFragment.newInstance();
 
-                Bundle bundle = new Bundle();
-                bundle.putInt("idOrder", statusList.get(position).getIdOrder());
-                operatorOrderFragment.setArguments(bundle);
+                if(statusList.get(position).getStatus() == 1){
+                    Toast.makeText(getActivity(), "Заявка еще не сформирована!", Toast.LENGTH_SHORT).show();
+                }
+                else if(statusList.get(position).getStatus() == 7){
+                    Toast.makeText(getActivity(), "Заявка уже выполнена!", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("idOrder", statusList.get(position).getIdOrder());
+                    operatorOrderFragment.setArguments(bundle);
 
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container_operator, operatorOrderFragment)
-                        .addToBackStack(null)
-                        .commit();
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container_operator, operatorOrderFragment)
+                            .addToBackStack(null)
+                            .commit();
+                }
             }
             //Оформление заявки мастером
             if(userSettings.getRoleUser() == 2){
