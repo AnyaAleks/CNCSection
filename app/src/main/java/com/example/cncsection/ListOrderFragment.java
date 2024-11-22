@@ -196,6 +196,7 @@ public class ListOrderFragment extends Fragment {
         return view;
     }
 
+    @SuppressLint("Range")
     private void setupAdapter(ArrayList<Status> statusList) {
         adapter = new StatusAdapter(statusList);
         rvContacts.setAdapter(adapter);
@@ -221,18 +222,31 @@ public class ListOrderFragment extends Fragment {
                         .addToBackStack(null)
                         .commit();
             }
-            //Тут будет редактирование (возможно то же окно,,,)
+            //Оформление заявки мастером
             if(userSettings.getRoleUser() == 2){
                 GenerateOrderFragment generateOrderFragment = GenerateOrderFragment.newInstance();
 
-                Bundle bundle = new Bundle();
-                bundle.putInt("idOrder", statusList.get(position).getIdOrder());
-                generateOrderFragment.setArguments(bundle);
+                int id_current_order = statusList.get(position).getIdOrder();
+                Cursor csrCount = dbStaff.getAllOrder();
+                boolean flagOrderAlreadyExist = false;
+                while (csrCount.moveToNext()) {
+                    if(id_current_order == csrCount.getInt(csrCount.getColumnIndex("id_order"))){
+                        flagOrderAlreadyExist = true;
+                    }
+                }
 
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container_master, generateOrderFragment)
-                        .addToBackStack(null)
-                        .commit();
+                if(flagOrderAlreadyExist){
+                    Toast.makeText(getActivity(), "Заявка уже сформирована!", Toast.LENGTH_SHORT).show();
+                } else{
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("idOrder", statusList.get(position).getIdOrder());
+                    generateOrderFragment.setArguments(bundle);
+
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container_master, generateOrderFragment)
+                            .addToBackStack(null)
+                            .commit();
+                }
             }
         });
     }
@@ -276,7 +290,7 @@ public class ListOrderFragment extends Fragment {
             }
         }
         if (filteredList.isEmpty()) {
-            Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Данные не найдены", Toast.LENGTH_SHORT).show();
         }
         if (isFilterByStatus) {
             Collections.sort(filteredList, new statusesComparator());

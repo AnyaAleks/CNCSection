@@ -513,10 +513,10 @@ public class GenerateOrderFragment extends Fragment {
 
                 try {
                     // Создали заявку
-                    dbMaster.addToOrder(userSettings.getIdUser (), estimatedProductionTime, idOrder, calendar_date);
+                    dbMaster.addToOrder(userSettings.getIdUser(), estimatedProductionTime, idOrder, calendar_date);
 
                     // Забрали id у новой заявки
-                    Cursor csrOrder = dbMaster.getAll("Order");
+                    Cursor csrOrder = dbMaster.getAllOrder();
                     int id_current_order = 0;
                     while (csrOrder.moveToNext()) {
                         if (idOrder == csrOrder.getInt(csrOrder.getColumnIndex("id_request"))) {
