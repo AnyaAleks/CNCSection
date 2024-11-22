@@ -67,7 +67,8 @@ public class GenerateOrderFragment extends Fragment {
 
     LinearLayout mainLinearLayout;
 
-    TextView bench_list, equipment_list, operator_list, tool_list, input_estimated_production_time;
+    TextView bench_list, equipment_list, operator_list, tool_list;
+    EditText input_estimated_production_time;
 
     private MasterAdapter adapter;
     ImageView calendar_button;
@@ -318,6 +319,96 @@ public class GenerateOrderFragment extends Fragment {
             }
         });
 
+        input_estimated_production_time.addTextChangedListener(new TextWatcher() {
+            private boolean isFormatting_master;
+            private int selectionStart_Master;
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                selectionStart_Master = input_estimated_production_time.getSelectionStart();
+            }
+
+            @SuppressLint("DefaultLocale")
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (isFormatting_master) {
+                    return;
+                }
+
+                String clean = s.toString().replaceAll("\\D", ""); // Удаляем все нецифровые символы
+                StringBuilder formatted = new StringBuilder();
+
+                if (clean.length() > 0) {
+                    formatted.append(clean.substring(0, Math.min(2, clean.length()))); // ДД
+                    if (clean.length() >= 3) {
+                        formatted.append(".").append(clean.substring(2, Math.min(4, clean.length()))); // ММ
+                    }
+                    if (clean.length() >= 5) {
+                        formatted.append(".").append(clean.substring(4)); // ГГГГ
+                    }
+                }
+
+                // Проверка на количество символов
+                if (clean.length() >= 2) {
+                    String day = clean.length() >= 2 ? clean.substring(0, 2) : clean;
+
+                    if (Integer.parseInt(day) > 31) {
+                        Toast.makeText(getActivity(), "Не бывает больше 31 дня в месяце", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+                if (clean.length() >= 4) {
+                    String day = clean.length() >= 2 ? clean.substring(0, 2) : clean;
+                    String month = clean.length() >= 4 ? clean.substring(2, 4) : "";
+                    String year = clean.length() > 4 ? clean.substring(4) : "";
+
+                    if (Integer.parseInt(month) > 12) {
+                        Toast.makeText(getActivity(), "Месяц не может быть больше 12", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if (!isValidDate_Master(day, month, year)) {
+                        Toast.makeText(getActivity(), "Некорректная дата", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+
+                isFormatting_master = true;
+                String current = formatted.toString();
+                input_estimated_production_time.setText(current);
+                int newSelection = selectionStart_Master + (current.length() - s.length());
+                if (selectionStart_Master > 2 && selectionStart_Master < 5) {
+                    newSelection++;
+                }
+                input_estimated_production_time.setSelection(Math.max(0, Math.min(newSelection, current.length())));
+                isFormatting_master = false;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+
+            // Метод для проверки корректности даты
+            private boolean isValidDate_Master(String day, String month, String year) {
+                int dayInt_master = Integer.parseInt(day);
+                int monthInt_master = Integer.parseInt(month);
+                int yearInt_master = year.isEmpty() ? 0 : Integer.parseInt(year);
+
+                int[] daysInMonth = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+                // Проверка на високосный год
+                if (monthInt_master == 2 && isLeapYear(yearInt_master)) {
+                    daysInMonth[2] = 29;
+                }
+                return dayInt_master <= daysInMonth[monthInt_master];
+            }
+
+            // Метод для проверки високосного года
+            private boolean isLeapYear(int year) {
+                return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+            }
+        });
+
         add_button_bench.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("Range")
             @Override
@@ -492,14 +583,34 @@ public class GenerateOrderFragment extends Fragment {
             }
         });
 
+        input_estimated_production_time.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                errorDay.setText("");}
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
+        productionTimeInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                errorTime.setText("");}
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
         addOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String estimatedProductionTime = String.valueOf(productionTimeInput.getText());
-                String calendar_date = String.valueOf(input_estimated_production_time.getText());
+                String calendar_date_master = String.valueOf(input_estimated_production_time.getText());
 
                 boolean itIsError = false;
-                if (calendar_date.isEmpty()) {
+                if (calendar_date_master.isEmpty()) {
                     errorDay.setText("Необходимо заполнить поле выбора даты");
                     itIsError = true;
                 }
@@ -513,7 +624,10 @@ public class GenerateOrderFragment extends Fragment {
 
                 try {
                     // Создали заявку
-                    dbMaster.addToOrder(userSettings.getIdUser(), estimatedProductionTime, idOrder, calendar_date);
+                    dbMaster.addToOrder(userSettings.getIdUser(), estimatedProductionTime, idOrder, calendar_date_master);
+
+                    productionTimeInput.setText("");
+                    input_estimated_production_time.setText("");
 
                     // Забрали id у новой заявки
                     Cursor csrOrder = dbMaster.getAllOrder();
