@@ -230,7 +230,7 @@ public class ListOrderFragment extends Fragment {
                 Cursor csrCount = dbStaff.getAllOrder();
                 boolean flagOrderAlreadyExist = false;
                 while (csrCount.moveToNext()) {
-                    if(id_current_order == csrCount.getInt(csrCount.getColumnIndex("id_order"))){
+                    if(id_current_order == csrCount.getInt(csrCount.getColumnIndex("id_request"))){
                         flagOrderAlreadyExist = true;
                     }
                 }

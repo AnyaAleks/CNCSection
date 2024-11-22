@@ -138,11 +138,52 @@
                     android:layout_marginBottom="15dp"
                     android:gravity="center"
 
-                    android:text="@string/time_start"
+                    android:text="Заявку оформил"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/fioEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_input"
+                    android:padding="12dp"
+                    android:inputType="date"
+                    android:paddingEnd="60dp"
+                    android:textSize="18sp"
+                    android:enabled="false"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+
+                    android:text="Дата создания"
                     android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/dateEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_input"
+                    android:padding="12dp"
+                    android:inputType="date"
+                    android:paddingEnd="60dp"
+                    android:textSize="18sp"
+                    android:enabled="false"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:text="Дата оформления"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/dateGenerateEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/custom_input"
@@ -160,7 +201,7 @@
                     android:layout_marginBottom="15dp"
                     android:gravity="center"
 
-                    android:text="@string/time"
+                    android:text="Время производства"
                     android:textSize="18sp" />
 
                 <EditText

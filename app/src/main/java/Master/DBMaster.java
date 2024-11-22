@@ -98,7 +98,7 @@ class DBMaster extends SQLiteOpenHelper {
         cv.put("id_request", id_request);
         cv.put("date_start", date_start);
 
-        long rowID = db.insert("Order", null, cv);
+        long rowID = db.insert("'Order'", null, cv);
         Log.e("LogTag", "addToOrder" + " rowID " +rowID);
 
         return rowID;

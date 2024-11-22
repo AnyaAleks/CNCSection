@@ -39,8 +39,10 @@ public class OrderInformation extends AppCompatActivity {
     TextView idOrderTextView;
     EditText detailNumberEditText;
     EditText commentaryEntryEditText;
+    EditText fioEditText;
     EditText dateEditText;
     EditText productionTimeEditText;
+    EditText dateGenerateEditText;
     Button deleteOrderButton;
     Button openProgramButton;
 
@@ -85,8 +87,10 @@ public class OrderInformation extends AppCompatActivity {
 
         detailNumberEditText = findViewById(R.id.detailNumberEditText);
         commentaryEntryEditText = findViewById(R.id.commentaryEntryEditText);
+        fioEditText = findViewById(R.id.fioEditText);
         dateEditText = findViewById(R.id.dateEditText);
         productionTimeEditText = findViewById(R.id.productionTimeEditText);
+        dateGenerateEditText = findViewById(R.id.dateGenerateEditText);
 
         Cursor csrRequest = dbStaff.getAll("Request");
         while (csrRequest.moveToNext()) {
@@ -112,12 +116,27 @@ public class OrderInformation extends AppCompatActivity {
         }
 
         Cursor csrOrder = dbStaff.getAllOrder();
+        int id_master = -1;
         while (csrOrder.moveToNext()) {
 //            Log.d("ORDERRR", String.valueOf(csrOrder.getInt(csrOrder.getColumnIndex("id_request"))));
             if(csrOrder.getInt(csrOrder.getColumnIndex("id_request")) == Integer.parseInt(id_current_order)){
+                dateGenerateEditText.setText(csrOrder.getString(csrOrder.getColumnIndex("date_start")));
                 productionTimeEditText.setText(csrOrder.getString(csrOrder.getColumnIndex("production_time")));
+                id_master = csrOrder.getInt(csrOrder.getColumnIndex("id_staff_master"));
             }
         }
+
+        if(id_master == -1){
+            fioEditText.setText("");
+        } else{
+            Cursor csrStaff = dbStaff.getAll("Staff");
+            while (csrStaff.moveToNext()) {
+                if(csrStaff.getInt(csrStaff.getColumnIndex("id_staff")) == id_master){
+                    fioEditText.setText(csrStaff.getString(csrStaff.getColumnIndex("fio")));
+                }
+            }
+        }
+
 
 
         deleteOrderButton.setOnClickListener(new View.OnClickListener() {
