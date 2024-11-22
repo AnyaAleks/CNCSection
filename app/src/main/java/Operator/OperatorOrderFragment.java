@@ -145,6 +145,8 @@ public class OperatorOrderFragment extends Fragment {
         while (csr.moveToNext()) {
             hashSates.put(csr.getInt(csr.getColumnIndex("id_status")), csr.getString(csr.getColumnIndex("title")));
         }
+        hashSates.remove(1);
+        hashSates.remove(2);
 //        Log.d("DB_STAFF",hashSates.toString());
 
         //Заполнение списка станков
