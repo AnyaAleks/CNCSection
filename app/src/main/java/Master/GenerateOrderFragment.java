@@ -436,30 +436,12 @@ public class GenerateOrderFragment extends Fragment {
                         benches.add(new MasterString(newBench, id));
                         adapter = new MasterAdapter(getActivity(), benches);
                         lvBenches.setAdapter(adapter);
+                        ChangeHeight(lvBenches);
                     }
                 }
             }
         });
-//        update_button_bench.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //AddBench(view);
-//
-//                int i=0;
-//                while (i<benches.size())
-//                {
-//                    if(Objects.equals(benches.get(i).getName(), "empty"))
-//                    {
-//                        benches.remove(i);
-//                    }
-//                    else
-//                        i++;
-//                }
-//
-//                adapter = new MasterAdapter(getActivity(),benches);
-//                lvBenches.setAdapter(adapter);
-//            }
-//        });
+
         add_button_equipment.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("Range")
             @Override
@@ -486,30 +468,12 @@ public class GenerateOrderFragment extends Fragment {
                         equipments.add(new MasterString(newBench, id));
                         adapter = new MasterAdapter(getActivity(), equipments);
                         lvEquipments.setAdapter(adapter);
+                        ChangeHeight(lvEquipments);
                     }
                 }
             }
         });
-//        update_button_equipment.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //AddBench(view);
-//
-//                int i=0;
-//                while (i<equipments.size())
-//                {
-//                    if(Objects.equals(equipments.get(i).getName(), "empty"))
-//                    {
-//                        equipments.remove(i);
-//                    }
-//                    else
-//                        i++;
-//                }
-//
-//                adapter = new MasterAdapter(getActivity(),equipments);
-//                lvEquipments.setAdapter(adapter);
-//            }
-//        });
+
         add_button_operator.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("Range")
             @Override
@@ -535,30 +499,12 @@ public class GenerateOrderFragment extends Fragment {
                         operators.add(new MasterString(newBench, id));
                         adapter = new MasterAdapter(getActivity(), operators);
                         lvOperators.setAdapter(adapter);
+                        ChangeHeight(lvOperators);
                     }
                 }
             }
         });
-//        update_button_operator.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //AddBench(view);
-//
-//                int i=0;
-//                while (i<operators.size())
-//                {
-//                    if(Objects.equals(operators.get(i).getName(), "empty"))
-//                    {
-//                        operators.remove(i);
-//                    }
-//                    else
-//                        i++;
-//                }
-//
-//                adapter = new MasterAdapter(getActivity(),operators);
-//                lvOperators.setAdapter(adapter);
-//            }
-//        });
+
         add_button_tool.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("Range")
             @Override
@@ -585,30 +531,11 @@ public class GenerateOrderFragment extends Fragment {
                         tools.add(new MasterString(newBench, id));
                         adapter = new MasterAdapter(getActivity(), tools);
                         lvTools.setAdapter(adapter);
+                        ChangeHeight(lvTools);
                     }
                 }
             }
         });
-//        update_button_tool.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //AddBench(view);
-//
-//                int i=0;
-//                while (i<tools.size())
-//                {
-//                    if(Objects.equals(tools.get(i).getName(), "empty"))
-//                    {
-//                        tools.remove(i);
-//                    }
-//                    else
-//                        i++;
-//                }
-//
-//                adapter = new MasterAdapter(getActivity(),tools);
-//                lvTools.setAdapter(adapter);
-//            }
-//        });
 
         input_estimated_production_time.addTextChangedListener(new TextWatcher() {
             @Override
@@ -713,16 +640,6 @@ public class GenerateOrderFragment extends Fragment {
         return view;
     }
 
-//    private void OutPutList(String[] list, TextView listTextView)
-//    {
-//        listTextView.setText("");
-//        //bench_list.clearComposingText();
-//        listTextView.append(list[0]+" ");
-//        for (int i=1;i<list.length;i++)
-//        {
-//            listTextView.append(list[i]+"; ");
-//        }
-//    }
     private  void FillSpinners(HashMap<Integer,String> hashMap, Spinner spinner)
     {
         ArrayList<String> list = new ArrayList<>(hashMap.values());
@@ -746,6 +663,22 @@ public class GenerateOrderFragment extends Fragment {
             Toast.makeText(getActivity(), "Empty Settings!", Toast.LENGTH_SHORT).show();
             //userSettings = new UserSettings(userId);
         }
+    }
+
+
+    private void ChangeHeight(ListView listView)
+    {
+        int totalHeight = 0;
+        for (int i = 0; i < adapter.getCount(); i++) {
+            View listItem = adapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (adapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
 
     private int getRoleColor(int key)
