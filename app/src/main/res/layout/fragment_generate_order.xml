@@ -356,12 +356,18 @@
                     android:gravity="left"
                     android:inputType="text"
                     android:textSize="18sp"/>
+                <TextView
+                    android:id="@+id/error_time_master"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/rus_red"
+                    android:layout_gravity="center" />
 
                 <TextView
                     android:id="@+id/estimated_production_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="15dp"
                     android:text="Дата оформления"
                     android:textSize="18sp" />
@@ -369,7 +375,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="30dp">
+                    >
 
                     <EditText
                         android:id="@+id/input_estimated_production_time"
@@ -394,6 +400,14 @@
                         android:contentDescription="@string/calendar_button_description"
                         android:scaleType="fitCenter" />
                 </RelativeLayout>
+                <TextView
+                    android:id="@+id/error_calendar_master"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/rus_red"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="30dp"/>
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/addOrderButton"
                     style="@style/AppCompatButtonStyle"

@@ -16,6 +16,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -158,6 +160,9 @@ public class GenerateOrderFragment extends Fragment {
         });
 
         dbMaster = new DBMaster(getActivity());
+
+        TextView errorDay = view.findViewById(R.id.error_calendar_master);
+        TextView errorTime = view.findViewById(R.id.error_time_master);
 
         lvBenches = view.findViewById(R.id.bench_list_view);
         lvEquipments = view.findViewById(R.id.equipment_list_view);
@@ -487,61 +492,82 @@ public class GenerateOrderFragment extends Fragment {
             }
         });
 
-        addOrderButton.setOnClickListener(new View.OnClickListener()
-        {
+        addOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                //ПРОВЕРКУ НА НЕПУСТОЕ ВРЕМЯ
-                //Сделать календарь с датой
-                //создали заявку
-                dbMaster.addToOrder(userSettings.getIdUser(),
-                        String.valueOf(productionTimeInput.getText()),
-                        idOrder,
-                        "18.11.2024");
+            public void onClick(View v) {
+                String estimatedProductionTime = String.valueOf(productionTimeInput.getText());
+                String calendar_date = String.valueOf(input_estimated_production_time.getText());
 
-                //забрали id у новой заявки
-                Cursor csrOrder = dbMaster.getAll("Order");
-                int id_current_order = 0;
-                while (csrOrder.moveToNext()) {
-                    if(idOrder == csrOrder.getInt(csrOrder.getColumnIndex("id_request"))){
-                        id_current_order = csrOrder.getInt(csrOrder.getColumnIndex("id_order"));
+                boolean itIsError = false;
+                if (calendar_date.isEmpty()) {
+                    errorDay.setText("Необходимо заполнить поле выбора даты");
+                    itIsError = true;
+                }
+                if (estimatedProductionTime.isEmpty()) {
+                    errorTime.setText("Необходимо заполнить поле время производства");
+                    itIsError = true;
+                }
+                if (itIsError) {
+                    return;
+                }
+
+                try {
+                    // Создали заявку
+                    dbMaster.addToOrder(userSettings.getIdUser (), estimatedProductionTime, idOrder, calendar_date);
+
+                    // Забрали id у новой заявки
+                    Cursor csrOrder = dbMaster.getAll("Order");
+                    int id_current_order = 0;
+                    while (csrOrder.moveToNext()) {
+                        if (idOrder == csrOrder.getInt(csrOrder.getColumnIndex("id_request"))) {
+                            id_current_order = csrOrder.getInt(csrOrder.getColumnIndex("id_order"));
+                        }
                     }
+
+                    // Machine
+                    if (benches != null) {
+                        for (int i = 0; i < benches.size(); i++) {
+                            dbMaster.addToOrder_and_Machine(id_current_order, benches.get(i).getId());
+                        }
+                    }
+
+                    // Osnaska
+                    if (equipments != null) {
+                        for (int i = 0; i < equipments.size(); i++) {
+                            dbMaster.addToOrder_and_Osnaska(id_current_order, equipments.get(i).getId());
+                        }
+                    }
+
+                    // Operator
+                    if (operators != null) {
+                        for (int i = 0; i < operators.size(); i++) {
+                            dbMaster.addToOrder_and_Operator(id_current_order, operators.get(i).getId());
+                        }
+                    }
+
+                    // Tool
+                    if (tools != null) {
+                        for (int i = 0; i < tools.size(); i++) {
+                            dbMaster.addToOrder_and_Tool(id_current_order, tools.get(i).getId());
+                        }
+                    }
+
+                    // Изменение статуса заявки
+                    dbMaster.updateValueById("Request", "id_order", idOrder, "id_status", 2);
+
+                    Toast.makeText(getActivity(), "Данные успешно добавлены", Toast.LENGTH_SHORT).show();
+                    ListOrderFragment listOrderFragment = new ListOrderFragment();
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_container_master, listOrderFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                } catch (Exception e) {
+                    Log.e("OrderError", "Ошибка при оформлении заявки: " + e.getMessage());
+                    Toast.makeText(getActivity(), "Произошла ошибка: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-
-                //Machine
-                for(int i=0; i<benches.size(); i++){
-                    dbMaster.addToOrder_and_Machine(id_current_order, benches.get(i).getId());
-                }
-
-                //Osnaska
-                for(int i=0; i<equipments.size(); i++){
-                    dbMaster.addToOrder_and_Osnaska(id_current_order, equipments.get(i).getId());
-                }
-
-                //Operator
-                for(int i=0; i<operators.size(); i++){
-                    dbMaster.addToOrder_and_Operator(id_current_order, operators.get(i).getId());
-                }
-
-                //Tool addToOrder_and_Tool
-                for(int i=0; i<tools.size(); i++){
-                    dbMaster.addToOrder_and_Tool(id_current_order, tools.get(i).getId());
-                }
-
-
-                //Изменение статуса заявки
-                dbMaster.updateValueById("Request", "id_order"
-                        , idOrder,"id_status", 2);
-
-                Toast.makeText(getActivity(), "Данные успешно добавлены", Toast.LENGTH_SHORT).show();
-                ListOrderFragment listOrderFragment = new ListOrderFragment();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container_master, listOrderFragment); // Убедитесь, что ID контейнера правильный
-                transaction.addToBackStack(null); // Добавляем в стек возврата
-                transaction.commit();
             }
         });
+
 
         return view;
     }
