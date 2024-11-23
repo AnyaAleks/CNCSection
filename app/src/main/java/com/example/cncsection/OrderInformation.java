@@ -6,12 +6,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,9 +27,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import Enter.EntryActivity;
+import Master.MasterString;
 import Staff.DBStaff;
 
 public class OrderInformation extends AppCompatActivity {
@@ -48,6 +55,30 @@ public class OrderInformation extends AppCompatActivity {
 
     String id_current_order;
     String part_number;
+
+
+//    private MasterAdapter adapter;
+//    ListView lvBenches;
+//    ListView lvEquipments;
+//    ListView lvOperators;
+//    ListView lvTools;
+//
+//    private ArrayList<MasterString> benches = new ArrayList<>();
+//    private ArrayList<MasterString> equipments = new ArrayList<>();
+//    private ArrayList<MasterString> operators = new ArrayList<>();
+//    private ArrayList<MasterString> tools = new ArrayList<>();
+
+
+    List<String> benches = new ArrayList<String>();
+    ListView lvBenches;
+    List<String> equipments = new ArrayList<String>();
+    ListView lvEquipments;
+    List<String> tools = new ArrayList<String>();
+    ListView lvTools;
+    List<String> operators = new ArrayList<String>();
+    ListView lvOperators;
+
+
 
     @SuppressLint({"Range", "MissingInflatedId"})
     @Override
@@ -92,6 +123,46 @@ public class OrderInformation extends AppCompatActivity {
         productionTimeEditText = findViewById(R.id.productionTimeEditText);
         dateGenerateEditText = findViewById(R.id.dateGenerateEditText);
 
+        lvBenches = findViewById(R.id.bench_list_view);
+        lvEquipments = findViewById(R.id.equipment_list_view);
+        lvOperators = findViewById(R.id.operator_list_view);
+        lvTools = findViewById(R.id.tool_list_view);
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //Заполнение списка станков
+        benches.add("Станок№1");
+        benches.add("Станок№2");
+        benches.add("Станок№3");
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, benches);
+
+        lvBenches.setAdapter(adapter);
+        ChangeHeight(lvBenches,adapter);
+
+        //Заполнение списка оснасток
+        equipments.add("Оснастка№1");
+        equipments.add("Оснастка№2");
+        equipments.add("Оснастка№3");
+        equipments.add("Оснастка№4");
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, equipments);
+        lvEquipments.setAdapter(adapter);
+        ChangeHeight(lvEquipments,adapter);
+
+        tools.add("Инструмент№1");
+        tools.add("Инструмент№2");
+        tools.add("Инструмент№3");
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tools);
+        lvTools.setAdapter(adapter);
+        ChangeHeight(lvTools,adapter);
+
+        tools.add("Оператор№1");
+        tools.add("Оператор№2");
+        tools.add("Оператор№3");
+        tools.add("Оператор№4");
+        tools.add("Оператор№5");
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, operators);
+        lvOperators.setAdapter(adapter);
+        ChangeHeight(lvOperators,adapter);
+////////////////////////////////////////////////////////////////////////////////////////////////////
         Cursor csrRequest = dbStaff.getAll("Request");
         while (csrRequest.moveToNext()) {
             if(csrRequest.getInt(csrRequest.getColumnIndex("id_order")) == Integer.parseInt(id_current_order)){
@@ -110,6 +181,7 @@ public class OrderInformation extends AppCompatActivity {
                 }
 
                 commentaryEntryEditText.setText(csrRequest.getString(csrRequest.getColumnIndex("comment")));
+                commentaryEntryEditText.setEnabled(false);
 
                 dateEditText.setText(csrRequest.getString(csrRequest.getColumnIndex("date")));
             }
@@ -169,7 +241,8 @@ public class OrderInformation extends AppCompatActivity {
             }
         });
     }
-    @Override
+
+        @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return false;
     }
@@ -234,5 +307,20 @@ public class OrderInformation extends AppCompatActivity {
             Toast.makeText(this, "Empty Settings!", Toast.LENGTH_SHORT).show();
             //userSettings = new UserSettings(userId);
         }
+    }
+
+    private void ChangeHeight(ListView listView, ArrayAdapter adapter )
+    {
+        int totalHeight = 0;
+        for (int i = 0; i < adapter.getCount(); i++) {
+            View listItem = adapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (adapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
 }

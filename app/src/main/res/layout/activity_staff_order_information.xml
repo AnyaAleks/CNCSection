@@ -8,248 +8,281 @@
     android:layout_height="match_parent"
     tools:context=".OrderInformation">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical">-->
 
-        <TextView
-            android:id="@+id/entry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/infoorder_caps"
-            android:layout_marginTop="50dp"
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:textSize="25dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/entry"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/infoorder_caps"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="25dp" />-->
 
-        <TextView
-            android:id="@+id/idOrderTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="id"
-            android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:textSize="18dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/idOrderTextView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="id"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="18dp" />-->
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="50dp">
+<!--        <ScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginBottom="50dp">-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="clip_horizontal"
-                android:layout_margin="20dp"
-                android:orientation="vertical"
-                android:padding="4dp">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="clip_horizontal"-->
+<!--                android:layout_margin="20dp"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="4dp">-->
 
-                <TextView
-                    android:id="@+id/item_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="15dp"
-                    android:gravity="center"
-                    android:text="@string/item"
-                    android:textSize="18dp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/item_number"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:layout_marginBottom="15dp"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="@string/item"-->
+<!--                    android:textSize="18dp" />-->
 
-                <EditText
-                    android:id="@+id/detailNumberEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/custom_input"
-                    android:padding="12dp"
-                    android:gravity="left"
-                    android:hint="@string/hint_3"
-                    android:inputType="text"
-                    android:enabled="false"
-                    android:textSize="18dp" />
+<!--                <EditText-->
+<!--                    android:id="@+id/detailNumberEditText"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/custom_input"-->
+<!--                    android:padding="12dp"-->
+<!--                    android:gravity="left"-->
+<!--                    android:hint="@string/hint_3"-->
+<!--                    android:inputType="text"-->
+<!--                    android:enabled="false"-->
+<!--                    android:textSize="18dp" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="15dp"
-                    android:gravity="center"
-                    android:text="@string/status"
-                    android:textSize="18dp" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:layout_marginBottom="15dp"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="@string/status"-->
+<!--                    android:textSize="18dp" />-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
 
-                    <ImageButton
-                        android:id="@+id/stateInformer"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/osnaska"
-                        android:background="@drawable/state_color_red"
-                        android:layout_marginRight="20dp">
-                    </ImageButton>
+<!--                    <ImageButton-->
+<!--                        android:id="@+id/stateInformer"-->
+<!--                        android:layout_width="50dp"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        android:src="@drawable/osnaska"-->
+<!--                        android:background="@drawable/state_color_red"-->
+<!--                        android:layout_marginRight="20dp">-->
+<!--                    </ImageButton>-->
 
-                    <!--                    <Spinner-->
-                    <!--                        android:id="@+id/states_spinner"-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="50dp"-->
-                    <!--                        android:gravity="start"-->
-                    <!--                        android:dropDownVerticalOffset="50dp"-->
-                    <!--                        android:background="@drawable/spinner_shape"-->
-                    <!--                        android:layout_gravity="end" />-->
+<!--                    &lt;!&ndash;                    <Spinner&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:id="@+id/states_spinner"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:layout_width="match_parent"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:layout_height="50dp"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:gravity="start"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:dropDownVerticalOffset="50dp"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:background="@drawable/spinner_shape"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:layout_gravity="end" />&ndash;&gt;-->
 
-                    <EditText
-                        android:id="@+id/states_spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/custom_input"
-                        android:padding="12dp"
-                        android:gravity="left"
-                        android:hint="@string/hint_3"
-                        android:inputType="text"
-                        android:enabled="false"
-                        android:textSize="18dp" />
-                </LinearLayout>
+<!--                    <EditText-->
+<!--                        android:id="@+id/states_spinner"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:background="@drawable/custom_input"-->
+<!--                        android:padding="12dp"-->
+<!--                        android:gravity="left"-->
+<!--                        android:hint="@string/hint_3"-->
+<!--                        android:inputType="text"-->
+<!--                        android:enabled="false"-->
+<!--                        android:textSize="18dp" />-->
+<!--                </LinearLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="15dp"
-                    android:gravity="center"
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:layout_marginBottom="15dp"-->
+<!--                    android:gravity="center"-->
 
-                    android:text="@string/time_start"
-                    android:textSize="18sp" />
+<!--                    android:text="@string/time_start"-->
+<!--                    android:textSize="18sp" />-->
 
-                <EditText
-                    android:id="@+id/dateEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/custom_input"
-                    android:padding="12dp"
-                    android:inputType="date"
-                    android:paddingEnd="60dp"
-                    android:textSize="18sp"
-                    android:enabled="false"/>
+<!--                <EditText-->
+<!--                    android:id="@+id/dateEditText"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/custom_input"-->
+<!--                    android:padding="12dp"-->
+<!--                    android:inputType="date"-->
+<!--                    android:paddingEnd="60dp"-->
+<!--                    android:textSize="18sp"-->
+<!--                    android:enabled="false"/>-->
 
-                <TextView
-                    android:id="@+id/production_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="15dp"
-                    android:gravity="center"
+<!--                <TextView-->
+<!--                    android:id="@+id/production_time"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:layout_marginBottom="15dp"-->
+<!--                    android:gravity="center"-->
 
-                    android:text="@string/time"
-                    android:textSize="18sp" />
+<!--                    android:text="@string/time"-->
+<!--                    android:textSize="18sp" />-->
 
-                <EditText
-                    android:id="@+id/productionTimeEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/custom_input"
-                    android:padding="12dp"
-                    android:inputType="date"
-                    android:paddingEnd="60dp"
-                    android:textSize="18sp"
-                    android:enabled="false"/>
+<!--                <EditText-->
+<!--                    android:id="@+id/productionTimeEditText"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/custom_input"-->
+<!--                    android:padding="12dp"-->
+<!--                    android:inputType="date"-->
+<!--                    android:paddingEnd="60dp"-->
+<!--                    android:textSize="18sp"-->
+<!--                    android:enabled="false"/>-->
 
-                <TextView
-                    android:id="@+id/commentary"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginTop="15dp"
+<!--                <TextView-->
+<!--                    android:id="@+id/commentary"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="45dp"-->
+<!--                    android:layout_marginTop="15dp"-->
 
-                    android:gravity="left"
-                    android:padding="5dp"
-                    android:text="@string/commentary"
-                    android:textSize="18sp" />
+<!--                    android:gravity="left"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:text="@string/commentary"-->
+<!--                    android:textSize="18sp" />-->
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
 
-                    <EditText
-                        android:id="@+id/commentaryEntryEditText"
-                        android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/shape_of_elements"
-                        android:gravity="bottom"
-                        android:hint="@string/hint_2"
-                        android:inputType="textMultiLine"
-                        android:maxLength="200"
-                        android:textSize="18sp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="10dp"
-                        android:scrollbars="vertical"/>
-                </LinearLayout>
+<!--                    <EditText-->
+<!--                        android:id="@+id/commentaryEntryEditText"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="100dp"-->
+<!--                        android:layout_marginBottom="15dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:background="@drawable/shape_of_elements"-->
+<!--                        android:gravity="bottom"-->
+<!--                        android:hint="@string/hint_2"-->
+<!--                        android:inputType="textMultiLine"-->
+<!--                        android:maxLength="200"-->
+<!--                        android:textSize="18sp"-->
+<!--                        android:paddingLeft="10dp"-->
+<!--                        android:paddingRight="10dp"-->
+<!--                        android:paddingBottom="10dp"-->
+<!--                        android:paddingTop="10dp"-->
+<!--                        android:scrollbars="vertical"/>-->
+<!--                </LinearLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="15dp"
-                    android:gravity="center"
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:layout_marginBottom="15dp"-->
+<!--                    android:gravity="center"-->
 
-                    android:text="@string/bench"
-                    android:textSize="18sp" />
+<!--                    android:text="@string/bench"-->
+<!--                    android:textSize="18sp" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="15dp"
-                    android:gravity="center"
+<!--                <ListView-->
+<!--                    android:id="@+id/bench_list_view"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginBottom="5dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/shape_of_elements" />-->
 
-                    android:text="@string/tools"
-                    android:textSize="18sp" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:layout_marginBottom="15dp"-->
+<!--                    android:gravity="center"-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="15dp"
-                    android:gravity="center"
+<!--                    android:text="@string/tools"-->
+<!--                    android:textSize="18sp" />-->
+<!--                <ListView-->
+<!--                    android:id="@+id/tool_list_view"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginBottom="5dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/shape_of_elements" />-->
 
-                    android:text="@string/equipment"
-                    android:textSize="18sp" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:layout_marginBottom="15dp"-->
+<!--                    android:gravity="center"-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="15dp"
-                    android:gravity="center"
+<!--                    android:text="@string/equipment"-->
+<!--                    android:textSize="18sp" />-->
+<!--                <ListView-->
+<!--                    android:id="@+id/equipment_list_view"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginBottom="5dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/shape_of_elements" />-->
 
-                    android:text="@string/operator"
-                    android:textSize="18sp" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="20dp"-->
+<!--                    android:layout_marginBottom="15dp"-->
+<!--                    android:gravity="center"-->
 
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@style/AppCompatButtonStyle"
-                    android:onClick="goNext"
-                    android:text="@string/open_drawing"/>
+<!--                    android:text="@string/operator"-->
+<!--                    android:textSize="18sp" />-->
+<!--                <ListView-->
+<!--                    android:id="@+id/operator_list_view"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginBottom="5dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/shape_of_elements" />-->
 
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@style/AppCompatButtonStyle"
-                    android:onClick="goNext"
-                    android:text="@string/open_techProcess"/>
+<!--                <androidx.appcompat.widget.AppCompatButton-->
+<!--                    style="@style/AppCompatButtonStyle"-->
+<!--                    android:onClick="goNext"-->
+<!--                    android:text="@string/open_drawing"/>-->
 
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@style/AppCompatButtonStyle"
-                    android:onClick="goNext"
-                    android:text="@string/open_program"
-                    android:layout_marginBottom="100dp"/>
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+<!--                <androidx.appcompat.widget.AppCompatButton-->
+<!--                    style="@style/AppCompatButtonStyle"-->
+<!--                    android:onClick="goNext"-->
+<!--                    android:text="@string/open_techProcess"/>-->
+
+<!--                <androidx.appcompat.widget.AppCompatButton-->
+<!--                    style="@style/AppCompatButtonStyle"-->
+<!--                    android:onClick="goNext"-->
+<!--                    android:text="@string/open_program"-->
+<!--                    android:layout_marginBottom="100dp"/>-->
+<!--            </LinearLayout>-->
+<!--        </ScrollView>-->
+<!--    </LinearLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

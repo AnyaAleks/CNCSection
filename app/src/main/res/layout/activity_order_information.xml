@@ -261,6 +261,15 @@
                     android:text="@string/bench"
                     android:textSize="18sp" />
 
+                <ListView
+                    android:id="@+id/bench_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_of_elements" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -270,6 +279,16 @@
 
                     android:text="@string/tools"
                     android:textSize="18sp" />
+
+
+                <ListView
+                    android:id="@+id/tool_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_of_elements" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -281,6 +300,15 @@
                     android:text="@string/equipment"
                     android:textSize="18sp" />
 
+                <ListView
+                    android:id="@+id/equipment_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_of_elements" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -290,6 +318,16 @@
 
                     android:text="@string/operator"
                     android:textSize="18sp" />
+
+
+                <ListView
+                    android:id="@+id/operator_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_of_elements" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/openProgramButton"
