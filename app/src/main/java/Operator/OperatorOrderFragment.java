@@ -163,19 +163,23 @@ public class OperatorOrderFragment extends Fragment {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, benches);
         lvBenches.setAdapter(adapter);
+        ChangeHeight(lvBenches,adapter);
 
         //Заполнение списка оснасток
         equipments.add("Оснастка№1");
         equipments.add("Оснастка№2");
         equipments.add("Оснастка№3");
+        equipments.add("Оснастка№4");
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, equipments);
         lvEquipments.setAdapter(adapter);
+        ChangeHeight(lvEquipments,adapter);
 
         tools.add("Инструмент№1");
         tools.add("Инструмент№2");
         tools.add("Инструмент№3");
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, tools);
         lvTools.setAdapter(adapter);
+        ChangeHeight(lvTools,adapter);
 
         fillStatesSpinner();
         statesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -231,25 +235,40 @@ public class OperatorOrderFragment extends Fragment {
         statesSpinner.setAdapter(TypesAdapter);
     }
 
-    private void fillListview(List<String> list, ListView lv) {
-
-        // Найдите ListView
-
-        // Используйте ArrayAdapter для подключения списка
-        //ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_expandable_list_item_1, items);
-
-        //listView.setAdapter(adapter);//---------------------------------------
-
-
-//        // Создаем адаптер
+//    private void fillListview(List<String> list, ListView lv) {
 //
-//        adapter = new StringAdapter(getActivity(), list);
+//        // Найдите ListView
 //
-//        // Устанавливаем адаптер для ListView
-//        lv.setAdapter(adapter);
+//        // Используйте ArrayAdapter для подключения списка
+//        //ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_expandable_list_item_1, items);
+//
+//        //listView.setAdapter(adapter);//---------------------------------------
+//
+//
+////        // Создаем адаптер
+////
+////        adapter = new StringAdapter(getActivity(), list);
+////
+////        // Устанавливаем адаптер для ListView
+////        lv.setAdapter(adapter);
+//
+//
+//    }
+    private void ChangeHeight(ListView listView, ArrayAdapter adapter )
+    {
+        int totalHeight = 0;
+        for (int i = 0; i < adapter.getCount(); i++) {
+            View listItem = adapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
 
-
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (adapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
+
     private int getRoleColor(int key)
     {
         //"@drawable/roundcorner"
