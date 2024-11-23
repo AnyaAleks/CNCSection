@@ -154,11 +154,11 @@ public class OrderInformation extends AppCompatActivity {
         lvTools.setAdapter(adapter);
         ChangeHeight(lvTools,adapter);
 
-        tools.add("Оператор№1");
-        tools.add("Оператор№2");
-        tools.add("Оператор№3");
-        tools.add("Оператор№4");
-        tools.add("Оператор№5");
+        operators.add("Оператор№1");
+        operators.add("Оператор№2");
+        operators.add("Оператор№3");
+        operators.add("Оператор№4");
+        operators.add("Оператор№5");
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, operators);
         lvOperators.setAdapter(adapter);
         ChangeHeight(lvOperators,adapter);
