@@ -224,12 +224,18 @@ public class GenerateOrderFragment extends Fragment {
 
         Cursor csro = dbMaster.getAll("Staff");
         while (csro.moveToNext()) {
-            hashOperator.put(csro.getInt(csro.getColumnIndex("id_staff")), csro.getString(csro.getColumnIndex("fio")));
+            int id=csro.getInt(csro.getColumnIndex("id_staff"));
+            int role=csro.getInt(csro.getColumnIndex("id_access"));
+            String name =csro.getString(csro.getColumnIndex("fio"));
+            if(role==3)
+                hashOperator.put(id, name);
         }
+
+
 
         Cursor csrt = dbMaster.getAll("Tool");
         while (csrt.moveToNext()) {
-            hashOperator.put(csrt.getInt(csrt.getColumnIndex("id_tool")), csrt.getString(csrt.getColumnIndex("title")));
+            hashTool.put(csrt.getInt(csrt.getColumnIndex("id_tool")), csrt.getString(csrt.getColumnIndex("title")));
         }
 
 
