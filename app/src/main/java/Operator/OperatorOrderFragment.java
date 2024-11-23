@@ -143,10 +143,15 @@ public class OperatorOrderFragment extends Fragment {
         //Заполнение списка для состояний индикатора
         Cursor csr = dbStaff.getAll("Status");
         while (csr.moveToNext()) {
-            hashSates.put(csr.getInt(csr.getColumnIndex("id_status")), csr.getString(csr.getColumnIndex("title")));
+//            if(csr.getInt(csr.getColumnIndex("id_status")) == 1 || csr.getInt(csr.getColumnIndex("id_status")) == 2){
+//
+//            } else{
+                hashSates.put(csr.getInt(csr.getColumnIndex("id_status")), csr.getString(csr.getColumnIndex("title")));
+           // }
         }
-        hashSates.remove(0);
-        hashSates.remove(1);
+//        hashSates.remove(0);
+//        hashSates.remove(1);
+//        hashSates.remove(2);
 //        Log.d("DB_STAFF",hashSates.toString());
 
         //Заполнение списка станков
@@ -291,8 +296,8 @@ public class OperatorOrderFragment extends Fragment {
         //"@drawable/roundcorner"
         int icon;
         switch (key){
-            case 1: icon = R.drawable.null_icon; break;
-            case 2: icon = R.drawable.null_icon; break;
+//            case 1: icon = R.drawable.null_icon; break;
+//            case 2: icon = R.drawable.null_icon; break;
             case 3: icon = R.drawable.null_icon; break;
             case 4: icon = R.drawable.null_icon; break;
             case 5: icon = R.drawable.osnaska; break;
