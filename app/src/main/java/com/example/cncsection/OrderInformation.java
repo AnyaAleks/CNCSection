@@ -138,6 +138,7 @@ public class OrderInformation extends AppCompatActivity {
         ArrayList<Integer> listCurrentMachine = new ArrayList<>();
         Cursor csrOrder_and_Machine = dbStaff.getAll("Order_and_Machine");
         while (csrOrder_and_Machine.moveToNext()) {
+            Log.i("HHH", String.valueOf(csrOrder_and_Machine.getInt(csrOrder_and_Machine.getColumnIndex("id_order"))));
             if(Integer.parseInt(id_current_order) == csrOrder_and_Machine.getInt(csrOrder_and_Machine.getColumnIndex("id_order"))){
                 listCurrentMachine.add(csrOrder_and_Machine.getInt(csrOrder_and_Machine.getColumnIndex("id_machine")));
             }

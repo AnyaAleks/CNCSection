@@ -591,12 +591,12 @@ public class GenerateOrderFragment extends Fragment {
 
                     // Забрали id у новой заявки
                     Cursor csrOrder = dbMaster.getAllOrder();
-                    int id_current_order = 0;
-                    while (csrOrder.moveToNext()) {
-                        if (idOrder == csrOrder.getInt(csrOrder.getColumnIndex("id_request"))) {
-                            id_current_order = csrOrder.getInt(csrOrder.getColumnIndex("id_order"));
-                        }
-                    }
+                    int id_current_order = idOrder;
+//                    while (csrOrder.moveToNext()) {
+//                        if (idOrder == csrOrder.getInt(csrOrder.getColumnIndex("id_request"))) {
+//                            id_current_order = csrOrder.getInt(csrOrder.getColumnIndex("id_order"));
+//                        }
+//                    }
 
                     // Machine
                     if (benches != null) {

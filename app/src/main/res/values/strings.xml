@@ -30,7 +30,7 @@
 
 
     <string name="master_header">МАСТЕР</string>
-    <string name="estimated_time">Время производства: </string>
+    <string name="estimated_time">Время производства </string>
     <string name="bench">Станки</string>
     <string name="equipment">Оснастки</string>
     <string name="operator">Операторы</string>
