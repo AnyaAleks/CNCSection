@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +29,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -130,35 +132,86 @@ public class OrderInformation extends AppCompatActivity {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //Заполнение списка станков
-        benches.add("Станок№1");
-        benches.add("Станок№2");
-        benches.add("Станок№3");
+//        benches.add("Станок№1");
+//        benches.add("Станок№2");
+//        benches.add("Станок№3");
+        ArrayList<Integer> listCurrentMachine = new ArrayList<>();
+        Cursor csrOrder_and_Machine = dbStaff.getAll("Order_and_Machine");
+        while (csrOrder_and_Machine.moveToNext()) {
+            if(Integer.parseInt(id_current_order) == csrOrder_and_Machine.getInt(csrOrder_and_Machine.getColumnIndex("id_order"))){
+                listCurrentMachine.add(csrOrder_and_Machine.getInt(csrOrder_and_Machine.getColumnIndex("id_machine")));
+            }
+        }
+        Cursor csrMachine = dbStaff.getAll("Machine");
+        while (csrMachine.moveToNext()) {
+            if(listCurrentMachine.contains(csrMachine.getInt(csrMachine.getColumnIndex("id_machine")))){
+                benches.add(csrMachine.getString(csrMachine.getColumnIndex("type")));
+            }
+        }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, benches);
-
         lvBenches.setAdapter(adapter);
         ChangeHeight(lvBenches,adapter);
 
         //Заполнение списка оснасток
-        equipments.add("Оснастка№1");
-        equipments.add("Оснастка№2");
-        equipments.add("Оснастка№3");
-        equipments.add("Оснастка№4");
+//        equipments.add("Оснастка№1");
+//        equipments.add("Оснастка№2");
+//        equipments.add("Оснастка№3");
+//        equipments.add("Оснастка№4");
+        ArrayList<Integer> listCurrentOsnaska = new ArrayList<>();
+        Cursor csrOrder_and_Osnaska = dbStaff.getAll("Order_and_Osnaska");
+        while (csrOrder_and_Osnaska.moveToNext()) {
+            if(Integer.parseInt(id_current_order) == csrOrder_and_Osnaska.getInt(csrOrder_and_Osnaska.getColumnIndex("id_order"))){
+                listCurrentOsnaska.add(csrOrder_and_Osnaska.getInt(csrOrder_and_Osnaska.getColumnIndex("id_osnaska")));
+            }
+        }
+        Cursor csrOsnaska = dbStaff.getAll("Osnaska");
+        while (csrOsnaska.moveToNext()) {
+            if(listCurrentOsnaska.contains(csrOsnaska.getInt(csrOsnaska.getColumnIndex("id_osnaska")))){
+                equipments.add(csrOsnaska.getString(csrOsnaska.getColumnIndex("title")));
+            }
+        }
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, equipments);
         lvEquipments.setAdapter(adapter);
         ChangeHeight(lvEquipments,adapter);
 
-        tools.add("Инструмент№1");
-        tools.add("Инструмент№2");
-        tools.add("Инструмент№3");
+//        tools.add("Инструмент№1");
+//        tools.add("Инструмент№2");
+//        tools.add("Инструмент№3");
+        ArrayList<Integer> listCurrentTool = new ArrayList<>();
+        Cursor csrOrder_and_Tool = dbStaff.getAll("Order_and_Tool");
+        while (csrOrder_and_Tool.moveToNext()) {
+            if(Integer.parseInt(id_current_order) == csrOrder_and_Tool.getInt(csrOrder_and_Tool.getColumnIndex("id_order"))){
+                listCurrentTool.add(csrOrder_and_Tool.getInt(csrOrder_and_Tool.getColumnIndex("id_tool")));
+            }
+        }
+        Cursor csrTool = dbStaff.getAll("Tool");
+        while (csrTool.moveToNext()) {
+            if(listCurrentTool.contains(csrTool.getInt(csrTool.getColumnIndex("id_tool")))){
+                tools.add(csrTool.getString(csrTool.getColumnIndex("title")));
+            }
+        }
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tools);
         lvTools.setAdapter(adapter);
         ChangeHeight(lvTools,adapter);
 
-        operators.add("Оператор№1");
-        operators.add("Оператор№2");
-        operators.add("Оператор№3");
-        operators.add("Оператор№4");
-        operators.add("Оператор№5");
+//        operators.add("Оператор№1");
+//        operators.add("Оператор№2");
+//        operators.add("Оператор№3");
+//        operators.add("Оператор№4");
+//        operators.add("Оператор№5");
+        ArrayList<Integer> listCurrentOperator = new ArrayList<>();
+        Cursor csrOrder_and_Operator = dbStaff.getAll("Order_and_Operator");
+        while (csrOrder_and_Operator.moveToNext()) {
+            if(Integer.parseInt(id_current_order) == csrOrder_and_Operator.getInt(csrOrder_and_Operator.getColumnIndex("id_order"))){
+                listCurrentOperator.add(csrOrder_and_Operator.getInt(csrOrder_and_Operator.getColumnIndex("id_staff")));
+            }
+        }
+        Cursor csrOperator = dbStaff.getAll("Staff");
+        while (csrOperator.moveToNext()) {
+            if(listCurrentOperator.contains(csrOperator.getInt(csrOperator.getColumnIndex("id_staff")))){
+                operators.add(csrOperator.getString(csrOperator.getColumnIndex("fio")));
+            }
+        }
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, operators);
         lvOperators.setAdapter(adapter);
         ChangeHeight(lvOperators,adapter);
