@@ -92,7 +92,27 @@ public class DBStaff extends SQLiteOpenHelper {
     }
     public void deleteOrderByIdInOrder(String del_id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete("Request", "id_order=?", new String[]{del_id});
+        db.delete("'Order'", "id_order=?", new String[]{del_id});
+        db.close();
+    }
+    public void deleteOrder_and_Machine(String del_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Order_and_Machine", "id_order=?", new String[]{del_id});
+        db.close();
+    }
+    public void deleteOrder_and_Operator(String del_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Order_and_Operator", "id_order=?", new String[]{del_id});
+        db.close();
+    }
+    public void deleteOrder_and_Osnaska(String del_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Order_and_Osnaska", "id_order=?", new String[]{del_id});
+        db.close();
+    }
+    public void deleteOrder_and_Tool(String del_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Order_and_Tool", "id_order=?", new String[]{del_id});
         db.close();
     }
 
