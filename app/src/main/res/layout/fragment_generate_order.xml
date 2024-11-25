@@ -290,13 +290,13 @@
                     style="@style/AppCompatButtonStyle"
                     android:text="@string/open_drawing" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@style/AppCompatButtonStyle"
-                    android:text="@string/open_techProcess" />
+<!--                <androidx.appcompat.widget.AppCompatButton-->
+<!--                    style="@style/AppCompatButtonStyle"-->
+<!--                    android:text="@string/open_techProcess" />-->
 
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@style/AppCompatButtonStyle"
-                    android:text="@string/open_program" />
+<!--                <androidx.appcompat.widget.AppCompatButton-->
+<!--                    style="@style/AppCompatButtonStyle"-->
+<!--                    android:text="@string/open_program" />-->
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -331,7 +331,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="15dp"
-                    android:text="Время формирования заявки"
+                    android:text="@string/date_master"
                     android:textSize="18sp" />
 
                 <RelativeLayout

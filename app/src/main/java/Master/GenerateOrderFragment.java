@@ -321,6 +321,8 @@ public class GenerateOrderFragment extends Fragment {
                         (view, year1, monthOfYear, dayOfMonth) ->
                                 input_estimated_production_time.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year1),
                         year, month, day);
+                calendar.set(year, month, day);
+                datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
                 datePickerDialog.show();
             }
         });
