@@ -344,6 +344,9 @@ public class GenerateOrderFragment extends Fragment {
                 }
 
                 String clean = s.toString().replaceAll("\\D", ""); // Удаляем все нецифровые символы
+                if (clean.length() > 8) {
+                    clean = clean.substring(0, 8);
+                }
                 StringBuilder formatted = new StringBuilder();
 
                 if (clean.length() > 0) {
@@ -375,9 +378,24 @@ public class GenerateOrderFragment extends Fragment {
                         return;
                     }
 
-                    if (!isValidDate_Master(day, month, year)) {
-                        Toast.makeText(getActivity(), "Некорректная дата", Toast.LENGTH_SHORT).show();
-                        return;
+                    // Проверка корректности даты только если все части введены
+                    if (!day.isEmpty() && !month.isEmpty() && year.length() >= 4) {
+                        if (!isValidDate_Master(day, month, year)) {
+                            Toast.makeText(getActivity(), "Некорректная дата", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        if (!isDateNotInPast(day, month, year)) {
+                            Toast.makeText(getActivity(), "Дата не может быть раньше текущего дня", Toast.LENGTH_SHORT).show();
+                            input_estimated_production_time.setText("");
+                            return;
+                        }
+
+                        int yearInt = Integer.parseInt(year);
+                        if (yearInt > 2100) {
+                            Toast.makeText(getActivity(), "Год не может быть больше 2100", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                     }
                 }
 
@@ -414,6 +432,24 @@ public class GenerateOrderFragment extends Fragment {
             // Метод для проверки високосного года
             private boolean isLeapYear(int year) {
                 return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+            }
+
+            // Метод для проверки, что дата не раньше текущего дня
+            private boolean isDateNotInPast(String day, String month, String year) {
+                Calendar currentDate = Calendar.getInstance();
+                int currentYear = currentDate.get(Calendar.YEAR);
+                int currentMonth = currentDate.get(Calendar.MONTH) + 1;
+                int currentDay = currentDate.get(Calendar.DAY_OF_MONTH);
+
+                int dayInt = Integer.parseInt(day);
+                int monthInt = Integer.parseInt(month);
+                int yearInt = year.isEmpty() ? 0 : Integer.parseInt(year);
+
+                if (yearInt < currentYear || (yearInt == currentYear && monthInt < currentMonth) ||
+                        (yearInt == currentYear && monthInt == currentMonth && dayInt < currentDay)) {
+                    return false;
+                }
+                return true;
             }
         });
 

@@ -142,26 +142,26 @@ public class CreateOrderFragment extends Fragment {
 
         });
 
-        calendar_button.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        getActivity(),
-                        (view, year1, monthOfYear, dayOfMonth) ->
-                                calendar_date.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year1),
-                        year, month, day);
-
-                // Установите минимальную дату (например, сегодня)
-                calendar.set(year, month, day);
-                datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
-
-                datePickerDialog.show();
-            }
-        });
+//        calendar_button.setOnClickListener(new View.OnClickListener() {
+//            @Override public void onClick(View v) {
+//                Calendar calendar = Calendar.getInstance();
+//                int year = calendar.get(Calendar.YEAR);
+//                int month = calendar.get(Calendar.MONTH);
+//                int day = calendar.get(Calendar.DAY_OF_MONTH);
+//
+//                DatePickerDialog datePickerDialog = new DatePickerDialog(
+//                        getActivity(),
+//                        (view, year1, monthOfYear, dayOfMonth) ->
+//                                calendar_date.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year1),
+//                        year, month, day);
+//
+//                // Установите минимальную дату (например, сегодня)
+//                calendar.set(year, month, day);
+//                datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+//
+//                datePickerDialog.show();
+//            }
+//        });
 
         dbManager = new DBManager(getActivity());
 
