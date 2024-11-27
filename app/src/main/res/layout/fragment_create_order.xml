@@ -118,12 +118,12 @@
 <!--                        android:scaleType="fitCenter" />-->
                 </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/error_calendar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/rus_red"
-                    android:layout_gravity="center"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/error_calendar"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/rus_red"-->
+<!--                    android:layout_gravity="center"/>-->
 
                 <TextView
                     android:id="@+id/commentary"

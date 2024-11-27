@@ -91,7 +91,7 @@ public class CreateOrderFragment extends Fragment {
         });
 
         TextView errorNumber = view.findViewById(R.id.error_number);
-        TextView errorDate = view.findViewById(R.id.error_calendar);
+//        TextView errorDate = view.findViewById(R.id.error_calendar);
 
         item_number = view.findViewById(R.id.item_number);
         production_time = view.findViewById(R.id.production_time);
@@ -176,15 +176,15 @@ public class CreateOrderFragment extends Fragment {
             public void afterTextChanged(Editable s) {}
         });
 
-        calendar_date.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                errorDate.setText("");}
-            @Override
-            public void afterTextChanged(Editable s) {}
-        });
+//        calendar_date.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                errorDate.setText("");}
+//            @Override
+//            public void afterTextChanged(Editable s) {}
+//        });
 
 
         button_create.setOnClickListener(new View.OnClickListener() {
@@ -200,10 +200,10 @@ public class CreateOrderFragment extends Fragment {
                     errorNumber.setText("Необходимо заполнить поле номера");
                     itIsError = true;
                 }
-                if (date.isEmpty()) {
-                    errorDate.setText("Необходимо заполнить поле даты");
-                    itIsError = true;
-                }
+//                if (date.isEmpty()) {
+//                    errorDate.setText("Необходимо заполнить поле даты");
+//                    itIsError = true;
+//                }
                 if (itIsError) {
                     return;
                 }
