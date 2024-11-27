@@ -99,7 +99,7 @@ public class CreateOrderFragment extends Fragment {
         item_number_entry = view.findViewById(R.id.item_number_entry);
         commentary_entry = view.findViewById(R.id.commentary_entry);
         button_create = view.findViewById(R.id.button);
-        calendar_button = view.findViewById(R.id.calendar);
+//        calendar_button = view.findViewById(R.id.calendar);
         calendar_date = view.findViewById(R.id.calendar_date);
 
         calendar_date.setFocusable(false);
