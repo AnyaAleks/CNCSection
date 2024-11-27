@@ -363,8 +363,8 @@ public class GenerateOrderFragment extends Fragment {
                 if (clean.length() >= 2) {
                     String day = clean.length() >= 2 ? clean.substring(0, 2) : clean;
 
-                    if (Integer.parseInt(day) > 31) {
-                        Toast.makeText(getActivity(), "Не бывает больше 31 дня в месяце", Toast.LENGTH_SHORT).show();
+                    if (Integer.parseInt(day) > 31 || Integer.parseInt(day) <1) {
+                        Toast.makeText(getActivity(), "Такого дня нет", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
@@ -373,8 +373,8 @@ public class GenerateOrderFragment extends Fragment {
                     String month = clean.length() >= 4 ? clean.substring(2, 4) : "";
                     String year = clean.length() > 4 ? clean.substring(4) : "";
 
-                    if (Integer.parseInt(month) > 12) {
-                        Toast.makeText(getActivity(), "Месяц не может быть больше 12", Toast.LENGTH_SHORT).show();
+                    if (Integer.parseInt(month) > 12 || Integer.parseInt(month) < 1) {
+                        Toast.makeText(getActivity(), "Такого месяца нет", Toast.LENGTH_SHORT).show();
                         return;
                     }
 

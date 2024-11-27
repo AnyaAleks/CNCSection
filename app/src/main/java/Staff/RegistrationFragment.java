@@ -158,6 +158,9 @@ public class RegistrationFragment extends Fragment {
                 }
 
                 String clean = s.toString().replaceAll("\\D", ""); // Удаляем все нецифровые символы
+                if (clean.length() > 8) {
+                    clean = clean.substring(0, 8);
+                }
                 StringBuilder formatted = new StringBuilder();
 
                 if (clean.length() > 0) {
@@ -189,9 +192,17 @@ public class RegistrationFragment extends Fragment {
                         return;
                     }
 
-                    if (!isValidDate(day, month, year)) {
-                        Toast.makeText(getActivity(), "Некорректная дата", Toast.LENGTH_SHORT).show();
-                        return;
+                    if (!day.isEmpty() && !month.isEmpty() && year.length() >= 4) {
+                        if (!isValidDate(day, month, year)) {
+                            Toast.makeText(getActivity(), "Некорректная дата", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        int yearInt = Integer.parseInt(year);
+                        if (yearInt > 2100) {
+                            Toast.makeText(getActivity(), "Год не может быть больше 2100", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                     }
                 }
 
