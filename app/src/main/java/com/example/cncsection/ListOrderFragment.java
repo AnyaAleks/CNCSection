@@ -115,10 +115,8 @@ public class ListOrderFragment extends Fragment {
 
         //Только у менеджера будет нижнее меню => убрать отступ
         mainLinearLayout = view.findViewById(R.id.mainLinearLayout);
-         if(userSettings.getRoleUser() != 1){
-            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mainLinearLayout
-                    .getLayoutParams();
-            layoutParams.setMargins(0, 0, 0, 0);
+        if(userSettings.getRoleUser() != 1){
+             fixLayoutDelMargin();
         }
 
         // Инициализация списка статусов
@@ -159,6 +157,25 @@ public class ListOrderFragment extends Fragment {
                 //newText - название детали
                 filter(newText, filterStatusCheckbox.isChecked());
                 return true;
+            }
+        });
+        //Фокус на поиске - убираем отступ
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(userSettings.getRoleUser() == 1){
+                    fixLayoutDelMargin();
+                }
+            }
+        });
+        //Фокус скрылся - добавляем отступ
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                if(userSettings.getRoleUser() == 1) {
+                    fixLayoutAddMargin();
+                }
+                return false;
             }
         });
 
@@ -347,5 +364,17 @@ public class ListOrderFragment extends Fragment {
             Toast.makeText(getActivity(), "Empty Settings!", Toast.LENGTH_SHORT).show();
             //userSettings = new UserSettings(userId);
         }
+    }
+
+    public void fixLayoutAddMargin(){
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mainLinearLayout
+                .getLayoutParams();
+        layoutParams.setMargins(0, 0, 0, 250);
+    }
+
+    public void fixLayoutDelMargin(){
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mainLinearLayout
+                .getLayoutParams();
+        layoutParams.setMargins(0, 0, 0, 0);
     }
 }

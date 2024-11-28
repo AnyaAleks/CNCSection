@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -40,6 +41,7 @@ public class ListOfPeopleFragment extends Fragment {
     private ArrayList<People> peopleList = new ArrayList<>();
     private RecyclerView rvContacts;
     private CheckBox filterPeopleCheckbox;
+    LinearLayout mainLinearLayout;
 
     public ListOfPeopleFragment() {
     }
@@ -82,6 +84,7 @@ public class ListOfPeopleFragment extends Fragment {
         });
 
 
+        mainLinearLayout = view.findViewById(R.id.mainLinearLayout);
         searchView = view.findViewById(R.id.searchView);
         rvContacts = view.findViewById(R.id.list);
         filterPeopleCheckbox = view.findViewById(R.id.filter_people_checkbox);
@@ -120,6 +123,21 @@ public class ListOfPeopleFragment extends Fragment {
             public boolean onQueryTextChange(String newText) {
                 filter(newText, filterPeopleCheckbox.isChecked());
                 return true;
+            }
+        });
+        //Фокус на поиске - убираем отступ
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fixLayoutDelMargin();
+            }
+        });
+        //Фокус скрылся - добавляем отступ
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                fixLayoutAddMargin();
+                return false;
             }
         });
 
@@ -216,5 +234,16 @@ public class ListOfPeopleFragment extends Fragment {
         return new ListOfPeopleFragment();
     }
 
+    public void fixLayoutAddMargin(){
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mainLinearLayout
+                .getLayoutParams();
+        layoutParams.setMargins(0, 0, 0, 250);
+    }
+
+    public void fixLayoutDelMargin(){
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mainLinearLayout
+                .getLayoutParams();
+        layoutParams.setMargins(0, 0, 0, 0);
+    }
 
 }
