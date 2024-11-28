@@ -28,6 +28,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +55,7 @@ public class RegistrationFragment extends Fragment {
     TextView fio_i;
     TextView fio_o;
     //TextView orderNumber;
+    LinearLayout mainLinearLayout;
 
     DBStaff dbStaff;
     ImageView calendar_button_staff;
@@ -111,6 +113,7 @@ public class RegistrationFragment extends Fragment {
         TextView errorCalendarDate = view.findViewById(R.id.error_calendar_date);
         TextView errorRole = view.findViewById(R.id.error_role);
         TextView errorPassword = view.findViewById(R.id.error_password);
+        mainLinearLayout = view.findViewById(R.id.mainLinearLayout);
 
 
         dbStaff = new DBStaff(getActivity());
@@ -128,6 +131,22 @@ public class RegistrationFragment extends Fragment {
 //        FillSpinners(roles, roles_spinner);
 
         fio_f = (TextView) view.findViewById(R.id.fio_f_entry);
+//        fio_f.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (hasFocus){
+//                    ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mainLinearLayout
+//                            .getLayoutParams();
+//                    layoutParams.setMargins(0, 0, 0, 0);
+//                } else{
+//                    ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mainLinearLayout
+//                            .getLayoutParams();
+//                    layoutParams.setMargins(0, 0, 0, 0);
+//                }
+//            }
+//        });
+
+
         fio_i = (TextView) view.findViewById(R.id.fio_i_entry);
         fio_o = (TextView) view.findViewById(R.id.fio_o_entry);
         //errorTextView = view.findViewById(R.id.error_text_view);
@@ -532,6 +551,18 @@ public class RegistrationFragment extends Fragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void fixLayoutAddMargin(){
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mainLinearLayout
+                .getLayoutParams();
+        layoutParams.setMargins(0, 0, 0, 45);
+    }
+
+    public void fixLayoutDelMargin(){
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mainLinearLayout
+                .getLayoutParams();
+        layoutParams.setMargins(0, 0, 0, 0);
     }
 
 //    private int getRoleKey()

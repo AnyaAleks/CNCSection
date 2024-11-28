@@ -40,7 +40,6 @@
             android:layout_weight="1"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="90dp"
             tools:ignore="UselessParent">
 
             <LinearLayout
@@ -49,11 +48,9 @@
                 android:layout_gravity="clip_horizontal"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
                 android:layout_marginTop="5dp"
                 android:orientation="vertical"
                 android:padding="4dp">
-
 
                 <TextView
                     android:id="@+id/fio_f"

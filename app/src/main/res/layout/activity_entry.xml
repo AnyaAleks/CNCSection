@@ -41,7 +41,7 @@
             style="@style/TextInputLayoutStyle"
             android:hint="@string/password"
             app:endIconMode="password_toggle"
-            app:endIconTint="@color/rus_dark_blue">
+            app:endIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputEditPasswordSignIn"
