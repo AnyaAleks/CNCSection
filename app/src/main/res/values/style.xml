@@ -2,9 +2,9 @@
 <resources>
     <!--TextInputLayout in SignIn and SignUp-->
     <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-        <item name="boxStrokeColor">@color/rus_dark_blue</item>
-        <item name="hintTextColor">@color/rus_dark_blue</item>
-        <item name="android:textColorHint">@color/rus_dark_blue</item>
+        <item name="boxStrokeColor">@color/black</item>
+        <item name="hintTextColor">@color/black</item>
+        <item name="android:textColorHint">@color/black</item>
         <item name="boxCornerRadiusBottomEnd">16dp</item>
         <item name="boxCornerRadiusTopStart">16dp</item>
         <item name="boxCornerRadiusBottomStart">16dp</item>
@@ -19,7 +19,7 @@
 
     <!--TextInputEditText in SignIn and SignUp-->
     <style name="TextInputEditTextStyleSign" parent="">
-        <item name="android:textColor">@color/rus_dark_blue</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>

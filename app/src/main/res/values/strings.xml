@@ -30,7 +30,7 @@
 
 
     <string name="master_header">МАСТЕР</string>
-    <string name="estimated_time">Время производства </string>
+    <string name="estimated_time">Время производства (мин)</string>
     <string name="bench">Станки</string>
     <string name="equipment">Оснастки</string>
     <string name="operator">Операторы</string>
@@ -58,7 +58,7 @@
     <string name="role">Должность</string>
     <string name="to_register">Зарегистрироваться</string>
     <string name="birthday">Дата рождения</string>
-    <string name="choose_a_password">Введите пароль:</string>
+    <string name="choose_a_password">Введите пароль</string>
     <string name="re_password">Повторите пароль</string>
     <string name="date_description"> 01.09.2024  </string>
 

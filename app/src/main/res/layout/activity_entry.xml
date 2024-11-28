@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="@string/entry"
             android:layout_gravity="center"
-            android:textColor="@color/rus_dark_blue"
+            android:textColor="@color/black"
             android:textSize="25dp" />
 
 

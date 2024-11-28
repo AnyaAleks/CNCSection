@@ -228,9 +228,8 @@
                     android:id="@+id/outlinedTextFieldPasswordSignUpFirst"
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:hint="@string/password"
                     app:endIconMode="password_toggle"
-                    app:endIconTint="@color/rus_dark_blue">
+                    app:endIconTint="@color/black">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/textInputEditPasswordSignUpFirst"
@@ -240,13 +239,21 @@
                          />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <TextView
+                    android:text="Повторите пароль"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:textSize="18sp" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/outlinedTextFieldPasswordSignUpSecond"
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:hint="@string/re_password"
                     app:endIconMode="password_toggle"
-                    app:endIconTint="@color/rus_dark_blue">
+                    app:endIconTint="@color/black">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/textInputEditPasswordSignUpSecond"

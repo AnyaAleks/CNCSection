@@ -137,7 +137,26 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="15dp"
                     android:gravity="center"
+                    android:text="Заявку создал"
+                    android:textSize="18sp" />
 
+                <EditText
+                    android:id="@+id/fioRequestEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_input"
+                    android:padding="12dp"
+                    android:inputType="date"
+                    android:paddingEnd="60dp"
+                    android:textSize="18sp"
+                    android:enabled="false"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
                     android:text="Заявку оформил"
                     android:textSize="18sp" />
 
@@ -201,7 +220,7 @@
                     android:layout_marginBottom="15dp"
                     android:gravity="center"
 
-                    android:text="Время производства"
+                    android:text="Время производства (мин)"
                     android:textSize="18sp" />
 
                 <EditText
@@ -235,7 +254,7 @@
                     <EditText
                         android:id="@+id/commentaryEntryEditText"
                         android:layout_width="0dp"
-                        android:layout_height="100dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
                         android:layout_weight="1"
                         android:background="@drawable/shape_of_elements"
@@ -332,10 +351,12 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/openProgramButton"
                     style="@style/AppCompatButtonStyle"
+                    android:visibility="gone"
                     android:text="@string/open_drawing"/>
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/AppCompatButtonStyle"
+                    android:visibility="gone"
                     android:text="@string/open_techProcess"/>
 
                 <androidx.appcompat.widget.AppCompatButton

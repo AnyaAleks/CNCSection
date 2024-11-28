@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,7 +32,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cncsection.R;
+import com.example.cncsection.UserSettings;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
 
 import java.util.Calendar;
 
@@ -44,7 +47,7 @@ public class CreateOrderFragment extends Fragment {
     Button button_create;
     ImageView calendar_button;
 
-
+    UserSettings userSettings = new UserSettings();
 
     DBManager dbManager;
 
@@ -92,6 +95,9 @@ public class CreateOrderFragment extends Fragment {
 
         TextView errorNumber = view.findViewById(R.id.error_number);
 //        TextView errorDate = view.findViewById(R.id.error_calendar);
+
+        //Доставание из настроек
+        loadJsonData();
 
         item_number = view.findViewById(R.id.item_number);
         production_time = view.findViewById(R.id.production_time);
@@ -208,7 +214,7 @@ public class CreateOrderFragment extends Fragment {
                     return;
                 }
 
-                dbManager.addToRequest(number, 1, comments, date);
+                dbManager.addToRequest(number, 1, comments, date, userSettings.getIdUser());
                 Toast.makeText(getActivity(), "Успешное добавление", Toast.LENGTH_SHORT).show();
 
                 item_number_entry.setText("");
@@ -234,6 +240,19 @@ public class CreateOrderFragment extends Fragment {
 
     public static CreateOrderFragment newInstance(){
         return new CreateOrderFragment();
+    }
+
+    //Доставание из настроек
+    public void loadJsonData() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("user settings", null);
+        userSettings = gson.fromJson(json, UserSettings.class);
+
+        if (userSettings == null) {
+            Toast.makeText(getActivity(), "Empty Settings!", Toast.LENGTH_SHORT).show();
+            //userSettings = new UserSettings(userId);
+        }
     }
 }
 

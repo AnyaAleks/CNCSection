@@ -49,6 +49,7 @@ public class OrderInformation extends AppCompatActivity {
     EditText detailNumberEditText;
     EditText commentaryEntryEditText;
     EditText fioEditText;
+    EditText fioRequestEditText;
     EditText dateEditText;
     EditText productionTimeEditText;
     EditText dateGenerateEditText;
@@ -121,6 +122,7 @@ public class OrderInformation extends AppCompatActivity {
         detailNumberEditText = findViewById(R.id.detailNumberEditText);
         commentaryEntryEditText = findViewById(R.id.commentaryEntryEditText);
         fioEditText = findViewById(R.id.fioEditText);
+        fioRequestEditText = findViewById(R.id.fioRequestEditText);
         dateEditText = findViewById(R.id.dateEditText);
         productionTimeEditText = findViewById(R.id.productionTimeEditText);
         dateGenerateEditText = findViewById(R.id.dateGenerateEditText);
@@ -218,6 +220,7 @@ public class OrderInformation extends AppCompatActivity {
         ChangeHeight(lvOperators,adapter);
 ////////////////////////////////////////////////////////////////////////////////////////////////////
         Cursor csrRequest = dbStaff.getAll("Request");
+        int id_manager = -1;
         while (csrRequest.moveToNext()) {
             if(csrRequest.getInt(csrRequest.getColumnIndex("id_order")) == Integer.parseInt(id_current_order)){
                 detailNumberEditText.setText(csrRequest.getString(csrRequest.getColumnIndex("part_number")));
@@ -231,6 +234,14 @@ public class OrderInformation extends AppCompatActivity {
                 while(csrStatus.moveToNext()){
                     if(csrStatus.getInt(csrStatus.getColumnIndex("id_status")) == id_status){
                         statesSpinner.setText(csrStatus.getString(csrStatus.getColumnIndex("title")));
+                    }
+                }
+
+                id_manager = csrRequest.getInt(csrRequest.getColumnIndex("id_staff_manager"));
+                Cursor csrStaff = dbStaff.getAll("Staff");
+                while (csrStaff.moveToNext()) {
+                    if(csrStaff.getInt(csrStaff.getColumnIndex("id_staff")) == id_manager){
+                        fioRequestEditText.setText(csrStaff.getString(csrStaff.getColumnIndex("fio")));
                     }
                 }
 
@@ -262,7 +273,6 @@ public class OrderInformation extends AppCompatActivity {
                 }
             }
         }
-
 
 
         deleteOrderButton.setOnClickListener(new View.OnClickListener() {

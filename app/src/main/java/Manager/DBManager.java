@@ -67,7 +67,7 @@ class DBManager extends SQLiteOpenHelper {
     }
 
 
-    public long addToRequest(String part_number, int id_status, String comment, String date) {
+    public long addToRequest(String part_number, int id_status, String comment, String date, int id_manager) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
@@ -75,6 +75,7 @@ class DBManager extends SQLiteOpenHelper {
         cv.put("id_status", id_status);
         cv.put("comment", comment);
         cv.put("date", date);
+        cv.put("id_staff_manager", id_manager);
 
         long rowID = db.insert("Request", null, cv);
         Log.e("LogTag", "Request" + " rowID " + rowID);
