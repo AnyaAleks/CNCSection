@@ -79,7 +79,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp" />
+                        android:layout_marginTop="10dp"
+                        android:listSelector="@android:color/transparent"/>
                 </LinearLayout>
 
                 <TextView
@@ -102,7 +103,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp" />
+                        android:layout_marginTop="10dp"
+                        android:listSelector="@android:color/transparent"/>
                 </LinearLayout>
 
                 <TextView
@@ -125,7 +127,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp" />
+                        android:layout_marginTop="10dp"
+                        android:listSelector="@android:color/transparent"/>
                 </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"

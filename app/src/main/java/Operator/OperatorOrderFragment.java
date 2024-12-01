@@ -217,14 +217,13 @@ public class OperatorOrderFragment extends Fragment {
         lvTools.setAdapter(adapter);
         ChangeHeight(lvTools,adapter);
 
-        fillStatesSpinner();
         statesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                stateInformerButton.setBackgroundDrawable(getResources().getDrawable( getRoleColor(position+1)));
-                stateInformerButton.setImageResource( getRoleIcon(position+1));
-                selectedNewRole = position+1;
+                stateInformerButton.setBackgroundDrawable(getResources().getDrawable( getRoleColor(position+3)));
+                stateInformerButton.setImageResource( getRoleIcon(position+3));
+                selectedNewRole = position+3;
             }
 
             @Override
@@ -232,13 +231,16 @@ public class OperatorOrderFragment extends Fragment {
 
             }
         });
+
+
+        fillStatesSpinner();
         //Установка значений при входе в выпадающий список
         Cursor csrRequest = dbStaff.getAll("Request");
         while (csrRequest.moveToNext()) {
             if(csrRequest.getInt(csrRequest.getColumnIndex("id_order")) == idOrder){
 
                 int _id_status = csrRequest.getInt(csrRequest.getColumnIndex("id_status"));
-                statesSpinner.setSelection(_id_status-1);
+                statesSpinner.setSelection(_id_status-3);
             }
         }
 
@@ -266,6 +268,8 @@ public class OperatorOrderFragment extends Fragment {
     private  void fillStatesSpinner()
     {
         ArrayList<String> list = new ArrayList<>(hashSates.values());
+        list.remove(0);
+        list.remove(0);
         ArrayAdapter<String> TypesAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,list);
         TypesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         statesSpinner.setAdapter(TypesAdapter);
