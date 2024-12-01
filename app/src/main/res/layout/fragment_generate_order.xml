@@ -110,6 +110,12 @@
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/shape_of_elements" />
+                <TextView
+                    android:id="@+id/error_bench_master"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/rus_red" />
 
                 <TextView
                     android:id="@+id/equipment_list"
@@ -157,6 +163,12 @@
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/shape_of_elements" />
+                <TextView
+                    android:id="@+id/error_equipment_master"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/rus_red" />
 
 
                 <TextView
@@ -203,6 +215,12 @@
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/shape_of_elements" />
+                <TextView
+                    android:id="@+id/error_operator_master"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/rus_red" />
 
                 <TextView
                     android:id="@+id/tool_list"
@@ -250,6 +268,13 @@
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/shape_of_elements" />
+
+                <TextView
+                    android:id="@+id/error_tool_master"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/rus_red" />
 
                 <TextView
                     android:layout_width="wrap_content"

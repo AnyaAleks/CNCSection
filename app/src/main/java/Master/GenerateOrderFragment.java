@@ -164,6 +164,10 @@ public class GenerateOrderFragment extends Fragment {
 
         TextView errorDay = view.findViewById(R.id.error_calendar_master);
         TextView errorTime = view.findViewById(R.id.error_time_master);
+        TextView errorBench = view.findViewById(R.id.error_bench_master);
+        TextView errorEquipment = view.findViewById(R.id.error_equipment_master);
+        TextView errorOperator = view.findViewById(R.id.error_operator_master);
+        TextView errorTool = view.findViewById(R.id.error_tool_master);
 
         lvBenches = view.findViewById(R.id.bench_list_view);
         lvEquipments = view.findViewById(R.id.equipment_list_view);
@@ -477,6 +481,7 @@ public class GenerateOrderFragment extends Fragment {
                     }
 
                     if (flag) {
+                        errorBench.setText("");
                         benches.add(new MasterString(newBench, id));
                         adapter = new MasterAdapter(getActivity(), benches);
                         lvBenches.setAdapter(adapter);
@@ -509,6 +514,7 @@ public class GenerateOrderFragment extends Fragment {
                     }
 
                     if (flag) {
+                        errorEquipment.setText("");
                         equipments.add(new MasterString(newBench, id));
                         adapter = new MasterAdapter(getActivity(), equipments);
                         lvEquipments.setAdapter(adapter);
@@ -540,6 +546,7 @@ public class GenerateOrderFragment extends Fragment {
                     }
 
                     if (flag) {
+                        errorOperator.setText("");
                         operators.add(new MasterString(newBench, id));
                         adapter = new MasterAdapter(getActivity(), operators);
                         lvOperators.setAdapter(adapter);
@@ -572,6 +579,7 @@ public class GenerateOrderFragment extends Fragment {
                     }
 
                     if (flag) {
+                        errorTool.setText("");
                         tools.add(new MasterString(newBench, id));
                         adapter = new MasterAdapter(getActivity(), tools);
                         lvTools.setAdapter(adapter);
@@ -606,6 +614,10 @@ public class GenerateOrderFragment extends Fragment {
             public void onClick(View v) {
                 String estimatedProductionTime = String.valueOf(productionTimeInput.getText());
                 String calendar_date_master = String.valueOf(input_estimated_production_time.getText());
+                int benchSize = benches.size();
+                int equipmentSize = equipments.size();
+                int operatorSize = operators.size();
+                int toolSize = tools.size();
 
                 boolean itIsError = false;
                 if (calendar_date_master.isEmpty()) {
@@ -616,6 +628,24 @@ public class GenerateOrderFragment extends Fragment {
                     errorTime.setText("Необходимо заполнить поле время производства");
                     itIsError = true;
                 }
+                if (benchSize<1) {
+                    errorBench.setText("Необходимо указать требуемые станки");
+                    itIsError = true;
+                }
+                if (toolSize<1) {
+                    errorTool.setText("Необходимо указать требуемые инструменты");
+                    itIsError = true;
+                }
+                if (equipmentSize<1) {
+                    errorEquipment.setText("Необходимо указать требуемые оснастки");
+                    itIsError = true;
+                }
+                if (operatorSize<1) {
+                    errorOperator.setText("Необходимо указать требуемых операторов");
+                    itIsError = true;
+                }
+
+
                 if (itIsError) {
                     return;
                 }
