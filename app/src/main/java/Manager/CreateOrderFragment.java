@@ -121,24 +121,28 @@ public class CreateOrderFragment extends Fragment {
         commentary_entry.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
+                int lineHeight = commentary_entry.getLineHeight();
+                int padding = commentary_entry.getPaddingTop() + commentary_entry.getPaddingBottom();
 
-                int newHeight = commentary_entry.getLineCount() *
-                        commentary_entry.getLineHeight();
+                int newHeight = (commentary_entry.getLineCount() * lineHeight) + padding;
 
-                //перевод в dp
+                // Перевод в dp
                 int minHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100,
                         getResources().getDisplayMetrics());
-                int maxHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 250,
+                int maxHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 300,
                         getResources().getDisplayMetrics());
 
-                if (newHeight < minHeight) {newHeight = minHeight;}
-                if (newHeight > maxHeight) {newHeight = maxHeight;}
-
+                if (newHeight < minHeight) {
+                    newHeight = minHeight;
+                } else if (newHeight > maxHeight) {
+                    newHeight = maxHeight;
+                }
 
                 ViewGroup.LayoutParams params = commentary_entry.getLayoutParams();
                 params.height = newHeight;

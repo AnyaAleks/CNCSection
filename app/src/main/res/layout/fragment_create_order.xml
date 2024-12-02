@@ -156,6 +156,8 @@
                         android:paddingRight="10dp"
                         android:paddingBottom="5dp"
                         android:scrollbars="vertical"
+                        android:minLines="1"
+                        android:maxLines="100"
                         android:textSize="18sp" />
                 </LinearLayout>
 
