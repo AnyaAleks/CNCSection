@@ -222,7 +222,7 @@ public class CreateOrderFragment extends Fragment {
                 Toast.makeText(getActivity(), "Успешное добавление", Toast.LENGTH_SHORT).show();
 
                 item_number_entry.setText("");
-                calendar_date.setText("");
+//                calendar_date.setText("");
                 commentary_entry.setText("");
 
                 Cursor csr = dbManager.getAll("Request");

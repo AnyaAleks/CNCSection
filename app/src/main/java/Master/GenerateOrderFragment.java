@@ -398,6 +398,7 @@ public class GenerateOrderFragment extends Fragment {
                         int yearInt = Integer.parseInt(year);
                         if (yearInt > 2100) {
                             Toast.makeText(getActivity(), "Год не может быть больше 2100", Toast.LENGTH_SHORT).show();
+                            input_estimated_production_time.setText("");
                             return;
                         }
                     }

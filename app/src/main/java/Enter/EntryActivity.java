@@ -2,11 +2,14 @@ package Enter;
 
 import static android.app.PendingIntent.getActivity;
 import android.annotation.SuppressLint;
+import android.os.Handler;
+import android.text.TextWatcher;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -33,7 +36,7 @@ import Staff.DBStaff;
 
 public class EntryActivity extends AppCompatActivity {
 
-    TextView entry;
+    TextView entry, errorTextView;
     EditText password_1, login;
     Button add_button;
 
@@ -53,17 +56,14 @@ public class EntryActivity extends AppCompatActivity {
         password_1 = findViewById(R.id.textInputEditPasswordSignIn);
         login = findViewById(R.id.login);
         add_button = findViewById(R.id.add_button);
-
+        errorTextView = findViewById(R.id.error_text_view);
 
         add_button.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                //Сделать проверку на пароль и понять какое окно грузить
-                // (всем работникам при устройстве на работу должны выдавать пароль) по типу клиента
-                //У каждой роли в пароле можно сделать определённые первые цифры или буквы и делать проверку по ним
-                //Toast.makeText(getBaseContext(), "Reason can not be blank", Toast.LENGTH_SHORT).show();
+
                 String passwordMD5 = md5(password_1.getText().toString());
                 boolean isValid = false;
 
@@ -79,7 +79,6 @@ public class EntryActivity extends AppCompatActivity {
                         userSettings.setIdUser(csr.getInt(csr.getColumnIndex("id_staff")));
                         saveJsonData();
 
-                        //Переход в окно
                         openActivityByAccess(csr.getInt(csr.getColumnIndex("id_access")));
 
 
@@ -108,8 +107,16 @@ public class EntryActivity extends AppCompatActivity {
                 if (!isValid) {
                     login.setText("");
                     password_1.setText("");
-                    TextView errorTextView = findViewById(R.id.error_text_view);
                     errorTextView.setText("Логин или пароль введены неправильно");
+                    login.clearFocus();
+                    password_1.clearFocus();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            errorTextView.setText("");
+                        }
+                    }, 1000);
                 }
             }
         });
