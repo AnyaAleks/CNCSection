@@ -120,6 +120,24 @@ public class EntryActivity extends AppCompatActivity {
                 }
             }
         });
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                errorTextView.setText("");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
+
+        login.addTextChangedListener(textWatcher);
+        password_1.addTextChangedListener(textWatcher);
 
     }
 
