@@ -121,7 +121,7 @@ public class ListOfPeopleFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                filter(newText, filterPeopleCheckbox.isChecked());
+                filter(newText.trim(), filterPeopleCheckbox.isChecked());
                 return true;
             }
         });
@@ -198,7 +198,7 @@ public class ListOfPeopleFragment extends Fragment {
             }
         }
         if (filteredList.isEmpty()) {
-            Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Данный сотрудник отсутствует в системе", Toast.LENGTH_SHORT).show();
         }
         if (isFilterByRole) {
             Collections.sort(filteredList, new ListOfPeopleFragment.staffFioComparator());
