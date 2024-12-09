@@ -113,6 +113,7 @@ public class RegistrationFragment extends Fragment {
         TextView errorCalendarDate = view.findViewById(R.id.error_calendar_date);
         TextView errorRole = view.findViewById(R.id.error_role);
         TextView errorPassword = view.findViewById(R.id.error_password);
+        TextView errorPassword_2 = view.findViewById(R.id.error_password_2);
         mainLinearLayout = view.findViewById(R.id.mainLinearLayout);
 
 
@@ -304,7 +305,7 @@ public class RegistrationFragment extends Fragment {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                errorPassword.setText("");}
+                errorPassword_2.setText("");}
             @Override
             public void afterTextChanged(Editable s) {}
         });
@@ -378,8 +379,8 @@ public class RegistrationFragment extends Fragment {
                     errorPassword.setVisibility(View.VISIBLE);
                     password_wrong = true;
                 } else if (!pas1.equals(pas2)) {
-                    errorPassword.setText("Пароли не совпадают");
-                    errorPassword.setVisibility(View.VISIBLE);
+                    errorPassword_2.setText("Пароли не совпадают");
+                    errorPassword_2.setVisibility(View.VISIBLE);
                     password_wrong = true;
                 } else {
                     password = md5(pas1);
