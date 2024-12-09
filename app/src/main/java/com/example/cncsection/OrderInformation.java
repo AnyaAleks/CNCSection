@@ -300,7 +300,7 @@ public class OrderInformation extends AppCompatActivity {
                 }
 
                 if(!flagIsFind){
-                    Toast.makeText(getApplicationContext(), "Чертеж не найден", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Программа не найдена", Toast.LENGTH_SHORT).show();
                 }
             }
         });

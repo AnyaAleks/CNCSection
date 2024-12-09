@@ -283,7 +283,7 @@ public class GenerateOrderFragment extends Fragment {
                 }
 
                 if(!flagIsFind){
-                    Toast.makeText(getActivity(), "Чертеж не найден", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Программа не найдена", Toast.LENGTH_SHORT).show();
                 }
             }
         });

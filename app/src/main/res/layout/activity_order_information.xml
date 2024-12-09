@@ -259,7 +259,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/shape_of_elements"
                         android:gravity="bottom"
-                        android:hint="@string/hint_2"
+                        android:hint="Комментарий отсутствует"
                         android:inputType="textMultiLine"
                         android:maxLength="200"
                         android:textSize="18dp"
