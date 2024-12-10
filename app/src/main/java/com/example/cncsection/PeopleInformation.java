@@ -72,7 +72,12 @@ public class PeopleInformation extends AppCompatActivity {
             if(csrStaff.getInt(csrStaff.getColumnIndex("id_staff")) == Integer.parseInt(id_current_person)){
                 staffImageView.setImageResource(getRoleIcon(csrStaff.getInt(csrStaff.getColumnIndex("id_access")) ));
                 fioTextView.setText(csrStaff.getString(csrStaff.getColumnIndex("fio")));
-                dateOfBirthTextView.setText(csrStaff.getString(csrStaff.getColumnIndex("date_of_birth")));
+                String dateOfBirth = csrStaff.getString(csrStaff.getColumnIndex("date_of_birth"));
+                if (dateOfBirth != null && !dateOfBirth.isEmpty()) {
+                    dateOfBirthTextView.setText(dateOfBirth);
+                } else {
+                    dateOfBirthTextView.setText("Дата рождения не указана");
+                }
             }
         }
 
