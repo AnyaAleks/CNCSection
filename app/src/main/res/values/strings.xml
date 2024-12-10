@@ -9,7 +9,7 @@
     <string name="filter_people">Сортировать от А до Я</string>
 
     <string name="manager_header">Менеджер по планированию</string>
-    <string name="item">Номер заявки</string>
+    <string name="item">Название детали</string>
     <string name="time">Дата создания заявки </string>
     <string name="time_start">Время производства</string>
     <string name="time_button"> </string>
