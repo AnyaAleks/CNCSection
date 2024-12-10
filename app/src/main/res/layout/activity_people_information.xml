@@ -19,7 +19,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/rus_white"
             android:layout_marginTop="20dp"
-            app:title="Возврат к списку сотрудников"
+            app:title="Вернуться в список"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
         <View
