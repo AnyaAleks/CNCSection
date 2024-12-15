@@ -4,7 +4,7 @@
     <string name="entry">Вход в систему</string>
     <string name="login">Логин</string>
     <string name="password">Пароль</string>
-    <string name="sent">Отправить</string>
+    <string name="sent">Войти</string>
     <string name="filter_status">Сортировать от Создана до Выполнена</string>
     <string name="filter_people">Сортировать от А до Я</string>
 
