@@ -255,8 +255,10 @@ public class RegistrationFragment extends Fragment {
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         getActivity(),
-                        (view, year1, monthOfYear, dayOfMonth) ->
-                                calendar_date_staff.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year1),
+                        (view, year1, monthOfYear, dayOfMonth) -> {
+                            String formattedDate = String.format("%02d.%02d.%d", dayOfMonth, monthOfYear + 1, year1);
+                            calendar_date_staff.setText(formattedDate);
+                        },
                         year, month, day);
                 calendar.set(year, month, day);
 
