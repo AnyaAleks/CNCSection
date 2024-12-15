@@ -322,10 +322,11 @@ public class GenerateOrderFragment extends Fragment {
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         getActivity(),
-                        (view, year1, monthOfYear, dayOfMonth) ->
-                                input_estimated_production_time.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year1),
+                        (view, year1, monthOfYear, dayOfMonth) -> {
+                            String formattedDate = String.format("%02d.%02d.%d", dayOfMonth, monthOfYear + 1, year1);
+                            input_estimated_production_time.setText(formattedDate);
+                        },
                         year, month, day);
-                calendar.set(year, month, day);
                 datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
                 datePickerDialog.show();
             }
