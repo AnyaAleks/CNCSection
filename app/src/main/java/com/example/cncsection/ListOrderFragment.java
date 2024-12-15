@@ -262,12 +262,19 @@ public class ListOrderFragment extends Fragment {
                     }
                 }
 
-                if(flagOrderAlreadyExist){
-                    Toast.makeText(getActivity(), "Заявка уже сформирована!", Toast.LENGTH_SHORT).show();
-                } else{
-                    if(statusList.get(position).getStatus() != 1){
+//                if(flagOrderAlreadyExist){
+//                    Toast.makeText(getActivity(), "Заявка уже сформирована!", Toast.LENGTH_SHORT).show();
+//                } else{
+                    if(statusList.get(position).getStatus() != 1 && statusList.get(position).getStatus() != 7){
                         Toast.makeText(getActivity(), "Заявка находится в работе!", Toast.LENGTH_SHORT).show();
-                    } else{
+                    }
+                    else if(statusList.get(position).getStatus() == 2){
+                        Toast.makeText(getActivity(), "Заявка уже сформирована!", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(statusList.get(position).getStatus() == 7){
+                        Toast.makeText(getActivity(), "Заявка уже выполнена!", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
                         Bundle bundle = new Bundle();
                         bundle.putInt("idOrder", statusList.get(position).getIdOrder());
                         generateOrderFragment.setArguments(bundle);
@@ -277,7 +284,7 @@ public class ListOrderFragment extends Fragment {
                                 .addToBackStack(null)
                                 .commit();
                     }
-                }
+                //}
             }
         });
     }

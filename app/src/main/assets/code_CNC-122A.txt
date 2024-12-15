@@ -1,0 +1,56 @@
+#ifndef SVGSTYLE_H
+#define SVGSTYLE_H
+
+#include <QObject>
+#include <QSet>
+#include <QtCore>
+#include <QColor>
+
+//Class works with svg format
+class SvgClass;
+
+//Class works with svg attribute value
+class SvgStyle : public QObject
+{
+    Q_OBJECT
+
+    Q_PROPERTY(bool hasWidthLineCorrection READ hasWidthLineCorrection WRITE setHasWidthLineCorrection NOTIFY hasWidthLineCorrectionChanged) //works with line width in qml (boolean)
+    Q_PROPERTY(qreal widthLineCorrection READ widthLineCorrection WRITE setWidthLineCorrection NOTIFY widthLineCorrectionChanged) //works with line width in qml (double)
+    Q_PROPERTY(QColor textColor READ textColor WRITE setTextColor NOTIFY textColorChanged) //works with text color in qml
+    Q_PROPERTY(QColor backColor READ backColor WRITE setBackColor NOTIFY backColorChanged) //works with background color in qml
+
+    inline static bool m_hasWidthLineCorrection=false;
+    inline static qreal m_widthLineCorrection=1;
+    inline static QSet<SvgClass*> m_svg=QSet<SvgClass*>(); //Qset for icons
+
+    static void updateSvg();
+
+    QColor m_textColor;
+    QColor m_backColor;
+
+public:
+    explicit SvgStyle(QObject *parent = nullptr); //constructor
+
+    static void registerSvg(SvgClass*svg); //insert new svg
+    static void unregisterSvg(SvgClass*svg); //remove svg
+
+    static bool hasWidthLineCorrection(); //getter line width (bool)
+    void setHasWidthLineCorrection(bool newHasWidthLineCorrection); //setter line width (bool)
+
+    static qreal widthLineCorrection(); //getter line width (double)
+    void setWidthLineCorrection(qreal newWidthLineCorrection); //setter line width (double)
+
+    const QColor &textColor() const; //getter text color
+    void setTextColor(const QColor &newTextColor); //setter text color
+
+    const QColor &backColor() const; //getter background color
+    void setBackColor(const QColor &newBackColor); //setter background color
+
+signals:
+    void hasWidthLineCorrectionChanged();
+    void widthLineCorrectionChanged();
+    void textColorChanged();
+    void backColorChanged();
+};
+
+#endif // SVGSTYLE_H

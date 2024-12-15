@@ -1,0 +1,52 @@
+import QtQuick 2.15
+import Clever 1.0
+import QtQuick.Layouts 1.15
+import Qt5Compat.GraphicalEffects
+import QtQuick.Controls
+import QtQuick3D
+import "qrc:/qml"
+
+Item{id: topItem
+    anchors.fill: parent
+
+    ListModel {id: pathView
+        ListElement { name: "0" }
+        ListElement { name: "5" }
+        ListElement { name: "10" }
+        ListElement { name: "15" }
+        ListElement { name: "20" }
+        ListElement { name: "25" }
+        ListElement { name: "30" }
+        ListElement { name: "35" }
+        ListElement { name: "40" }
+        ListElement { name: "45" }
+        ListElement { name: "50" }
+        ListElement { name: "55" }
+    }
+
+    Repeater {id: repeater
+           model: pathView
+           CBaseLabel{id: pillText
+               labelItem{
+                   horizontalAlignment: Qt.AlignHCenter
+               }
+               text: name
+               textSize: 20*CB.dp
+               x:{
+                   let i = index;
+                   let radian = i * (2 * Math.PI / pathView.count) - 0.5 * Math.PI;
+                   var R = 180*CB.dp;
+                   let x = R * Math.cos(radian) + topItem.width/2;
+                   return x;
+               }
+               y:{
+                   let i = index;
+                   let radian = i * (2 * Math.PI / pathView.count) - 0.5 * Math.PI;
+                   var R = 180*CB.dp;
+                   let y = R * Math.sin(radian) + topItem.height/2;
+                   return y;
+               }
+           }
+       }
+
+}
