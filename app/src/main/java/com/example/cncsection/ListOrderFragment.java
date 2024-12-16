@@ -265,7 +265,10 @@ public class ListOrderFragment extends Fragment {
 //                if(flagOrderAlreadyExist){
 //                    Toast.makeText(getActivity(), "Заявка уже сформирована!", Toast.LENGTH_SHORT).show();
 //                } else{
-                    if(statusList.get(position).getStatus() != 1 && statusList.get(position).getStatus() != 7){
+                    if(statusList.get(position).getStatus() == 3
+                            || statusList.get(position).getStatus() == 4
+                            || statusList.get(position).getStatus() == 5
+                            || statusList.get(position).getStatus() == 6){
                         Toast.makeText(getActivity(), "Заявка находится в работе!", Toast.LENGTH_SHORT).show();
                     }
                     else if(statusList.get(position).getStatus() == 2){
